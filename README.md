@@ -1,6 +1,6 @@
 <div align="center">
 
-# refactor-scan
+# Automated-Code-Refactoring_Recommendation-System
 
 **Point it at a Python codebase. It tells you what's wrong, why, and exactly which lines to move where.**
 
