@@ -4,11 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "refactor-scan"
-version = "0.1.0"
+version = "0.1.1"
 description = "AST-based Python code smell detector and refactoring suggester (God Class, Data Class, Feature Envy, Long Method) with an ML classifier and graph-based Extract Class suggestions."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Nithin" }]
+license = "MIT"
+license-files = ["LICENSE"]
 
 dependencies = [
     "click>=8.0",
@@ -16,7 +18,11 @@ dependencies = [
     "rich-click>=1.7",
     "pandas>=2.0",
     "numpy>=1.24",
-    "scikit-learn>=1.3",
+    # Pinned exactly, not a floor: the shipped .pkl model was trained under
+    # this scikit-learn version. Pickled sklearn estimators are sensitive to
+    # the training version -- a newer resolved version loads the model with
+    # an InconsistentVersionWarning and no guarantee of correct behavior.
+    "scikit-learn==1.8.0",
     "joblib>=1.3",
     "networkx>=3.0",
 ]

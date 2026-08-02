@@ -20,7 +20,8 @@ from engine.cli.render import (
     print_model_explanation,
     print_smell_explanation,
 )
-from engine.pipeline import analyze_repo
+from engine.parser import DEFAULT_EXCLUDED_DIRS, is_excluded_dir
+from engine.pipeline import analyze_path
 from engine.serializer import metrics_to_json
 
 for _stream in (sys.stdout, sys.stderr):
@@ -45,13 +46,16 @@ click.rich_click.COMMAND_GROUPS = {
 }
 
 
-def _file_count(repo_path):
-    return sum(
-        1
-        for _root, _dirs, files in os.walk(repo_path)
-        for filename in files
-        if filename.endswith(".py")
-    )
+def _file_count(path, exclude=()):
+    if os.path.isfile(path):
+        return 1 if path.endswith(".py") else 0
+
+    excluded = DEFAULT_EXCLUDED_DIRS | set(exclude)
+    count = 0
+    for root, dirs, files in os.walk(path):
+        dirs[:] = [d for d in dirs if not is_excluded_dir(d, excluded)]
+        count += sum(1 for filename in files if filename.endswith(".py"))
+    return count
 
 
 @click.group(invoke_without_command=True)
@@ -64,7 +68,7 @@ def cli(ctx):
 
 
 @cli.command()
-@click.argument("path", type=click.Path(exists=True, file_okay=False))
+@click.argument("path", type=click.Path(exists=True, file_okay=True, dir_okay=True))
 @click.option(
     "--format", "output_format", type=click.Choice(["console", "json"]), default="console",
     help="Output format.",
@@ -74,10 +78,19 @@ def cli(ctx):
     "--audience", type=click.Choice(["dev", "simple"]), default="dev",
     help="dev: technical detail. simple: plain-language for non-engineers.",
 )
-def analyze(path, output_format, output, audience):
-    """Scan PATH for code smells and report the results."""
-    results = analyze_repo(path)
-    file_count = _file_count(path)
+@click.option(
+    "--top", type=int, default=10,
+    help="Show at most N flagged classes in console output, most severe first. 0 shows all.",
+)
+@click.option(
+    "--exclude", multiple=True, metavar="DIRNAME",
+    help="Additional directory name to skip (repeatable). venv/.venv/env/test_env/"
+    "__pycache__/site-packages/.git/node_modules/build/dist/*.egg-info are always skipped.",
+)
+def analyze(path, output_format, output, audience, top, exclude):
+    """Scan PATH (a directory or a single .py file) for code smells and report the results."""
+    results = analyze_path(path, exclude=list(exclude))
+    file_count = _file_count(path, exclude=exclude)
 
     if output_format == "json":
         with open(output, "w", encoding="utf-8") as f:
@@ -85,7 +98,7 @@ def analyze(path, output_format, output, audience):
         console.print(f"[bold]Scanned[/bold] {len(results)} classes across {file_count} files")
         console.print(f"[bold green]Report written to[/bold green] {output}")
     else:
-        print_analyze_report(results, path, file_count, audience=audience)
+        print_analyze_report(results, path, file_count, audience=audience, top=top)
 
 
 @cli.command()

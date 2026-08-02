@@ -1,185 +1,74 @@
-# refactor-engine
+<div align="center">
 
-A Python static-analysis tool that detects code smells (God Class, Data
-Class, Feature Envy, Long Method) and suggests concrete Extract Class
-refactorings, using AST metrics + an ML classifier + graph-based clustering.
-The CLI is built with `click` + `rich`/`rich-click` for a colorized,
-readable terminal experience.
+# refactor-scan
 
-## Quick Start
+**Point it at a Python codebase. It tells you what's wrong, why, and exactly which lines to move where.**
 
-```bash
-cd refactor-engine
-pip install -r requirements.txt
-python run_scan.py analyze sample_repo
-```
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](refactor-engine/LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](refactor-engine/pyproject.toml)
+[![Tests: 36 passing](https://img.shields.io/badge/tests-36%20passing-brightgreen.svg)](refactor-engine/tests/)
+[![Built with click + rich](https://img.shields.io/badge/CLI-click%20%2B%20rich-8A2BE2.svg)](refactor-engine/pyproject.toml)
 
-That's the whole demo. It scans the bundled `sample_repo/` fixture, classifies
-each class, and prints a colorized report of what's wrong and how to fix it —
-see [Running a scan](#running-a-scan) below for example output. The CLI
-presents itself as `refactor-scan` in its own `--help`/usage text; you invoke
-it via `python run_scan.py ...`.
+</div>
 
-**What each phase does:**
+---
 
-| Phase | Module | What it does |
-|---|---|---|
-| 1. Parser | `engine/parser.py` | Walks Python source with `ast` and extracts every class into structured `ClassInfo`/`MethodInfo` data (methods, fields, calls). |
-| 1. Metrics | `engine/metrics.py` | Computes structural metrics per class/method: LCOM, CBO, cyclomatic complexity, class/method length, fan-in/out, depth of inheritance. |
-| 2. Classifier | `engine/ml/` | A RandomForest trained on a synthetic labeled dataset predicts a smell label (or "Clean") from those metrics, with a confidence score. |
-| 3. Suggester | `engine/suggester/` | Builds a graph of methods linked by shared-field access, clusters it to find natural sub-groups, and proposes Extract Class suggestions with a heuristic name for each. |
-| 4. Pipeline | `engine/pipeline.py` | Wires all three phases together into one `analyze_repo()` call. |
-| CLI | `run_scan.py`, `engine/cli/` | click commands (`analyze`, `explain`) with rich-rendered, colorized output. |
+`refactor-scan` is a static-analysis pipeline that reads real Python source with the `ast`
+module, computes structural metrics on every class it finds, feeds those metrics into a
+trained classifier to name the code smell, and then — this is the part most linters don't
+do — builds a graph of *which methods actually work together* and clusters it to propose a
+concrete Extract Class split, complete with a suggested name for the new class.
 
-## Architecture
-
-```
- source files
-      |
-      v
-  [ Parse ]  engine/parser.py        -> ClassInfo / MethodInfo per class
-      |
-      v
-  [ Metrics ]  engine/metrics.py     -> LCOM, CBO, complexity, length, ...
-      |
-      v
-  [ Classify (ML) ]  engine/ml/      -> smell label + confidence
-      |
-      v
-  [ Cluster (graph) ]  engine/suggester/graph.py, cluster.py
-      |                                -> field-sharing method clusters
-      v
-  [ Suggest ]  engine/suggester/suggest.py
-                                       -> Extract Class suggestions
-      |
-      v
-  [ CLI ]  run_scan.py, engine/cli/   -> colorized report (rich/click)
-```
-
-v1 uses Python's built-in `ast` module only (no tree-sitter yet), so it
-supports Python source files.
-
-## Structure
-
-```
-refactor-engine/
-  engine/
-    parser.py           # AST walking logic (parse_file, parse_repo)
-    metrics.py           # metric calculation functions
-    models.py             # ClassInfo, MethodInfo, MetricResult dataclasses
-    serializer.py          # metrics_to_json()
-    pipeline.py             # analyze_repo(): wires parser -> metrics -> ml -> suggester
-    ml/
-      features.py              # build_feature_matrix(), scaler/encoder persistence
-      train.py                  # trains + evaluates the RandomForest classifier
-      predict.py                 # predict_smell(), predict_smell_with_confidence()
-    suggester/
-      graph.py                    # build_method_graph(): methods as a graph
-      cluster.py                   # find_extraction_clusters(): community detection
-      suggest.py                    # generate_suggestions(): Extract Class proposals
-    cli/
-      explanations.py              # plain-language smell/model explanations
-      render.py                    # rich rendering: banner, reports, explain output
-  data/
-    generate_synthetic_dataset.py  # builds data/labeled_dataset.csv
-    labeled_dataset.csv
-  sample_repo/                     # fixture repo for smoke-testing a full scan
-  sample_repo_2/                   # second, untuned fixture repo
-  tests/
-  run_scan.py                      # CLI entrypoint (click app: analyze, explain)
-  PHASE2_NOTES.md                  # ML dataset/classifier notes, known limitations
-```
-
-## Setup
+No config files. No plugins to wire up. One command:
 
 ```bash
-cd refactor-engine
-python -m venv venv
-source venv/bin/activate   # on Windows: venv\Scripts\activate
-pip install -r requirements.txt
+refactor-scan analyze your_project/
 ```
 
-## Usage
+## Table of contents
 
-```python
-from engine.parser import parse_file, parse_repo
+- [What it actually does](#what-it-actually-does)
+- [See it in action](#see-it-in-action)
+- [Quick start](#quick-start)
+- [Architecture](#architecture)
+- [CLI reference](#cli-reference)
+- [How the classifier works](#how-the-classifier-works)
+- [Project layout](#project-layout)
+- [Known limitations](#known-limitations-and-were-proud-of-documenting-them)
+- [Testing](#testing)
+- [Roadmap](#roadmap)
 
-classes = parse_file("some_module.py")
-classes = parse_repo("some_project/")
+## What it actually does
 
-for cls in classes:
-    print(cls.name, [m.name for m in cls.methods])
-```
+Most "code smell detectors" stop at a red flag: *"this class is too big."* Thanks, very
+helpful. `refactor-scan` goes four steps further:
 
-For the full detect-and-suggest pipeline:
+| Stage | What happens |
+|---|---|
+| **1. Parse** | Every class in your codebase becomes structured data — methods, fields, who calls whom, who touches what. |
+| **2. Measure** | 8 structural metrics per class: LCOM (cohesion), CBO (coupling), cyclomatic complexity, class/method length, fan-in/out, depth of inheritance. |
+| **3. Classify** | A Random Forest trained specifically for this pipeline names the smell — **God Class**, **Data Class**, **Feature Envy**, **Long Method**, or **Clean** — and gives a confidence score, not just a boolean. |
+| **4. Suggest** | For cohesion-based smells, methods are modeled as a graph (edge = "these two methods touch the same field") and clustered with weighted modularity detection. Each resulting cluster becomes a named Extract Class suggestion. |
 
-```python
-from engine.pipeline import analyze_repo
+The suggester isn't guessing. If it tells you to extract `render_footer, set_footer` into
+`ReportFooterRenderer`, it's because it *found* those two methods sharing the `footer` field
+and touching nothing else — not because a line-count threshold tripped.
 
-results = analyze_repo("some_project/")
-for name, entry in results.items():
-    print(name, entry["predicted_smell"], entry["confidence"])
-```
-
-## CLI commands
-
-```bash
-python run_scan.py                        # startup banner + intro
-python run_scan.py --help                  # colorized command list
-python run_scan.py --version               # refactor-scan, version 0.1.0
-python run_scan.py analyze <path>          # console report (default: --audience dev)
-python run_scan.py analyze <path> --audience simple      # plain-language report
-python run_scan.py analyze <path> --format json --output report.json
-python run_scan.py explain "God Class"     # explain a specific smell
-python run_scan.py explain --model         # explain how the ML classifier works
-```
-
-### Startup screen
-
-Running with no arguments shows a colorized banner (gradient title, one-line
-tool description, and a hint to run `--help`):
+## See it in action
 
 ```
-┌──────────────────────────────────────────────────────────────────── v1 ─┐
-│                                                                          │
-│    R E F A C T O R - E N G I N E                                        │
-│    (title rendered in a purple -> cyan gradient)                        │
-│                                                                          │
-│    AST-powered code smell detection & refactoring suggestions           │
-│                                                                          │
-│    refactor-engine scans a Python codebase, flags classes with          │
-│    structural code smells (God Class, Data Class, Feature Envy, Long    │
-│    Method), and suggests concrete ways to split them up. Built for      │
-│    developers who want a fast first pass over a codebase before a       │
-│    deeper refactor -- point it at a repo and get a prioritized list     │
-│    of what to look at first.                                            │
-│                                                                          │
-│    Run refactor-scan --help to see all available commands.              │
-│                                                                          │
-└───────────────────────────────────────────────────────────────────────┘
-```
+$ refactor-scan analyze sample_repo
 
-## Running a scan
-
-```bash
-python run_scan.py analyze sample_repo
-```
-
-Each flagged class gets its own colored panel — border color and smell label
-match (red = God Class, yellow = Data Class, magenta = Feature Envy, orange =
-Long Method, green = Clean); the summary panel shows flagged vs. clean counts:
-
-```
 ┌─────────────────────────────── Scan Summary ────────────────────────────────┐
 │             Repo:  sample_repo                                              │
 │    Files scanned:  3                                                        │
 │ Classes analyzed:  4                                                        │
-│          Flagged:  3   (red)                                                │
-│            Clean:  1   (green)                                              │
+│          Flagged:  3                                                        │
+│            Clean:  1                                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────── ReportManager (god_class.py) ────────────────────────┐
-│  Data Class  60% confidence                          (yellow border/label)  │
+│  Data Class  60% confidence                                                 │
 │                                                                              │
 │  Extract                               → New class          Shared fields   │
 │  add_row, clear_rows, compute_total,   ReportRowsCollection rows, total     │
@@ -190,56 +79,215 @@ Long Method, green = Clean); the summary panel shows flagged vs. clean counts:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-`--audience simple` renders the same data without jargon — plain-language
-smell descriptions, qualitative confidence ("high confidence" / "low
-confidence — worth a second look" instead of a raw percentage), and
-suggestions phrased as "Move X into a new class..." rather than
-extract-class/shared-field terminology. Useful for sharing a report with
-someone who isn't reading the metrics themselves.
+In a real terminal, panel borders are color-coded by smell (red = God Class, yellow = Data
+Class, magenta = Feature Envy, orange = Long Method, green = Clean), and the whole thing is
+rendered through `rich` — no ANSI-escape spaghetti, no squinting at a wall of print statements.
 
-For a machine-readable report instead:
+Don't want jargon? `--audience simple` renders the exact same findings in plain language for
+someone who's never heard of LCOM:
 
-```bash
-python run_scan.py analyze sample_repo --format json --output report.json
+```
+┌─────────────────────── ReportManager (god_class.py) ────────────────────────┐
+│  Data Class (low confidence — worth a second look)                          │
+│                                                                              │
+│  A class that mostly just holds data -- getters and setters -- with little  │
+│  or no real behavior of its own.                                            │
+│                                                                              │
+│  Suggested next step:                                                       │
+│    • Move render_footer, set_footer into a new class (maybe called          │
+│      ReportFooterRenderer) -- they work together on data the rest of        │
+│      the class doesn't use.                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-You can point either mode at any Python repo:
+## Quick start
 
 ```bash
-python run_scan.py analyze /path/to/other/repo --format json --output other_report.json
+git clone <this-repo>
+cd refactor-engine
+pip install -r requirements.txt
+python run_scan.py analyze sample_repo
 ```
 
-### Explaining a smell or the model
+Or install it as a real CLI tool:
 
 ```bash
-python run_scan.py explain "God Class"
-python run_scan.py explain "Data Class"
-python run_scan.py explain "Feature Envy"
-python run_scan.py explain "Long Method"
-python run_scan.py explain "Clean"
-python run_scan.py explain --model
+pip install .
+refactor-scan analyze your_project/
 ```
 
-Each smell explanation covers what it is, why it matters, and what to do
-about it. `explain --model` covers what a RandomForest is, what metrics it
-looks at, and how the confidence score is calculated — written for a
-non-technical reader.
+Either way, on first run you'll see the startup banner:
 
-## Training the classifier
+```
+┌──────────────────────────────────────────────────────────────────── v1 ─┐
+│                                                                          │
+│    R E F A C T O R - E N G I N E        (purple → cyan gradient title)  │
+│                                                                          │
+│    AST-powered code smell detection & refactoring suggestions           │
+│                                                                          │
+│    refactor-engine scans a Python codebase, flags classes with          │
+│    structural code smells, and suggests concrete ways to split them     │
+│    up. Point it at a repo and get a prioritized list of what to look    │
+│    at first.                                                            │
+│                                                                          │
+│    Run refactor-scan --help to see all available commands.              │
+│                                                                          │
+└───────────────────────────────────────────────────────────────────────┘
+```
 
-The classifier ships pre-trained (`engine/ml/*.pkl`). To regenerate the
-synthetic dataset and retrain from scratch:
+## Architecture
+
+```
+ your source files
+        |
+        v
+  ┌───────────────┐
+  │     PARSE     │   engine/parser.py — ast-based, zero regex heuristics
+  └───────┬───────┘   -> ClassInfo / MethodInfo per class
+          v
+  ┌───────────────┐
+  │    MEASURE    │   engine/metrics.py
+  └───────┬───────┘   -> LCOM, CBO, cyclomatic complexity, length, fan-in/out, DIT
+          v
+  ┌───────────────┐
+  │ CLASSIFY (ML) │   engine/ml/ — RandomForestClassifier + StandardScaler
+  └───────┬───────┘   -> smell label + confidence
+          v
+  ┌───────────────┐
+  │ CLUSTER (graph)│  engine/suggester/graph.py, cluster.py — networkx
+  └───────┬───────┘   -> methods grouped by shared-field access
+          v
+  ┌───────────────┐
+  │    SUGGEST    │   engine/suggester/suggest.py
+  └───────┬───────┘   -> named Extract Class proposals
+          v
+  ┌───────────────┐
+  │      CLI      │   engine/cli/ — click + rich, dev/simple audiences
+  └───────────────┘   -> colorized terminal report or machine-readable JSON
+```
+
+Every arrow above is a real function call, not aspirational — trace it yourself starting at
+`engine/pipeline.py:analyze_path()`.
+
+## CLI reference
 
 ```bash
-python data/generate_synthetic_dataset.py   # -> data/labeled_dataset.csv
-python -m engine.ml.train                   # -> engine/ml/*.pkl + eval report
+refactor-scan                                   # banner + intro
+refactor-scan --help                             # colorized command reference
+refactor-scan --version
+
+refactor-scan analyze <path>                     # a directory OR a single .py file
+refactor-scan analyze <path> --audience simple   # plain-language report
+refactor-scan analyze <path> --top 20            # show N most severe results (default 10)
+refactor-scan analyze <path> --top 0             # show everything, no cap
+refactor-scan analyze <path> --exclude vendor    # skip an extra directory by name
+refactor-scan analyze <path> --format json --output report.json
+
+refactor-scan explain "God Class"                # what it is, why it matters, how to fix it
+refactor-scan explain "Data Class"
+refactor-scan explain "Feature Envy"
+refactor-scan explain "Long Method"
+refactor-scan explain --model                    # how the classifier itself works
 ```
 
-See [PHASE2_NOTES.md](PHASE2_NOTES.md) for dataset methodology, classifier
-accuracy, feature importances, and known limitations.
+A few things worth knowing:
 
-## Running tests
+- **Findings are ranked, not dumped.** On a large codebase, `--top` (default 10) shows the
+  most actionable results first — classes with a real Extract Class suggestion outrank a bare
+  "no clear boundary" note, and the summary panel always shows the *true* total count even
+  when the list below it is capped.
+- **venv/build noise is filtered automatically.** `venv/`, `.venv/`, `env/`, `__pycache__/`,
+  `site-packages/`, `.git/`, `node_modules/`, `build/`, `dist/`, and `*.egg-info` are skipped
+  by default — scanning a project root next to its own virtualenv won't recurse into
+  thousands of vendored files. `--exclude` adds more.
+- **JSON mode is not an afterthought.** `--format json` emits the exact same analysis —
+  metrics, predicted smell, confidence, suggestions — as clean, sorted, pretty-printed JSON
+  for CI pipelines or downstream tooling.
+
+## How the classifier works
+
+The short version — for the full breakdown, run `refactor-scan explain --model`:
+
+A **Random Forest** (100 decision trees) looks at 8 structural measurements per class and
+votes on a label. Confidence is literally the fraction of trees that agreed — if 56 of 100
+trees say "God Class," you get 56% confidence. Low confidence isn't noise; it's the model
+telling you the class sits in genuinely ambiguous territory.
+
+The model is trained on a **400-row synthetic dataset**, generated by writing real Python
+classes engineered to exhibit each smell and running them through this project's own Phase 1
+pipeline (`parse_file` + `compute_all_metrics`) — no hand-fabricated metric values anywhere in
+the training data. See [`PHASE2_NOTES.md`](refactor-engine/PHASE2_NOTES.md) for the full methodology,
+accuracy numbers, feature importances, and — because a tool that hides its weaknesses isn't
+trustworthy — the known failure modes.
+
+## Project layout
+
+```
+refactor-engine/
+  engine/
+    parser.py, metrics.py, models.py, serializer.py, pipeline.py
+    ml/            # features.py, train.py, predict.py + the trained .pkl artifacts
+    suggester/      # graph.py, cluster.py, suggest.py
+    cli/             # main.py, render.py, explanations.py
+  data/
+    generate_synthetic_dataset.py   # builds the 400-row training set from scratch
+    labeled_dataset.csv
+  sample_repo/, sample_repo_2/       # fixture repos used to validate every phase
+  tests/                              # 36 tests across parser/metrics/graph/cluster/suggest/pipeline
+  run_scan.py                          # dev entrypoint (`pip install .` gives you `refactor-scan`)
+  pyproject.toml                       # packaged as a real installable CLI, model included
+  PHASE2_NOTES.md                       # classifier methodology & honest limitations
+```
+
+~2,900 lines of Python across 26 source files. Every one of the 5 pipeline stages above has
+its own dedicated test file.
+
+## Known limitations (and we're proud of documenting them)
+
+A tool that only tells you what it's good at isn't one you should trust. Some real ones:
+
+- **`cbo`, `dit`, and `fan_in` currently carry zero weight** in the trained model — they're
+  constant-zero across the synthetic training data (no inheritance, no cross-class calls
+  generated), so the classifier has never learned to use them. Effectively a 5-feature model
+  today.
+- **Stateless/utility classes are out-of-distribution.** Every synthetic training example
+  gives its class instance state, so a class with zero `self` access (LCOM = 1.0) sits outside
+  anything the model has seen and gets a low-confidence, often-wrong prediction.
+- **Feature Envy and Long Method have no suggestion strategy yet** — the suggester only knows
+  how to propose Extract Class splits for cohesion-based smells. Detecting envy/long-method
+  correctly is not the same as knowing how to fix them; the CLI says so explicitly rather than
+  pretending otherwise.
+- **100% test accuracy on the synthetic dataset measures separability, not generalization.**
+  The real validation target is real OSS repos with refactor-commit-derived labels — that
+  evaluation is still ahead.
+
+Full detail on all of these, including exact numbers, lives in
+[`PHASE2_NOTES.md`](refactor-engine/PHASE2_NOTES.md).
+
+## Testing
 
 ```bash
 pytest tests/ -v
 ```
+
+36 tests, organized by pipeline stage:
+
+| File | Covers |
+|---|---|
+| `test_parser.py` | AST extraction: methods, calls, field reads/writes |
+| `test_metrics.py` | Every structural metric, hand-verified against small examples |
+| `test_graph.py` | Method-graph construction: shared-field edges vs. call edges |
+| `test_cluster.py` | Community detection: the exact "two separate clusters split correctly" guarantee the suggester depends on |
+| `test_suggest.py` | Suggestion generation and the class-naming heuristic |
+| `test_pipeline.py` | End-to-end integration on real fixture repos, including directory-exclusion and single-file scanning |
+
+## Roadmap
+
+- Suggestion strategies for Feature Envy (move-method) and Long Method (extract-method)
+- Real-world OSS + refactor-commit evaluation set, to replace the synthetic-only accuracy story
+- Stateless-utility-class training examples to close the LCOM=1.0 blind spot
+- Wire `cbo`/`dit`/`fan_in` into training data that actually exercises them
+
+## License
+
+[MIT](refactor-engine/LICENSE) — do what you want with it.

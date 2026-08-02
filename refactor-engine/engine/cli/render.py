@@ -170,14 +170,34 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
     )
 
 
-def print_analyze_report(results: dict, repo_path: str, file_count: int, audience: str = "dev"):
+def _severity_key(entry: dict):
+    # Sorted ascending, so lower keys print first: classes with an actual
+    # extract_class suggestion (something actionable) outrank a bare
+    # no_clear_split/unsupported_smell_type note at similar confidence, and
+    # within each group, higher confidence outranks lower.
+    has_extract_suggestion = any(s["type"] == "extract_class" for s in entry["suggestions"])
+    return (0 if has_extract_suggestion else 1, -entry["confidence"])
+
+
+def print_analyze_report(results: dict, repo_path: str, file_count: int, audience: str = "dev", top: int = 10):
     print_analyze_summary(results, repo_path, file_count)
 
     flagged = {n: e for n, e in results.items() if e["predicted_smell"] != "Clean"}
+    ranked = sorted(flagged.items(), key=lambda item: _severity_key(item[1]))
+
+    shown = ranked if not top else ranked[:top]
     panel_fn = _simple_class_panel if audience == "simple" else _dev_class_panel
 
-    for name, entry in flagged.items():
+    for name, entry in shown:
         console.print(panel_fn(name, entry))
+        console.print()
+
+    remaining = len(ranked) - len(shown)
+    if remaining > 0:
+        console.print(
+            f"[dim]...and {remaining} more flagged classes. Use [bold]--top 0[/bold] to show all, "
+            f"or [bold]--format json[/bold] for the full machine-readable output.[/dim]"
+        )
         console.print()
 
     if not flagged:

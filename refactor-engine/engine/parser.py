@@ -3,12 +3,39 @@
 from __future__ import annotations
 
 import ast
+import fnmatch
 import logging
 import os
 
 from engine.models import ClassInfo, MethodInfo
 
 logger = logging.getLogger(__name__)
+
+# Directories that are never source code worth analyzing: virtual envs,
+# installed dependencies, VCS metadata, build output. Skipped by default so
+# a scan of a project root doesn't recurse into a venv/ sitting next to it
+# and choke on non-UTF-8 / vendored files that were never the user's code.
+DEFAULT_EXCLUDED_DIRS = frozenset(
+    {
+        "venv",
+        ".venv",
+        "env",
+        "test_env",
+        "__pycache__",
+        "site-packages",
+        ".git",
+        "node_modules",
+        "build",
+        "dist",
+    }
+)
+# Matched separately since it's a glob pattern (e.g. "foo.egg-info"), not a
+# fixed name.
+_EGG_INFO_PATTERN = "*.egg-info"
+
+
+def is_excluded_dir(dirname: str, excluded: frozenset[str]) -> bool:
+    return dirname in excluded or fnmatch.fnmatch(dirname, _EGG_INFO_PATTERN)
 
 
 def _extract_calls_and_fields(node: ast.AST, self_name: str | None) -> tuple[list[str], list[str]]:
@@ -114,10 +141,13 @@ def parse_file(filepath: str) -> list[ClassInfo]:
     return classes
 
 
-def parse_repo(repo_path: str) -> list[ClassInfo]:
+def parse_repo(repo_path: str, exclude: list[str] | None = None) -> list[ClassInfo]:
+    excluded = DEFAULT_EXCLUDED_DIRS | set(exclude or [])
     all_classes = []
 
-    for root, _dirs, files in os.walk(repo_path):
+    for root, dirs, files in os.walk(repo_path):
+        dirs[:] = [d for d in dirs if not is_excluded_dir(d, excluded)]
+
         for filename in files:
             if not filename.endswith(".py"):
                 continue

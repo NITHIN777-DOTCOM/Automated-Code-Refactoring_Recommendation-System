@@ -11,10 +11,11 @@ own -- it only sequences the three phases and shapes their combined output.
 from __future__ import annotations
 
 import logging
+import os
 
 from engine.metrics import compute_all_metrics
 from engine.ml.predict import predict_smell_with_confidence
-from engine.parser import parse_repo
+from engine.parser import parse_file, parse_repo
 from engine.suggester import suggest_refactoring
 
 logger = logging.getLogger(__name__)
@@ -61,11 +62,7 @@ def _unsupported_smell_suggestion(predicted_smell: str) -> list[dict]:
     return [{"type": "unsupported_smell_type", "note": note}]
 
 
-def analyze_repo(repo_path: str) -> dict:
-    # parse_repo() already skips unparsable files (syntax errors, bad
-    # encoding, unreadable files) with a logged warning rather than raising,
-    # so a single broken file in the repo can't abort the whole scan.
-    classes = parse_repo(repo_path)
+def _analyze_classes(classes: list) -> dict:
     if not classes:
         return {}
 
@@ -112,3 +109,28 @@ def analyze_repo(repo_path: str) -> dict:
         }
 
     return results
+
+
+def analyze_repo(repo_path: str, exclude: list[str] | None = None) -> dict:
+    # parse_repo() already skips unparsable files (syntax errors, bad
+    # encoding, unreadable files) with a logged warning rather than raising,
+    # so a single broken file in the repo can't abort the whole scan. It also
+    # skips venvs/build output/etc. by default (see DEFAULT_EXCLUDED_DIRS);
+    # `exclude` adds further directory names to prune.
+    classes = parse_repo(repo_path, exclude=exclude)
+    return _analyze_classes(classes)
+
+
+def analyze_file(file_path: str) -> dict:
+    classes = parse_file(file_path)
+    return _analyze_classes(classes)
+
+
+def analyze_path(path: str, exclude: list[str] | None = None) -> dict:
+    """Dispatches to analyze_file() or analyze_repo() based on whether PATH
+    is a single .py file or a directory. This is what the CLI calls -- it's
+    the one function that doesn't care which kind of path it was given.
+    `exclude` is ignored for a single file -- there's nothing to walk."""
+    if os.path.isfile(path):
+        return analyze_file(path)
+    return analyze_repo(path, exclude=exclude)
