@@ -1,0 +1,17 @@
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Virtual environments
+venv/
+test_env/
+.venv/
+
+# Scan output
+report.json

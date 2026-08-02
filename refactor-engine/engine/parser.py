@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import ast
+import logging
 import os
 
 from engine.models import ClassInfo, MethodInfo
+
+logger = logging.getLogger(__name__)
 
 
 def _extract_calls_and_fields(node: ast.AST, self_name: str | None) -> tuple[list[str], list[str]]:
@@ -116,8 +119,12 @@ def parse_repo(repo_path: str) -> list[ClassInfo]:
 
     for root, _dirs, files in os.walk(repo_path):
         for filename in files:
-            if filename.endswith(".py"):
-                filepath = os.path.join(root, filename)
+            if not filename.endswith(".py"):
+                continue
+            filepath = os.path.join(root, filename)
+            try:
                 all_classes.extend(parse_file(filepath))
+            except (SyntaxError, UnicodeDecodeError, OSError) as exc:
+                logger.warning("Skipping %s: could not parse (%s)", filepath, exc)
 
     return all_classes
