@@ -9,6 +9,7 @@ from engine.metrics import (
     fan_out,
     lcom,
     method_length,
+    parameter_count,
 )
 from engine.parser import parse_file
 
@@ -175,3 +176,19 @@ def test_depth_of_inheritance(tmp_path):
     assert depth_of_inheritance(animal, classes) == 0
     assert depth_of_inheritance(dog, classes) == 1
     assert depth_of_inheritance(puppy, classes) == 2
+
+
+def test_parameter_count_excludes_self(tmp_path):
+    source = """
+    class Booking:
+        def schedule(self, name, date, start_time, end_time, location, notes):
+            pass
+
+        def cancel(self, reason):
+            pass
+    """
+    classes = _write_and_parse(tmp_path, source)
+    methods = {m.name: m for m in classes[0].methods}
+
+    assert parameter_count(methods["schedule"]) == 6
+    assert parameter_count(methods["cancel"]) == 1

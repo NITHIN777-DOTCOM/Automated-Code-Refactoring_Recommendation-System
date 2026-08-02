@@ -78,6 +78,23 @@ SMELL_EXPLANATIONS = {
             "decision, and give each a name that says what it does."
         ),
     },
+    "Long Parameter List": {
+        "aka": None,
+        "what": (
+            "A method that takes too many parameters (five or more, not counting "
+            "self) to call comfortably or remember correctly."
+        ),
+        "why_it_matters": (
+            "Long parameter lists are easy to call wrong -- especially when several "
+            "parameters share a type, it's easy to pass values in the wrong order "
+            "without the mistake being obvious. They're also a sign that the "
+            "parameters themselves form a concept that doesn't have a name yet."
+        ),
+        "fix": (
+            "Group related parameters into a single object or dataclass and pass "
+            "that instead of each value individually."
+        ),
+    },
     "Clean": {
         "aka": None,
         "what": (

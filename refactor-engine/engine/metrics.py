@@ -58,6 +58,10 @@ def method_length(method: MethodInfo) -> int:
     return method.end_line - method.start_line
 
 
+def parameter_count(method: MethodInfo) -> int:
+    return len([p for p in method.params if p != "self"])
+
+
 def class_length(cls: ClassInfo) -> int:
     return cls.end_line - cls.start_line
 
@@ -93,7 +97,15 @@ def cbo(cls: ClassInfo, all_classes: list[ClassInfo]) -> int:
     return len(referenced)
 
 
-def _method_owner_index(all_classes: list[ClassInfo], exclude_name: str) -> dict[str, set[str]]:
+def method_owner_index(all_classes: list[ClassInfo], exclude_name: str) -> dict[str, set[str]]:
+    """Map every method name in the codebase to the set of classes defining it.
+
+    Public because the Feature Envy suggester attributes a method's outbound
+    calls with exactly this heuristic -- sharing the function keeps the
+    suggestion consistent with the fan_out/cbo numbers reported alongside it.
+    A name mapping to more than one class is genuinely ambiguous: the callers
+    here decide what to do about that.
+    """
     index: dict[str, set[str]] = {}
     for c in all_classes:
         if c.name == exclude_name:
@@ -105,7 +117,7 @@ def _method_owner_index(all_classes: list[ClassInfo], exclude_name: str) -> dict
 
 def fan_out(cls: ClassInfo, all_classes: list[ClassInfo]) -> int:
     other_class_names = {c.name for c in all_classes if c.name != cls.name}
-    method_owners = _method_owner_index(all_classes, cls.name)
+    method_owners = method_owner_index(all_classes, cls.name)
     external_refs = set()
 
     for method in cls.methods:

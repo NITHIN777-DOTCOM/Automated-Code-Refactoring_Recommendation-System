@@ -1,7 +1,19 @@
-"""Turns field-sharing clusters into human-readable Extract Class suggestions.
+"""Turns analysis output into human-readable refactoring suggestions.
 
-NAMING HEURISTIC (no ML, just string matching -- documented so it's easy to
-replace later):
+Three strategies live here:
+
+  * "extract_class" -- built from the field-sharing method clusters produced
+    by cluster.py. Naming heuristic documented immediately below.
+  * "extract_method" -- built from the statement blocks produced by
+    blocks.py, for methods flagged Long Method. Naming heuristic documented
+    above generate_extract_method_suggestions().
+  * "move_method" -- built from outbound-call attribution, for classes
+    flagged Feature Envy. Documented above
+    generate_move_method_suggestions(). Emits "no_clear_envy_target" instead
+    of naming a destination when the coupling data doesn't single one out.
+
+EXTRACT CLASS NAMING HEURISTIC (no ML, just string matching -- documented so
+it's easy to replace later):
 
   1. Concept word: prefer the cluster's shared FIELDS over its method names,
      since a field name names the "thing" the methods operate on (e.g.
@@ -32,8 +44,17 @@ from __future__ import annotations
 
 from collections import Counter
 
-from engine.models import ClassInfo
+import ast
+
+from engine.metrics import method_owner_index
+from engine.models import ClassInfo, MethodInfo
+from engine.suggester.blocks import MIN_BLOCK_STATEMENTS, is_local, split_into_blocks
 from engine.suggester.cluster import CONSTRUCTOR_NAMES
+
+# A method must be at least this many lines before its internals are worth
+# picking apart -- a tight 8-line method with two logical halves does not
+# need a helper extracted out of it.
+LONG_METHOD_LINE_THRESHOLD = 15
 
 FIELD_SUFFIXES_TO_STRIP = ("_path", "_id", "_name", "_text", "_value", "_count", "_flag")
 
@@ -188,3 +209,314 @@ def generate_suggestions(cls: ClassInfo, clusters: list[set[str]]) -> list[dict]
 
     fields_by_method = {m.name: m.fields_accessed for m in cls.methods}
     return [_build_extract_suggestion(cls, cluster, fields_by_method) for cluster in clusters]
+
+
+# ---------------------------------------------------------------------------
+# Extract Method
+# ---------------------------------------------------------------------------
+
+
+def _block_subject(block) -> str:
+    """The one name a block is most 'about', used to name its helper.
+
+    Preference order, most to least meaningful:
+      1. a value the block returns -- that IS the block's purpose;
+      2. a value it produces that outlives it and wasn't handed to it, i.e.
+         something genuinely new rather than an incoming value being updated;
+      3. the local it writes most often that isn't one of its inputs;
+      4. any local it writes; then any input; then a generic fallback.
+
+    Step 2's "wasn't handed to it" clause is what keeps two consecutive
+    blocks that both end up assigning `total` from both being called
+    _compute_total: the second one only updates a `total` it received, so it
+    falls through to its own dominant local (`shipping_cost`) instead.
+    """
+    returned_locals = sorted(n for n in block.returned if is_local(n))
+    if returned_locals:
+        return returned_locals[0]
+
+    fresh_outputs = [o for o in block.outputs if o not in block.external_reads]
+    if fresh_outputs:
+        return fresh_outputs[0]
+
+    def _ranked(names):
+        return sorted(names, key=lambda t: (-t[1], t[0]))
+
+    internal = _ranked(
+        (name, count)
+        for name, count in block.write_counts.items()
+        if is_local(name) and name not in block.external_reads
+    )
+    if internal:
+        return internal[0][0]
+
+    any_written = _ranked(
+        (name, count) for name, count in block.write_counts.items() if is_local(name)
+    )
+    if any_written:
+        return any_written[0][0]
+
+    if block.suggested_params:
+        return block.suggested_params[0]
+    return "step"
+
+
+def _describe_block(block) -> str:
+    if block.has_raise:
+        return "validation"
+
+    subject = _block_subject(block)
+    if block.returned:
+        return f"{subject} construction"
+    if block.has_loop or block.outputs:
+        return f"the {subject} calculation"
+    return f"{subject} handling"
+
+
+def _suggest_helper_name(block) -> str:
+    """Heuristic helper name: a verb chosen from what the block does
+    structurally, plus the subject from _block_subject().
+
+      raises        -> _validate_<input>   (or _validate_input when it
+                                            checks more than one thing)
+      returns       -> _build_<subject>
+      loops/produces-> _compute_<subject>
+      otherwise     -> _apply_<subject>
+    """
+    if block.has_raise:
+        params = block.suggested_params
+        return f"_validate_{params[0]}" if len(params) == 1 else "_validate_input"
+
+    subject = _block_subject(block)
+    if block.returned:
+        verb = "build"
+    elif block.has_loop or block.outputs:
+        verb = "compute"
+    else:
+        verb = "apply"
+    return f"_{verb}_{subject}"
+
+
+def _block_line_range(block) -> tuple[int, int]:
+    """Report the block's span, trimming a trailing `return`.
+
+    The return statement has to stay behind in the original method -- only
+    the work that produces the value moves into the helper -- so including
+    its line in the suggested range would be misleading.
+    """
+    start, end = block.start_line, block.end_line
+    if len(block.infos) > MIN_BLOCK_STATEMENTS and isinstance(block.infos[-1].node, ast.Return):
+        previous = block.infos[-2].node
+        end = getattr(previous, "end_lineno", previous.lineno)
+    return start, end
+
+
+def generate_extract_method_suggestions(
+    cls: ClassInfo, min_method_lines: int = LONG_METHOD_LINE_THRESHOLD
+) -> list[dict]:
+    """Propose Extract Method refactorings for a class's long methods.
+
+    A method qualifies if it spans at least `min_method_lines` AND its
+    statements break into two or more data-cohesive blocks. One block means
+    the method is a single continuous step, and "extract the whole method"
+    is not a refactoring -- those return nothing rather than a bogus split.
+    """
+    suggestions: list[dict] = []
+
+    for method in cls.methods:
+        line_count = method.end_line - method.start_line + 1
+        if line_count < min_method_lines:
+            continue
+
+        blocks = split_into_blocks(method)
+        if len(blocks) < 2:
+            continue
+
+        used_names: dict[str, int] = {}
+        for block in blocks:
+            base_name = _suggest_helper_name(block)
+            used_names[base_name] = used_names.get(base_name, 0) + 1
+            name = base_name if used_names[base_name] == 1 else f"{base_name}_{used_names[base_name]}"
+
+            start, end = _block_line_range(block)
+            description = _describe_block(block)
+
+            suggestions.append(
+                {
+                    "type": "extract_method",
+                    "source_class": cls.name,
+                    "source_method": method.name,
+                    "method_line_count": line_count,
+                    "lines": [start, end],
+                    "suggested_name": name,
+                    "suggested_params": list(block.suggested_params),
+                    "returns": list(block.outputs),
+                    "description": description,
+                    "rationale": (
+                        f"Method {method.name} is {line_count} lines long. Consider "
+                        f"extracting lines {start}-{end} (which handle {description}) "
+                        f"into a helper method like {name}()."
+                    ),
+                }
+            )
+
+    return suggestions
+
+
+# ---------------------------------------------------------------------------
+# Move Method (Feature Envy)
+# ---------------------------------------------------------------------------
+
+# A method needs at least this many attributable calls into another class
+# before we'll name that class. A single outbound call is too thin a basis
+# for telling someone to relocate their code.
+MIN_EXTERNAL_REFS_FOR_MOVE = 2
+
+
+def _own_data_uses(method: MethodInfo, cls: ClassInfo) -> int:
+    """How much a method uses its OWN class.
+
+    Counts distinct self.<field> accesses plus distinct calls to sibling
+    methods. Sibling calls are included deliberately: a method that leans
+    heavily on its own class's behaviour (rather than its raw fields) is not
+    envious, and counting fields alone would flag it as though it were.
+    """
+    own_method_names = {m.name for m in cls.methods}
+    own_calls = {c for c in method.calls_made if c in own_method_names and c != method.name}
+    return len(set(method.fields_accessed)) + len(own_calls)
+
+
+def _attribute_external_calls(
+    method: MethodInfo, cls: ClassInfo, all_classes: list[ClassInfo]
+) -> tuple[Counter, list[str]]:
+    """Attribute a method's outbound calls to the classes they land on.
+
+    Uses the same name-matching heuristic as cbo/fan_out in engine.metrics:
+    a call matches either another class's NAME (construction, e.g.
+    `PaymentProcessor()`) or a method name that another class defines.
+
+    Calls whose name is defined by two or more classes are NOT counted --
+    attributing them to any single class would be a guess. They're returned
+    separately so the caller can decide whether the ambiguity is big enough
+    to undermine the winner.
+    """
+    other_class_names = {c.name for c in all_classes if c.name != cls.name}
+    owners = method_owner_index(all_classes, cls.name)
+
+    counts: Counter = Counter()
+    ambiguous: list[str] = []
+
+    for call_name in method.calls_made:
+        if call_name in other_class_names:
+            counts[call_name] += 1
+        elif call_name in owners:
+            owning = owners[call_name]
+            if len(owning) == 1:
+                counts[next(iter(owning))] += 1
+            else:
+                ambiguous.append(call_name)
+
+    return counts, ambiguous
+
+
+def _times(n: int) -> str:
+    return "1 time" if n == 1 else f"{n} times"
+
+
+def _no_clear_target_note(cls: ClassInfo, method: MethodInfo, reason: str, candidates: list[str]) -> dict:
+    return {
+        "type": "no_clear_envy_target",
+        "source_class": cls.name,
+        "source_method": method.name,
+        "candidates": candidates,
+        "note": (
+            f"Method '{method.name}' reaches outside {cls.name}, but {reason}. "
+            "Naming a destination here would be a guess -- worth a manual look."
+        ),
+    }
+
+
+def _move_method_suggestion_for(
+    method: MethodInfo, cls: ClassInfo, all_classes: list[ClassInfo]
+) -> dict | None:
+    counts, ambiguous = _attribute_external_calls(method, cls, all_classes)
+
+    if not counts:
+        if ambiguous:
+            return _no_clear_target_note(
+                cls,
+                method,
+                f"the methods it calls ({', '.join(sorted(set(ambiguous)))}) are defined on "
+                "more than one class, so the calls can't be attributed to a single one",
+                candidates=[],
+            )
+        return None
+
+    ranked = counts.most_common()
+    target, top_count = ranked[0]
+    runner_up_count = ranked[1][1] if len(ranked) > 1 else 0
+    own_uses = _own_data_uses(method, cls)
+
+    # Not actually envious: it leans on its own class at least as much as on
+    # any other. The class-level ML label doesn't mean every method is guilty.
+    if top_count <= own_uses:
+        return None
+
+    if top_count < MIN_EXTERNAL_REFS_FOR_MOVE:
+        return None
+
+    if top_count == runner_up_count:
+        tied = [name for name, count in ranked if count == top_count]
+        return _no_clear_target_note(
+            cls,
+            method,
+            f"its calls are split evenly between {' and '.join(sorted(tied))}",
+            candidates=sorted(tied),
+        )
+
+    # Ambiguous calls could close the gap between first and second place, so
+    # the winner isn't safe to name.
+    if ambiguous and len(ambiguous) >= (top_count - runner_up_count):
+        return _no_clear_target_note(
+            cls,
+            method,
+            f"{len(ambiguous)} of its calls are defined on more than one class, which is "
+            f"enough to change which class comes out on top",
+            candidates=sorted(counts),
+        )
+
+    return {
+        "type": "move_method",
+        "source_class": cls.name,
+        "source_method": method.name,
+        "target_class": target,
+        "external_references": top_count,
+        "own_data_uses": own_uses,
+        "envy_ratio": round(top_count / own_uses, 2) if own_uses else None,
+        "rationale": (
+            f"Method '{method.name}' calls into {target} {_times(top_count)} but only "
+            f"accesses its own class's data {_times(own_uses)}. "
+            f"Consider moving '{method.name}' into {target}."
+        ),
+    }
+
+
+def generate_move_method_suggestions(
+    cls: ClassInfo, all_classes: list[ClassInfo]
+) -> list[dict]:
+    """Propose Move Method refactorings for a class flagged Feature Envy.
+
+    Returns one entry per envious method: a "move_method" naming the class to
+    move it into, or a "no_clear_envy_target" note when the coupling data
+    doesn't single one out. Methods that aren't actually envious produce
+    nothing -- a class-level Feature Envy label doesn't make every method in
+    it guilty.
+    """
+    suggestions = []
+    for method in cls.methods:
+        if method.name in CONSTRUCTOR_NAMES:
+            continue
+        suggestion = _move_method_suggestion_for(method, cls, all_classes)
+        if suggestion is not None:
+            suggestions.append(suggestion)
+    return suggestions

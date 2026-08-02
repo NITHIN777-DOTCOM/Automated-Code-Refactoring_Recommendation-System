@@ -95,10 +95,13 @@ def analyze(path, output_format, output, audience, top, exclude):
     if output_format == "json":
         with open(output, "w", encoding="utf-8") as f:
             f.write(metrics_to_json(results))
-        console.print(f"[bold]Scanned[/bold] {len(results)} classes across {file_count} files")
+        console.print(f"[bold]Scanned[/bold] {len(results['classes'])} classes across {file_count} files")
         console.print(f"[bold green]Report written to[/bold green] {output}")
     else:
-        print_analyze_report(results, path, file_count, audience=audience, top=top)
+        print_analyze_report(
+            results["classes"], path, file_count, audience=audience, top=top,
+            unused_imports=results["unused_imports"],
+        )
 
 
 @cli.command()

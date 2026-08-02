@@ -25,6 +25,7 @@ _SMELL_COLORS = {
     "Data Class": "yellow",
     "Feature Envy": "magenta",
     "Long Method": "orange3",
+    "Long Parameter List": "cyan",
 }
 
 
@@ -90,6 +91,15 @@ def print_analyze_summary(results: dict, repo_path: str, file_count: int):
     console.print()
 
 
+def _group_by_method(method_suggestions: list[dict]) -> list[tuple[str, list[dict]]]:
+    """Extract Method suggestions arrive flat but read best grouped under the
+    method they came from, in first-seen order."""
+    grouped: dict[str, list[dict]] = {}
+    for s in method_suggestions:
+        grouped.setdefault(s["source_method"], []).append(s)
+    return list(grouped.items())
+
+
 def _dev_class_panel(name: str, entry: dict) -> Panel:
     smell = entry["predicted_smell"]
     color = _SMELL_COLORS.get(smell, "white")
@@ -104,6 +114,13 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
 
     suggestions = entry["suggestions"]
     extract_suggestions = [s for s in suggestions if s["type"] == "extract_class"]
+    method_suggestions = [s for s in suggestions if s["type"] == "extract_method"]
+    move_suggestions = [s for s in suggestions if s["type"] == "move_method"]
+    unclear_envy = [s for s in suggestions if s["type"] == "no_clear_envy_target"]
+    long_param_suggestions = [s for s in suggestions if s["type"] == "long_parameter_list"]
+    unsupported_suggestions = [s for s in suggestions if s["type"] == "unsupported_smell_type"]
+
+    printed_primary_finding = False
 
     if extract_suggestions:
         table = Table(show_header=True, header_style="bold", box=None, padding=(0, 1, 0, 0))
@@ -117,10 +134,65 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
                 ", ".join(s["shared_fields"]),
             )
         body_parts.append(table)
-    elif suggestions and suggestions[0]["type"] == "unsupported_smell_type":
-        body_parts.append(Text(suggestions[0]["note"], style="dim"))
-    else:
+        printed_primary_finding = True
+    elif move_suggestions or unclear_envy:
+        if move_suggestions:
+            table = Table(show_header=True, header_style="bold", box=None, padding=(0, 1, 0, 0))
+            table.add_column("Move method")
+            table.add_column("→ Into class")
+            table.add_column("Calls out / own data")
+            for s in move_suggestions:
+                table.add_row(
+                    s["source_method"],
+                    f"[bold cyan]{s['target_class']}[/bold cyan]",
+                    f"{s['external_references']} / {s['own_data_uses']}",
+                )
+            body_parts.append(table)
+            printed_primary_finding = True
+        for s in unclear_envy:
+            if printed_primary_finding:
+                body_parts.append(Text(""))
+            body_parts.append(Text(s["note"], style="dim"))
+            printed_primary_finding = True
+    elif method_suggestions:
+        for source_method, group in _group_by_method(method_suggestions):
+            if printed_primary_finding:
+                body_parts.append(Text(""))
+            body_parts.append(
+                Text.from_markup(
+                    f"[bold]{source_method}()[/bold] [dim]— {group[0]['method_line_count']} lines, "
+                    f"{len(group)} logical steps[/dim]"
+                )
+            )
+            table = Table(show_header=True, header_style="bold", box=None, padding=(0, 1, 0, 0))
+            table.add_column("Lines")
+            table.add_column("→ Helper method")
+            table.add_column("Handles")
+            for s in group:
+                params = ", ".join(s["suggested_params"])
+                table.add_row(
+                    f"{s['lines'][0]}-{s['lines'][1]}",
+                    f"[bold cyan]{s['suggested_name']}({params})[/bold cyan]",
+                    s["description"],
+                )
+            body_parts.append(table)
+            printed_primary_finding = True
+    elif unsupported_suggestions:
+        body_parts.append(Text(unsupported_suggestions[0]["note"], style="dim"))
+        printed_primary_finding = True
+    elif not long_param_suggestions:
         body_parts.append(Text("No clear extraction boundary found.", style="dim"))
+
+    # Additive, not exclusive: a class can be flagged for something else AND
+    # separately have a method with too many parameters.
+    for s in long_param_suggestions:
+        if printed_primary_finding:
+            body_parts.append(Text(""))
+        body_parts.append(
+            Text.from_markup(f"[bold cyan]Long parameter list:[/bold cyan] {', '.join(s['methods'])}")
+        )
+        body_parts.append(Text(s["note"], style="dim"))
+        printed_primary_finding = True
 
     return Panel(
         Group(*body_parts),
@@ -145,6 +217,13 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
 
     suggestions = entry["suggestions"]
     extract_suggestions = [s for s in suggestions if s["type"] == "extract_class"]
+    method_suggestions = [s for s in suggestions if s["type"] == "extract_method"]
+    move_suggestions = [s for s in suggestions if s["type"] == "move_method"]
+    unclear_envy = [s for s in suggestions if s["type"] == "no_clear_envy_target"]
+    long_param_suggestions = [s for s in suggestions if s["type"] == "long_parameter_list"]
+    unsupported_suggestions = [s for s in suggestions if s["type"] == "unsupported_smell_type"]
+
+    printed_primary_finding = False
 
     if extract_suggestions:
         parts.append(Text("Suggested next step:", style="bold"))
@@ -157,10 +236,63 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
                     f"they work together on data the rest of the class doesn't use."
                 )
             )
-    elif suggestions and suggestions[0]["type"] == "unsupported_smell_type":
+        printed_primary_finding = True
+    elif move_suggestions or unclear_envy:
+        if move_suggestions:
+            parts.append(Text("Suggested next step:", style="bold"))
+            for s in move_suggestions:
+                parts.append(
+                    Text.from_markup(
+                        f"  • [bold]{s['source_method']}[/bold] works with "
+                        f"[bold cyan]{s['target_class']}[/bold cyan]'s data far more than "
+                        f"its own ({s['external_references']} uses vs "
+                        f"{s['own_data_uses']}) -- it probably belongs in "
+                        f"[bold cyan]{s['target_class']}[/bold cyan]."
+                    )
+                )
+            printed_primary_finding = True
+        for s in unclear_envy:
+            if printed_primary_finding:
+                parts.append(Text(""))
+            parts.append(Text(s["note"], style="dim"))
+            printed_primary_finding = True
+    elif method_suggestions:
+        for source_method, group in _group_by_method(method_suggestions):
+            parts.append(
+                Text.from_markup(
+                    f"[bold]{source_method}()[/bold] is "
+                    f"{group[0]['method_line_count']} lines long and does "
+                    f"{len(group)} separate things. Suggested next steps:"
+                )
+            )
+            for s in group:
+                parts.append(
+                    Text.from_markup(
+                        f"  • Lines {s['lines'][0]}-{s['lines'][1]} handle "
+                        f"{s['description']} -- pull them out into their own smaller "
+                        f"method (maybe called [bold cyan]{s['suggested_name']}[/bold cyan])."
+                    )
+                )
+        printed_primary_finding = True
+    elif unsupported_suggestions:
         parts.append(Text(SMELL_EXPLANATIONS.get(smell, {}).get("fix", ""), style="dim"))
-    else:
+        printed_primary_finding = True
+    elif not long_param_suggestions:
         parts.append(Text("This class doesn't split apart cleanly along its data -- worth a manual look.", style="dim"))
+
+    # Additive, not exclusive: a class can be flagged for something else AND
+    # separately have a method with too many parameters.
+    for s in long_param_suggestions:
+        if printed_primary_finding:
+            parts.append(Text(""))
+        methods = ", ".join(s["methods"])
+        parts.append(
+            Text.from_markup(
+                f"  • [bold]{methods}[/bold] {'takes' if len(s['methods']) == 1 else 'take'} too many "
+                f"parameters -- consider grouping related ones into a single object."
+            )
+        )
+        printed_primary_finding = True
 
     return Panel(
         Group(*parts),
@@ -170,16 +302,57 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
     )
 
 
+# no_clear_envy_target is deliberately absent: it's an honest "couldn't tell"
+# note, not something the reader can act on, so it shouldn't outrank a
+# concrete suggestion in the --top ranking.
+_ACTIONABLE_SUGGESTION_TYPES = {"extract_class", "extract_method", "move_method"}
+
+
 def _severity_key(entry: dict):
-    # Sorted ascending, so lower keys print first: classes with an actual
-    # extract_class suggestion (something actionable) outrank a bare
+    # Sorted ascending, so lower keys print first: classes with a concrete
+    # extraction suggestion (something actionable) outrank a bare
     # no_clear_split/unsupported_smell_type note at similar confidence, and
     # within each group, higher confidence outranks lower.
-    has_extract_suggestion = any(s["type"] == "extract_class" for s in entry["suggestions"])
-    return (0 if has_extract_suggestion else 1, -entry["confidence"])
+    actionable = any(s["type"] in _ACTIONABLE_SUGGESTION_TYPES for s in entry["suggestions"])
+    return (0 if actionable else 1, -entry["confidence"])
 
 
-def print_analyze_report(results: dict, repo_path: str, file_count: int, audience: str = "dev", top: int = 10):
+def _display_path(file_path: str, repo_path: str) -> str:
+    """Unused imports are listed per file rather than per class, so a bare
+    basename (what the per-class panels use) is more likely to collide
+    between files -- show the path relative to the scanned root instead,
+    falling back to the raw path if it isn't actually underneath repo_path."""
+    try:
+        relative = os.path.relpath(file_path, start=repo_path)
+    except ValueError:
+        return file_path
+    return file_path if relative.startswith("..") else relative
+
+
+def print_unused_imports_section(unused_imports: dict, repo_path: str):
+    if not unused_imports:
+        return
+
+    total = sum(len(items) for items in unused_imports.values())
+    console.print(
+        f"[bold]Unused imports[/bold] [dim]({total} across {len(unused_imports)} "
+        f"file{'s' if len(unused_imports) != 1 else ''})[/dim]"
+    )
+    for file_path, items in unused_imports.items():
+        console.print(f"  [cyan]{_display_path(file_path, repo_path)}[/cyan]")
+        for item in items:
+            console.print(f"    line {item['line']}: [dim]{item['display']}[/dim]")
+    console.print()
+
+
+def print_analyze_report(
+    results: dict,
+    repo_path: str,
+    file_count: int,
+    audience: str = "dev",
+    top: int = 10,
+    unused_imports: dict | None = None,
+):
     print_analyze_summary(results, repo_path, file_count)
 
     flagged = {n: e for n, e in results.items() if e["predicted_smell"] != "Clean"}
@@ -202,6 +375,9 @@ def print_analyze_report(results: dict, repo_path: str, file_count: int, audienc
 
     if not flagged:
         console.print("[bold green]No code smells detected.[/bold green]")
+        console.print()
+
+    print_unused_imports_section(unused_imports or {}, repo_path)
 
 
 def print_smell_explanation(smell_name: str):
