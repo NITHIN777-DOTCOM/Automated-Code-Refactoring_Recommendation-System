@@ -7,6 +7,7 @@ from __future__ import annotations
 import os
 
 from rich.console import Console, Group
+from rich.padding import Padding
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
@@ -479,6 +480,42 @@ def print_smell_explanation(smell_name: str):
         parts.append(Text(info["caveat"]))
 
     console.print(Panel(Group(*parts), title=f"[bold {color}]{name}[/bold {color}]", border_style=color, padding=(1, 2)))
+
+
+def print_why_summary(reasoning):
+    """The terminal half of `refactor-scan why`: the headline and the one
+    factor that mattered most, per class.
+
+    Deliberately capped at three lines per class no matter how much reasoning
+    sits behind it. A file with a dozen flagged classes still has to fit on
+    one screen -- anything longer belongs in the HTML report, which is what
+    the closing hint points at. The full breakdown is one flag away; a
+    terminal that has scrolled past what you wanted is not."""
+    for cls in reasoning.classes:
+        color = _SMELL_COLORS.get(cls.smell, "white")
+        console.print(
+            f"[bold]{cls.name}[/bold] — [bold {color}]{cls.smell}[/bold {color}] "
+            f"[dim]({cls.headline_metric})[/dim]"
+        )
+
+        # A grid rather than two print()s so a long reason wraps underneath
+        # itself instead of back to the left margin, which on a narrow terminal
+        # makes the second line look like a new finding.
+        body = Table.grid(padding=(0, 1))
+        body.add_column(style="bold", no_wrap=True)
+        body.add_column(overflow="fold")
+        body.add_row("Top reason:", cls.top_reason)
+
+        # The compressed form, not the full sentence: on a God Class with four
+        # extraction candidates the rest is detail, and it belongs in the report.
+        body.add_row("Suggestion:" if cls.is_flagged else "Verdict:", cls.short_suggestion)
+
+        console.print(Padding(body, (0, 0, 1, 2), expand=False))
+
+    console.print(
+        "[dim]Run the same command with [bold]--output report.html[/bold] for the full "
+        "reasoning behind each of these.[/dim]"
+    )
 
 
 def print_model_explanation():

@@ -13,15 +13,18 @@ import sys
 
 import rich_click as click
 
+from engine.cli.html_report import write_report
 from engine.cli.render import (
     console,
     print_analyze_report,
     print_banner,
     print_model_explanation,
     print_smell_explanation,
+    print_why_summary,
 )
 from engine.parser import DEFAULT_EXCLUDED_DIRS, is_excluded_dir
 from engine.pipeline import analyze_path
+from engine.reasoning import ClassNotFoundError, explain_file
 from engine.serializer import metrics_to_json
 
 for _stream in (sys.stdout, sys.stderr):
@@ -41,7 +44,7 @@ click.rich_click.STYLE_COMMAND = "bold magenta"
 click.rich_click.STYLE_HELPTEXT_FIRST_LINE = "bold"
 click.rich_click.COMMAND_GROUPS = {
     "refactor-scan": [
-        {"name": "Commands", "commands": ["analyze", "explain"]},
+        {"name": "Commands", "commands": ["analyze", "why", "explain"]},
     ]
 }
 
@@ -102,6 +105,61 @@ def analyze(path, output_format, output, audience, top, exclude):
             results["classes"], path, file_count, audience=audience, top=top,
             unused_imports=results["unused_imports"],
         )
+
+
+@cli.command()
+@click.argument("path", type=click.Path(exists=True, file_okay=True, dir_okay=False))
+@click.option(
+    "--class", "class_name", metavar="CLASSNAME",
+    help="Explain only this class instead of every flagged class in the file.",
+)
+@click.option(
+    "--output", type=click.Path(dir_okay=False), metavar="FILE.html",
+    help="Write the full illustrated reasoning to an HTML file instead of summarizing here.",
+)
+def why(path, class_name, output):
+    """Show the reasoning behind PATH's results -- what was measured, what the classifier made
+    of it, and how the suggestion was reached.
+
+    Without --output this prints a short summary: the headline finding and the single factor
+    that mattered most, per class. With --output it writes a full illustrated report -- every
+    measurement in plain language, the model's own working, and a drawing of how the methods
+    were grouped.
+    """
+    try:
+        reasoning = explain_file(path, class_name=class_name, clean_fallback=bool(output))
+    except ClassNotFoundError as exc:
+        available = ", ".join(exc.available) if exc.available else "none -- this file defines no classes"
+        raise click.UsageError(f"No class named {exc.class_name!r} in {path}. Classes here: {available}.")
+
+    if not reasoning.classes:
+        if reasoning.total_classes == 0:
+            console.print(f"[dim]No classes found in {path} — nothing to explain.[/dim]")
+        elif class_name:
+            # The class exists (explain_file would have raised otherwise) but
+            # the pipeline couldn't analyze it. Saying "no smells detected"
+            # here would report a clean bill of health we never established.
+            console.print(
+                f"[yellow]{class_name} was found but could not be analyzed[/yellow] — "
+                f"it was skipped during the scan, so there is no result to explain."
+            )
+        else:
+            console.print("[bold green]No smells detected — nothing to explain.[/bold green]")
+        return
+
+    if output:
+        # Confirmation only. Printing the summary here as well would mean the
+        # reader has to decide which of two answers to the same question is
+        # the one they asked for.
+        write_report(reasoning, output)
+        count = len(reasoning.classes)
+        console.print(
+            f"[bold green]Full explanation for {count} class{'' if count == 1 else 'es'} "
+            f"written to[/bold green] {output}"
+        )
+        return
+
+    print_why_summary(reasoning)
 
 
 @cli.command()

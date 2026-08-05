@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](refactor-engine/LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](refactor-engine/pyproject.toml)
-[![Tests: 36 passing](https://img.shields.io/badge/tests-36%20passing-brightgreen.svg)](refactor-engine/tests/)
+[![Tests: 101 passing](https://img.shields.io/badge/tests-101%20passing-brightgreen.svg)](refactor-engine/tests/)
 [![Built with click + rich](https://img.shields.io/badge/CLI-click%20%2B%20rich-8A2BE2.svg)](refactor-engine/pyproject.toml)
 
 </div>
@@ -29,6 +29,7 @@ refactor-scan analyze your_project/
 
 - [What it actually does](#what-it-actually-does)
 - [See it in action](#see-it-in-action)
+- [Show me why](#show-me-why)
 - [Quick start](#quick-start)
 - [Architecture](#architecture)
 - [CLI reference](#cli-reference)
@@ -49,6 +50,7 @@ helpful. `refactor-scan` goes four steps further:
 | **2. Measure** | 8 structural metrics per class: LCOM (cohesion), CBO (coupling), cyclomatic complexity, class/method length, fan-in/out, depth of inheritance. |
 | **3. Classify** | A Random Forest trained specifically for this pipeline names the smell — **God Class**, **Data Class**, **Feature Envy**, **Long Method**, or **Clean** — and gives a confidence score, not just a boolean. |
 | **4. Suggest** | For cohesion-based smells, methods are modeled as a graph (edge = "these two methods touch the same field") and clustered with weighted modularity detection. Each resulting cluster becomes a named Extract Class suggestion. |
+| **5. Explain** | `refactor-scan why` reopens all four stages and shows the working — which measurement actually drove the model's answer for *this* class, how the graph got grouped, and how that became the suggestion. In plain language, and in a standalone HTML report if you want the full picture. |
 
 The suggester isn't guessing. If it tells you to extract `render_footer, set_footer` into
 `ReportFooterRenderer`, it's because it *found* those two methods sharing the `footer` field
@@ -99,6 +101,88 @@ someone who's never heard of LCOM:
 │      the class doesn't use.                                                 │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
+
+## Show me why
+
+A tool that says *"God Class, 56% confidence"* and stops is asking you to take its word for
+it. `refactor-scan why` shows the working instead — what was measured, what the classifier
+made of that, how the methods were grouped, and how those three add up to the suggestion.
+
+**1. The short version.** Point it at a file and get the headline plus the single factor that
+mattered most, per class. Multi-class files are fine — this stays a few lines per class no
+matter how many there are, so it never floods your terminal:
+
+```
+$ refactor-scan why sample_repo/coupled.py
+
+PaymentProcessor — God Class (56% confidence)
+  Top reason: Its methods are short -- mostly a line or two each. That is the
+              pattern the model most associates with God Class.
+  Suggestion: no clean split found along the data its methods use -- worth a manual look
+
+Order — Feature Envy (56% confidence)
+  Top reason: This class leans heavily on other classes -- a lot of what it
+              does is really driving code that lives somewhere else.
+  Suggestion: move checkout() into PaymentProcessor (+1 more)
+
+Run the same command with --output report.html for the full reasoning behind each of these.
+```
+
+**2. One class at a time.** `--class` narrows it, and errors with the file's actual class
+names if you typo one:
+
+```bash
+refactor-scan why sample_repo/coupled.py --class Order
+```
+
+**3. The full report.** `--output` writes a standalone, styled HTML page — no CDN, no
+JavaScript, no network needed — and prints one line rather than duplicating the summary:
+
+```
+$ refactor-scan why sample_repo/god_class.py --output report.html
+Full explanation for 1 class written to report.html
+```
+
+Each class opens with just its name, its label and one plain sentence. The four reasoning
+steps underneath — what was measured, what the model made of it, how the methods were
+grouped, and what to do — are collapsed `<details>` sections, each showing a one-line
+takeaway so the page can be skimmed shut. Open one and you get the full working: every
+metric as a sentence with the raw number underneath, the model's per-factor ablation, and an
+SVG of the method graph with each suggested group marked by a numbered arc. Native
+`<details>` does the collapsing; there is still no JavaScript on the page. `--class` works
+here too, to narrow the report to one class.
+
+**4. Nothing wrong?** On a file where everything comes back Clean, it says so and stops:
+
+```
+$ refactor-scan why sample_repo/clean.py
+No smells detected — nothing to explain.
+```
+
+(With `--output` it writes the report anyway, covering why each class was judged Clean — a
+scripted step asked to produce a file shouldn't silently produce nothing.)
+
+### How the model's own reasoning is worked out
+
+Feature importances are the same eight numbers for every class in your codebase, so they can
+tell you what the model cares about in general but never what tipped one particular
+decision. `why` uses **single-feature ablation** instead: each measurement in turn is reset
+to the value the model finds unremarkable (the training-set mean) and the class is
+re-predicted. How far confidence falls is how much that measurement was really doing — which
+is why the report can say *"if this one measurement were ordinary instead, confidence in
+Feature Envy would fall by about 49 points"* and mean it literally.
+
+It also reports the measurements that argued **against** the label the model picked. On a
+56%-confidence call that's usually the most useful line on the page.
+
+Two honest details it won't hide from you:
+
+- **`cbo`, `dit` and `fan_in` are marked "not used by the model"** wherever they appear. They
+  are constant across the training data, so the forest never learned to use them — see
+  [Known limitations](#known-limitations-and-were-proud-of-documenting-them).
+- **Long Parameter List and Duplicate Code aren't model findings at all.** They're a counting
+  rule and a similarity check layered on top. When one of those is what flagged a class, the
+  report says so outright rather than explaining a decision the classifier didn't make.
 
 ## Quick start
 
@@ -163,7 +247,11 @@ Either way, on first run you'll see the startup banner:
           v
   ┌───────────────┐
   │      CLI      │   engine/cli/ — click + rich, dev/simple audiences
-  └───────────────┘   -> colorized terminal report or machine-readable JSON
+  └───────┬───────┘   -> colorized terminal report or machine-readable JSON
+          v
+  ┌───────────────┐
+  │    EXPLAIN    │   engine/reasoning.py, engine/ml/explain.py
+  └───────────────┘   -> `why`: per-class ablation + graph, terminal or HTML
 ```
 
 Every arrow above is a real function call, not aspirational — trace it yourself starting at
@@ -182,6 +270,11 @@ refactor-scan analyze <path> --top 20            # show N most severe results (d
 refactor-scan analyze <path> --top 0             # show everything, no cap
 refactor-scan analyze <path> --exclude vendor    # skip an extra directory by name
 refactor-scan analyze <path> --format json --output report.json
+
+refactor-scan why <file.py>                      # the reasoning behind a file's results
+refactor-scan why <file.py> --class Order        # narrow it to one class
+refactor-scan why <file.py> --output report.html # full illustrated report instead
+refactor-scan why <file.py> --class Order --output order.html
 
 refactor-scan explain "God Class"                # what it is, why it matters, how to fix it
 refactor-scan explain "Data Class"
@@ -226,21 +319,22 @@ trustworthy — the known failure modes.
 refactor-engine/
   engine/
     parser.py, metrics.py, models.py, serializer.py, pipeline.py
-    ml/            # features.py, train.py, predict.py + the trained .pkl artifacts
-    suggester/      # graph.py, cluster.py, suggest.py
-    cli/             # main.py, render.py, explanations.py
+    duplication.py   # structural (name-stripped) method similarity
+    reasoning.py      # assembles the `why` explanation: measurements + model + graph
+    ml/                # features.py, train.py, predict.py, explain.py + the .pkl artifacts
+    suggester/          # graph.py, cluster.py, blocks.py, suggest.py
+    cli/                 # main.py, render.py, explanations.py, html_report.py
   data/
     generate_synthetic_dataset.py   # builds the 400-row training set from scratch
     labeled_dataset.csv
   sample_repo/, sample_repo_2/       # fixture repos used to validate every phase
-  tests/                              # 36 tests across parser/metrics/graph/cluster/suggest/pipeline
+  tests/                              # 101 tests across every module above
   run_scan.py                          # dev entrypoint (`pip install .` gives you `refactor-scan`)
   pyproject.toml                       # packaged as a real installable CLI, model included
   PHASE2_NOTES.md                       # classifier methodology & honest limitations
 ```
 
-~2,900 lines of Python across 26 source files. Every one of the 5 pipeline stages above has
-its own dedicated test file.
+Every pipeline stage above has its own dedicated test file.
 
 ## Known limitations (and we're proud of documenting them)
 
@@ -270,7 +364,7 @@ Full detail on all of these, including exact numbers, lives in
 pytest tests/ -v
 ```
 
-36 tests, organized by pipeline stage:
+101 tests, organized by pipeline stage:
 
 | File | Covers |
 |---|---|
@@ -278,8 +372,11 @@ pytest tests/ -v
 | `test_metrics.py` | Every structural metric, hand-verified against small examples |
 | `test_graph.py` | Method-graph construction: shared-field edges vs. call edges |
 | `test_cluster.py` | Community detection: the exact "two separate clusters split correctly" guarantee the suggester depends on |
+| `test_blocks.py` | Statement-block splitting inside a long method |
+| `test_duplication.py` | Name-stripped structural similarity between methods |
 | `test_suggest.py` | Suggestion generation and the class-naming heuristic |
 | `test_pipeline.py` | End-to-end integration on real fixture repos, including directory-exclusion and single-file scanning |
+| `test_reasoning.py` | `why`: local ablation, per-strategy reasoning records, and the self-contained HTML report |
 
 ## Roadmap
 
