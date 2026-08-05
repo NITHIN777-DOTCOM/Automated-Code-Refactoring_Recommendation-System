@@ -26,6 +26,7 @@ _SMELL_COLORS = {
     "Feature Envy": "magenta",
     "Long Method": "orange3",
     "Long Parameter List": "cyan",
+    "Duplicate Code": "bright_blue",
 }
 
 
@@ -63,6 +64,16 @@ def _confidence_style(confidence: float) -> str:
     if confidence >= 0.6:
         return "bold yellow"
     return "bold red"
+
+
+def _dev_headline_metric(smell: str, confidence: float) -> str:
+    """Duplicate Code carries the strongest pair's similarity in the
+    confidence slot (see the pipeline), and "100% confidence" would read as
+    certainty about exactly the finding this tool is least certain about.
+    Name the number for what it actually is."""
+    if smell == "Duplicate Code":
+        return f"[bold bright_blue]{confidence:.0%} structural match[/bold bright_blue]"
+    return f"[{_confidence_style(confidence)}]{confidence:.0%} confidence[/]"
 
 
 def _confidence_word(confidence: float) -> str:
@@ -106,8 +117,7 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
     filename = os.path.basename(entry["file_path"])
 
     header = Text.from_markup(
-        f"[bold {color}]{smell}[/bold {color}]  "
-        f"[{_confidence_style(entry['confidence'])}]{entry['confidence']:.0%} confidence[/]"
+        f"[bold {color}]{smell}[/bold {color}]  {_dev_headline_metric(smell, entry['confidence'])}"
     )
 
     body_parts = [header, Text("")]
@@ -118,6 +128,7 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
     move_suggestions = [s for s in suggestions if s["type"] == "move_method"]
     unclear_envy = [s for s in suggestions if s["type"] == "no_clear_envy_target"]
     long_param_suggestions = [s for s in suggestions if s["type"] == "long_parameter_list"]
+    duplicate_suggestions = [s for s in suggestions if s["type"] == "duplicate_code"]
     unsupported_suggestions = [s for s in suggestions if s["type"] == "unsupported_smell_type"]
 
     printed_primary_finding = False
@@ -180,7 +191,7 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
     elif unsupported_suggestions:
         body_parts.append(Text(unsupported_suggestions[0]["note"], style="dim"))
         printed_primary_finding = True
-    elif not long_param_suggestions:
+    elif not long_param_suggestions and not duplicate_suggestions:
         body_parts.append(Text("No clear extraction boundary found.", style="dim"))
 
     # Additive, not exclusive: a class can be flagged for something else AND
@@ -191,6 +202,27 @@ def _dev_class_panel(name: str, entry: dict) -> Panel:
         body_parts.append(
             Text.from_markup(f"[bold cyan]Long parameter list:[/bold cyan] {', '.join(s['methods'])}")
         )
+        body_parts.append(Text(s["note"], style="dim"))
+        printed_primary_finding = True
+
+    # Also additive, and the similarity column is printed rather than hidden
+    # behind a verdict: the score is what makes the finding checkable, and a
+    # borderline 0.81 should look different to the reader than a 1.0.
+    for s in duplicate_suggestions:
+        if printed_primary_finding:
+            body_parts.append(Text(""))
+        table = Table(show_header=True, header_style="bold", box=None, padding=(0, 1, 0, 0))
+        table.add_column("Similar methods")
+        table.add_column("Structural similarity")
+        for pair in s["pairs"]:
+            method_a, method_b = pair["methods"]
+            table.add_row(
+                f"[bold bright_blue]{method_a}()[/bold bright_blue] ~ "
+                f"[bold bright_blue]{method_b}()[/bold bright_blue]",
+                f"{pair['similarity']:.0%}",
+            )
+        body_parts.append(table)
+        body_parts.append(Text(""))
         body_parts.append(Text(s["note"], style="dim"))
         printed_primary_finding = True
 
@@ -208,8 +240,15 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
     filename = os.path.basename(entry["file_path"])
     what = SMELL_EXPLANATIONS.get(smell, {}).get("what", "")
 
+    # Same reasoning as _dev_headline_metric: "high confidence" would overstate
+    # a similarity score.
+    if smell == "Duplicate Code":
+        headline_metric = f"the closest pair is {entry['confidence']:.0%} alike in shape"
+    else:
+        headline_metric = _confidence_word(entry["confidence"])
+
     parts = [
-        Text.from_markup(f"[bold {color}]{smell}[/bold {color}] ({_confidence_word(entry['confidence'])})"),
+        Text.from_markup(f"[bold {color}]{smell}[/bold {color}] ({headline_metric})"),
         Text(""),
         Text(what, style="white"),
         Text(""),
@@ -221,6 +260,7 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
     move_suggestions = [s for s in suggestions if s["type"] == "move_method"]
     unclear_envy = [s for s in suggestions if s["type"] == "no_clear_envy_target"]
     long_param_suggestions = [s for s in suggestions if s["type"] == "long_parameter_list"]
+    duplicate_suggestions = [s for s in suggestions if s["type"] == "duplicate_code"]
     unsupported_suggestions = [s for s in suggestions if s["type"] == "unsupported_smell_type"]
 
     printed_primary_finding = False
@@ -277,7 +317,7 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
     elif unsupported_suggestions:
         parts.append(Text(SMELL_EXPLANATIONS.get(smell, {}).get("fix", ""), style="dim"))
         printed_primary_finding = True
-    elif not long_param_suggestions:
+    elif not long_param_suggestions and not duplicate_suggestions:
         parts.append(Text("This class doesn't split apart cleanly along its data -- worth a manual look.", style="dim"))
 
     # Additive, not exclusive: a class can be flagged for something else AND
@@ -290,6 +330,34 @@ def _simple_class_panel(name: str, entry: dict) -> Panel:
             Text.from_markup(
                 f"  • [bold]{methods}[/bold] {'takes' if len(s['methods']) == 1 else 'take'} too many "
                 f"parameters -- consider grouping related ones into a single object."
+            )
+        )
+        printed_primary_finding = True
+
+    # Same caveat as the dev panel, in plain language: this reader is the one
+    # least likely to know that "similar shape" and "does the same thing" are
+    # different claims, so the uncertainty is stated as part of the finding
+    # rather than tucked away underneath it.
+    for s in duplicate_suggestions:
+        if printed_primary_finding:
+            parts.append(Text(""))
+        for pair in s["pairs"]:
+            method_a, method_b = pair["methods"]
+            parts.append(
+                Text.from_markup(
+                    f"  • [bold]{method_a}[/bold] and [bold]{method_b}[/bold] are written "
+                    f"almost identically ({pair['similarity']:.0%} the same shape, ignoring the "
+                    f"names used inside them)."
+                )
+            )
+        parts.append(Text(""))
+        parts.append(
+            Text(
+                "This one is a guess based on the shape of the code, not proof that the two "
+                "methods do the same thing -- methods written in the same style often look alike "
+                "without being copies. Worth reading both before merging them: if they really do "
+                "the same work, one shared method could replace both.",
+                style="dim",
             )
         )
         printed_primary_finding = True
@@ -402,6 +470,13 @@ def print_smell_explanation(smell_name: str):
     parts.append(Text(""))
     parts.append(Text("What to do about it:", style="bold"))
     parts.append(Text(info["fix"]))
+
+    # Only the checks whose result is genuinely uncertain carry one, so it
+    # renders as a distinct warning rather than boilerplate on every smell.
+    if info.get("caveat"):
+        parts.append(Text(""))
+        parts.append(Text("A caveat worth knowing:", style="bold yellow"))
+        parts.append(Text(info["caveat"]))
 
     console.print(Panel(Group(*parts), title=f"[bold {color}]{name}[/bold {color}]", border_style=color, padding=(1, 2)))
 

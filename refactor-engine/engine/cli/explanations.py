@@ -95,6 +95,38 @@ SMELL_EXPLANATIONS = {
             "that instead of each value individually."
         ),
     },
+    "Duplicate Code": {
+        "aka": "Copy-Paste Code, Clones",
+        "what": (
+            "Two methods in the same class that are written almost identically -- "
+            "usually one was copied from the other and lightly edited. The check "
+            "compares the *structure* of the code (its loops, branches, calls and "
+            "nesting) after throwing away every variable name, so a copy whose "
+            "variables were all renamed still matches."
+        ),
+        "why_it_matters": (
+            "Copies drift. A bug fixed in one place stays broken in the other, and "
+            "a change to the rule they both implement has to be remembered twice. "
+            "The cost isn't the extra lines -- it's that nothing links the copies "
+            "together, so there's no way to tell from one of them that the other "
+            "exists."
+        ),
+        "fix": (
+            "If the two methods really do the same work, pull the shared part into "
+            "one method that both call, passing whatever differs between them as a "
+            "parameter."
+        ),
+        "caveat": (
+            "This is the least certain of the checks in this tool, and it's the only "
+            "one measuring similarity rather than a defined property. It compares "
+            "shape, not meaning: methods that follow the same template -- a run of "
+            "validators, several methods that each loop over a list and build up a "
+            "result -- can score 90%+ while doing completely unrelated work. Expect "
+            "more false positives here than anywhere else in this tool, and read "
+            "both methods before merging them. A high score is a reason to look, "
+            "not a verdict."
+        ),
+    },
     "Clean": {
         "aka": None,
         "what": (

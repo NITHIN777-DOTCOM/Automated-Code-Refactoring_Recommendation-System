@@ -20,6 +20,7 @@ from __future__ import annotations
 import logging
 import os
 
+from engine.duplication import DEFAULT_SIMILARITY_THRESHOLD, find_duplicate_pairs
 from engine.metrics import compute_all_metrics, parameter_count
 from engine.ml.predict import predict_smell_with_confidence
 from engine.parser import (
@@ -47,6 +48,20 @@ LONG_PARAMETER_LIST_THRESHOLD = 5
 _LONG_PARAMETER_LIST_NOTE = (
     "Long Parameter List detected — consider grouping related parameters into "
     "a single object/dataclass instead of passing them individually."
+)
+
+# Also not part of the trained classifier, and for a second reason on top of
+# the one above: this check's own result is a heuristic. See engine.duplication
+# -- it compares AST shape with names stripped, so it finds renamed copies but
+# also flags methods that merely follow the same template. The note below is
+# worded to say that outright, because a reader who takes a 0.9 here as
+# "these are redundant" will delete working code.
+_DUPLICATE_CODE_NOTE = (
+    "Duplicate Code detected — these method pairs have near-identical structure "
+    "once variable names are stripped. This is a structural similarity heuristic, "
+    "not exact-text duplication: methods that merely follow the same shape (a run "
+    "of parallel validators, several methods that each loop and accumulate) score "
+    "high without being redundant. Read the pair before consolidating anything."
 )
 
 # Smells rooted in low cohesion get an Extract Class split, proposed by
@@ -131,6 +146,18 @@ def _long_parameter_list_suggestion(method_names: list[str]) -> dict:
     }
 
 
+def _duplicate_code_suggestion(pairs: list[tuple[str, str, float]]) -> dict:
+    return {
+        "type": "duplicate_code",
+        "note": _DUPLICATE_CODE_NOTE,
+        "threshold": DEFAULT_SIMILARITY_THRESHOLD,
+        "pairs": [
+            {"methods": [name_a, name_b], "similarity": round(similarity, 3)}
+            for name_a, name_b, similarity in pairs
+        ],
+    }
+
+
 def _analyze_classes(classes: list) -> dict:
     if not classes:
         return {}
@@ -180,6 +207,26 @@ def _analyze_classes(classes: list) -> dict:
                 # threshold check is either true or it isn't, so 1.0 is the
                 # honest value, not a borrowed ML score.
                 confidence = 1.0
+
+        # Checked after Long Parameter List so that when a class trips both,
+        # the unambiguous finding gets the headline label and the heuristic
+        # one rides along as an extra note.
+        try:
+            duplicate_pairs = find_duplicate_pairs(cls)
+        except Exception as exc:
+            logger.warning(
+                "Could not check %s in %s for duplicate code: %s", cls.name, cls.file_path, exc
+            )
+            duplicate_pairs = []
+
+        if duplicate_pairs:
+            suggestions = suggestions + [_duplicate_code_suggestion(duplicate_pairs)]
+            if predicted_smell == "Clean":
+                predicted_smell = "Duplicate Code"
+                # The similarity of the strongest pair, NOT a model
+                # probability and not the 1.0 a hard threshold check earns:
+                # this number is exactly as soft as the finding it describes.
+                confidence = duplicate_pairs[0][2]
 
         results[cls.name] = {
             "file_path": cls.file_path,
