@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-08-14T16:52:32.251132+00:00",
+  "target_total_files": [
+    4000,
+    5000
+  ],
+  "total_files_collected": 4500,
+  "sources": [
+    {
+      "name": "eth_py150",
+      "category": "standard_dataset",
+      "origin": "ETH SRI Lab py150 dataset -- raw GitHub Python source files",
+      "citation": "Veselin Raychev, Pavol Bielik, Martin Vechev. \"Probabilistic Model for Code with Decision Trees.\" OOPSLA 2016.",
+      "url": "https://files.sri.inf.ethz.ch/data/py150_files.tar.gz",
+      "access_date": "2026-08-14",
+      "file_count": 2511,
+      "license": "unknown/mixed (aggregated from public GitHub repos; per-repo attribution in github_repos.txt inside the source archive, no single blanket license)"
+    },
+    {
+      "name": "git_repos",
+      "category": "git_repos",
+      "origin": "Shallow clones (git clone --depth 1) of real public GitHub Python projects",
+      "citation": "N/A -- primary sources, cited individually by repo URL",
+      "access_date": "2026-08-14",
+      "file_count": 840,
+      "license": "per-repo, see items[].license",
+      "items": [
+        {
+          "name": "maya",
+          "url": "https://github.com/kennethreitz/maya",
+          "repo_category": "small",
+          "file_count": 9,
+          "license": "MIT"
+        },
+        {
+          "name": "records",
+          "url": "https://github.com/kennethreitz42/records",
+          "repo_category": "small",
+          "file_count": 9,
+          "license": "ISC"
+        },
+        {
+          "name": "tablib",
+          "url": "https://github.com/jazzband/tablib",
+          "repo_category": "small",
+          "file_count": 33,
+          "license": "unknown"
+        },
+        {
+          "name": "python-slugify",
+          "url": "https://github.com/un33k/python-slugify",
+          "repo_category": "small",
+          "file_count": 7,
+          "license": "MIT"
+        },
+        {
+          "name": "ftfy",
+          "url": "https://github.com/rspeer/python-ftfy",
+          "repo_category": "small",
+          "file_count": 18,
+          "license": "Apache-2.0"
+        },
+        {
+          "name": "emoji",
+          "url": "https://github.com/carpedm20/emoji",
+          "repo_category": "small",
+          "file_count": 23,
+          "license": "BSD"
+        },
+        {
+          "name": "pint",
+          "url": "https://github.com/hgrecco/pint",
+          "repo_category": "small",
+          "file_count": 110,
+          "license": "BSD"
+        },
+        {
+          "name": "validators",
+          "url": "https://github.com/python-validators/validators",
+          "repo_category": "small",
+          "file_count": 64,
+          "license": "MIT"
+        },
+        {
+          "name": "gspread",
+          "url": "https://github.com/burnash/gspread",
+          "repo_category": "small",
+          "file_count": 19,
+          "license": "unknown"
+        },
+        {
+          "name": "premailer",
+          "url": "https://github.com/peterbe/premailer",
+          "repo_category": "small",
+          "file_count": 11,
+          "license": "BSD"
+        },
+        {
+          "name": "webassets",
+          "url": "https://github.com/miracle2k/webassets",
+          "repo_category": "small",
+          "file_count": 78,
+          "license": "BSD"
+        },
+        {
+          "name": "schedule",
+          "url": "https://github.com/dbader/schedule",
+          "repo_category": "small",
+          "file_count": 4,
+          "license": "MIT"
+        },
+        {
+          "name": "jellyfish",
+          "url": "https://github.com/jamesturk/jellyfish",
+          "repo_category": "small",
+          "file_count": 4,
+          "license": "MIT"
+        },
+        {
+          "name": "python-json-logger",
+          "url": "https://github.com/madzak/python-json-logger",
+          "repo_category": "small",
+          "file_count": 5,
+          "license": "BSD"
+        },
+        {
+          "name": "exif-py",
+          "url": "https://github.com/ianare/exif-py",
+          "repo_category": "small",
+          "file_count": 31,
+          "license": "BSD"
+        },
+        {
+          "name": "pluginbase",
+          "url": "https://github.com/mitsuhiko/pluginbase",
+          "repo_category": "small",
+          "file_count": 19,
+          "license": "BSD"
+        },
+        {
+          "name": "requests",
+          "url": "https://github.com/psf/requests",
+          "repo_category": "popular",
+          "file_count": 37,
+          "license": "Apache-2.0"
+        },
+        {
+          "name": "click",
+          "url": "https://github.com/pallets/click",
+          "repo_category": "popular",
+          "file_count": 78,
+          "license": "BSD"
+        },
+        {
+          "name": "rich",
+          "url": "https://github.com/Textualize/rich",
+          "repo_category": "popular",
+          "file_count": 213,
+          "license": "unknown"
+        },
+        {
+          "name": "tqdm",
+          "url": "https://github.com/tqdm/tqdm",
+          "repo_category": "popular",
+          "file_count": 68,
+          "license": "unknown"
+        }
+      ],
+      "clone_failures": []
+    },
+    {
+      "name": "site_packages",
+      "category": "site_packages",
+      "origin": "Installed mature libraries sampled from the local Python environment (numpy, pandas, scikit-learn) -- supplementary only, not relied on for volume",
+      "citation": "N/A -- primary sources, cited individually by package",
+      "access_date": "2026-08-14",
+      "file_count": 249,
+      "license": "per-package, see items[].license",
+      "items": [
+        {
+          "name": "numpy",
+          "file_count": 83,
+          "license": "unknown"
+        },
+        {
+          "name": "pandas",
+          "file_count": 83,
+          "license": "BSD 3-Clause License\n\n Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team\n All rights reserved.\n\n Copyright (c) 2011-2023, Open source contributors.\n\n Redistribution and use in source and binary forms, with or without\n modification, are permitted provided that the following conditions are met:\n\n * Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n * Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n * Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\n THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\n FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\n DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\n SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\n OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+        },
+        {
+          "name": "sklearn",
+          "file_count": 83,
+          "license": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "codesearchnet",
+      "category": "codesearchnet",
+      "origin": "CodeSearchNet Python subset, HuggingFace parquet mirror (code-search-net/code_search_net, config 'default', filtered to language=='python')",
+      "citation": "Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, Marc Brockschmidt. \"CodeSearchNet Challenge: Evaluating the State of Semantic Code Search.\" arXiv:1909.09436 (2019).",
+      "url": "https://huggingface.co/datasets/code-search-net/code_search_net",
+      "access_date": "2026-08-14",
+      "file_count": 900,
+      "license": "unknown/mixed (aggregated from public GitHub repos; underlying snippets retain their original repo's license per the CodeSearchNet dataset card)",
+      "note": "Predominantly standalone functions, not classes -- supplementary source, not expected to contribute meaningfully to the parsed-class count."
+    }
+  ]
+}

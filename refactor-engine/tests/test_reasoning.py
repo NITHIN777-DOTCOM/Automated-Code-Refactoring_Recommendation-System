@@ -252,24 +252,24 @@ def test_report_contains_all_four_reasoning_steps_per_class():
 
 
 def test_every_reasoning_section_is_collapsed_by_default():
-    """The report is a summary you can drill into, not a wall of text. Four
+    """The report is a summary you can drill into, not a wall of text. Five
     sections per class, every one of them shut until asked."""
     document = render_report(explain_file(COUPLED_FILE))
 
-    assert document.count("<details>") == 8  # 4 sections x 2 classes
+    assert document.count("<details>") == 10  # 5 sections x 2 classes
     assert "<details open" not in document
-    assert document.count("<summary>") == 8
+    assert document.count("<summary>") == 10
 
 
 def test_collapsed_sections_each_carry_a_one_line_takeaway():
     """A closed section still has to say something -- otherwise skimming the
-    page tells you only that four sections exist."""
+    page tells you only that five sections exist."""
     import re
 
     document = render_report(explain_file(GOD_CLASS_FILE))
     takeaways = re.findall(r'<span class="s-take">(.*?)</span>', document, re.S)
 
-    assert len(takeaways) == 4
+    assert len(takeaways) == 5
     for takeaway in takeaways:
         assert takeaway.strip()
         assert len(takeaway) < 130

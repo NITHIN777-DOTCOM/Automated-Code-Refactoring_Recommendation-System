@@ -28,6 +28,7 @@ from engine.ml.explain import explain_prediction
 from engine.models import ClassInfo
 from engine.parser import parse_file
 from engine.pipeline import analyze_file
+from engine.thresholds import Benchmark, benchmarks_for, derive_metrics, rule_for
 from engine.suggester.cluster import CONSTRUCTOR_NAMES, analyze_extraction_clusters
 from engine.suggester.graph import build_method_graph
 
@@ -243,6 +244,12 @@ class ClassReasoning:
     suggestion_sentences: list[str]
     short_suggestion: str
     suggestions: list[dict]
+    # Measured-vs-published comparisons (engine/thresholds.py). Distinct from
+    # `measurements`, which describes this class against the TRAINING data's
+    # distribution -- the model's own frame of reference. These instead judge
+    # it against cited literature cutoffs, so a finding can be defended
+    # without appealing to the classifier at all.
+    benchmarks: list[Benchmark] = field(default_factory=list)
 
 
 @dataclass
@@ -775,12 +782,15 @@ _CLEAN_VERDICT = (
 )
 
 
-def _reasoning_for_class(cls: ClassInfo, entry: dict) -> ClassReasoning:
+def _reasoning_for_class(
+    cls: ClassInfo, entry: dict, all_classes: list[ClassInfo] | None = None
+) -> ClassReasoning:
     smell = entry["predicted_smell"]
     suggestions = entry["suggestions"]
 
     model, measurements = _model_reasoning(entry["metrics"], smell, suggestions)
     graph = _graph_reasoning(cls, smell, suggestions) if cls.methods else None
+    benchmarks = benchmarks_for(derive_metrics(entry["metrics"], cls, all_classes), smell)
 
     # Only reachable via --class: a Clean class has no finding to justify, so
     # "no clean split was found" would be answering a question nobody asked.
@@ -800,6 +810,7 @@ def _reasoning_for_class(cls: ClassInfo, entry: dict) -> ClassReasoning:
             suggestion_sentences=[_CLEAN_VERDICT],
             short_suggestion="nothing to change -- no structural red flags in this one",
             suggestions=suggestions,
+            benchmarks=benchmarks,
         )
 
     return ClassReasoning(
@@ -817,6 +828,7 @@ def _reasoning_for_class(cls: ClassInfo, entry: dict) -> ClassReasoning:
         suggestion_sentences=suggestion_sentences(entry),
         short_suggestion=short_suggestion(entry),
         suggestions=suggestions,
+        benchmarks=benchmarks,
     )
 
 
@@ -855,7 +867,15 @@ def explain_file(
             selected = list(results)
 
     ordered = [name for name in classes_by_name if name in selected]
-    reasoning = [_reasoning_for_class(classes_by_name[name], results[name]) for name in ordered]
+    # The whole file's classes are the scope the pipeline's coupling metrics
+    # were computed over, so the ATFD/LAA proxies must be derived against the
+    # same list or they would describe a different measurement than the one
+    # being explained.
+    all_classes = list(classes_by_name.values())
+    reasoning = [
+        _reasoning_for_class(classes_by_name[name], results[name], all_classes)
+        for name in ordered
+    ]
 
     return FileReasoning(
         path=os.path.abspath(path),

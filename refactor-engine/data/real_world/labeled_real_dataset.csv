@@ -1,0 +1,3207 @@
+class_name,cbo,lcom,class_length,avg_method_length,avg_cyclomatic_complexity,dit,fan_in,fan_out,label,split
+MorfessorEvaluationResult,0,0.5238095238095238,68,5.571428571428571,1.2857142857142858,0,2,0,Clean,test
+MorfessorEvaluation,1,0.7619047619047619,134,16.0,2.857142857142857,0,0,3,Feature Envy,test
+WilcoxonSignedRank,0,1.0,97,15.2,3.2,0,0,1,Feature Envy,train
+TrackerAppConfig,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+OrganizationUnitProvisioningClient,0,0.9956709956709957,472,17.0,1.4090909090909092,0,0,0,God Class,test
+CalendarResourceEntry,0,0.9848484848484849,152,9.25,1.6666666666666667,0,0,0,God Class,train
+CalendarResourceFeed,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+VariationAdmin,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+BaseProductSet,0,1.0,45,11.666666666666666,4.333333333333333,0,0,0,Feature Envy,train
+SettingsAdmin,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Transition,0,0.6666666666666666,29,1.3333333333333333,1.0,0,0,0,Data Class,train
+AirflowException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+AirflowSensorTimeout,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+AirflowTaskTimeout,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+AirflowSkipException,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+TypeInfo,0,0.7222222222222222,42,2.888888888888889,1.4444444444444444,0,0,0,Clean,test
+ColdfusionFormatter,0,0.0,56,17.0,6.0,0,0,0,Long Method,train
+BeautifierOptions,0,0.0,20,8.0,1.0,0,0,0,Data Class,train
+Printer,0,0.31868131868131866,69,2.9285714285714284,1.7857142857142858,0,1,0,Clean,test
+Beautifier,1,0.14545454545454545,310,25.818181818181817,8.363636363636363,0,0,13,Long Method,train
+TreeBuilderRegistry,0,0.0,48,14.0,4.0,0,0,0,Clean,test
+TreeBuilder,0,1.0,96,8.0,2.0,0,0,0,Clean,train
+SAXTreeBuilder,0,0.9454545454545454,43,1.7272727272727273,1.0,1,0,0,Clean,train
+HTMLTreeBuilder,0,0.0,65,31.0,6.0,1,0,0,Clean,train
+ParserRejectedMarkup,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+CMakeBuildConfig,1,0.6838235294117647,226,10.4375,2.5625,0,0,1,God Class,train
+NoSuchProfile,0,0.0,10,3.0,1.0,0,1,0,Clean,train
+GentooPackage,0,1.0,42,18.0,3.0,0,0,0,Feature Envy,test
+FeatureOpType,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+FeatureType,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+InvalidValueTreatment,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Feature,0,0.8222222222222222,61,3.6,1.1,0,2,0,Clean,train
+NumericFeature,0,1.0,6,1.0,1.0,1,1,0,Clean,test
+RealNumericFeature,0,0.0,3,1.0,1.0,2,0,0,Data Class,train
+IntegerNumericFeature,0,1.0,6,1.0,1.0,2,1,0,Data Class,train
+CategoricalFeature,0,0.5,30,4.25,1.5,1,1,2,Clean,train
+IntegerCategoricalFeature,0,0.0,3,1.0,1.0,2,0,0,Clean,test
+StringCategoricalFeature,0,0.0,3,1.0,1.0,2,0,0,Clean,train
+DerivedFeature,0,0.3,51,6.2,1.0,2,1,6,Clean,train
+Parent,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+Child,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Cell,0,0.0,7,2.0,1.0,0,1,0,Clean,train
+Solution,1,0.0,48,22.5,5.0,0,0,1,Clean,train
+CommandLineError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DefaultsManager,0,0.6,41,5.2,2.4,0,0,0,Clean,train
+LevelOfMessageException,0,1.0,6,1.0,1.0,0,0,0,Clean,train
+CustomTransformer,0,0.0,19,7.5,2.0,0,0,0,Clean,train
+PickleView,0,0.0,11,3.5,2.0,0,0,0,Clean,test
+TeePickleView,0,0.0,19,7.5,2.0,0,0,0,Clean,train
+ProgressView,0,0.0,84,40.0,9.5,0,0,0,Long Method,train
+ClockView,0,0.0,13,4.5,1.5,0,0,0,Clean,test
+_ArrayLoader,0,0.6666666666666666,50,12.666666666666666,2.3333333333333335,0,1,3,Clean,train
+_Logger,0,0.0,13,4.5,1.5,0,0,0,Clean,train
+_VariantsLoader,0,0.0,87,82.0,11.0,1,2,0,Long Method,train
+_CalldataLoader,0,0.0,83,79.0,12.0,1,2,0,Long Method,test
+_Calldata2DLoader,0,0.0,6,2.0,1.0,2,1,3,Clean,train
+GetBsnBySnRequest,0,1.0,9,1.0,1.0,0,0,0,Clean,test
+CreateIndexRequest,0,1.0,21,1.0,1.0,0,0,0,Clean,train
+DropIndexesRequest,0,1.0,27,1.0,1.0,0,0,0,Clean,train
+DescribeInnerOcsInstanceInfoRequest,0,1.0,27,1.0,1.0,0,0,0,Clean,train
+CreateImgVpcRequest,0,1.0,51,1.0,1.0,0,0,0,Clean,train
+StartLoadBalancerListenerRequest,0,1.0,39,1.0,1.0,0,0,0,Clean,train
+ConfirmLoginRequest,0,1.0,21,1.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,55,0.0,0.0,0,0,0,Clean,train
+NetworkInlineFormset,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+DiffMeansPermute,0,0.6666666666666666,26,6.333333333333333,1.0,0,0,0,Clean,test
+DiffMeansOneSided,0,0.0,10,7.0,1.0,1,0,0,Clean,test
+DiffStdPermute,0,0.0,10,7.0,1.0,1,0,0,Clean,train
+CorrelationPermute,0,1.0,19,7.0,1.0,0,0,0,Clean,train
+Discovery,0,0.0,34,9.333333333333334,2.3333333333333335,0,0,0,Clean,train
+Memories,0,0.0,34,2.25,1.0,0,0,0,Clean,train
+Person,0,0.20105820105820105,122,2.357142857142857,1.0714285714285714,0,0,0,Clean,test
+_test_structmembersType,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+error,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+instancemethod,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Menus,0,1.0,61,13.25,1.0,0,0,0,Clean,train
+Tasks,0,0.0,13,11.0,1.0,0,0,0,Clean,train
+TodoApp,1,0.5238095238095238,61,6.428571428571429,2.142857142857143,0,0,1,Clean,train
+DataService,0,0.0,2,1.0,1.0,0,1,0,Clean,train
+CheckBoxDemo,0,0.0,11,3.5,1.0,0,0,0,Clean,train
+ListBoxDemo,0,0.3333333333333333,33,8.666666666666666,1.0,0,0,0,Clean,train
+Grid,0,0.6428571428571429,55,4.875,2.25,0,0,0,Clean,test
+Canvas,0,0.6,53,7.0,1.1666666666666667,0,1,2,Clean,train
+CanvasImage,0,1.0,8,2.5,1.5,0,2,3,Clean,train
+ImageLoadListener,0,0.26666666666666666,29,3.0,1.8333333333333333,0,2,1,Clean,train
+Color,0,0.0,32,3.5,3.0,0,0,0,Clean,train
+DialogBox,0,0.7904761904761904,130,4.0,1.380952380952381,0,0,0,Clean,train
+PushButton,0,1.0,30,3.0,1.25,0,0,0,Clean,test
+MultiListener,0,1.0,38,4.666666666666667,2.3333333333333335,0,0,0,Clean,test
+Timer,0,0.8333333333333334,26,4.5,1.0,0,0,0,Clean,train
+LayoutExample,0,0.8333333333333334,52,11.25,1.0,0,0,0,Clean,train
+DAG,0,0.7486631016042781,507,11.529411764705882,3.235294117647059,0,0,0,God Class,train
+IDAWrapper,0,0.0,34,33.0,8.0,0,0,0,Clean,train
+Git,0,0.8,63,7.0,1.5,0,0,0,Clean,train
+ExportResponse,0,0.6666666666666666,14,2.0,1.3333333333333333,0,0,0,Clean,train
+ExportQuery,0,0.0,34,12.0,1.5,0,0,0,Clean,train
+Project,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+ProjectURL,0,1.0,9,1.0,1.0,0,0,0,Clean,train
+WidgetMeta,0,0.0,31,17.0,7.0,0,5,6,Clean,train
+WidgetError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Widget,1,1.0,393,12.555555555555555,1.7777777777777777,0,5,5,Feature Envy,test
+FlowWidget,0,1.0,23,4.0,1.0,1,2,0,Clean,train
+BoxWidget,0,0.0,19,4.0,1.0,1,1,0,Clean,train
+FixedWidget,0,1.0,23,4.0,1.0,1,2,0,Clean,train
+Divider,0,0.1,69,10.6,1.8,1,6,13,Clean,train
+SolidFill,0,0.0,31,6.666666666666667,1.0,2,5,10,Clean,train
+TextError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Text,1,0.7619047619047619,297,16.466666666666665,1.8,1,7,20,God Class,train
+EditError,0,0.0,1,0.0,0.0,1,1,0,Clean,train
+Edit,1,0.78,574,20.04,2.84,2,6,26,God Class,train
+IntEdit,0,0.8333333333333334,58,12.25,2.5,3,5,9,Clean,test
+WidgetWrapError,0,0.0,1,0.0,0.0,0,1,0,Clean,test
+WidgetWrap,1,0.6666666666666666,44,12.333333333333334,1.0,1,6,3,Clean,train
+GoGridResponse,0,0.6666666666666666,25,6.333333333333333,2.6666666666666665,0,0,1,Clean,train
+GoGridConnection,0,1.0,24,4.0,1.0,0,1,0,Clean,train
+GoGridIpAddress,0,0.0,10,5.0,1.0,0,2,0,Clean,train
+BaseGoGridDriver,1,0.9523809523809523,80,8.714285714285714,2.0,0,0,2,Clean,train
+GridspotAPIException,0,0.0,5,1.0,1.0,0,1,0,Clean,test
+GridspotResponse,1,1.0,14,4.0,2.0,0,0,1,Clean,test
+GridspotConnection,0,0.0,10,2.0,1.0,0,0,0,Clean,test
+GridspotNodeDriver,0,0.7,66,8.8,1.6,0,0,0,Clean,train
+DurableDNSResponse,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DurableDNSConnection,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DurableDNSDriver,0,0.5054945054945055,596,39.357142857142854,5.285714285714286,0,0,0,Long Method,train
+cc_taskgen,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BaseClient,0,0.6691176470588235,490,26.529411764705884,6.764705882352941,0,0,0,God Class,train
+Client,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+DownCommand,0,0.6666666666666666,104,33.0,7.666666666666667,0,0,0,Long Method,train
+Error,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ErrorOnTransform,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidConfiguration,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidCodeInConfiguration,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidExportData,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidImportData,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+EvaluatedCallable,0,1.0,81,6.666666666666667,1.3333333333333333,0,0,0,Clean,train
+ConnectorSubOptions,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+ConnectorOptions,0,0.0,26,6.0,2.0,0,1,3,Clean,train
+ExportEntry,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+PropertyEntry,0,0.0,26,13.0,4.0,0,1,3,Clean,train
+TransformerEntry,0,0.0,56,40.0,11.0,0,2,0,Long Method,test
+PythonPreambleEntry,0,0.0,25,15.0,2.0,0,2,0,Clean,train
+BulkloaderEntry,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+GQL,1,0.9371069182389937,1344,19.537037037037038,3.7037037037037037,0,0,2,God Class,train
+Literal,0,0.0,14,1.3333333333333333,1.0,0,1,0,Clean,train
+_BackgroundRequest,0,0.0,50,13.0,1.6666666666666667,0,1,0,Clean,test
+_BackgroundRequestsContainer,1,0.7,40,5.8,1.2,0,0,3,Clean,train
+RequestEnvironment,0,0.7,40,3.8,1.0,0,0,2,Clean,test
+RequestLocalStream,0,0.4,16,1.0,1.0,0,1,0,Clean,train
+RequestLocalEnviron,0,0.45454545454545453,39,1.0,1.0,0,1,0,Clean,train
+_Event,0,0.7142857142857143,28,1.25,1.0,0,1,0,Clean,train
+ScheduledExecutor,1,0.23809523809523808,80,9.285714285714286,2.4285714285714284,0,0,3,Clean,train
+Command,0,0.0,21,9.0,2.0,0,0,0,Clean,train
+AutoEscapeControlNode,0,0.0,13,4.5,1.5,0,9,19,Clean,train
+CommentNode,0,0.0,2,1.0,1.0,0,9,0,Clean,train
+CsrfTokenNode,0,0.0,15,14.0,4.0,0,9,0,Clean,train
+CycleNode,0,0.0,12,4.5,2.0,0,10,0,Clean,train
+DebugNode,0,0.0,6,5.0,1.0,0,9,0,Clean,train
+FilterNode,0,0.0,10,3.5,1.0,0,9,19,Clean,train
+FirstOfNode,0,0.0,9,3.0,2.0,0,10,0,Clean,train
+ForNode,0,0.0,82,18.25,5.0,0,9,19,Long Method,train
+IfChangedNode,0,0.0,30,12.5,4.0,0,9,19,Clean,train
+IfEqualNode,0,0.6666666666666666,16,3.0,2.3333333333333335,0,9,19,Clean,test
+IfNode,0,0.5,25,4.0,2.0,0,9,20,Clean,train
+RegroupNode,0,0.0,18,7.5,1.5,0,10,0,Clean,train
+SsiNode,0,0.0,25,11.0,4.0,0,9,19,Clean,train
+LoadNode,0,0.0,2,1.0,1.0,0,9,0,Clean,train
+NowNode,0,0.0,8,2.5,1.0,0,10,0,Clean,train
+SpacelessNode,0,0.0,6,1.5,1.0,0,9,19,Clean,train
+TemplateTagNode,0,0.0,15,1.0,1.0,0,10,0,Clean,train
+URLNode,0,0.0,40,18.5,4.0,0,10,0,Clean,test
+WidthRatioNode,0,0.0,21,9.0,2.5,0,10,0,Clean,test
+WithNode,0,0.6666666666666666,15,3.3333333333333335,1.0,0,9,19,Clean,train
+TemplateLiteral,0,0.3333333333333333,9,1.3333333333333333,1.0,0,2,0,Clean,train
+TemplateIfParser,1,0.0,8,1.5,1.0,0,0,18,Clean,train
+CacheNode,0,0.0,23,10.0,2.5,0,0,0,Clean,test
+CacheClass,0,0.0,58,7.833333333333333,2.6666666666666665,0,0,0,Clean,train
+PLProvinceSelect,0,0.0,6,2.0,1.0,0,5,5,Clean,train
+PLCountySelect,0,0.0,6,2.0,1.0,0,5,5,Clean,train
+PLPESELField,0,1.0,35,5.333333333333333,2.0,0,5,9,Clean,test
+PLNIPField,0,1.0,39,7.333333333333333,2.3333333333333335,0,5,9,Clean,train
+PLREGONField,0,1.0,41,8.333333333333334,2.3333333333333335,0,5,9,Clean,train
+PLPostalCodeField,0,0.0,11,2.0,1.0,0,5,5,Clean,test
+BaseDatabaseWrapper,0,0.8717948717948718,72,3.230769230769231,1.5384615384615385,0,1,3,Clean,train
+BaseDatabaseFeatures,0,0.0,15,0.0,0.0,0,0,0,Clean,train
+BaseDatabaseOperations,0,0.9988925802879292,376,6.511627906976744,1.2790697674418605,0,1,0,God Class,train
+BaseDatabaseIntrospection,0,0.5238095238095238,87,9.857142857142858,3.2857142857142856,0,0,1,Clean,train
+BaseDatabaseClient,0,1.0,14,1.5,1.0,0,0,0,Clean,train
+BaseDatabaseValidation,0,1.0,9,1.5,1.0,0,0,0,Clean,test
+DatabaseClient,0,0.0,9,6.0,2.0,0,0,0,Clean,train
+Loader,0,1.0,39,16.5,4.5,0,0,0,Clean,train
+View,0,0.5,66,12.75,2.25,0,0,0,Clean,train
+TemplateResponseMixin,0,1.0,28,9.5,1.5,0,1,0,Clean,train
+TemplateView,0,1.0,11,2.5,1.0,1,1,1,Clean,train
+RedirectView,0,0.9523809523809523,52,4.571428571428571,1.7142857142857142,1,0,1,Clean,train
+BasePasswordHasher,0,1.0,55,7.0,1.6,0,6,0,Clean,train
+PBKDF2PasswordHasher,0,0.0,35,6.333333333333333,1.6666666666666667,1,3,6,Clean,train
+PBKDF2SHA1PasswordHasher,0,0.0,8,0.0,0.0,2,0,0,Clean,train
+BCryptPasswordHasher,0,0.5,37,4.5,1.0,1,4,1,Clean,train
+SHA1PasswordHasher,0,0.0,25,5.0,1.3333333333333333,1,3,6,Clean,train
+MD5PasswordHasher,0,0.0,25,5.0,1.3333333333333333,1,3,6,Clean,train
+UnsaltedMD5PasswordHasher,0,1.0,25,2.0,1.0,1,3,6,Clean,train
+CryptPasswordHasher,0,0.5,32,4.25,1.0,1,4,1,Clean,train
+GoogleMapException,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+GoogleMap,1,0.8666666666666667,133,9.9,2.5,0,1,2,Long Method,train
+GoogleMapSet,0,0.4,78,13.2,1.6,1,1,1,Clean,train
+BadHeaderError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+SafeMIMEText,0,0.6666666666666666,21,5.0,1.0,0,3,4,Clean,train
+SafeMIMEMultipart,0,0.6666666666666666,21,5.0,1.0,0,3,4,Clean,train
+EmailMessage,2,0.8181818181818182,155,11.545454545454545,3.3636363636363638,0,3,3,God Class,train
+EmailMultiAlternatives,1,0.5,40,6.5,2.25,1,3,7,Clean,train
+WSGIServerException,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+ServerHandler,0,1.0,36,15.5,3.0,0,1,0,Clean,test
+WSGIServer,1,1.0,14,4.5,2.0,0,1,2,Clean,test
+WSGIRequestHandler,0,0.0,70,21.333333333333332,5.666666666666667,0,1,2,Clean,train
+AdminMediaHandler,0,0.9,39,4.4,1.2,0,0,0,Clean,train
+GeoFlexibleFieldLookupDict,0,0.0,14,0.0,0.0,0,0,0,Clean,train
+SpatiaLiteIntrospection,0,0.0,31,28.0,5.0,0,0,0,Clean,train
+Redirect,0,0.0,15,1.0,1.0,0,0,0,Clean,test
+Trans,0,0.0,20,7.0,2.0,0,0,0,Clean,train
+override,0,0.3333333333333333,16,3.6666666666666665,1.6666666666666667,0,0,0,Clean,train
+WrappingLogFormatter,0,0.0,41,11.0,1.5,0,0,0,Clean,train
+Session,0,1.0,29,9.0,2.0,0,1,0,Clean,train
+DatastoreSessionFactory,0,0.0,37,7.5,3.0,0,0,2,Clean,train
+Solr,3,0.8571428571428571,432,26.533333333333335,4.466666666666667,0,0,3,God Class,train
+Schema,0,0.0,10,8.0,1.0,0,1,0,Clean,train
+Index,0,0.0,10,8.0,1.0,0,1,0,Clean,train
+Header,0,0.0,10,8.0,1.0,0,0,0,Clean,test
+Field,0,0.0,28,16.0,1.0,0,1,0,Data Class,train
+Results,0,0.0,7,4.0,1.0,0,0,0,Clean,train
+CocoaConfig,1,0.0,40,38.0,6.0,0,0,1,Clean,train
+CocoaCanvasConfig,1,0.6666666666666666,32,8.666666666666666,2.3333333333333335,0,2,2,Clean,train
+CocoaContext,0,0.0,56,2.5,1.1,0,1,1,Clean,test
+GdiplusStartupInput,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+GdiplusStartupOutput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+BitmapData,0,0.0,8,0.0,0.0,0,1,0,Clean,train
+Rect,0,0.0,6,0.0,0.0,0,1,0,Clean,train
+PropertyItem,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+GDIPlusDecoder,2,1.0,134,17.142857142857142,2.2857142857142856,0,0,2,Feature Envy,train
+UserProfileViewset,0,1.0,19,4.0,1.5,0,0,0,Clean,train
+UserFollowViewset,0,1.0,47,7.5,1.75,0,0,0,Feature Envy,train
+UserArgumentsView,0,1.0,23,6.5,2.0,0,0,0,Clean,train
+PexpectLogger,0,0.0,17,15.0,3.0,0,0,0,Clean,train
+Corpus,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+CLI,0,0.6666666666666666,92,28.333333333333332,2.6666666666666665,0,0,0,Feature Envy,test
+ProtocolArgument,0,0.0,17,15.0,8.0,0,0,0,Clean,train
+PortArgument,0,0.0,21,19.0,6.0,0,0,0,Clean,train
+CidrArgument,0,0.0,5,3.0,2.0,0,0,0,Clean,train
+SourceGroupArgument,0,0.0,7,5.0,3.0,0,0,0,Clean,train
+GroupOwnerArgument,0,0.0,4,2.0,2.0,0,0,0,Clean,train
+AWSShellCompleter,0,0.3611111111111111,130,12.625,3.5,0,0,0,Long Method,train
+PhoneNumber,0,0.0,32,0.0,0.0,0,0,0,Clean,train
+PhoneNumbers,0,0.0,26,22.0,3.0,0,0,0,Clean,train
+BottomNavigation,0,0.0,29,5.666666666666667,1.6666666666666667,0,0,0,Clean,test
+BottomNavigationiOS,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+PostauthFollowPeople,0,0.0,16,5.0,1.0,0,0,0,Clean,train
+PostauthFollowPeopleiOS,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+TaskSchedulingError,0,0.0,34,4.0,1.0,0,0,0,Clean,train
+ExpressRouteCircuitPeeringPaged,0,0.0,12,2.0,1.0,0,0,0,Clean,test
+LocalNetworkGatewayPaged,0,0.0,12,2.0,1.0,0,0,0,Clean,train
+VirtualNetworkGatewayIPConfiguration,0,0.0,48,8.0,1.0,0,0,0,Data Class,train
+RedisResourcePaged,0,0.0,12,2.0,1.0,0,0,0,Clean,test
+ResponseContextManager,0,0.0,12,1.0,1.0,0,1,0,Clean,train
+B2Http,1,0.5,114,21.75,1.25,0,0,1,Feature Envy,train
+AuthException,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Command,0,0.0,8,1.0,1.0,0,0,0,Clean,train
+Command,0,0.0,16,4.0,1.0,0,0,0,Clean,test
+Gzip,0,0.0,21,19.0,3.0,0,0,0,Feature Envy,train
+locked_cached_property,0,0.0,23,6.5,3.0,0,0,0,Clean,train
+_PackageBoundObject,0,0.6888888888888889,119,9.5,1.6,0,0,0,Clean,train
+PackageCache,0,0.8333333333333334,39,4.25,1.75,0,0,1,Feature Envy,train
+Settings,0,0.5,64,12.75,2.75,0,1,0,Clean,test
+Connection,0,0.0,20,1.0,1.0,0,0,0,Clean,train
+Blast,0,1.0,25,5.0,1.5,0,0,0,Clean,train
+RPCQueue,0,0.0,68,9.6,2.8,0,2,5,Clean,train
+DualEvent,0,0.0,33,3.6,1.8,0,3,0,Clean,train
+ChildCore,0,0.6785714285714286,146,13.875,2.75,0,2,7,Clean,test
+MultiprocessingCore,3,0.3111111111111111,199,15.9,2.5,0,2,13,Clean,train
+StoreCredentials,0,0.0,10,3.5,1.0,0,0,0,Clean,train
+LDObjectContainer,0,0.5,20,1.75,1.25,0,0,2,Clean,train
+LDObject,0,0.8952380952380953,189,8.8,2.6666666666666665,0,2,7,God Class,train
+BaseArrayOfObjects,0,0.5,21,2.0,1.0,1,1,5,Clean,train
+DictObject,0,0.0,6,1.0,1.0,0,1,0,Clean,train
+ListObject,0,0.0,5,1.0,1.0,0,2,0,Clean,train
+MultiTarget,0,0.6666666666666666,29,8.0,2.3333333333333335,0,0,0,Feature Envy,train
+XAccelRedirectResponse,0,0.0,21,19.0,11.0,0,0,0,Clean,train
+Command,0,0.0,5,2.0,2.0,0,0,0,Clean,train
+MBCSGroupProber,0,0.0,13,12.0,1.0,0,0,0,Clean,train
+MailBackend,0,0.6666666666666666,95,11.25,2.25,0,0,0,Clean,train
+EmperorSupportFilesError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+EmperorInputFilesError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+EmperorUnsupportedComputation,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+Ui_MainWindow,0,0.0,3914,1955.5,1.0,0,0,0,Long Method,test
+GeometryField,0,1.0,14,5.5,2.0,0,0,0,Clean,train
+log,0,1.0,7,1.5,1.5,0,0,0,Clean,test
+Error,0,0.0,1,0.0,0.0,0,1,0,Clean,test
+Layout,0,1.0,62,4.5,1.0,0,1,0,Clean,train
+Accessor,1,0.5228758169934641,207,9.333333333333334,1.4444444444444444,0,0,4,Clean,train
+Binary,0,0.6,63,4.5,2.1666666666666665,0,1,3,Clean,train
+UUIDLegacy,0,0.5,58,3.5,1.25,1,1,1,Clean,train
+GridFSError,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+CorruptGridFile,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+NoFile,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+FileExists,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+UnsupportedAPI,0,0.0,10,0.0,0.0,1,0,0,Clean,train
+TimeHelpers,0,1.0,41,2.857142857142857,1.0,0,0,0,Clean,train
+IdentifierField,0,0.0,6,3.0,1.0,0,1,2,Clean,train
+DeploymentInfo,0,0.0,16,6.0,3.0,0,2,0,Clean,train
+DeployedProject,0,0.6947368421052632,347,14.6,2.7,0,1,2,God Class,train
+Policy,0,0.0,26,5.5,1.5,0,0,0,Clean,test
+PolicyCondition,0,0.0,30,6.0,2.5,0,0,0,Clean,train
+_CodeRunner,0,0.5357142857142857,87,8.0,1.375,0,0,0,Data Class,test
+XHTMLReader,0,0.7818181818181819,153,11.818181818181818,3.1818181818181817,0,0,0,God Class,train
+PostAPI,0,0.0,13,9.0,3.0,0,0,0,Clean,test
+Adam,0,0.0,174,53.5,3.5,0,0,0,Long Method,test
+InstanceUsageAuditLogController,0,0.8333333333333334,90,20.25,3.0,0,1,0,Feature Envy,train
+InstanceUsageAuditLog,1,1.0,12,2.0,1.0,0,0,1,Clean,train
+ViewBuilder,0,0.9,81,13.6,2.8,0,1,0,Clean,train
+ViewBuilderV21,0,0.0,6,4.0,1.0,1,0,1,Clean,train
+ExactRamFilter,0,0.0,19,16.0,2.0,0,0,0,Clean,train
+DomainJobInfo,0,1.0,112,31.333333333333332,3.3333333333333335,0,0,0,Clean,test
+Host,0,0.9855442176870748,832,14.857142857142858,2.836734693877551,0,0,0,God Class,test
+Migration,0,1.0,116,22.0,1.0,0,0,0,Clean,train
+CMEModule,0,0.0,49,19.5,3.0,0,0,0,Feature Envy,train
+Command,0,0.6666666666666666,170,53.333333333333336,7.666666666666667,0,0,0,Feature Envy,train
+Command,0,0.8333333333333334,93,21.0,3.25,0,0,0,Clean,test
+ElasticSearch,0,0.9285714285714286,56,4.875,1.375,0,0,0,Clean,test
+Slice,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+ParallelMagic,0,0.3333333333333333,273,37.333333333333336,6.166666666666667,0,0,0,Long Method,test
+MetaKernelBash,0,0.7,46,3.6,1.8,0,0,0,Clean,train
+Campaign,0,0.9264705882352942,182,8.647058823529411,1.0588235294117647,0,0,0,God Class,train
+UnknownAlgorithm,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+DNAME,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+Mock,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+FrameworkError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+HTTPError,0,0.5,80,9.0,1.75,1,0,0,Clean,train
+PermissionsError,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+GoogleDriveFileNode,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+GoogleDriveFolder,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GoogleDriveFile,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+Anchor,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+Footnotes,0,0.0,15,4.0,2.0,0,0,0,Clean,train
+PageNumberPaginationWithoutCount,1,0.6666666666666666,42,11.666666666666666,3.0,0,0,2,Clean,train
+PaginatorWithoutCount,0,1.0,19,4.333333333333333,1.6666666666666667,0,1,0,Clean,train
+_Registry,0,1.0,37,4.2,1.6,0,0,0,Clean,train
+UmichHarvester,0,0.0,110,0.0,0.0,0,0,0,Clean,train
+CBioPortal,1,0.7631578947368421,800,37.15,4.7,0,0,1,God Class,test
+CDGSError,0,0.0,9,1.5,1.0,0,1,0,Clean,train
+Query,0,0.8571428571428571,125,6.066666666666666,1.7333333333333334,0,1,1,Clean,test
+RemoteQuerySet,1,0.5228758169934641,357,16.72222222222222,3.388888888888889,0,1,8,Long Method,train
+Url,0,0.0,8,2.5,1.0,0,1,0,Clean,train
+UrlPatterns,0,0.0,38,7.75,4.75,0,0,1,Clean,train
+DateInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+NumberInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+RangeInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+URLInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+EmailInput,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+SearchInput,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+TelInput,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+SearchField,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+DateField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+URLField,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+EmailField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+TelField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+IntegerField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+DecimalField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+IntegerRangeField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+DecimalRangeField,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+Migration,0,0.0,11,0.0,0.0,0,0,0,Clean,train
+bark,0,0.0,2,0.0,0.0,0,1,0,Clean,test
+Pound,2,0.0,6,4.0,1.0,0,0,2,Clean,train
+Dog,1,1.0,6,1.0,1.0,0,0,1,Clean,train
+Bob,0,0.0,4,0.0,0.0,1,1,0,Clean,train
+Fred,0,0.0,4,0.0,0.0,1,1,0,Clean,train
+increment,0,0.0,3,1.0,1.0,0,1,0,Clean,test
+NodeClient,1,1.0,24,10.0,2.5,0,0,1,Feature Envy,train
+DeleteFlavor,0,1.0,18,3.6666666666666665,1.0,0,0,0,Clean,train
+CreateFlavor,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+UpdateFlavor,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+UpdateMetadata,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+ModifyAccess,0,0.0,11,4.0,1.0,0,0,0,Clean,train
+FlavorFilterAction,0,0.0,8,7.0,1.0,0,0,0,Clean,train
+FlavorsTable,0,0.0,34,0.0,0.0,0,0,0,Clean,train
+RouterRulesTable,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+Users,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+OverviewTab,0,0.0,6,1.0,1.0,0,0,0,Clean,train
+VolumeDetailTabs,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+NetworkProfileTab,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+PolicyProfileTab,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+IndexTabs,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+ParsingError,0,0.0,1,0.0,0.0,0,1,0,Clean,test
+Parser,1,0.9,50,6.6,1.4,0,0,3,Clean,train
+BLTParser,0,0.9047619047619048,77,8.714285714285714,2.0,1,1,0,Clean,train
+Migration,0,1.0,79,2.0,1.0,0,0,0,Clean,test
+AdminAuthenticationForm,0,0.0,20,12.0,6.0,0,0,0,Clean,test
+IncorrectLookupParameters,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+RenameBaseModelAdminMethods,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+BaseModelAdmin,0,0.8676470588235294,316,15.470588235294118,4.117647058823529,0,2,2,God Class,train
+ModelAdmin,0,0.8107822410147991,1173,23.636363636363637,4.454545454545454,1,1,14,God Class,test
+InlineModelAdmin,0,0.8222222222222222,164,12.4,3.6,1,2,8,Long Method,train
+StackedInline,0,0.0,1,0.0,0.0,2,0,0,Clean,test
+TabularInline,0,0.0,1,0.0,0.0,2,0,0,Clean,test
+BaseValidator,0,1.0,184,11.214285714285714,4.714285714285714,0,1,0,God Class,train
+ModelAdminValidator,0,1.0,170,11.153846153846153,4.230769230769231,1,0,1,God Class,train
+InlineValidator,0,1.0,21,3.5,2.0,1,0,0,Clean,train
+BadHeaderError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+MIMEMixin,0,0.0,30,13.0,3.0,0,0,0,Clean,train
+SafeMIMEText,0,0.0,23,9.5,2.0,1,3,4,Clean,train
+SafeMIMEMultipart,0,0.0,8,2.0,1.0,1,3,4,Clean,train
+EmailMessage,2,0.8181818181818182,157,11.727272727272727,3.4545454545454546,0,3,3,God Class,train
+EmailMultiAlternatives,1,0.5,40,6.5,2.25,1,3,7,Clean,train
+Command,0,1.0,225,40.8,11.0,0,0,0,Feature Envy,train
+RawQuery,0,0.47619047619047616,53,5.142857142857143,1.4285714285714286,0,1,1,Clean,test
+Query,0,0.8692899140660335,1801,24.611940298507463,4.776119402985074,0,1,2,God Class,train
+DjangoOpenIDStore,0,1.0,91,11.142857142857142,2.7142857142857144,0,0,0,Feature Envy,test
+Lock,0,0.6838235294117647,233,10.764705882352942,2.3529411764705883,0,1,4,God Class,test
+Semaphore,1,0.4725274725274725,253,13.928571428571429,2.5714285714285716,0,1,5,Clean,train
+BaseCursor,0,0.803921568627451,291,12.277777777777779,3.1666666666666665,0,2,6,God Class,train
+CursorStoreResultMixIn,0,0.4642857142857143,68,5.875,2.125,0,3,5,Clean,train
+CursorUseResultMixIn,0,0.8,47,4.5,1.6666666666666667,0,2,5,Clean,train
+CursorTupleRowsMixIn,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+CursorDictRowsMixIn,0,1.0,29,6.0,1.0,0,0,6,Clean,train
+CursorOldDictRowsMixIn,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+Cursor,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+DictCursor,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+SSCursor,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+SSDictCursor,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+Drawing,0,0.03571428571428571,86,9.0,2.6666666666666665,0,0,0,Clean,train
+EmbeddedWAVAudioFile,0,0.0,7,3.0,1.0,0,0,0,Clean,train
+Hyperlink,0,0.0,31,19.0,1.0,0,0,0,Data Class,train
+Font,0,0.0,19,9.0,1.0,0,0,0,Clean,train
+CharacterProperties,0,0.0,141,82.0,1.0,0,0,0,Long Method,train
+TabStop,0,0.0,10,5.0,1.0,0,0,0,Clean,test
+TabStopList,0,0.0,7,3.0,1.0,0,0,0,Clean,test
+Spacing,0,0.0,12,5.0,1.0,0,0,0,Clean,train
+AutonumberBullet,0,0.0,21,5.0,1.0,0,0,0,Clean,test
+ParagraphProperties,0,0.0,100,57.0,1.0,0,0,0,Data Class,train
+ListStyle,0,0.0,42,22.0,1.0,0,0,0,Data Class,train
+RegularTextRun,0,0.0,17,5.0,1.0,0,1,0,Clean,train
+LineBreak,0,0.0,9,3.0,1.0,0,0,0,Clean,train
+TextField,0,0.0,21,11.0,1.0,0,0,0,Clean,train
+Paragraph,1,0.0,29,13.0,2.0,0,0,1,Clean,train
+GeomGuide,0,0.0,10,5.0,1.0,0,0,0,Clean,train
+GeomGuideList,0,0.0,7,3.0,1.0,0,0,0,Clean,train
+PresetTextShape,0,0.0,22,5.0,1.0,0,0,0,Clean,train
+TextNormalAutofit,0,0.0,10,5.0,1.0,0,0,0,Clean,test
+RichTextProperties,0,0.0,87,52.0,1.0,0,0,0,Data Class,train
+WorkSheetParser,0,0.21568627450980393,263,11.61111111111111,3.3333333333333335,0,0,0,Long Method,train
+WSGIWarning,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+InputWrapper,0,0.6,32,3.3333333333333335,1.5,0,1,0,Clean,train
+ErrorWrapper,0,0.7,17,1.4,1.2,0,1,0,Clean,train
+WriteWrapper,0,1.0,7,1.5,1.0,0,0,0,Clean,train
+PartialIteratorWrapper,1,0.0,7,1.5,1.0,0,0,1,Clean,train
+IteratorWrapper,0,0.4,33,4.2,1.6,0,1,3,Clean,train
+HeaderDict,0,1.0,76,2.5,1.5833333333333333,0,0,0,Clean,train
+DiscoveryResponse,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+IllegalChild,0,0.0,1,0.0,0.0,0,2,0,Clean,train
+IllegalText,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Node,1,0.19444444444444445,98,8.444444444444445,3.0,0,1,3,Clean,train
+Childless,0,0.7142857142857143,37,2.142857142857143,1.0,0,2,0,Clean,train
+Text,0,0.0,16,1.5,1.25,1,1,0,Clean,test
+CDATASection,0,0.0,9,6.0,2.0,2,1,0,Clean,train
+Element,4,0.6578947368421053,242,9.3,3.5,1,0,8,Long Method,test
+LifoQueue,0,0.0,19,1.25,1.0,0,1,0,Clean,train
+ConnectionConfig,0,0.0,64,30.0,1.0,0,0,0,Data Class,train
+ConnectionPooler,1,0.0,95,24.666666666666668,3.6666666666666665,0,1,1,Clean,train
+PooledClient,0,0.0,74,16.0,3.25,0,0,3,Clean,train
+SuperClient,0,0.0,76,21.666666666666668,5.666666666666667,0,1,0,Long Method,train
+Migration,0,1.0,7,1.0,1.0,0,0,0,Clean,train
+Action,1,1.0,20,1.8,1.4,0,11,10,Clean,train
+ControlFlowAction,0,1.0,46,9.5,4.0,1,8,8,Clean,train
+WorkflowAction,0,0.8333333333333334,69,10.5,5.75,1,8,8,Clean,train
+CoordinatorAction,0,0.0,42,21.0,5.0,1,8,8,Clean,train
+BundleAction,0,1.0,59,14.5,2.5,1,8,8,Clean,train
+Job,0,0.6857142857142857,101,4.266666666666667,1.8,0,11,10,Clean,test
+Workflow,0,1.0,68,7.0,3.6,1,8,9,Clean,train
+Coordinator,0,0.8666666666666667,108,10.5,3.1666666666666665,1,8,9,Clean,test
+Bundle,0,0.6666666666666666,54,5.0,1.5,1,8,11,Clean,train
+JobList,0,0.0,20,9.0,1.0,0,3,0,Clean,test
+WorkflowList,0,0.0,2,1.0,1.0,1,2,5,Clean,train
+CoordinatorList,0,0.0,2,1.0,1.0,1,2,5,Clean,train
+BundleList,0,0.0,2,1.0,1.0,1,2,5,Clean,train
+IBlockDeviceAPITestsMixin,0,0.20161290322580644,584,16.125,1.0625,0,0,0,Clean,test
+FakeCloudAPI,0,0.6666666666666666,16,2.6666666666666665,1.0,0,0,0,Clean,train
+IProfiledBlockDeviceAPITestsMixin,0,0.0,22,8.0,1.5,0,0,0,Clean,train
+InvalidConfig,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+ChartBlock,0,0.0,12,1.0,1.0,0,0,0,Clean,test
+Profiler,0,0.7555555555555555,145,11.8,3.1,0,0,0,Clean,train
+Migration,0,1.0,97,17.5,1.0,0,0,0,Clean,test
+GoogleBot,0,1.0,19,4.666666666666667,1.6666666666666667,0,0,0,Clean,train
+DataSet,1,0.7941176470588235,115,4.764705882352941,1.7058823529411764,0,1,8,Clean,test
+Table,0,0.6789473684210526,117,3.8,1.75,0,4,3,Clean,train
+Exporter,0,1.0,5,1.0,1.0,0,1,0,Clean,train
+JSONExporter,0,1.0,14,5.0,2.0,1,1,0,Clean,train
+CSVExporter,0,0.0,6,5.0,4.0,1,1,0,Clean,train
+Importer,0,1.0,10,3.5,1.0,0,2,1,Clean,train
+JSONImporter,0,0.0,19,18.0,6.0,1,1,3,Clean,train
+CSVImporter,0,0.0,34,33.0,10.0,1,2,1,Clean,train
+APIProxyStub,0,0.6666666666666666,49,12.0,1.3333333333333333,0,0,0,Clean,test
+URLFetchServiceStub,0,1.0,211,50.5,10.0,0,0,0,Feature Envy,train
+ModelManager,0,0.0,8,1.5,1.0,0,1,0,Clean,test
+ModelOptions,0,0.6666666666666666,24,2.6666666666666665,1.0,0,1,0,Clean,train
+Relation,0,0.0,2,1.0,1.0,0,1,0,Clean,train
+PropertiedClassWithDjango,2,1.0,56,19.5,2.5,0,0,5,Clean,train
+BaseModel,0,0.8333333333333334,31,4.5,1.25,0,0,0,Clean,test
+RegistrationTestModel,0,0.0,7,0.0,0.0,1,0,0,Clean,train
+PatternHandler,0,1.0,12,1.6666666666666667,1.3333333333333333,0,0,1,Clean,train
+ChannelPostHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,test
+CommentHandler,0,0.0,14,4.0,1.0,1,0,0,Clean,test
+ConfirmHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,train
+FollowHandler,0,0.0,16,11.0,3.0,1,0,0,Clean,train
+HelpHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,train
+LeaveHandler,0,0.0,16,11.0,3.0,1,0,0,Clean,train
+OffHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,train
+OnHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,test
+PostHandler,0,1.0,5,1.0,1.0,1,1,0,Clean,train
+PromotionHandler,0,0.0,7,1.0,1.0,1,0,0,Clean,train
+SignInHandler,0,0.0,10,4.0,1.0,1,0,0,Clean,train
+SignOutHandler,0,0.0,4,1.0,1.0,1,0,0,Clean,train
+SpatiaLiteAdaptor,0,0.0,4,2.0,2.0,0,0,0,Clean,train
+NLZipCodeField,0,0.0,20,12.0,4.0,0,2,2,Clean,train
+NLProvinceSelect,0,0.0,7,2.0,1.0,0,0,0,Clean,train
+NLPhoneNumberField,0,0.0,22,14.0,7.0,0,2,2,Clean,train
+NLSoFiNumberField,0,0.0,29,19.0,6.0,0,2,2,Clean,test
+BloggerEntry,0,1.0,36,13.5,3.0,0,0,0,Clean,train
+BlogEntry,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+BlogFeed,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+BlogPostEntry,0,1.0,23,8.0,1.5,1,0,0,Clean,train
+BlogPostFeed,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+InReplyTo,0,0.0,17,8.0,3.0,0,1,0,Data Class,train
+CommentEntry,0,1.0,29,9.0,1.5,1,0,1,Clean,test
+CommentFeed,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+HTTPBaseTLSConnection,0,1.0,43,11.0,1.6666666666666667,0,1,2,Clean,train
+HTTPTLSConnection,0,1.0,114,54.0,1.0,1,1,2,Long Method,test
+Dispatcher,0,0.2,97,13.5,2.3333333333333335,0,0,0,Clean,train
+BufferedReader,1,0.4642857142857143,52,4.625,1.875,0,3,3,Clean,train
+BufferedWriter,1,0.2857142857142857,46,4.714285714285714,2.142857142857143,0,3,4,Clean,train
+BufferedStream,3,0.0,13,2.6666666666666665,1.6666666666666667,0,0,3,Clean,train
+CompatibleFile,0,0.6,54,6.666666666666667,2.5,0,3,5,Clean,train
+QTextLabel,0,0.32142857142857145,112,10.5,1.5,0,0,0,Clean,train
+ProxyPushButton,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+PushButton,0,0.0,13,6.0,3.0,0,0,0,Clean,train
+SleekRefDied,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+_SENTINEL,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LazyTuple,0,0.8583333333333333,240,10.1875,3.0,0,0,0,God Class,train
+MISSING_ELEMENT,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Ref,0,0.0,5,0.0,0.0,0,1,0,Clean,test
+SleekRef,1,0.0,62,20.5,4.5,0,0,1,Clean,train
+Wheel,0,0.75,159,11.777777777777779,2.888888888888889,0,0,0,Long Method,train
+TreeListColumnInfo,0,0.8421052631578947,208,7.7368421052631575,1.105263157894737,0,5,0,God Class,train
+TreeListHeaderWindow,1,0.5471264367816092,654,18.633333333333333,3.4,0,4,32,Long Method,train
+TreeListItem,0,0.4853801169590643,494,22.736842105263158,5.631578947368421,0,4,20,Long Method,train
+EditTextCtrl,0,0.6666666666666666,209,20.0,3.2222222222222223,0,4,20,Long Method,test
+TreeListMainWindow,2,0.8313725490196079,2038,36.450980392156865,9.0,0,4,53,God Class,train
+HyperTreeList,2,0.4535353535353535,708,12.6,1.4666666666666666,0,4,40,Long Method,train
+_SENTINEL,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LazyTuple,0,0.8583333333333333,240,10.1875,3.0,0,0,0,God Class,train
+HyperschemaCodec,0,0.0,19,13.0,3.0,0,0,0,Clean,train
+Root,1,0.8333333333333334,28,5.25,1.75,0,1,4,Clean,test
+Doctype,0,0.0,11,4.0,1.0,0,2,0,Clean,train
+FragmentRoot,1,1.0,6,1.5,1.0,1,2,1,Clean,train
+FragmentWrapper,0,0.3888888888888889,40,2.5555555555555554,1.3333333333333333,0,3,0,Clean,train
+TreeWalker,2,0.9,83,14.8,5.2,0,0,11,Feature Envy,test
+ModuleModel,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+RedisModule,0,0.0,36,0.0,0.0,0,0,0,Clean,train
+BlobContainer,0,0.2857142857142857,76,8.285714285714286,1.5714285714285714,0,0,0,Clean,test
+Match,0,0.5,41,6.2,2.0,0,0,0,Clean,train
+CrateIndexDashboard,0,0.0,45,43.0,1.0,0,0,0,Clean,train
+Store,0,1.0,35,3.8333333333333335,2.0,0,0,0,Feature Envy,train
+AcceptCriticCommand,0,0.0,45,21.0,6.0,0,0,0,Long Method,train
+Registry,0,0.8571428571428571,69,2.6666666666666665,1.5333333333333334,0,0,0,Clean,test
+WindowsCriticalSectionObjectType,0,0.8380952380952381,80,3.933333333333333,1.9333333333333333,0,0,0,Clean,train
+DeviceObjectStructType,0,0.8319088319088319,139,3.814814814814815,2.1481481481481484,0,2,16,God Class,train
+DeviceObjectListType,0,0.6410256410256411,64,3.5384615384615383,1.8461538461538463,0,2,16,Clean,train
+WindowsDriverObjectType,0,0.9268502581755593,423,3.9642857142857144,2.380952380952381,0,2,18,God Class,train
+ExtractedString,0,0.0,16,2.0,1.0,0,0,0,Clean,test
+ExtractedStrings,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Entropy,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+PEBuildInformation,0,0.0,8,0.0,0.0,0,0,0,Clean,train
+PEExportedFunction,0,0.0,7,0.0,0.0,0,0,0,Clean,test
+PEExportedFunctions,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+PEExports,0,0.0,10,0.0,0.0,0,0,0,Clean,test
+DOSHeader,0,0.0,23,0.0,0.0,0,0,0,Clean,train
+PEFileHeader,0,0.0,12,0.0,0.0,0,0,0,Clean,train
+PEDataDirectoryStruct,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+DataDirectory,0,0.0,20,0.0,0.0,0,0,0,Clean,train
+PEOptionalHeader,0,0.0,36,0.0,0.0,0,0,0,Clean,train
+PEHeaders,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+PEImportedFunction,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+PEImportedFunctions,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+PEImport,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+PEImportList,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+PEChecksum,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+PEResource,0,0.0,12,0.0,0.0,0,0,0,Clean,train
+PEResourceList,0,0.0,17,9.0,4.0,0,0,1,Clean,test
+PESectionHeaderStruct,0,0.0,14,0.0,0.0,0,0,0,Clean,train
+PESection,0,0.0,8,0.0,0.0,0,0,0,Clean,test
+PESectionList,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+PEVersionInfoResource,0,0.0,36,16.0,3.0,1,1,0,Clean,train
+WinExecutableFile,0,0.0,16,0.0,0.0,0,0,0,Clean,test
+ExtractPxdCode,0,0.6666666666666666,28,3.0,1.0,0,0,0,Clean,train
+TempHandle,1,0.0,12,3.0,1.5,0,0,1,Clean,train
+TempRefNode,0,0.6666666666666666,33,3.1666666666666665,1.5,0,2,3,Clean,train
+TempsBlockNode,0,0.0,42,3.2,1.8,0,2,6,Clean,train
+ResultRefNode,0,0.7647058823529411,105,3.8823529411764706,2.1176470588235294,0,5,2,Clean,train
+LetNodeMixin,0,0.0,29,8.0,2.3333333333333335,0,2,7,Clean,train
+EvalWithTempExprNode,0,0.0,35,2.4285714285714284,1.0,0,4,12,Clean,train
+LetNode,0,0.0,33,2.6,1.0,0,2,8,Clean,train
+TempResultFromStatNode,0,0.0,25,2.5,1.0,0,3,8,Clean,train
+GVector,0,0.2222222222222222,43,2.3333333333333335,1.2222222222222223,0,2,0,Clean,train
+Spline,0,0.13333333333333333,66,8.333333333333334,3.1666666666666665,0,1,1,Clean,train
+Chaosgame,1,0.2,92,15.4,4.0,0,0,4,Clean,test
+aboutWindow,0,0.6666666666666666,53,16.0,1.3333333333333333,0,0,0,Clean,train
+BattlecryType,0,0.0,14,11.0,8.0,0,1,0,Clean,train
+ChooseTargetMixin,0,1.0,68,7.857142857142857,3.142857142857143,0,0,1,Clean,train
+NullCard,0,1.0,5,1.0,1.0,0,1,0,Clean,train
+TradeAgent,1,1.0,18,2.75,1.25,0,0,2,Clean,train
+DefiasBandit,0,1.0,5,1.0,1.0,0,14,14,Clean,train
+DefiasRingleader,1,1.0,6,1.5,1.0,0,14,15,Clean,train
+EdwinVanCleef,0,1.0,8,2.5,1.0,0,14,14,Clean,train
+Kidnapper,0,1.0,6,1.5,1.0,0,14,14,Clean,train
+MasterOfDisguise,0,1.0,6,1.5,1.0,0,14,14,Clean,train
+PatientAssassin,0,1.0,5,1.0,1.0,0,14,14,Clean,train
+SI7Agent,0,1.0,8,2.5,1.0,0,14,14,Clean,train
+AnubarAmbusher,0,1.0,5,1.0,1.0,0,14,14,Clean,train
+OneeyedCheat,0,1.0,6,1.5,1.0,0,14,14,Clean,test
+IronSensei,0,1.0,6,1.5,1.0,0,14,14,Clean,test
+OgreNinja,0,1.0,12,4.5,1.0,0,14,14,Clean,test
+TradePrinceGallywix,0,1.0,10,3.5,1.0,0,14,14,Clean,train
+GoblinAutoBarber,0,1.0,6,1.5,1.0,0,14,14,Clean,train
+DarkIronSkulker,0,1.0,7,2.0,1.0,0,14,14,Clean,test
+Anubarak,0,1.0,6,1.5,1.0,0,14,14,Clean,train
+AutoScaleConnection,0,1.0,611,17.483870967741936,3.0,0,0,0,God Class,train
+Loader,0,0.0,8,6.0,1.0,0,0,0,Clean,test
+TimeboardClient,0,1.0,305,20.46153846153846,3.5384615384615383,0,0,0,God Class,train
+Metric,0,1.0,12,2.0,1.0,0,1,0,Clean,train
+Gauge,0,0.0,15,2.0,1.0,1,1,0,Clean,train
+Counter,0,0.0,15,2.0,1.0,1,1,0,Clean,train
+Histogram,0,0.0,45,8.5,2.25,1,1,0,Clean,train
+MetricsAggregator,0,0.0,25,5.333333333333333,2.3333333333333335,0,0,8,Clean,train
+MetricClient,0,1.0,37,16.0,2.5,0,0,0,Clean,test
+DictCache,0,0.6666666666666666,15,2.6666666666666665,1.6666666666666667,0,0,0,Clean,train
+GeometryColumns,0,1.0,26,3.6666666666666665,1.0,0,0,0,Clean,train
+SpatialRefSys,0,1.0,20,1.0,1.0,0,0,0,Clean,train
+Layer,0,0.6140350877192983,169,6.157894736842105,1.631578947368421,0,0,0,Clean,test
+Storage,0,1.0,102,7.0,1.4,0,1,3,Clean,train
+FileSystemStorage,0,0.9444444444444444,94,8.11111111111111,2.4444444444444446,1,1,5,Feature Envy,train
+Form,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ModelForm,0,0.0,12,4.0,2.0,0,0,0,Clean,test
+OAuthAuthenticationForm,0,1.0,37,6.0,1.5,1,0,0,Clean,test
+HelpAction,0,0.0,31,24.0,7.0,0,1,0,Feature Envy,test
+HelpCommand,1,1.0,42,18.0,3.5,0,0,1,Clean,train
+Migration,0,0.0,13,0.0,0.0,0,0,0,Clean,train
+Migration,0,0.0,47,0.0,0.0,0,0,0,Clean,train
+DataInterface,0,0.0,10,1.0,1.0,0,0,0,Clean,train
+CaseReassignmentInterface,0,1.0,59,7.4,1.2,0,0,0,Clean,train
+FormManagementMode,0,0.0,47,10.666666666666666,2.0,0,2,0,Clean,train
+ArchiveOrNormalFormFilter,1,1.0,19,1.0,1.0,0,0,1,Clean,test
+BulkFormManagementInterface,1,0.7333333333333333,83,10.333333333333334,1.3333333333333333,0,0,2,Clean,train
+AbstractProperty,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+DEID,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+ColumnTypesOptions,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+CustomExportHelper,0,0.6071428571428571,134,13.375,2.25,0,2,2,Clean,train
+FormCustomExportHelper,1,0.7142857142857143,175,21.428571428571427,5.285714285714286,1,2,8,Long Method,train
+CustomColumn,0,0.16666666666666666,35,6.75,1.25,0,2,0,Clean,train
+CaseCustomExportHelper,1,1.0,110,21.75,5.75,1,2,5,Long Method,test
+BaseAdminSectionView,0,1.0,9,1.0,1.0,0,0,0,Clean,train
+AuthenticateAs,0,1.0,28,5.333333333333333,1.3333333333333333,1,6,7,Clean,test
+RecentCouchChangesView,0,1.0,33,10.0,1.5,1,6,7,Clean,train
+SystemInfoView,0,1.0,34,11.5,1.5,1,6,7,Clean,train
+ManagementCommandsView,0,1.0,17,3.0,1.0,1,6,6,Clean,train
+FlagBrokenBuilds,0,1.0,17,5.0,2.0,0,6,7,Clean,train
+LoadtestReportView,0,1.0,82,35.0,6.5,1,6,7,Feature Envy,train
+DownloadMALTView,0,1.0,22,6.5,2.0,1,6,6,Clean,test
+_,0,0.0,0,0.0,0.0,0,0,0,Clean,train
+PillowErrorsReport,0,0.9358974358974359,129,5.769230769230769,1.4615384615384615,0,1,0,Clean,train
+EditPillowError,0,0.9,90,14.8,4.2,0,0,1,Feature Envy,train
+GaTracker,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+MaintenanceAlert,0,0.0,12,1.0,1.0,0,0,0,Clean,train
+IndicatorCRUDFormRequestManager,0,0.0,8,3.0,3.0,0,0,0,Clean,test
+IndicatorAdminCRUDManager,0,0.8333333333333334,24,2.75,1.5,0,2,2,Clean,train
+FormLabelIndicatorAdminCRUDManager,0,0.0,5,2.0,1.0,1,0,0,Clean,train
+BaseFormIndicatorAdminCRUDManager,0,0.0,11,9.0,2.0,2,2,2,Clean,train
+FormAliasIndicatorAdminCRUDManager,0,0.0,5,2.0,1.0,3,0,0,Clean,train
+CaseDataInFormIndicatorAdminCRUDManager,0,0.0,5,2.0,1.0,3,0,0,Clean,test
+FormDataInCaseAdminCRUDManager,0,0.0,5,2.0,1.0,3,0,0,Clean,train
+BaseDynamicIndicatorCRUDManager,0,0.0,5,2.0,1.0,1,0,0,Clean,train
+CouchIndicatorCRUDManager,0,1.0,17,6.0,2.5,2,2,2,Clean,train
+CombinedCouchIndicatorCRUDManager,0,0.0,5,2.0,1.0,2,0,0,Clean,train
+_ReportQuickCache,0,0.0,11,6.0,5.0,0,0,0,Clean,train
+CaseMetaException,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+FormQuestionOption,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+FormQuestion,0,1.0,26,4.5,2.5,0,0,0,Clean,train
+FormQuestionResponse,0,0.0,11,7.0,4.0,1,0,0,Clean,train
+ConditionalFormQuestionResponse,0,0.0,2,0.0,0.0,0,1,0,Clean,test
+QuestionList,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+ConditionList,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+CaseFormMeta,0,0.0,4,0.0,0.0,0,1,0,Clean,train
+CaseProperty,2,1.0,25,5.333333333333333,2.0,0,2,2,Clean,train
+CaseTypeMeta,2,1.0,31,6.0,2.3333333333333335,0,1,2,Clean,train
+AppCaseMetadata,2,1.0,58,7.333333333333333,2.0,0,0,6,Feature Envy,test
+Migration,0,0.0,11,0.0,0.0,0,0,0,Clean,test
+ExportConfiguration,0,0.7272727272727273,91,5.636363636363637,2.0,0,0,0,Clean,train
+Constant,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+FormattedRow,0,0.7142857142857143,70,5.75,2.25,0,0,0,Clean,test
+Migration,0,1.0,43,9.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,26,0.0,0.0,0,0,0,Clean,train
+MCHBaseReport,0,0.9722222222222222,104,7.0,2.0,0,0,2,Clean,train
+MotherMCHRegister,0,1.0,181,56.0,1.3333333333333333,1,1,0,Long Method,test
+ChildMCHRegister,0,1.0,113,33.0,1.3333333333333333,1,1,0,Clean,train
+EWSGlobalStats,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+InputStockView,0,0.0,90,26.333333333333332,5.333333333333333,0,0,0,Clean,train
+EWSUserExtensionView,0,0.3333333333333333,32,7.333333333333333,1.6666666666666667,0,0,0,Clean,test
+DashboardPageView,0,0.0,35,33.0,10.0,0,0,0,Clean,train
+InventoryHistoryData,0,1.0,37,12.5,4.0,0,1,0,Clean,train
+RegistrationData,0,0.5,39,6.0,2.5,0,1,0,Clean,train
+RandRHistory,0,0.0,8,1.0,1.0,0,1,0,Clean,train
+Notes,0,1.0,28,8.5,1.5,0,1,0,Clean,test
+RecentMessages,0,1.0,37,7.666666666666667,1.3333333333333333,0,1,0,Clean,test
+FacilityDetailsReport,5,1.0,33,5.666666666666667,1.6666666666666667,0,0,5,Feature Envy,train
+Memcache,1,0.9,26,2.4,1.0,0,0,1,Clean,train
+MemcachePipeline,0,0.0,4,3.0,1.0,0,1,0,Clean,train
+Pycassa,0,0.7,22,2.2,1.0,0,1,1,Clean,train
+PycassaCluster,0,0.0,18,13.0,1.0,0,1,1,Clean,train
+TabularInline,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+PagePermissionInlineAdmin,0,1.0,65,17.333333333333332,5.0,1,1,3,Clean,test
+ViewRestrictionInlineAdmin,0,1.0,30,8.5,1.5,2,1,2,Clean,train
+GlobalPagePermissionAdmin,0,1.0,41,11.5,4.0,0,0,0,Clean,train
+GenericCmsPermissionAdmin,0,0.8333333333333334,45,8.5,2.75,0,1,0,Clean,train
+Migration,0,1.0,49,12.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,24,0.0,0.0,0,0,0,Clean,train
+ContentTypeManager,0,0.3888888888888889,136,13.0,2.4444444444444446,0,0,1,Clean,train
+ContentType,0,0.7333333333333333,44,3.6666666666666665,1.3333333333333333,0,1,0,Clean,test
+StaticFilesHandler,0,0.8571428571428571,55,4.857142857142857,1.7142857142857142,0,0,0,Clean,train
+Command,0,1.0,31,11.0,3.0,0,0,0,Clean,train
+Loader,0,0.6888888888888889,156,13.5,3.0,0,0,0,Clean,train
+BRStateField,0,1.0,15,3.5,1.0,0,0,0,Clean,train
+MKIdentityCardNumberField,0,1.0,19,2.6666666666666665,1.0,0,2,5,Clean,train
+MKMunicipalityField,0,1.0,16,3.5,1.0,0,2,4,Clean,train
+UMCNField,0,1.0,28,2.6666666666666665,1.0,0,2,5,Clean,train
+Migration,0,0.0,38,0.0,0.0,0,0,0,Clean,train
+Migration,0,1.0,99,7.5,2.0,0,0,0,Clean,train
+Migration,0,1.0,107,5.0,1.0,0,0,0,Clean,train
+Command,0,0.6,241,37.833333333333336,9.166666666666666,0,0,0,Long Method,train
+Migration,0,0.0,14,0.0,0.0,0,0,0,Clean,train
+ExpressTransactionAdmin,0,0.0,18,0.0,0.0,0,0,0,Clean,train
+Command,0,0.0,42,37.0,5.0,0,0,0,Clean,train
+GeometryField,1,1.0,35,5.75,3.0,0,1,1,Clean,test
+GeometrySerializerMethodField,1,0.0,10,9.0,2.0,0,0,2,Clean,train
+GeoJsonDict,0,0.0,13,7.0,1.0,0,2,0,Clean,train
+HStoreQuerysetMixin,0,0.2,51,7.4,2.0,0,1,0,Clean,test
+HStoreQueryset,0,0.0,1,0.0,0.0,1,1,0,Clean,train
+HStoreManagerMixin,0,1.0,13,1.0,1.0,0,0,4,Clean,train
+HStoreManager,1,0.0,2,1.0,1.0,1,1,1,Clean,train
+AgreementDetailView,0,0.0,25,4.0,1.0,0,2,2,Clean,test
+AgreementListView,0,0.0,28,7.0,2.0,0,2,2,Clean,train
+SignatureForm,0,0.0,11,0.0,0.0,0,0,0,Clean,train
+AgreementSignView,0,0.0,45,6.0,2.0,0,2,2,Clean,train
+BaseGroupBy,0,0.8,40,4.0,1.1666666666666667,0,3,0,Clean,train
+GroupByCol,0,0.0,24,9.5,1.5,1,0,2,Clean,train
+GroupByDateYear,0,1.0,11,4.0,1.5,1,0,2,Clean,train
+GroupByDateMonth,0,1.0,15,3.3333333333333335,1.3333333333333333,1,2,1,Clean,train
+BaseProcessData,0,0.75,130,12.125,3.625,0,2,0,Long Method,train
+DirectProcessData,0,0.0,12,10.0,4.0,1,0,2,Clean,train
+GroupByProcessData,0,0.0,18,10.0,4.0,1,0,2,Clean,train
+RainbowCompleter,0,0.0,47,21.5,4.5,0,0,0,Clean,train
+MessagesBase,0,1.0,8,1.0,1.0,0,0,0,Clean,train
+Message,0,0.0,3,1.0,1.0,1,1,0,Clean,train
+Messages,0,0.0,44,41.0,1.0,1,1,0,Clean,train
+ShortCodesBase,0,1.0,8,1.0,1.0,0,0,0,Clean,train
+ShortCode,0,0.0,2,0.0,0.0,1,1,0,Clean,train
+ShortCodes,0,1.0,36,15.5,1.0,1,1,0,Clean,train
+SMS,4,1.0,44,2.75,1.0,0,0,4,Clean,train
+DelayablePractice,0,1.0,35,9.0,1.6666666666666667,0,0,0,Clean,test
+JobCache,0,0.6666666666666666,197,16.0,2.5,0,0,0,Clean,train
+XMLGenerator,0,0.8461538461538461,78,3.8461538461538463,1.6153846153846154,0,1,1,Clean,train
+XMLFilterBase,0,0.6878306878306878,107,1.1785714285714286,1.0,0,1,11,Clean,train
+CEnumMeta,0,0.0,5,4.0,2.0,0,1,1,Clean,train
+_CEnum,0,0.0,5,4.0,1.0,0,1,1,Clean,train
+Channel,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+UnknownResponse,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+ServiceFail,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+OAuthAccess,4,0.8169934640522876,234,10.555555555555555,2.7777777777777777,0,0,5,God Class,test
+Client,0,0.0,56,50.0,13.0,0,1,0,Long Method,train
+OAuth20Token,0,0.0,10,3.0,1.5,0,1,0,Clean,train
+Google,0,0.0,41,11.333333333333334,3.3333333333333335,0,0,0,Clean,train
+ForumRegistryConfig,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+IProviderExtensionRegistry,0,1.0,18,3.6666666666666665,1.0,0,0,0,Clean,train
+CustomGridPlane,0,0.8333333333333334,191,7.230769230769231,2.1538461538461537,0,0,0,God Class,train
+VolumeLUTManager,0,0.0,21,0.0,0.0,0,0,0,Clean,train
+Volume,0,0.7132352941176471,331,11.588235294117647,2.7058823529411766,0,0,0,God Class,train
+CallbackCSVLoader,0,0.0,12,3.0,2.0,0,1,0,Clean,train
+CSVSourceFactory,1,0.0,19,6.5,1.0,0,0,1,Clean,train
+TVTKGenerator,0,0.13333333333333333,172,25.333333333333332,4.666666666666667,0,0,0,Clean,train
+TraitsTaskPane,0,0.6666666666666666,38,4.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SplashScreen,0,0.3333333333333333,99,21.666666666666668,2.3333333333333335,0,0,0,Data Class,train
+WindowEvent,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+VetoableWindowEvent,0,0.0,3,0.0,0.0,1,0,0,Clean,test
+SizedPanel,0,0.0,35,8.0,1.0,0,0,0,Clean,train
+SUPERSID_PLOT,0,1.0,169,54.666666666666664,12.666666666666666,0,0,0,Feature Envy,train
+NAMDownloadException,0,0.0,9,3.0,1.5,0,0,0,Clean,test
+_Default,0,0.0,14,1.0,1.0,0,1,0,Clean,train
+_XmlRemote,0,0.7,43,6.8,1.4,0,2,0,Clean,test
+XmlManifest,2,0.844804318488529,844,19.358974358974358,5.410256410256411,0,1,5,God Class,train
+GitcManifest,0,1.0,19,4.333333333333333,1.3333333333333333,1,1,3,Clean,train
+Start,0,1.0,84,35.5,9.0,0,0,0,Feature Envy,train
+RevertError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+RevisionManagementError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+RegistrationError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+Analyzer,0,0.6,221,42.4,8.0,0,0,0,Long Method,test
+MyReport,0,1.0,30,11.0,1.0,0,0,0,Clean,train
+MyReport,0,0.0,19,10.0,1.0,0,0,0,Clean,train
+GrammarBase,0,0.6,38,4.5,1.6666666666666667,0,0,0,Clean,train
+_Configuration,0,0.0,47,7.6,3.4,0,1,0,Clean,train
+Configuration,0,0.47058823529411764,394,21.11764705882353,3.2941176470588234,1,0,1,Long Method,train
+Plugin,0,1.0,21,9.0,2.0,0,0,0,Clean,train
+FileStorageCHMOD600,0,0.0,5,3.0,1.0,0,0,0,Clean,train
+HostTable,0,0.0,24,0.0,0.0,0,0,0,Clean,train
+ComponentInspector,0,0.0,87,25.666666666666668,3.3333333333333335,0,0,0,Clean,train
+KrakenWindow,1,0.6444444444444445,138,10.6,1.2,0,1,5,Clean,train
+OutputLogDialog,0,0.4642857142857143,64,5.0,1.0,0,1,3,Clean,train
+GraphView,0,0.865530303030303,635,15.303030303030303,3.8484848484848486,0,0,0,God Class,train
+APISettings,0,0.0,17,6.5,3.0,0,0,0,Clean,test
+AdAsyncRequestSetNotificationResult,0,1.0,21,2.5,1.0,0,0,0,Clean,train
+AdPlacePageSet,0,0.8,86,9.166666666666666,1.6666666666666667,0,0,0,Clean,train
+Render,0,0.0,32,14.0,2.0,0,0,0,Clean,train
+CapabilityView,0,0.0,15,10.0,1.0,0,0,0,Clean,train
+HumansTxt,0,0.0,5,0.0,0.0,1,0,0,Clean,test
+RsdXml,0,0.0,5,0.0,0.0,1,0,0,Clean,test
+WLWManifestXml,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+OpenSearchXml,0,0.0,5,0.0,0.0,1,0,0,Clean,test
+EntryTrackback,0,1.0,64,12.5,2.5,0,0,0,Feature Envy,train
+PickleBackend,0,0.0,50,23.0,2.5,0,0,0,Clean,test
+BaseRedisRouter,0,1.0,16,1.75,1.25,0,2,2,Clean,train
+RedisCRC32HashRouter,0,0.0,13,4.0,1.5,1,2,2,Clean,train
+RedisConsistentHashRouter,0,0.0,11,3.0,1.5,1,2,2,Clean,train
+Singleton,0,0.0,6,3.0,2.0,0,0,0,Clean,train
+FileHistory,0,0.8428030303030303,559,14.727272727272727,4.0,0,4,1,God Class,train
+OpenRecentlyClosedFileEvent,1,1.0,11,1.0,1.0,0,0,2,Clean,train
+CleanupFileHistoryCommand,1,0.0,2,1.0,1.0,0,0,2,Clean,train
+ResetFileHistoryCommand,1,0.0,2,1.0,1.0,0,0,2,Clean,train
+OpenRecentlyClosedFileCommand,1,0.7777777777777778,196,17.2,4.6,0,2,10,Long Method,train
+OpenRecentlyCloseFileCommandContextHandler,0,0.0,13,11.0,4.0,0,0,1,Clean,train
+BBCgoodfoodMixin,0,1.0,81,37.0,4.5,0,0,0,Long Method,train
+BBCgoodfoodcrawlSpider,0,0.0,13,0.0,0.0,0,0,0,Clean,train
+FormattersSingleton,0,0.5238095238095238,40,3.142857142857143,1.5714285714285714,0,0,0,Clean,train
+Formatter,0,1.0,20,2.75,1.0,0,6,0,Clean,train
+JSONFormatter,0,1.0,16,2.0,1.6666666666666667,1,5,12,Clean,test
+JSONPFormatter,0,1.0,18,2.6666666666666665,2.0,1,5,6,Clean,test
+ValueFormatter,0,1.0,16,2.0,1.6666666666666667,1,5,12,Clean,train
+PickleFormatter,0,1.0,24,2.6666666666666665,2.0,1,5,12,Clean,train
+XMLFormatter,0,1.0,13,2.0,1.6666666666666667,1,5,12,Clean,test
+YAMLFormatter,0,1.0,13,2.0,1.6666666666666667,1,5,12,Clean,train
+Vector,0,0.7307692307692307,63,2.5384615384615383,1.3846153846153846,0,0,0,Clean,test
+Mock,0,1.0,37,1.0,1.0,0,0,0,Clean,train
+ResourceController,0,1.0,17,2.6666666666666665,1.6666666666666667,0,0,0,Clean,train
+ExpedientPermission,0,0.0,47,2.0,1.0,0,0,0,Clean,train
+ObjectPermission,0,0.0,93,26.5,4.0,0,1,0,Clean,train
+Permittee,0,0.0,26,1.0,1.0,0,0,0,Clean,test
+PermissionOwnership,0,0.0,26,3.0,1.0,0,0,0,Clean,train
+PermissionRequest,0,1.0,33,3.0,1.0,0,0,1,Clean,train
+SfaFault,0,0.0,4,3.0,2.0,0,41,41,Clean,train
+OCFSfaPermissionDenied,0,0.0,4,3.0,1.0,1,41,41,Clean,train
+OCFSfaError,0,0.0,4,3.0,1.0,1,41,41,Clean,train
+SfaInvalidAPIMethod,0,0.0,5,4.0,2.0,1,41,41,Clean,test
+SfaInvalidArgumentCount,0,0.0,8,7.0,2.0,1,41,41,Clean,train
+SfaInvalidArgument,0,0.0,6,5.0,2.0,1,41,41,Clean,train
+SfaAuthenticationFailure,0,0.0,3,2.0,1.0,1,41,41,Clean,test
+SfaDBError,0,0.0,3,2.0,1.0,1,41,41,Clean,train
+SfaPermissionDenied,0,0.0,3,2.0,1.0,1,41,41,Clean,test
+SfaNotImplemented,0,0.0,5,4.0,2.0,1,41,41,Clean,train
+SfaAPIError,0,0.0,3,2.0,1.0,1,41,41,Clean,train
+MalformedHrnException,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+TreeException,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+NonExistingRecord,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+ExistingRecord,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+InvalidRPCParams,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+ConnectionKeyGIDMismatch,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+MissingCallerGID,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+RecordNotFound,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+UnknownSfaType,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+MissingAuthority,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+PlanetLabRecordDoesNotExist,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+PermissionError,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+InsufficientRights,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+MissingDelegateBit,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+ChildRightsNotSubsetOfParent,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+CertMissingParent,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+CertNotSignedByParent,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+GidParentHrn,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+GidInvalidParentHrn,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+SliverDoesNotExist,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+BadRequestHash,0,0.0,3,2.0,1.0,0,41,41,Clean,train
+MissingTrustedRoots,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+MissingSfaInfo,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+InvalidRSpec,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+InvalidRSpecVersion,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+UnsupportedRSpecVersion,0,0.0,6,2.0,1.0,1,41,41,Clean,test
+InvalidRSpecElement,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+InvalidXML,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+AccountNotEnabled,0,1.0,5,1.5,1.0,1,41,41,Clean,train
+CredentialNotVerifiable,0,0.0,6,2.0,1.0,1,41,41,Clean,train
+CertExpired,0,0.0,4,3.0,1.0,1,41,41,Clean,train
+Migration,0,1.0,41,7.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,80,7.5,3.0,0,0,0,Feature Envy,train
+Migration,0,1.0,365,54.0,1.0,0,0,0,Long Method,train
+Migration,0,1.0,387,7.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,337,2.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,112,3.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,120,1.0,1.0,0,0,0,Clean,test
+SMARTAlert,0,0.0,34,30.0,9.0,0,0,0,Feature Envy,train
+Migration,0,1.0,215,14.5,3.0,0,0,0,Clean,train
+Migration,0,1.0,163,5.5,3.0,0,0,0,Clean,train
+LogisticRegression,0,0.8333333333333334,205,13.76923076923077,2.1538461538461537,0,2,12,God Class,test
+BinaryClassifier,0,1.0,93,5.153846153846154,1.2307692307692308,1,2,22,Clean,train
+MultiClassifier,0,0.8970588235294118,297,15.058823529411764,3.235294117647059,1,2,18,God Class,test
+AdminUserListAPI,0,1.0,22,8.5,2.0,0,1,0,Clean,train
+AdminUserAPI,0,1.0,14,4.5,2.0,0,0,1,Clean,train
+RowParser,0,1.0,19,1.0,1.0,0,1,0,Clean,train
+RowFilter,0,0.0,6,1.0,1.0,0,1,0,Clean,train
+DateRangeFilter,0,0.0,10,3.5,3.0,1,2,0,Clean,train
+BaseFeed,0,0.0,19,4.666666666666667,2.3333333333333335,0,1,11,Clean,train
+BasicRowParser,0,0.6,30,4.2,1.8,1,2,0,Clean,train
+Feed,2,0.8333333333333334,40,3.25,1.25,1,1,8,Clean,train
+Session,0,0.6666666666666666,18,4.0,1.3333333333333333,0,0,0,Clean,test
+Gears,0,0.9487179487179487,106,5.923076923076923,2.076923076923077,0,0,0,Clean,test
+MScale,0,1.0,109,50.0,10.0,0,0,0,Long Method,train
+ProjectMemberIndexEndpoint,0,0.0,13,12.0,1.0,0,0,0,Clean,test
+AuthView,0,0.0,14,5.0,1.0,0,0,0,Clean,train
+ConfigureView,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,404,7.0,1.0,0,0,0,Clean,train
+BrokenRequestMiddleware,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+BrokenResponseMiddleware,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+BrokenViewMiddleware,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+SudoMiddleware,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+UserService,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BackupInfo,0,0.0,45,1.0,1.0,0,0,0,Clean,train
+Snapshot,0,0.0,10,1.0,1.0,1,0,0,Clean,train
+LogConfiguration,0,0.0,30,1.0,1.0,0,0,0,Clean,test
+Migration,0,1.0,63,8.0,1.0,0,0,0,Clean,train
+HostAttrInline,0,0.0,6,1.0,1.0,0,0,0,Clean,train
+HostAttrNfsaasInline,0,0.0,6,1.0,1.0,0,0,0,Clean,train
+HostAdmin,0,0.0,15,1.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,110,3.0,1.0,0,0,0,Clean,train
+SwitchMaster,0,1.0,130,41.333333333333336,6.333333333333333,0,0,0,Clean,train
+StartTDAgent,0,1.0,72,22.0,3.6666666666666665,0,0,0,Clean,test
+StopTDAgent,0,1.0,49,14.333333333333334,2.6666666666666665,0,0,0,Clean,test
+StopDatabase,0,1.0,55,16.333333333333332,3.0,0,0,0,Clean,train
+SpecItem,0,0.0,2,1.0,1.0,0,6,0,Clean,test
+NamedItem,0,0.0,3,2.0,1.0,1,5,9,Clean,train
+APISpecification,0,0.0,8,2.5,1.0,1,6,0,Clean,train
+Path,0,0.0,4,3.0,1.0,2,5,9,Clean,train
+Resource,0,0.0,9,3.0,1.5,2,5,9,Clean,test
+Param,0,0.0,7,6.0,1.0,2,5,9,Data Class,test
+Method,0,0.0,4,3.0,1.0,2,5,9,Clean,train
+APIError,0,0.0,3,2.0,1.0,1,5,9,Clean,train
+DocumentationHelpers,0,0.0,4,2.0,1.0,0,2,0,Clean,train
+SwaggerSpecification,0,0.8571428571428571,66,6.25,2.0,0,6,1,Clean,train
+WADLSpecification,0,0.2857142857142857,36,3.142857142857143,1.1428571428571428,0,6,1,Clean,test
+Rectangle,0,0.4,51,7.4,1.8,0,0,0,Clean,test
+DatabaseWrapper,0,0.0,5,4.0,1.0,0,0,0,Clean,train
+_ConnDialect,0,1.0,18,1.0,1.0,0,2,3,Clean,train
+Pool,1,0.9358974358974359,283,19.307692307692307,2.5384615384615383,0,7,11,God Class,train
+_ConnectionRecord,1,0.4444444444444444,165,11.88888888888889,2.7777777777777777,0,9,13,Clean,train
+_ConnectionFairy,0,0.5512820512820513,212,10.23076923076923,2.5384615384615383,0,9,12,Clean,train
+SingletonThreadPool,0,0.38095238095238093,76,6.571428571428571,2.0,1,5,13,Clean,train
+QueuePool,0,0.3181818181818182,149,9.833333333333334,2.0833333333333335,1,5,23,Clean,train
+NullPool,0,1.0,39,2.8,1.0,1,4,7,Clean,test
+StaticPool,1,0.9642857142857143,45,2.25,1.125,1,7,6,Clean,train
+AssertionPool,0,0.6,59,5.5,2.0,1,5,13,Clean,train
+_DBProxy,0,0.7142857142857143,88,8.125,1.625,0,7,3,Clean,train
+CiscoXR,0,0.0,24,17.0,2.0,0,0,0,Clean,test
+CiscoXrDevice,0,1.0,21,6.5,2.5,0,0,0,Clean,train
+VolumeTypes,0,0.0,28,25.0,8.0,0,0,0,Clean,train
+Error,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Configuration,0,0.6428571428571429,30,1.875,1.125,0,0,0,Data Class,train
+NotificationCount,0,0.0,17,14.0,3.0,0,0,1,Clean,train
+NotificationBar,0,0.0,43,4.0,1.0,0,2,2,Clean,train
+UpdateSettingsFlow,0,0.0,13,5.0,1.0,0,0,0,Clean,train
+UserSettingsDialog,0,1.0,42,8.0,1.3333333333333333,0,3,2,Clean,train
+ResetUserNotifications,0,0.0,10,3.0,1.0,0,0,0,Clean,train
+ViewNotifications,0,1.0,111,23.75,5.5,0,2,2,Feature Envy,train
+Error,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ErrorInvalidClientApprovalAuthorization,0,0.0,1,0.0,0.0,1,1,0,Clean,train
+ErrorInvalidApprovers,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ErrorInvalidApprovalSpec,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+ClientApprovalAuthorization,1,1.0,41,2.75,2.0,0,0,1,Clean,train
+ClientApprovalAuthorizationManager,0,0.5,67,14.25,3.75,0,1,0,Clean,train
+ClientApprovalAuthorizationInit,1,0.0,4,2.0,1.0,0,0,1,Clean,train
+Netstat,0,0.6666666666666666,39,8.666666666666666,1.6666666666666667,0,0,0,Clean,train
+HuntRunnerArgs,0,0.0,8,5.0,3.0,0,2,0,Clean,train
+UrnCollection,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+HuntErrorCollection,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+PluginStatusCollection,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+HuntRunner,1,0.47619047619047616,417,17.142857142857142,2.2857142857142856,0,1,6,Long Method,train
+GRRHunt,1,0.85,528,9.658536585365853,1.975609756097561,0,1,6,God Class,train
+HuntInitHook,0,0.0,4,2.0,1.0,0,0,0,Clean,test
+PlistRequest,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+FilterString,0,0.0,13,5.0,2.0,0,0,0,Clean,train
+PlistQuery,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+LaunchdPlist,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LaunchdKeepAlive,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LaunchdStartCalendarIntervalEntry,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+PlistBoolDictEntry,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+PlistStringDictEntry,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Error,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+DuplicateNameException,0,0.0,1,0.0,0.0,1,3,0,Clean,train
+UnknownNameException,0,0.0,1,0.0,0.0,1,3,0,Clean,train
+Schema,3,0.6666666666666666,81,4.7,1.9,0,3,10,Clean,train
+Database,3,0.35714285714285715,69,6.25,2.25,0,3,8,Clean,train
+Table,3,0.6043956043956044,122,6.357142857142857,1.7142857142857142,0,3,9,Clean,train
+Column,0,0.5,20,2.75,1.25,0,3,3,Clean,train
+ParsingState,0,0.0,4,2.0,1.0,0,0,0,Clean,train
+AdminPanic,0,1.0,53,24.0,5.5,0,0,0,Clean,train
+PackageInfo,0,0.0,30,28.0,5.0,0,0,0,Clean,train
+AuthSessionCleanup,0,0.0,6,3.0,1.0,0,2,0,Clean,train
+MarkComputersInactive,0,0.0,6,3.0,1.0,0,2,0,Clean,test
+UpdateAverageInstallDurations,0,0.0,41,38.0,8.0,0,1,3,Clean,train
+VerifyPackages,0,0.0,39,36.0,11.0,0,1,3,Feature Envy,train
+GtfsObjectBase,0,0.8888888888888888,101,4.7,2.6,0,0,0,Clean,train
+GoogleOAuth2Client,0,1.0,20,5.5,1.0,0,2,0,Clean,train
+GoogleRefreshTokenClient,0,0.0,81,18.333333333333332,1.6666666666666667,1,1,2,Clean,test
+GoogleServiceAccountClient,0,0.0,89,23.333333333333332,2.0,1,1,2,Clean,train
+ExtensionRegistry,0,0.0,6,3.0,1.0,0,1,0,Clean,test
+Extension,0,1.0,86,6.428571428571429,1.2857142857142858,0,1,1,Clean,train
+InternationalizationExtension,0,0.8333333333333334,231,22.666666666666668,5.777777777777778,1,0,7,Long Method,train
+ExprStmtExtension,0,0.0,9,3.0,1.0,1,1,0,Clean,train
+LoopControlExtension,0,0.0,8,4.0,2.0,1,1,0,Clean,train
+WithExtension,0,0.0,18,14.0,3.0,1,1,0,Clean,train
+AutoEscapeExtension,0,0.0,11,7.0,1.0,1,1,0,Clean,train
+_CommentFinder,0,0.0,34,7.666666666666667,3.6666666666666665,0,1,0,Clean,train
+RangeIteratorFactory,3,1.0,59,11.5,1.0,0,4,8,Clean,train
+RangeIterator,0,1.0,38,4.0,1.0,0,5,0,Clean,train
+_PropertyRangeModelIterator,0,0.4,89,14.6,3.4,1,4,9,Clean,train
+_MultiPropertyRangeModelIterator,0,0.4,60,9.6,1.6,1,4,9,Clean,train
+_KeyRangesIterator,0,0.4,64,10.4,2.2,1,4,9,Clean,train
+AbstractKeyRangeIterator,0,0.9,58,8.2,1.8,0,4,12,Clean,train
+KeyRangeModelIterator,0,0.0,30,12.5,4.0,1,1,0,Clean,train
+KeyRangeEntityIterator,0,0.0,17,5.0,2.5,1,1,0,Clean,train
+KeyRangeKeyIterator,0,0.0,3,0.0,0.0,2,0,0,Clean,train
+KeyRangeEntityProtoIterator,0,0.0,24,9.5,2.0,1,1,0,Clean,train
+ExtractUserAndTimestampDoFn,0,0.0,8,5.0,2.0,0,1,0,Clean,train
+ComputeSessions,0,1.0,14,2.5,1.0,0,2,2,Clean,train
+TopPerMonth,0,1.0,15,5.0,1.0,0,2,2,Clean,train
+SessionsToStringsDoFn,0,0.0,5,2.0,1.0,0,1,0,Clean,test
+FormatOutputDoFn,0,0.0,8,5.0,2.0,0,1,0,Clean,train
+ComputeTopSessions,5,0.0,15,5.0,1.0,0,2,7,Feature Envy,train
+Error,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+AppLoadError,0,0.0,2,0.0,0.0,1,0,0,Clean,test
+StopHandler,0,0.0,4,2.0,1.0,0,2,0,Clean,train
+HealthHandler,0,0.0,17,15.0,4.0,0,1,1,Clean,train
+_MockedWsgiHandler,0,0.0,9,1.0,1.0,0,0,0,Clean,train
+_StubOut,0,0.0,14,2.3333333333333335,1.3333333333333333,0,0,0,Clean,test
+MetaWSGIApp,0,0.9272727272727272,363,29.0,5.7272727272727275,0,0,2,God Class,test
+Photo,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+Thumbnailer,0,0.0,17,16.0,3.0,0,0,0,Clean,train
+ActivityType,0,0.9,34,1.6,1.4,0,0,0,Clean,train
+Credentials,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+Load_Okapi,0,1.0,66,20.0,1.6666666666666667,0,0,0,Clean,train
+WikiTarget,0,0.0,79,14.75,3.0,0,0,0,Clean,train
+Sentiment140Plugin,0,0.0,23,22.0,3.0,0,0,0,Clean,train
+Migration,0,1.0,965,109.5,1.0,0,0,0,Long Method,train
+SfmUiConsumer,0,0.0,119,21.2,3.8,0,0,0,Clean,train
+PrefsUi,0,0.6666666666666666,71,22.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,84,4.5,1.0,0,0,0,Clean,train
+Migration,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+ReadStream,0,0.30303030303030304,167,11.75,3.5833333333333335,0,0,0,Clean,train
+SalesforceRestClientBase,0,0.9090909090909091,171,13.090909090909092,3.909090909090909,0,0,0,God Class,train
+BaseHandler,0,0.0,15,8.0,2.0,0,0,0,Clean,train
+ViewHandler,0,0.0,7,4.0,1.0,1,0,0,Clean,test
+APIHandler,0,1.0,49,19.5,3.0,1,0,0,Feature Envy,train
+UasStateIdle,0,0.0,69,66.0,16.0,0,0,0,Long Method,train
+SerialInstrument,0,0.0,13,7.0,1.0,0,0,0,Clean,train
+GridToGoServer,1,1.0,21,8.5,1.5,0,1,1,Clean,train
+Grid,0,0.3333333333333333,19,4.666666666666667,1.3333333333333333,0,1,1,Clean,train
+GTGProtocol,1,0.16666666666666666,163,37.75,8.0,0,2,4,Long Method,train
+GTGFactory,1,0.0,26,11.5,2.5,0,1,1,Clean,test
+MqttAlarm,0,0.6944444444444444,75,5.777777777777778,1.7777777777777777,0,0,0,Clean,train
+Layer,0,0.5,19,1.4,1.0,0,1,0,Clean,test
+Box,1,0.3787878787878788,124,8.25,2.75,0,0,1,Clean,train
+NetworkTrafficGroupsExplainer,0,1.0,98,17.8,4.6,0,0,0,Feature Envy,train
+ServicesExplainer,0,1.0,77,13.6,2.4,0,0,0,Clean,train
+Node,0,0.0,62,17.666666666666668,2.6666666666666665,0,0,0,Clean,train
+Error,0,0.0,0,0.0,0.0,0,0,0,Clean,test
+TimeConstructionError,0,0.0,0,0.0,0.0,1,0,0,Clean,train
+Migration,0,1.0,142,26.0,1.0,0,0,0,Clean,train
+KayNullTranslations,0,1.0,14,2.0,1.0,0,0,1,Clean,train
+_TranslationProxy,0,0.3446153846153846,93,1.2307692307692308,1.0769230769230769,0,1,0,Clean,train
+TrackingMeta,0,0.0,70,64.0,16.0,0,0,0,Long Method,train
+Form,0,0.8095238095238095,606,23.285714285714285,4.285714285714286,0,0,0,God Class,train
+RequestValidator,0,1.0,452,18.545454545454547,1.0,0,0,0,God Class,test
+base16_ocean_light,0,0.0,90,0.0,0.0,0,0,0,Clean,train
+Pilot,0,0.9428571428571428,167,9.0,1.5333333333333334,0,0,0,God Class,train
+CachingTestNode,0,0.8333333333333334,32,6.0,1.25,0,0,0,Clean,train
+IIIFImageBase,0,0.0,13,10.0,1.0,0,2,0,Clean,train
+IIIFImageInfo,0,0.0,41,33.0,2.0,0,1,2,Feature Envy,train
+IIIFImageAPI,0,0.0,96,71.0,2.0,0,1,2,Feature Envy,train
+FileHandler,0,0.25,123,13.0,2.5,0,0,0,Clean,test
+Command,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+Command,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+MessageFuture,0,0.0,16,6.0,2.0,0,0,0,Clean,train
+RemoteFunction,0,0.0,31,3.5,1.5,0,1,0,Clean,train
+ParallelFunction,0,0.3333333333333333,150,35.666666666666664,8.333333333333334,1,0,1,Long Method,test
+HTTPConnectClient,0,0.6190476190476191,64,6.142857142857143,1.8571428571428572,0,1,1,Clean,train
+HTTPConnectClientFactory,1,0.0,25,2.0,1.0,0,2,1,Clean,test
+HTTPConnectClientEndpoint,1,0.0,16,4.0,1.0,0,0,1,Clean,train
+ScraperHandler,0,0.0,49,21.5,2.5,0,0,0,Clean,train
+be_above_or_equal,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+above_or_equal,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+_be_empty,0,0.0,9,8.0,3.0,0,0,0,Clean,train
+StockOption,0,0.0,21,19.0,1.0,0,0,0,Data Class,train
+MeasurementInterface,0,0.9473684210526315,219,8.65,2.0,0,0,1,God Class,train
+DefaultMeasurementInterface,0,0.0,2,1.0,1.0,1,1,0,Clean,train
+AwesomeStatusBarApp,0,1.0,15,1.25,1.0,0,0,0,Clean,train
+BuildOutputMonitor,0,0.7,27,3.4,1.8,0,3,7,Clean,train
+OutputParser,0,0.0,3,1.0,1.0,0,1,2,Clean,train
+AbstractErrorParser,0,0.3333333333333333,22,3.5,1.0,1,5,0,Clean,train
+ErrorParser,0,1.0,34,4.6,2.2,2,3,10,Clean,train
+MultilineTestFailureParser,0,1.0,35,3.8,2.0,2,3,10,Clean,train
+FinishedParser,0,0.6666666666666666,11,1.3333333333333333,1.3333333333333333,1,5,1,Clean,train
+Migration,0,1.0,117,15.0,1.0,0,0,0,Clean,train
+LuceeEventListener,0,1.0,48,7.2,2.6,0,0,0,Clean,train
+LuceeDocsCommand,0,0.0,15,13.0,5.0,0,0,0,Clean,train
+CloseLuceeTagCommand,0,0.0,10,8.0,2.0,0,0,0,Clean,train
+LuceeDefaultPackageSettingsCommand,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+LSystem,0,0.8,49,6.166666666666667,2.3333333333333335,0,0,0,Clean,train
+Data_Append,0,0.0,64,25.0,2.5,0,0,0,Clean,train
+Context,0,0.25,46,3.625,1.875,0,0,0,Clean,train
+Markup,0,0.0,7,1.0,1.0,0,0,0,Clean,test
+DistributionStorage,0,0.5357142857142857,82,7.875,1.875,0,0,0,Clean,train
+IndexMatrix,0,0.6705263157894736,1020,11.243243243243244,2.9054054054054053,0,0,0,God Class,test
+EmailBackend,0,0.0,14,10.0,3.0,0,0,0,Clean,train
+Migration,0,0.0,12,0.0,0.0,0,0,0,Clean,train
+AppListener,0,1.0,17,6.5,3.5,0,0,0,Clean,train
+SublimeRjsOpen1Command,0,0.0,3,2.0,1.0,0,0,0,Clean,train
+SublimeRjsOpen2Command,0,0.0,3,2.0,1.0,0,0,0,Clean,train
+SublimeRjsOpen3Command,0,0.0,3,2.0,1.0,0,0,0,Clean,train
+SublimeRjsCommand,0,0.0,15,14.0,3.0,0,0,0,Clean,train
+AddSublimeRjsCommand,0,0.0,6,5.0,1.0,0,0,0,Clean,train
+Drawing,0,0.9972862957937585,1078,13.746268656716419,1.9402985074626866,0,0,0,God Class,train
+MuPADLexer,0,0.0,68,0.0,0.0,0,0,0,Clean,train
+MatlabLexer,0,0.0,92,0.0,0.0,0,1,0,Clean,train
+MatlabSessionLexer,1,0.0,46,36.0,8.0,0,1,2,Clean,train
+NumPyLexer,0,0.0,87,6.0,4.0,0,1,1,Clean,train
+SLexer,0,0.0,67,0.0,0.0,0,0,0,Clean,test
+LatestPosts,0,1.0,16,1.3333333333333333,1.0,0,0,0,Clean,train
+FieldTypeGuesser,0,0.0,36,16.0,10.5,0,1,0,Clean,train
+ModelPopulator,1,0.3333333333333333,63,19.333333333333332,5.0,0,1,2,Clean,train
+Populator,1,0.0,66,14.25,2.75,0,0,3,Clean,train
+ImagePropertyMixin,0,1.0,18,5.5,2.5,0,0,0,Clean,train
+TransparentMixin,0,0.0,24,14.0,6.0,0,0,0,Clean,train
+CachedHyperlinkedIdentityField,0,0.0,20,9.0,2.0,0,1,1,Clean,test
+MarkdownField,0,1.0,7,1.0,1.0,0,1,1,Clean,train
+Command,0,0.0,87,36.0,9.0,0,0,0,Clean,train
+SwapBrackets,0,0.0,8,7.0,2.0,0,1,0,Clean,train
+SwapBracketsCommand,1,0.3333333333333333,38,11.0,2.6666666666666665,0,0,2,Clean,train
+OpenFileSettingsCommand,0,0.0,8,2.5,1.0,0,0,0,Clean,train
+TerminalPlugin,0,0.0,75,11.6,3.4,0,0,0,Clean,train
+DependencyAnalysis,0,0.0,17,6.5,4.0,0,0,0,Clean,train
+Autocomplete,0,1.0,145,10.88888888888889,3.111111111111111,0,0,0,Feature Envy,train
+Custom404,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+IndexHandler,0,0.0,3,1.0,1.0,0,0,0,Clean,test
+FAQHandler,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+CreateHandler,0,1.0,21,6.0,1.5,0,0,0,Clean,train
+URLHandler,0,0.0,59,55.0,8.0,0,0,0,Feature Envy,train
+UploadForm,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+Migration,0,0.0,43,0.0,0.0,0,0,0,Clean,train
+Migration,0,1.0,65,3.0,1.0,0,0,0,Clean,train
+HostBy1Service,0,0.0,25,23.0,3.0,0,0,0,Clean,train
+networkParser,0,0.5,46,9.0,1.5,0,0,0,Clean,train
+StandardMetropolis,0,0.5,30,4.5,1.5,0,0,0,Clean,train
+GitBlameCommand,0,0.8333333333333334,39,8.0,2.0,0,0,1,Clean,train
+GitLog,0,0.9333333333333333,41,5.0,1.3333333333333333,0,1,1,Clean,train
+GitLogCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GitLogAllCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GitShow,0,0.8333333333333334,26,4.75,1.25,0,0,0,Clean,train
+GitShowCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GitShowAllCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+GitGraph,0,1.0,9,3.0,1.5,0,0,0,Clean,train
+GitGraphCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GitGraphAllCommand,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+GitOpenFileCommand,0,0.6666666666666666,41,4.0,1.2857142857142858,1,1,1,Clean,test
+GitDocumentCommand,0,1.0,29,8.0,2.3333333333333335,1,1,0,Feature Envy,train
+GitGotoCommit,0,1.0,15,3.3333333333333335,1.6666666666666667,0,0,0,Clean,train
+GitBranchStatusListener,0,1.0,5,1.0,1.0,0,0,0,Clean,train
+GitBranchStatusCommand,0,0.8333333333333334,49,10.5,4.0,0,0,0,Clean,train
+LayoutChangeException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LayoutSelectionBehavior,0,0.8611111111111112,122,7.333333333333333,1.8888888888888888,0,1,3,Clean,train
+RecycleLayoutManagerBehavior,0,0.8076923076923077,103,4.6923076923076925,1.6923076923076923,0,1,1,Clean,train
+FreetypeRecipe,0,0.0,25,18.0,1.0,0,0,0,Clean,test
+PygameJNIComponentsRecipe,0,0.0,18,13.0,3.0,0,0,0,Clean,train
+ShareProjectSerializer,0,1.0,37,4.8,1.4,0,0,0,Clean,train
+DictOrganizer,0,1.0,57,16.0,3.6666666666666665,0,0,0,Clean,train
+ExportBuilder,0,0.8833333333333333,515,28.3125,5.25,0,0,0,God Class,train
+InvalidInput,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+AWSBucket,0,0.5238095238095238,39,3.5714285714285716,1.1428571428571428,0,1,0,Clean,test
+AWSDomain,1,0.8095238095238095,157,5.4,1.75,0,0,5,God Class,test
+MyEventHandler,0,1.0,14,1.0,1.0,0,0,0,Clean,train
+CiscoXrSSH,0,1.0,103,23.5,5.5,0,0,0,Long Method,train
+CatShardsCommand,0,0.0,13,10.0,2.0,0,0,0,Clean,train
+ScrollCommand,0,1.0,17,6.0,1.5,0,0,0,Clean,train
+Linter,0,0.8666666666666667,181,8.266666666666667,1.6,0,0,0,God Class,test
+ConfigCmdargsSource,0,0.9848484848484849,85,4.25,1.5833333333333333,0,0,0,Clean,train
+ConfigContainer,0,0.0,22,9.0,2.5,0,0,0,Clean,train
+Integer,0,0.21505376344086022,101,1.903225806451613,1.6129032258064515,0,6,3,Clean,train
+Boolean,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+BitString,0,0.6060606060606061,104,6.25,3.1666666666666665,0,6,4,Long Method,test
+OctetString,0,0.6428571428571429,23,0.5,1.125,0,1,4,Clean,train
+Null,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+ObjectIdentifier,0,0.4642857142857143,60,4.625,2.375,0,0,2,Clean,test
+Real,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+Enumerated,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+SetOf,0,0.4,57,7.0,3.5,0,3,7,Clean,train
+SequenceOf,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+SequenceAndSetBase,0,0.26666666666666666,98,8.0,3.5,0,3,7,Clean,test
+Sequence,0,0.0,9,1.0,1.0,1,0,0,Clean,train
+Set,0,0.0,31,5.0,2.0,1,1,7,Clean,train
+Choice,0,0.7555555555555555,90,6.6,2.8,2,4,7,Clean,train
+ModelForm,0,0.0,8,4.0,1.0,0,0,0,Clean,train
+APIHandlerParams,0,0.8333333333333334,30,5.5,2.5,0,4,0,Clean,test
+APIHandler,0,0.8571428571428571,72,7.714285714285714,2.4285714285714284,0,0,7,Clean,train
+LookupHandlerParams,0,0.0,49,21.5,10.5,1,3,4,Clean,train
+LookupHandler,0,0.8538011695906432,372,17.42105263157895,8.263157894736842,1,1,0,God Class,train
+SubmissionStatusHandlerParams,0,0.0,5,3.0,1.0,1,3,4,Clean,test
+SubmissionStatusHandler,0,0.0,13,9.0,3.0,1,1,0,Clean,train
+SubmitHandlerParams,0,0.8333333333333334,63,13.75,6.5,1,3,4,Clean,train
+SubmitHandler,0,0.0,69,63.0,20.0,1,1,0,Feature Envy,train
+TagNameSelect,0,0.0,10,9.0,2.0,0,0,0,Clean,train
+Progress,0,0.4,66,4.0,2.0,0,0,0,Clean,test
+IndexedCorpus,0,0.5,87,19.75,3.75,0,0,0,Clean,train
+kestrel_shutdown,0,0.3333333333333333,35,9.666666666666666,1.6666666666666667,0,0,0,Clean,test
+CacheConnections,0,0.0,38,3.4285714285714284,1.4285714285714286,0,1,0,Clean,train
+CacheGroups,0,0.0,31,4.2,2.2,0,0,1,Clean,train
+ManageForm,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+HTTPError,0,0.0,9,3.0,2.0,0,1,1,Clean,train
+InvalidMethod,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+CurlError,0,0.0,9,3.0,2.0,0,1,1,Clean,train
+InterfaceError,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+AuthError,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+MountPathSpec,0,0.0,32,10.0,1.5,0,0,0,Clean,test
+EncryptedStreamResolverHelper,0,1.0,26,9.5,1.0,0,0,0,Clean,train
+Plugin,0,0.9736842105263158,269,5.35,1.75,0,0,0,God Class,train
+Backward,0,0.0,67,16.5,3.0,0,0,0,Clean,train
+JavaScript,0,0.0,12,9.0,1.0,0,0,0,Clean,train
+CheckPep8,0,0.3333333333333333,34,6.5,2.25,0,0,0,Clean,train
+EditFuture,0,1.0,5,1.0,1.0,0,2,0,Clean,train
+EditStep,0,0.0,29,8.0,2.3333333333333335,0,1,3,Clean,train
+Edit,2,0.8681318681318682,77,3.4285714285714284,1.5,0,1,4,Clean,test
+apply_sublimelint_edit,0,0.0,2,1.0,1.0,0,1,0,Clean,train
+CollectionMeta,0,1.0,45,19.0,3.5,0,0,0,Clean,train
+Collection,0,0.8199643493761141,328,6.676470588235294,1.7352941176470589,0,0,0,God Class,test
+FSM,0,0.16666666666666666,81,17.25,2.0,0,9,0,Clean,train
+CronTimeField,0,0.7727272727272727,70,3.4166666666666665,1.5,0,8,0,Clean,train
+CTTime,0,0.0,15,5.0,1.0,1,8,17,Clean,train
+CTRange,0,0.0,17,6.0,1.0,1,8,18,Clean,train
+CTRangeStep,0,0.0,21,8.0,1.0,1,8,20,Clean,train
+CTStar,0,1.0,11,3.0,1.0,1,8,15,Clean,train
+CTStarStep,0,0.0,15,5.0,1.0,1,8,17,Clean,train
+CTText,0,0.0,14,4.5,1.0,1,8,16,Clean,train
+CTTextRange,0,0.0,16,5.5,1.0,1,8,16,Clean,train
+CTTextRangeStep,0,0.0,19,7.0,1.0,1,8,18,Clean,train
+CronTimeFieldLimit,0,0.0,19,3.0,1.0,0,8,0,Clean,train
+CronLineEmpty,0,0.0,5,2.0,1.0,0,1,0,Clean,train
+CronLineChkCrontabCmd,0,0.0,23,9.0,2.5,0,9,4,Clean,train
+CronLineComment,0,0.0,5,2.0,1.0,0,1,0,Clean,train
+CronLineAssignment,0,0.0,21,8.0,2.0,0,9,2,Clean,train
+CronLineTimeAction,0,0.6666666666666666,43,11.0,3.3333333333333335,0,8,4,Clean,train
+CronLineAt,0,0.0,13,10.0,2.0,1,2,1,Clean,train
+CronLineTime,0,0.0,33,30.0,7.0,1,2,11,Clean,train
+CronLineUnknown,0,0.0,9,6.0,1.0,0,1,1,Clean,train
+CronLineFactory,7,1.0,55,25.0,4.0,0,8,7,Feature Envy,train
+LogMsgKindNotFound,0,0.0,2,0.0,0.0,0,1,0,Clean,train
+LogCounter,1,0.6025641025641025,177,10.076923076923077,1.8461538461538463,0,14,1,Clean,train
+LiteralNER,0,0.6666666666666666,71,21.0,4.666666666666667,0,1,0,Clean,train
+LiteralNERRunner,1,0.0,26,11.0,2.0,0,0,3,Clean,test
+IsPerson,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+IsPlace,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+IsCountry,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+IsPopulatedPlace,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+IsBand,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+IsAlbum,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+IsTvShow,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+IsMovie,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+HasShowName,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+HasName,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+DefinitionOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+LabelOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+UTCof,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+PresidentOf,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+IncumbentOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+CapitalOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+LanguageOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+PopulationOf,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+IsMemberOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+ActiveYears,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+MusicGenreOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+ProducedBy,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BirthDateOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+BirthPlaceOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+ReleaseDateOf,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+StarsIn,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+NumberOfEpisodesIn,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+ShowNameOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+HasActor,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+CreatorOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+NameOf,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+DirectedBy,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DirectorOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+DurationOf,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+HasAuthor,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+AuthorOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+IsBook,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LocationOf,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+LRU,0,0.6473684210526316,240,7.95,2.1,0,2,6,Clean,train
+LRI,0,0.6785714285714286,91,6.5,2.375,0,2,11,Clean,test
+_HashedKey,0,0.0,11,1.5,1.0,0,1,0,Clean,train
+CachedFunction,0,0.0,18,4.333333333333333,1.6666666666666667,0,2,0,Clean,train
+ThresholdCounter,0,0.7543859649122807,172,4.7894736842105265,1.7894736842105263,0,2,2,God Class,train
+BaseApplication,1,0.6190476190476191,143,17.857142857142858,5.285714285714286,0,2,4,Long Method,train
+DispatchState,0,0.4,18,1.8,1.2,0,1,0,Clean,train
+SubApplication,0,0.0,18,7.5,3.0,0,1,1,Clean,test
+Application,0,0.0,46,45.0,17.0,1,0,1,Long Method,train
+TemplateView,0,0.0,6,3.0,1.0,0,0,0,Clean,train
+IPythonConsoleLexer,0,0.0,71,40.0,10.0,0,0,0,Clean,train
+Process,0,0.7472527472527473,115,5.714285714285714,1.1428571428571428,0,0,0,Clean,train
+StringLength,0,1.0,11,2.5,1.0,0,0,0,Clean,train
+ChoiceInline,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+PollAdmin,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+random_init_conf,0,0.5714285714285714,36,3.2857142857142856,1.4285714285714286,0,0,0,Clean,test
+FieldABC,0,1.0,20,1.2,1.0,0,0,0,Clean,train
+SchemaABC,0,1.0,13,1.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,84,3.0,1.0,0,0,0,Clean,train
+STM32F103RC,0,1.0,13,2.0,1.0,0,0,0,Clean,train
+ServerTransport,0,1.0,29,12.0,1.0,0,0,0,Clean,test
+ClientTransport,0,0.0,16,13.0,1.0,0,0,0,Clean,train
+GCE,0,0.2,42,4.0,2.2,0,4,0,Clean,train
+Util,0,0.0,9,6.0,3.0,0,4,0,Clean,test
+Image,0,0.0,21,18.0,3.0,0,1,1,Clean,train
+Disk,0,1.0,62,9.6,1.4,0,0,4,Clean,train
+Network,0,1.0,32,13.0,2.0,0,1,2,Clean,test
+Metadata,0,1.0,37,6.25,1.75,0,0,1,Clean,train
+Compute,0,0.0,43,40.0,3.0,0,0,4,Clean,train
+Revision,0,1.0,107,41.5,1.5,0,0,0,Clean,train
+Text,0,0.8,69,5.5,1.3333333333333333,0,0,0,Clean,test
+RabbitMQ,0,0.8846153846153846,376,25.615384615384617,4.538461538461538,0,0,0,God Class,train
+Analytics,0,0.0,3,2.0,1.0,0,0,0,Clean,test
+RSS,0,0.0,62,14.5,2.5,0,0,0,Clean,train
+FooterToBottom,0,0.0,22,7.0,5.0,0,0,1,Clean,test
+HTML5Writer,0,0.8333333333333334,92,4.5,1.0,0,1,2,Clean,train
+ElemStack,0,0.3333333333333333,69,7.571428571428571,1.8571428571428572,0,3,0,Clean,train
+HTML5Translator,1,0.8424056189640036,684,6.367647058823529,2.1176470588235294,0,1,7,God Class,test
+UserSettingsManager,0,1.0,27,11.5,2.0,0,0,0,Clean,train
+EmptyUserSetting,0,1.0,20,1.0,1.0,0,1,0,Clean,train
+UserSettings,1,1.0,23,2.5,1.0,0,0,1,Clean,train
+DjangoCMSFormsConf,0,0.0,65,0.0,0.0,0,0,0,Clean,test
+Application,0,0.0,18,17.0,1.0,0,0,0,Clean,train
+MainHandler,0,0.0,8,7.0,2.0,0,0,0,Clean,train
+ValidationError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Config,0,0.6071428571428571,84,7.75,2.0,0,0,0,Clean,train
+MultinomialSampler,0,0.5,39,6.75,1.0,0,0,1,Clean,train
+WeightedDataset,0,0.0,44,12.0,3.3333333333333335,0,1,0,Clean,train
+PlatformUtility,0,0.0,3,1.0,1.0,0,0,0,Clean,test
+Migration,0,1.0,111,9.0,1.0,0,0,0,Clean,train
+MinKey,0,1.0,31,1.0,1.0,0,0,0,Clean,train
+SolrError,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+SolrResponseError,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+ConnectionError,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+ZookeeperError,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+LibraryController,0,0.6818181818181818,327,25.166666666666668,4.333333333333333,0,0,0,God Class,train
+AbuseReport,0,1.0,58,20.0,4.0,0,0,0,Clean,train
+GroupPermission,0,0.8333333333333334,20,2.5,1.25,0,4,5,Clean,train
+AnyOf,0,0.5,23,3.0,1.25,0,4,10,Clean,train
+AllowAddonAuthor,0,1.0,6,1.0,1.0,0,5,0,Clean,train
+AllowReviewer,0,1.0,18,2.0,2.5,0,4,5,Clean,train
+AllowReviewerUnlisted,0,1.0,15,1.0,1.5,1,4,5,Clean,train
+AllowReadOnlyIfPublicAndListed,0,1.0,10,1.5,2.0,0,4,5,Clean,train
+Command,0,0.0,31,6.0,2.0,0,0,0,Clean,train
+StatsDictField,0,1.0,44,8.25,3.75,0,0,0,Clean,test
+LargeStatsDictField,0,0.0,5,1.0,1.0,1,0,0,Clean,train
+BaseForm,0,0.8333333333333334,95,21.0,5.75,0,0,0,Long Method,train
+Migration,0,1.0,245,6.0,1.0,0,0,0,Clean,test
+Migration,0,0.0,73,0.0,0.0,0,0,0,Clean,train
+ProductAdmin,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+TopicAdmin,0,0.0,10,1.0,1.0,0,0,0,Clean,test
+VersionAdmin,0,0.0,6,0.0,0.0,0,0,0,Clean,test
+PlatformAdmin,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+ZendeskSettingsError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Migration,0,1.0,316,4.5,1.0,0,0,0,Clean,train
+Importer,3,0.0,84,38.0,4.0,0,0,7,Feature Envy,test
+CaseImporter,4,0.6666666666666666,180,57.333333333333336,5.333333333333333,0,1,11,Long Method,train
+UserCache,0,0.0,44,16.0,2.0,0,1,0,Clean,test
+TagImporter,0,0.0,66,18.0,2.0,0,1,1,Clean,train
+SuiteImporter,1,0.0,112,22.0,2.75,0,2,3,Clean,train
+ImportResult,0,0.0,76,12.5,1.0,0,4,0,Clean,train
+Migration,0,1.0,239,3.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,8,0.0,0.0,0,0,0,Clean,test
+Migration,0,0.0,8,0.0,0.0,0,0,0,Clean,train
+ParsedResource,0,1.0,23,6.5,1.0,0,0,0,Clean,test
+Command,0,1.0,144,45.333333333333336,8.0,0,0,0,Feature Envy,train
+FileOperations,0,0.0,19,4.666666666666667,2.3333333333333335,0,0,0,Clean,train
+ChunkedFile,0,0.5274725274725275,233,14.285714285714286,4.642857142857143,0,0,0,Clean,train
+PrelaunchedProcess,0,0.0,15,1.75,1.25,0,1,0,Clean,train
+PrelaunchDaemon,1,0.5238095238095238,89,10.428571428571429,3.142857142857143,0,0,3,Clean,train
+Migration,0,0.0,13,0.0,0.0,0,0,0,Clean,train
+Migration,0,1.0,190,1.0,1.0,0,0,0,Clean,train
+EventHandlerMixIn,0,1.0,26,6.0,2.0,0,0,1,Clean,train
+Event,0,0.4642857142857143,36,2.0,1.0,0,1,0,Clean,train
+ColumnDeleted,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+CardClicked,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+PopinClosed,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+CardEditorClosed,0,0.0,5,0.0,0.0,2,0,0,Clean,train
+CardArchived,0,0.0,5,0.0,0.0,1,0,0,Clean,test
+SearchIndexUpdated,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+CardDisplayed,0,0.0,5,0.0,0.0,1,0,0,Clean,train
+BoardAccessChanged,0,0.0,3,0.0,0.0,1,0,0,Clean,test
+BoardDeleted,0,0.0,4,0.0,0.0,2,0,0,Clean,train
+BoardArchived,0,0.0,4,0.0,0.0,2,0,0,Clean,train
+BoardRestored,0,0.0,3,0.0,0.0,2,0,0,Clean,train
+BoardLeft,0,0.0,4,0.0,0.0,2,0,0,Clean,train
+ParentTitleNeeded,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+NewTemplateRequested,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+ModelForm,0,0.0,16,4.0,1.0,0,0,0,Clean,train
+ColourFormatter,0,0.0,15,13.0,6.0,0,1,0,Clean,train
+Watcher,1,0.0,21,7.5,2.5,0,0,1,Clean,train
+PDFTemplateResponseMixin,0,1.0,51,8.5,1.25,0,1,0,Clean,test
+PDFTemplateView,0,0.0,15,5.0,1.0,1,0,1,Clean,train
+ResetMixin,0,0.0,79,10.0,4.0,0,0,0,Clean,train
+OneTimeProperty,0,0.0,33,12.5,1.5,0,0,0,Clean,train
+netcdf_file,1,0.5020161290322581,630,13.9375,3.15625,0,0,4,Long Method,train
+netcdf_variable,0,0.4666666666666667,172,10.2,2.0,0,1,0,Clean,test
+Scheduler,0,1.0,13,1.0,1.0,0,0,0,Clean,train
+PasteHomeView,0,0.6666666666666666,23,5.333333333333333,1.3333333333333333,0,0,2,Clean,train
+PasteDetailView,0,0.0,19,16.0,1.0,0,1,0,Clean,train
+PasteDetailRawView,0,0.0,3,2.0,1.0,0,1,0,Clean,test
+DatabaseEngine,0,0.5,43,8.75,1.75,0,0,0,Clean,test
+Options,0,1.0,40,8.5,1.5,0,0,0,Clean,train
+FakeStdIO,0,0.5,38,7.75,2.0,0,0,0,Clean,train
+IManholeClient,0,1.0,23,6.0,1.0,0,1,0,Clean,train
+Perspective,0,0.8205128205128205,158,9.692307692307692,2.1538461538461537,0,1,2,God Class,train
+Realm,1,0.0,18,6.0,2.0,0,0,3,Clean,train
+Service,0,1.0,26,8.5,2.0,0,0,0,Clean,train
+CacheResolver,0,0.3333333333333333,111,11.714285714285714,3.2857142857142856,0,0,0,Clean,train
+IResource,0,1.0,37,7.333333333333333,1.0,0,0,0,Clean,test
+Resource,1,0.7352941176470589,156,5.764705882352941,1.2352941176470589,0,3,2,God Class,test
+ErrorPage,0,0.6666666666666666,47,3.6666666666666665,1.0,1,3,3,Clean,train
+NoResource,0,0.0,8,3.0,1.0,2,3,3,Clean,train
+ForbiddenResource,0,0.0,8,3.0,1.0,2,2,3,Clean,train
+NoRedisConnectionException,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+pnlQCL,0,0.47619047619047616,114,14.428571428571429,1.2857142857142858,0,0,0,Long Method,train
+SampleMediumCV,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+SiteTypeCV,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,120,3.0,1.0,0,0,0,Clean,test
+Migration,0,1.0,170,21.5,1.0,0,0,0,Clean,train
+Frontend,0,0.3333333333333333,24,6.333333333333333,1.6666666666666667,0,0,0,Clean,train
+Video,0,0.0,71,1.0,1.0,0,0,0,Clean,train
+ThumbnailsCollectionRequest,1,1.0,24,10.0,1.0,0,2,1,Clean,train
+ThumbnailsCollectionRequestBuilder,1,0.6666666666666666,43,12.333333333333334,1.0,0,0,2,Clean,train
+ThumbnailsCollectionResponse,1,0.0,15,12.0,2.0,0,1,1,Clean,train
+ThumbnailsCollectionPage,1,0.6666666666666666,35,9.666666666666666,1.3333333333333333,0,1,1,Clean,train
+SyncSFlowTenant,0,1.0,57,4.5,1.5,0,0,0,Clean,train
+CodeEdit,0,0.9376493072145246,1297,11.868421052631579,2.3289473684210527,0,0,0,God Class,train
+Ui_SearchPanel,0,0.0,181,89.0,1.0,0,0,0,Long Method,train
+Transform,0,0.8,41,3.5,1.1666666666666667,0,2,0,Clean,train
+FunctionWrappingTransform,0,0.6666666666666666,12,1.3333333333333333,1.0,1,1,1,Clean,train
+Registry,1,1.0,43,8.0,2.25,0,0,2,Clean,train
+FuelAndIPMIToolDriver,0,0.0,16,5.0,1.0,0,0,0,Clean,test
+FuelAndSSHDriver,0,0.0,17,4.0,1.0,0,0,0,Clean,train
+RSA,0,0.0,24,0.0,0.0,0,0,0,Clean,train
+CryptException,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+OpenSSLException,0,1.0,11,3.5,1.0,1,2,1,Clean,train
+RSAWrapper,1,0.7,27,3.4,1.2,0,2,1,Clean,test
+CryptManager,3,0.0,59,57.0,8.0,0,0,3,Feature Envy,train
+FlavorsClient,0,0.0,154,13.4,1.2,0,0,0,Clean,train
+Version,0,1.0,20,4.333333333333333,1.6666666666666667,0,0,0,Clean,train
+NetworkingBehaviors,0,0.717948717948718,460,33.15384615384615,4.923076923076923,0,0,0,God Class,train
+NovaCLI,0,1.0,297,8.96,1.28,0,0,0,God Class,train
+LoadBalancersClientTestsXML,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+LoadBalancersClientTestsJSON,0,0.0,3,0.0,0.0,1,0,0,Clean,test
+test_hosts,0,0.0,200,37.2,3.8,0,0,0,Long Method,train
+JsonSchemaOperationsSmoke,0,0.0,78,11.0,1.0,0,0,0,Clean,train
+DFConnection,0,0.0,22,7.0,1.5,0,9,10,Clean,train
+OvsdbSwitchApi,9,0.8095238095238095,187,6.809523809523809,2.4761904761904763,0,9,21,God Class,train
+OvsdbSwitchPort,0,0.6666666666666666,9,1.0,1.0,0,10,0,Clean,test
+OvsdbTunnelPort,0,0.0,7,1.5,1.0,1,9,10,Clean,train
+DelControllerCommand,0,0.0,7,2.0,1.0,0,9,10,Clean,train
+SetControllerCommand,0,0.0,14,5.5,1.5,0,9,10,Clean,train
+SetControllerFailModeCommand,0,0.0,9,3.0,1.0,0,9,10,Clean,train
+DeleteSwitchPort,0,0.0,19,8.0,1.5,0,9,10,Clean,train
+AddTunnelPort,0,0.0,31,14.0,1.0,0,9,11,Clean,train
+OvsdbMonitor,0,0.7333333333333333,34,3.8333333333333335,2.3333333333333335,0,9,10,Clean,train
+AddPatchPort,0,0.0,25,11.0,1.0,0,9,10,Clean,train
+DfDvrRouter,0,0.0,16,3.6666666666666665,2.0,0,1,0,Clean,train
+DfL3NATAgentWithStateReport,1,0.0,15,14.0,2.0,0,0,1,Clean,train
+SomeConsumer,0,0.6666666666666666,12,2.3333333333333335,1.0,0,0,0,Clean,test
+Wait,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+RichQueue,1,0.6666666666666666,57,3.5,1.8,0,1,1,Clean,train
+QueuedThread,0,0.0,20,8.5,2.0,0,0,2,Clean,train
+SessionsCollectionResource,0,0.0,26,6.0,2.0,0,0,0,Clean,train
+SessionsResource,0,0.0,45,6.4,2.0,0,0,0,Clean,train
+SessionsAction,1,0.0,31,12.0,2.5,0,0,2,Feature Envy,train
+Session,0,0.2222222222222222,122,12.0,3.25,0,1,0,Clean,test
+SessionsJob,0,0.0,84,25.0,1.3333333333333333,0,0,0,Clean,train
+SessionConfigurationAction,0,0.8333333333333334,62,4.75,2.25,0,0,0,Clean,test
+SessionConfiguration,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+CreateSession,0,0.0,19,10.0,3.0,0,0,0,Clean,train
+ExpressionParserException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+LexError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ParseError,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+UnknownModel,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+CookieTokenMixin,0,0.0,19,13.0,3.0,0,2,0,Clean,train
+SkipAuthMixin,0,0.0,30,13.0,4.0,0,1,3,Clean,test
+FakeAuthProtocol,0,1.0,10,3.0,1.5,1,2,1,Clean,train
+NailgunKeystoneAuthMiddleware,0,0.0,14,9.0,2.0,1,1,3,Clean,train
+NailgunFakeKeystoneAuthMiddleware,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+NotificationSerializer,0,0.0,10,0.0,0.0,0,0,0,Clean,test
+IndexHandler,0,0.0,5,4.0,1.0,0,0,0,Clean,train
+DeleteDHCPAgent,0,1.0,29,6.666666666666667,1.3333333333333333,0,0,0,Clean,train
+AddDHCPAgent,0,0.0,10,2.0,1.0,0,0,0,Clean,train
+DHCPAgentsTable,0,0.0,15,0.0,0.0,0,0,0,Clean,train
+IndexView,0,0.0,14,9.0,2.0,0,0,0,Clean,train
+CreateView,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+UpdateView,0,0.6666666666666666,34,6.0,1.3333333333333333,0,1,1,Clean,test
+DetailView,0,0.4,56,8.2,1.6,0,1,1,Clean,train
+LaunchStack,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+PreviewStack,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+CheckStack,0,1.0,23,3.6666666666666665,1.0,0,0,0,Clean,train
+SuspendStack,0,1.0,23,3.6666666666666665,1.0,0,0,0,Clean,test
+ResumeStack,0,1.0,23,3.6666666666666665,1.0,0,0,0,Clean,train
+ChangeStackTemplate,0,0.0,8,1.0,1.0,0,0,0,Clean,test
+DeleteStack,0,1.0,25,3.5,1.25,0,0,0,Clean,train
+StacksUpdateRow,0,1.0,18,6.5,2.5,0,0,0,Clean,train
+StacksFilterAction,0,0.0,6,4.0,1.0,0,0,0,Clean,train
+StacksTable,0,0.0,107,1.0,1.0,0,0,0,Clean,test
+EventsTable,0,0.0,20,0.0,0.0,0,0,0,Clean,train
+ResourcesUpdateRow,0,0.0,14,11.0,3.0,0,0,0,Clean,test
+ResourcesTable,0,1.0,48,2.5,1.0,0,0,0,Clean,train
+DetailView,0,0.8333333333333334,40,7.0,1.75,0,10,14,Clean,test
+CreateView,0,0.0,51,12.666666666666666,2.3333333333333335,0,10,18,Clean,train
+ExtendView,0,0.0,38,8.333333333333334,2.0,0,10,13,Clean,test
+CreateSnapshotView,0,0.0,30,10.0,2.0,0,10,10,Clean,train
+UploadToImageView,0,0.0,36,7.333333333333333,1.3333333333333333,0,10,13,Clean,train
+CreateTransferView,0,0.0,18,3.0,1.0,0,10,10,Clean,train
+AcceptTransferView,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+ShowTransferView,0,0.0,34,6.666666666666667,1.6666666666666667,0,10,13,Clean,train
+UpdateView,0,0.0,32,6.333333333333333,1.6666666666666667,0,10,13,Clean,train
+EditAttachmentsView,0,0.8571428571428571,72,6.714285714285714,2.2857142857142856,0,10,13,Clean,train
+RetypeView,0,0.0,37,7.333333333333333,1.3333333333333333,0,10,13,Clean,train
+EncryptionDetailView,0,0.8333333333333334,42,7.5,1.5,0,10,11,Clean,test
+IpMacPort,0,0.0,7,4.0,2.0,0,1,0,Clean,train
+IptablesDriver,1,0.6818181818181818,168,11.916666666666666,3.4166666666666665,0,0,1,God Class,train
+AgentNotFound,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+AgentNotFoundByTypeHost,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+MultipleAgentFoundByTypeHost,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+Agent,0,1.0,44,3.4285714285714284,1.1428571428571428,0,0,0,Clean,train
+AgentPluginBase,0,1.0,42,4.8,1.0,0,0,0,Clean,test
+DbQuotaDriver,0,0.9857142857142858,585,25.61904761904762,3.4761904761904763,0,2,6,God Class,train
+NoopQuotaDriver,0,1.0,270,13.529411764705882,1.3529411764705883,0,3,0,God Class,test
+BaseResource,0,0.3333333333333333,65,19.0,2.6666666666666665,0,2,6,Clean,train
+ReservableResource,0,0.0,35,31.0,1.0,1,1,3,Clean,train
+AbsoluteResource,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+CountableResource,0,0.0,35,30.0,1.0,2,1,3,Clean,test
+QuotaEngine,0,0.35507246376811596,333,11.75,1.375,0,4,32,Clean,train
+ShowAutoAllocatedTopology,0,1.0,55,24.0,6.5,0,0,0,Feature Envy,train
+Node,0,0.8333333333333334,100,9.5,1.0,0,0,0,Clean,test
+AbsoluteLimits,0,0.0,39,0.0,0.0,0,0,0,Clean,train
+RateLimits,0,0.0,7,0.0,0.0,0,1,0,Clean,train
+Limits,1,0.0,37,27.0,2.0,0,0,1,Clean,train
+Project,0,0.0,28,0.0,0.0,0,0,0,Clean,train
+ViewBuilder,0,1.0,28,4.75,1.0,0,0,0,Clean,train
+AdminCleanup,0,1.0,22,7.5,1.5,0,0,0,Clean,train
+CeilometerSamples,0,1.0,39,14.0,2.0,0,0,0,Clean,train
+Handled,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Context,0,0.0,8,2.0,1.0,0,0,0,Clean,train
+AlertsProvider,0,0.16666666666666666,42,8.75,2.5,0,2,0,Clean,train
+AmbariHealthCheck,0,0.8333333333333334,12,1.25,1.0,0,1,3,Clean,train
+AmbariServiceHealthCheck,0,0.7,48,7.8,2.2,0,1,3,Clean,train
+Hue,0,0.9558823529411765,230,10.823529411764707,2.0588235294117645,0,4,5,God Class,train
+HueV360,0,0.0,3,2.0,1.0,1,4,4,Clean,test
+HueV370,0,0.0,3,2.0,1.0,1,4,4,Clean,train
+HueV381,0,0.0,6,5.0,1.0,1,4,4,Clean,train
+HueV390,0,1.0,18,7.5,1.0,1,4,6,Clean,train
+ForbiddenException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ServiceHandler,0,0.0,30,3.8,1.0,0,0,0,Clean,train
+API,0,1.0,18,1.8,1.0,0,0,0,Clean,train
+CrossDomainMiddleware,0,0.6666666666666666,62,6.666666666666667,1.6666666666666667,0,0,0,Clean,test
+InfoController,0,0.9,82,12.8,2.8,0,0,0,Clean,train
+AxisItem,0,0.0,16,6.5,3.0,0,1,1,Clean,train
+Axis,1,0.0,15,6.0,2.0,0,1,2,Clean,train
+Tag,0,0.0,15,2.0,1.5,0,1,1,Clean,train
+Tagged,0,0.0,25,7.5,2.5,0,1,1,Clean,train
+MPURNLRI,0,0.7,18,1.0,1.0,0,0,0,Clean,train
+_InstanceFactory,0,0.0,14,2.3333333333333335,1.0,0,1,0,Clean,train
+MyClientCreator,1,0.0,17,14.0,1.0,0,0,2,Clean,test
+Peer,0,0.0,5,4.0,1.0,0,1,1,Clean,train
+Cmd,0,0.9969230769230769,470,15.384615384615385,2.8461538461538463,0,1,1,God Class,train
+VRRPInstance,0,0.0,10,3.5,1.0,0,1,2,Data Class,test
+VRRPManager,2,0.6666666666666666,110,8.5,1.9,0,1,5,Clean,test
+VRRPStatistics,0,0.0,32,14.5,1.0,0,2,0,Clean,train
+MyHTTPConnection,0,0.0,5,4.0,1.0,0,1,1,Clean,test
+MyHTTPHandler,0,0.0,9,8.0,3.0,0,0,0,Clean,train
+MyHTTPSConnection,0,0.0,5,4.0,1.0,0,1,1,Clean,train
+MyHTTPSHandler,0,0.0,9,8.0,3.0,0,0,0,Clean,train
+SmartRedirectHandler,0,1.0,11,4.0,1.0,0,0,0,Clean,train
+Requester,0,0.8518518518518519,269,7.535714285714286,2.142857142857143,0,0,0,God Class,train
+JarLibrary,0,0.7,94,13.6,2.2,0,0,0,Clean,train
+PythonSetup,0,0.9340659340659341,93,3.2857142857142856,1.3571428571428572,0,1,1,Clean,train
+PythonRepos,0,1.0,29,2.8,1.0,0,1,1,Clean,train
+BuildFilePath,0,0.0,8,2.5,1.0,0,0,0,Clean,train
+DeferredSourcesMapper,0,1.0,55,11.333333333333334,2.6666666666666665,0,0,0,Clean,train
+ChangedTargetTask,0,1.0,36,5.0,1.0,0,0,0,Clean,test
+Migration,0,1.0,367,33.0,1.0,0,0,0,Clean,train
+KafkaClient,0,0.3333333333333333,75,20.333333333333332,1.6666666666666667,0,0,0,Clean,test
+ResponseFuture,0,0.0,32,5.75,1.5,0,1,0,Clean,train
+Handler,0,0.0,4,2.0,1.0,0,2,0,Clean,train
+ThreadingHandler,0,1.0,28,4.666666666666667,1.6666666666666667,1,2,2,Clean,train
+GEventHandler,0,1.0,17,3.0,1.5,1,2,3,Clean,train
+RequestHandler,1,0.6,87,11.833333333333334,2.3333333333333335,0,1,7,Clean,test
+MetaProtocolMessage,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+AppSettings,0,0.9952380952380953,275,4.277777777777778,1.2222222222222223,0,0,0,God Class,test
+OpenIDAccount,0,0.0,19,8.0,2.0,0,0,0,Clean,train
+OpenIDProvider,0,1.0,47,6.8,1.8,0,0,0,Clean,train
+WindowsLiveOAuth2Adapter,0,0.0,21,15.0,1.0,0,0,0,Clean,train
+LocationProvider,0,1.0,20,4.0,1.3333333333333333,0,0,0,Clean,train
+_AbstractCanvas,0,0.638095238095238,304,17.6,4.333333333333333,0,2,4,Long Method,train
+Canvas,0,0.5,46,8.0,2.0,1,2,3,Clean,train
+Screen,0,0.9809523809523809,783,17.238095238095237,2.9047619047619047,0,2,7,God Class,train
+Ruler,0,0.0,7,2.0,1.0,0,0,0,Clean,train
+Featured,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+FeaturedBase,0,0.0,17,8.0,1.0,0,0,4,Clean,train
+FeaturedByImage,0,0.0,116,20.0,5.5,1,1,0,Clean,train
+FeaturedByImageList,0,0.0,69,22.0,7.0,1,1,0,Clean,train
+FeaturedByText,0,0.0,119,35.5,7.0,1,1,0,Long Method,train
+FeaturedByDiapText,0,0.0,63,0.0,0.0,2,0,0,Clean,test
+FeaturedByTextList,0,0.0,46,20.0,5.0,1,1,0,Clean,train
+FeaturedTitled,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+Migration,0,0.0,20,0.0,0.0,0,0,0,Clean,test
+Migration,0,1.0,149,5.0,1.0,0,0,0,Clean,train
+ph1_t,0,0.0,11,0.0,0.0,0,0,0,Clean,train
+libraw_iparams_t,0,0.0,13,0.0,0.0,0,0,0,Clean,test
+libraw_image_sizes_t,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+libraw_colordata_t,0,0.0,22,0.0,0.0,0,0,0,Clean,train
+libraw_imgother_t,0,0.0,15,0.0,0.0,0,0,0,Clean,train
+libraw_thumbnail_t,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+libraw_internal_output_params_t,0,0.0,7,0.0,0.0,0,0,0,Clean,test
+libraw_rawdata_t,0,0.0,16,0.0,0.0,0,0,0,Clean,test
+libraw_output_params_t,0,0.0,62,0.0,0.0,0,0,0,Clean,train
+libraw_data_t,0,0.0,18,0.0,0.0,0,0,0,Clean,train
+libraw_processed_image_t,0,0.0,11,0.0,0.0,0,0,0,Clean,train
+libraw_decoder_info_t,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+ProjectorCalibrator,0,0.8928571428571429,115,12.5,2.375,0,0,0,Clean,train
+ShootDontShoot,0,0.4722222222222222,117,11.0,2.111111111111111,0,0,0,Clean,train
+InvoiceListView,0,0.0,6,1.0,1.0,0,2,2,Clean,train
+PaymentMethodListView,0,0.0,6,1.0,1.0,0,2,2,Clean,train
+PaymentMethodCreateView,0,1.0,12,3.0,1.5,0,0,1,Clean,train
+PaymentMethodDeleteView,0,1.0,13,3.5,1.5,0,0,1,Clean,train
+PaymentMethodUpdateView,0,0.6666666666666666,21,4.0,1.6666666666666667,0,1,3,Clean,train
+SubscriptionListView,0,0.0,6,1.0,1.0,0,2,2,Clean,train
+SubscriptionCreateView,0,0.6666666666666666,17,3.0,1.6666666666666667,0,2,1,Clean,test
+SubscriptionDeleteView,0,0.0,13,3.5,1.5,0,0,1,Clean,train
+SubscriptionUpdateView,0,0.7333333333333333,41,4.166666666666667,1.5,0,5,2,Clean,test
+Webhook,0,1.0,21,4.666666666666667,1.3333333333333333,0,0,0,Clean,test
+TeamDefaultHookset,0,1.0,26,2.2,1.0,0,0,0,Clean,train
+HookProxy,0,0.0,4,2.0,1.0,0,0,0,Clean,train
+UpcomingEvents,0,1.0,23,1.0,1.0,0,0,0,Clean,train
+CreateFlavor,0,0.0,17,10.0,1.0,0,0,0,Clean,train
+DeleteFlavor,0,0.0,14,11.0,2.0,0,0,0,Clean,train
+XEditableMixin,0,0.9636363636363636,143,10.727272727272727,2.5454545454545454,0,0,0,God Class,test
+XEditableDatatableView,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+Node,0,0.4,71,12.4,6.2,0,0,0,Clean,train
+StartupScriptMixin,0,0.0,43,42.0,11.0,0,0,1,Feature Envy,train
+BaseMaster,0,0.0,22,21.0,6.0,0,0,0,Data Class,test
+InstanceHooks,0,0.6666666666666666,20,5.0,2.6666666666666665,0,1,0,Clean,train
+BaseInstance,1,0.8846153846153846,105,5.538461538461538,2.1538461538461537,0,1,1,Clean,train
+Executor,0,0.0,75,36.0,11.0,0,0,0,Feature Envy,train
+Hooks,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+OrdinaryPercolation,0,0.6515151515151515,403,30.5,3.1666666666666665,0,0,0,Clean,train
+Application,0,1.0,93,14.25,3.0,0,0,0,Clean,train
+State,0,0.6666666666666666,94,27.0,5.0,0,0,0,Long Method,test
+Options,0,0.0,4,1.0,1.0,0,0,0,Clean,test
+FilesystemLock,0,0.0,103,25.0,6.333333333333333,0,0,0,Long Method,train
+Command,0,1.0,39,17.0,2.5,0,0,0,Feature Envy,train
+TimeoutError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Unix,0,0.9848484848484849,381,28.166666666666668,5.333333333333333,0,0,0,God Class,test
+Types,0,1.0,64,3.5714285714285716,2.7142857142857144,0,0,0,Clean,test
+HappyElement,0,1.0,8,1.0,1.0,0,0,0,Clean,train
+TabularColumn,0,0.0,9,2.5,1.0,0,1,0,Clean,train
+Tabular,1,0.23809523809523808,44,3.857142857142857,2.0,0,0,1,Clean,train
+TaskManager,0,0.0,55,8.4,2.0,0,1,0,Clean,test
+ChainListener,0,0.0,6,1.0,1.0,0,1,1,Clean,train
+PipeListener,0,0.0,7,5.0,2.0,1,1,1,Clean,train
+Task,2,0.6666666666666666,96,7.777777777777778,1.4444444444444444,0,2,6,Clean,train
+Coevolution,0,0.7166666666666667,259,12.9375,3.875,0,0,0,God Class,train
+TMaze,0,0.0,58,8.25,2.75,0,0,0,Clean,train
+FullConnection,0,0.5,20,2.25,1.0,0,0,0,Clean,train
+NetworkReader,0,0.9047619047619048,98,11.285714285714286,3.142857142857143,0,0,0,Clean,train
+ObjectIdentifier,0,0.8,55,6.833333333333333,2.1666666666666665,0,0,0,Clean,train
+ExtensionOID,0,0.0,19,0.0,0.0,0,0,0,Clean,train
+CRLEntryExtensionOID,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+NameOID,0,0.0,21,0.0,0.0,0,0,0,Clean,test
+SignatureAlgorithmOID,0,0.0,14,0.0,0.0,0,0,0,Clean,test
+ExtendedKeyUsageOID,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+AuthorityInformationAccessOID,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+CertificatePoliciesOID,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+SSLWrapper,0,0.0,33,4.0,1.0,0,2,0,Clean,train
+SecureTCPServer,1,0.0,24,19.0,1.0,0,1,3,Clean,train
+SecureXMLRPCRequestHandler,0,0.0,10,8.0,1.0,0,0,0,Clean,test
+SecureXMLRPCServer,0,0.0,13,11.0,1.0,0,1,2,Data Class,train
+SpammyPosting,0,0.0,25,1.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,13,0.0,0.0,0,0,0,Clean,test
+eval_frame,0,0.0,29,3.0,1.2,0,0,0,Clean,test
+query_datetime_index,0,0.0,13,4.0,1.0,0,0,0,Clean,train
+query_datetime_series,0,0.0,13,4.0,1.0,0,0,0,Clean,train
+query_with_boolean_selection,0,0.0,16,5.5,1.0,0,0,0,Clean,train
+SQLAlchemyRequired,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+DatabaseError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+SQLTable,0,0.6013071895424836,382,18.77777777777778,5.333333333333333,0,3,16,Long Method,test
+PandasSQL,0,1.0,11,2.0,1.0,0,0,0,Clean,train
+SQLDatabase,1,0.6666666666666666,262,17.916666666666668,2.5833333333333335,1,3,11,Clean,train
+SQLiteTable,0,0.6666666666666666,111,13.285714285714286,3.0,1,3,11,Clean,test
+SQLiteDatabase,2,0.8909090909090909,171,12.272727272727273,2.3636363636363638,1,3,9,God Class,train
+TablePlotter,0,0.9047619047619048,151,19.0,3.7142857142857144,0,0,0,Clean,test
+VisualizationFrame,0,0.8666666666666667,396,25.75,2.75,0,0,0,God Class,train
+ReadOnlySheetSource,0,0.6666666666666666,28,6.333333333333333,1.3333333333333333,0,3,6,Clean,train
+WriteOnlySheetSource,0,1.0,11,2.0,1.0,0,3,7,Clean,train
+RecordsSource,0,0.0,15,1.5,1.0,0,4,0,Clean,train
+DictSource,0,0.0,15,2.5,1.0,0,4,0,Clean,train
+ArraySource,0,0.0,12,1.0,1.0,0,4,0,Clean,train
+ReadOnlyBookSource,0,0.0,27,8.5,1.5,0,3,6,Clean,train
+BookDictSource,0,0.0,16,3.0,1.5,0,4,0,Clean,train
+WriteOnlyBookSource,0,0.0,11,3.0,1.0,0,1,7,Clean,train
+ConvertVisitor,0,1.0,9,3.5,1.5,0,1,0,Clean,train
+ASTCodeGenerator,0,0.9998331943286072,940,6.445454545454545,1.5454545454545454,1,0,1,God Class,train
+TabContainer,0,0.0,5,4.0,1.0,0,2,1,Clean,train
+TabRaphaelContainer,0,0.8333333333333334,21,3.0,1.25,1,2,1,Clean,test
+ShowCaseApp,2,0.0,30,13.0,1.0,0,0,5,Clean,train
+MediaElement,0,1.0,29,3.0,1.2,0,0,0,Clean,test
+Mercurial,0,1.0,85,7.0,1.6666666666666667,0,0,0,Feature Envy,train
+Link,0,1.0,91,8.0,1.0,0,1,1,Clean,train
+SoftLink,0,0.39285714285714285,182,12.875,3.25,0,0,0,Clean,train
+ExternalLink,0,0.7333333333333333,106,12.333333333333334,1.8333333333333333,0,1,1,Clean,test
+Migration,0,0.0,31,0.0,0.0,0,0,0,Clean,test
+XmlString,0,1.0,63,7.6,2.4,0,0,0,Clean,train
+MetaOxmlElement,0,0.0,11,7.0,3.0,0,4,8,Clean,train
+BaseAttribute,0,0.6666666666666666,33,5.25,1.25,0,8,5,Clean,train
+OptionalAttribute,0,0.16666666666666666,50,8.75,2.0,1,3,5,Clean,train
+RequiredAttribute,0,0.0,46,10.0,1.3333333333333333,1,0,0,Clean,train
+_BaseChildElement,0,0.5661764705882353,170,7.352941176470588,1.1176470588235294,0,9,6,Clean,train
+Choice,0,0.6666666666666666,66,7.833333333333333,1.3333333333333333,1,6,5,Clean,train
+OneAndOnlyOne,0,1.0,35,8.666666666666666,1.3333333333333333,1,8,13,Clean,train
+OneOrMore,0,0.0,17,12.0,1.0,1,5,12,Clean,train
+ZeroOrMore,0,0.0,16,12.0,1.0,1,5,12,Clean,test
+ZeroOrOne,0,0.6666666666666666,46,8.75,1.25,1,5,13,Clean,train
+ZeroOrOneChoice,0,0.6666666666666666,73,7.571428571428571,1.2857142857142858,1,8,10,Clean,train
+_OxmlElementBase,0,1.0,64,5.714285714285714,1.7142857142857142,0,3,0,Clean,train
+FixDivisionSafe,0,0.6666666666666666,39,8.333333333333334,2.3333333333333335,0,0,0,Clean,train
+Ant,0,0.5,43,7.25,1.25,0,0,0,Clean,train
+StateMachine,0,0.16666666666666666,32,6.0,1.75,0,0,0,Clean,train
+DebugInfo,0,1.0,42,11.333333333333334,2.3333333333333335,0,0,0,Clean,train
+GenPollText,0,1.0,14,2.5,1.5,0,1,1,Clean,train
+GenPollUrl,0,1.0,55,13.0,4.333333333333333,0,1,1,Clean,train
+Mpd,0,0.73,289,7.96,2.72,0,0,0,God Class,train
+Wlan,0,1.0,38,9.0,2.0,0,0,0,Clean,train
+CancelPolicy,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+EODCancel,0,1.0,9,1.0,1.0,1,0,0,Clean,train
+NeverCancel,0,1.0,8,1.0,1.0,1,0,0,Clean,train
+RandomWalkSource,0,0.8095238095238095,129,15.0,2.7142857142857144,0,0,0,Clean,train
+ELBConnection,0,1.0,368,17.05263157894737,1.5263157894736843,0,0,0,God Class,train
+PocketApp,0,0.5641025641025641,173,11.153846153846153,2.769230769230769,0,0,0,Clean,train
+TabularPermissionDefaultExcludeFunction,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+Resource,0,0.8,180,30.6,5.8,0,0,0,Long Method,train
+Migration,0,0.0,13,0.0,0.0,0,0,0,Clean,test
+_Protocol,0,0.3333333333333333,120,17.666666666666668,2.5,0,2,0,Clean,train
+Loopback,0,0.0,7,1.0,1.0,1,0,1,Clean,train
+RCEInternalProtocol,0,0.7777777777777778,132,10.1,1.6,0,0,3,Clean,train
+UserEmailAdmin,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+SourceCodeMonitor,0,0.0,23,7.5,2.0,0,0,4,Clean,train
+ServerStarter,0,0.7,50,6.0,2.4,0,1,0,Clean,train
+BuildCssJsProcessor,0,0.0,66,10.5,2.5,0,1,0,Clean,train
+Input,0,1.0,11,1.75,1.0,0,2,2,Clean,train
+Output,0,1.0,10,2.3333333333333335,1.0,0,2,2,Clean,train
+Container,2,0.3626373626373626,141,8.0,2.7142857142857144,0,2,7,Clean,test
+HostBasedQueueAssignment,0,1.0,16,4.5,1.0,0,1,0,Clean,train
+IpBasedQueueAssignment,0,1.0,24,8.5,1.5,1,0,1,Clean,train
+StripSessionIds,0,0.6666666666666666,42,11.0,2.6666666666666665,0,0,0,Clean,train
+MercurialClient,0,0.8091168091168092,744,25.0,3.8518518518518516,0,0,0,God Class,train
+Command,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+BlockChain,0,0.65,165,8.375,2.5625,0,0,0,Clean,train
+Quote,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+Migration,0,0.0,17,0.0,0.0,0,0,0,Clean,train
+ILSVRC2010,0,0.0,34,4.0,1.0,0,0,0,Clean,train
+CodeBlock,0,0.0,34,9.0,1.0,0,1,0,Clean,test
+CLinker,2,0.6284584980237155,1116,46.0,5.739130434782608,0,2,6,Long Method,train
+_CThunk,0,0.3333333333333333,62,13.666666666666666,3.0,0,1,0,Clean,train
+OpWiseCLinker,0,0.0,138,35.333333333333336,6.0,0,2,4,Long Method,train
+DualLinker,1,0.0,90,23.666666666666668,5.0,0,2,4,Clean,train
+HideC,0,1.0,28,1.0,1.0,0,1,0,Clean,train
+GradTodo,0,1.0,8,1.0,1.0,0,0,0,Clean,train
+FFT,0,0.5,73,10.75,3.0,0,0,0,Clean,train
+Kernel,0,0.6666666666666666,65,13.0,5.0,0,2,0,Clean,train
+GpuKernelBase,0,1.0,119,5.266666666666667,1.0666666666666667,0,1,22,Feature Envy,train
+HostFromGpu,1,1.0,77,6.875,1.125,0,4,1,Clean,train
+GpuFromHost,0,0.8484848484848485,88,4.75,1.0833333333333333,0,5,0,Clean,train
+GpuToGpu,0,0.8666666666666667,51,2.4,1.1,0,4,0,Clean,train
+GpuAlloc,0,0.6944444444444444,159,13.88888888888889,2.4444444444444446,0,4,0,Long Method,train
+GpuAllocEmpty,0,0.8787878787878788,79,3.9166666666666665,1.25,0,3,6,Clean,train
+GpuContiguous,0,1.0,58,7.6,1.2,0,3,0,Clean,test
+GpuReshape,0,0.5,119,26.0,2.75,0,4,0,Long Method,train
+GpuJoin,0,1.0,76,9.666666666666666,1.1666666666666667,0,3,9,Feature Envy,test
+GpuSplit,0,0.0,11,6.0,1.0,0,1,9,Clean,train
+GpuEye,1,0.7142857142857143,102,10.0,1.125,1,3,3,Clean,train
+Win32Serial,0,0.22134387351778656,354,12.73913043478261,3.8260869565217392,0,0,0,Long Method,train
+KeyIOError,0,0.0,1,0.0,0.0,0,2,0,Clean,train
+UnknownKeyType,0,0.0,1,0.0,0.0,1,1,0,Clean,test
+UpdateFailed,0,0.0,1,0.0,0.0,1,1,0,Clean,test
+KeyBundle,3,0.32748538011695905,273,12.421052631578947,3.473684210526316,0,1,6,Clean,train
+KeyJar,1,0.4435483870967742,346,8.78125,3.1875,0,1,8,Long Method,test
+RedirectStdStreams,0,0.0,16,3.3333333333333335,1.6666666666666667,0,0,0,Clean,train
+EngineBase,0,1.0,6,1.5,1.0,0,0,0,Clean,train
+PynlinerEngine,0,0.0,4,3.0,1.0,1,0,0,Clean,test
+NullEngine,0,0.0,2,1.0,1.0,1,0,0,Clean,test
+SeleniumUtilityBelt,0,0.8571428571428571,42,4.142857142857143,2.2857142857142856,0,0,0,Clean,train
+InventoryCommand,0,0.6666666666666666,43,12.333333333333334,1.3333333333333333,0,0,0,Clean,train
+RTCInitializer,1,0.0,10,8.0,2.0,0,0,4,Clean,train
+RTCLogin,0,1.0,10,2.5,1.0,0,1,0,Clean,train
+WorkspaceHandler,1,0.0,52,6.666666666666667,2.0,0,2,2,Clean,train
+Changes,0,1.0,41,6.75,2.75,0,1,3,Clean,train
+ImportHandler,2,0.8496732026143791,269,12.61111111111111,3.5555555555555554,0,1,7,God Class,train
+ChangeEntry,0,0.4,25,2.3333333333333335,1.0,0,2,0,Clean,test
+CompareType,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+CodeMode,0,0.7619047619047619,42,2.0,1.2857142857142858,0,0,0,Clean,train
+MenuBarTooltipsExample,2,0.0,89,87.0,1.0,0,0,4,Long Method,train
+SearchCommand,0,0.0,7,1.5,1.0,0,1,0,Clean,test
+MenuCommand,0,0.0,7,1.5,1.0,0,1,0,Clean,train
+MenuBarWithIconsExample,2,0.0,56,54.0,1.0,0,0,4,Clean,test
+SearchCommand,0,0.0,7,1.5,1.0,0,1,0,Clean,train
+MenuCommand,0,0.0,7,1.5,1.0,0,1,0,Clean,train
+SyncUsers,0,0.6666666666666666,156,49.333333333333336,9.333333333333334,0,0,0,Feature Envy,train
+APNs,2,0.9166666666666666,80,5.666666666666667,1.2222222222222223,0,7,9,Clean,train
+APNsConnection,0,0.6190476190476191,97,11.571428571428571,3.857142857142857,0,6,7,Long Method,train
+PayloadAlert,0,0.0,20,8.5,3.0,0,6,7,Clean,train
+PayloadTooLargeError,0,0.0,2,1.0,1.0,0,6,7,Clean,train
+Payload,1,0.9,43,6.2,2.0,0,7,9,Clean,train
+Frame,0,0.2,55,9.0,1.0,0,7,5,Clean,train
+FeedbackConnection,0,1.0,52,14.666666666666666,3.3333333333333335,1,6,10,Clean,test
+GatewayConnection,0,0.7142857142857143,137,14.0,2.142857142857143,1,7,18,Clean,test
+Model_Region,0,1.0,103,1.6428571428571428,1.0,0,0,0,Clean,train
+Bridge,0,0.8676470588235294,193,4.705882352941177,2.3529411764705883,0,0,0,God Class,test
+xcconfig_item_base,0,0.3333333333333333,25,2.1666666666666665,1.6666666666666667,0,0,0,Clean,test
+_ConnectionWrapper,0,0.7090909090909091,55,3.090909090909091,1.6363636363636365,0,1,0,Clean,train
+Client,1,1.0,34,6.5,1.0,0,0,1,Clean,train
+ObjectIdType,0,1.0,26,3.0,1.6666666666666667,0,0,0,Clean,train
+Migration,0,1.0,328,29.0,1.0,0,0,0,Clean,train
+ClusterNode,0,0.6888888888888889,183,14.9,2.5,0,0,0,Clean,train
+binom_gen,0,1.0,64,3.111111111111111,1.2222222222222223,0,9,17,Clean,train
+bernoulli_gen,0,1.0,46,1.0,1.0,1,9,58,Clean,train
+nbinom_gen,0,1.0,55,2.625,1.0,0,9,14,Clean,train
+geom_gen,0,1.0,54,2.0,1.0,0,9,10,Feature Envy,train
+hypergeom_gen,0,1.0,120,6.625,1.25,0,5,17,Clean,train
+logser_gen,0,1.0,44,4.5,1.0,0,3,0,Clean,train
+poisson_gen,0,1.0,55,2.375,1.0,0,9,5,Clean,test
+planck_gen,0,0.9333333333333333,56,4.333333333333333,1.3333333333333333,0,8,9,Clean,train
+boltzmann_gen,0,1.0,46,5.0,1.0,0,8,9,Clean,train
+randint_gen,0,1.0,56,3.4285714285714284,1.0,0,8,9,Clean,train
+zipf_gen,0,1.0,34,2.0,1.0,0,3,0,Clean,train
+dlaplace_gen,0,1.0,43,3.0,1.0,0,8,9,Clean,test
+skellam_gen,0,1.0,52,4.5,1.0,0,9,0,Clean,train
+Rule,0,1.0,33,8.666666666666666,5.333333333333333,0,1,0,Data Class,train
+Iptables,1,0.9818181818181818,179,12.545454545454545,4.181818181818182,0,0,1,God Class,train
+Command,0,0.0,24,20.0,3.0,0,0,0,Clean,train
+Mapping,0,0.0,6,5.0,1.0,0,0,0,Clean,train
+AliasesDatabase,0,0.5054945054945055,120,5.857142857142857,1.7857142857142858,0,0,0,Clean,train
+BaseLogger,0,0.0,72,7.833333333333333,1.0,0,0,0,Clean,train
+Command,0,0.0,15,6.0,1.0,0,0,0,Clean,train
+Sequence,0,0.7142857142857143,21,1.0,1.0,0,0,0,Clean,train
+SingletonSequence,0,0.0,3,1.0,1.0,1,0,0,Clean,test
+NumberSequence,0,0.0,15,1.75,1.25,1,0,0,Clean,train
+CharacterSequence,0,0.5,16,1.75,1.25,1,0,0,Clean,train
+MRD,0,0.509090909090909,337,23.545454545454547,4.090909090909091,0,0,0,Long Method,train
+vertex,0,0.0,9,3.0,1.0,0,3,0,Clean,train
+tree,1,0.2,98,7.6,3.3,0,2,1,Clean,train
+skeleton,0,0.9,32,4.4,2.6,1,1,6,Clean,train
+acclaim_skeleton,1,0.6470588235294118,439,23.529411764705884,5.823529411764706,2,1,7,Long Method,test
+Output,0,0.8909090909090909,51,2.6363636363636362,1.1818181818181819,0,0,0,Clean,train
+Filter,0,1.0,15,6.0,2.5,0,0,0,Clean,train
+Filter,0,1.0,11,3.5,1.0,0,0,0,Clean,train
+BaseMessageProcessor,0,1.0,25,6.333333333333333,2.3333333333333335,0,1,1,Clean,test
+MessageProcessor,0,0.8368421052631579,295,12.4,3.0,1,1,2,God Class,train
+GuessAuth,0,0.4,70,12.0,2.8,0,1,0,Clean,train
+GuessProxyAuth,0,0.4,64,10.2,2.4,1,0,2,Clean,train
+OAuth2ConsumerBlueprint,0,0.6071428571428571,229,29.571428571428573,2.5714285714285716,0,0,0,Long Method,train
+Fail,0,0.6666666666666666,24,3.0,1.6666666666666667,0,0,0,Clean,train
+NixCompletion,0,1.0,30,13.5,3.5,0,0,0,Clean,train
+Charcoal,0,0.4444444444444444,192,19.444444444444443,4.333333333333333,0,0,0,Long Method,train
+Address,0,1.0,70,29.0,1.0,0,0,0,Clean,train
+AllergyIntolerance,0,1.0,90,39.5,1.0,0,1,2,Clean,train
+AllergyIntoleranceReaction,0,1.0,60,24.5,1.0,0,1,2,Clean,test
+Migration,0,1.0,185,24.0,4.5,0,0,0,Feature Envy,train
+UploadPackageAPIView,0,0.0,75,73.0,21.0,0,0,1,Feature Envy,test
+DownloadPackageAPIView,0,0.0,49,48.0,13.0,0,0,1,Feature Envy,train
+DeletePackageView,0,1.0,15,6.0,2.0,0,4,0,Clean,train
+DeletePackageAPIView,0,0.0,29,28.0,9.0,0,0,1,Clean,train
+MaxPackageSizeAPIView,0,0.0,20,19.0,6.0,0,0,1,Clean,test
+Git2Db,0,0.42292490118577075,388,14.521739130434783,2.0,0,0,0,Long Method,train
+Popen3,0,0.5,79,13.0,3.4,0,1,0,Clean,test
+Popen4,0,0.0,18,15.0,2.0,1,0,1,Clean,train
+Codec,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+IncrementalEncoder,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+IncrementalDecoder,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+StreamReader,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+StreamWriter,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+IncrementalEncoder,0,0.0,2,1.0,1.0,0,0,0,Clean,test
+IncrementalDecoder,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+StreamWriter,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+StreamReader,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BaseResponse,0,0.8744588744588745,293,10.409090909090908,1.3636363636363635,0,0,0,God Class,train
+CoverageBuilder,0,0.35714285714285715,218,25.0,8.0,0,0,0,Long Method,train
+ModelBackend,0,1.0,63,8.0,3.5,0,0,0,Feature Envy,train
+RemoteUserBackend,0,1.0,62,14.333333333333334,2.3333333333333335,1,0,0,Clean,train
+SplunkUser,0,1.0,14,5.5,1.0,0,1,1,Clean,train
+SplunkWebInfo,0,0.0,4,3.0,1.0,0,2,0,Clean,train
+SplunkAuthenticationBackend,2,1.0,74,34.5,3.5,0,0,2,Feature Envy,train
+Migration,0,1.0,82,17.0,1.0,0,0,0,Clean,train
+DotWriter,0,0.6428571428571429,99,9.875,2.0,0,0,0,Clean,train
+NetworkACLs,0,0.5238095238095238,58,6.285714285714286,1.0,0,0,0,Clean,train
+Message,0,0.0,2,1.0,1.0,0,1,0,Clean,test
+RawMessage,0,0.0,2,1.0,1.0,0,1,0,Clean,train
+SESQuota,0,0.0,6,1.0,1.0,0,1,0,Clean,test
+SESBackend,3,0.3333333333333333,62,5.0,2.0,0,0,3,Clean,train
+ApiKeyController,0,1.0,144,15.571428571428571,2.142857142857143,0,0,0,Clean,test
+RuleEnforcementBranch,0,0.0,9,7.0,1.0,0,1,1,Clean,train
+RuleEnforcementGetCommand,0,0.0,11,2.0,1.0,0,1,0,Clean,test
+RuleEnforcementListCommand,0,1.0,73,19.333333333333332,2.6666666666666665,0,1,2,Clean,train
+ParamikoRemoteScriptAction,0,0.0,38,36.0,8.0,0,0,0,Clean,train
+ParseCSVAction,0,0.0,9,8.0,2.0,0,0,0,Clean,train
+MSSQLAction,0,1.0,18,7.0,4.0,0,0,0,Clean,test
+EnableHookAction,0,0.0,13,12.0,1.0,0,0,0,Clean,train
+FindListByNameAction,0,0.0,14,13.0,6.0,0,0,0,Clean,test
+Family,0,0.9272727272727272,247,18.272727272727273,1.2727272727272727,0,1,0,God Class,train
+Poisson,0,1.0,162,20.166666666666668,1.0,1,3,3,Clean,train
+Gaussian,0,0.9,166,25.8,1.4,1,0,1,Clean,train
+Gamma,0,1.0,164,20.166666666666668,1.0,1,3,3,Clean,train
+Binomial,0,0.2857142857142857,287,34.285714285714285,2.142857142857143,1,0,4,Clean,train
+InverseGaussian,0,1.0,153,22.0,1.0,1,0,0,Clean,train
+NegativeBinomial,0,0.3333333333333333,221,28.666666666666668,1.1666666666666667,1,3,3,Clean,train
+Tweedie,0,0.6,267,35.833333333333336,3.0,1,4,0,Long Method,train
+AccountVerificationAdmin,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+Chart,0,0.0,13,8.0,3.0,0,0,0,Clean,test
+LinePlot,0,0.0,6,5.0,1.0,1,0,0,Clean,test
+NVD3,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+TTP,1,0.9507692307692308,292,8.722222222222221,1.8888888888888888,0,0,1,God Class,train
+_IntendedEffects,0,0.0,5,2.0,1.0,0,1,0,Clean,train
+Cpplint,0,0.0,32,16.0,4.0,0,0,0,Clean,train
+Rubocop,0,0.0,58,35.0,4.0,0,0,0,Clean,train
+Command,0,0.0,12,8.0,2.0,0,0,0,Clean,train
+Migration,0,0.0,12,0.0,0.0,0,0,0,Clean,train
+TupleArg,0,0.0,5,4.0,1.0,0,1,0,Clean,train
+TupleParametersBase,0,0.0,16,10.0,6.0,0,0,2,Clean,train
+hyper,0,0.7692307692307693,246,7.0,2.5,1,2,1,God Class,train
+meijerg,1,0.6617647058823529,382,12.411764705882353,2.823529411764706,1,2,2,Long Method,train
+HyperRep,0,0.9523809523809523,68,5.0,1.7142857142857142,0,2,44,Clean,train
+HyperRep_power1,0,1.0,21,2.0,1.5,1,2,22,Clean,test
+HyperRep_power2,0,1.0,25,3.0,1.5,1,3,0,Clean,train
+HyperRep_log1,0,1.0,16,1.0,1.0,1,3,0,Clean,test
+HyperRep_atanh,0,1.0,19,2.5,1.5,1,3,0,Clean,train
+HyperRep_asin1,0,1.0,16,1.0,1.0,1,3,0,Clean,train
+HyperRep_asin2,0,1.0,21,2.0,1.0,1,2,44,Clean,train
+HyperRep_sqrts1,0,1.0,26,3.25,1.5,1,3,0,Clean,train
+HyperRep_sqrts2,0,1.0,28,3.5,1.5,1,3,0,Clean,test
+HyperRep_log2,0,1.0,22,2.5,1.5,1,3,0,Clean,test
+HyperRep_cosasin,0,1.0,19,1.0,1.0,1,3,0,Clean,train
+HyperRep_sinasin,0,1.0,18,1.0,1.0,1,3,0,Clean,train
+SolveFailed,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+PipeError,0,0.0,1,0.0,0.0,0,2,0,Clean,train
+ShutdownException,0,0.0,1,0.0,0.0,0,3,0,Clean,train
+BaseChannel,1,0.6545454545454545,69,4.363636363636363,2.0,0,2,3,Clean,train
+PipelinedReqChannel,2,0.2,41,6.2,2.0,1,2,4,Clean,test
+MuxReqChannel,2,0.3333333333333333,37,4.333333333333333,1.6666666666666667,1,2,4,Clean,train
+FancyPageMixin,0,0.6666666666666666,34,7.0,2.3333333333333335,0,2,1,Clean,train
+FancyHomeMixin,0,0.0,12,9.0,2.0,1,1,1,Clean,test
+TemplateNamesModelMixin,0,0.0,126,49.0,9.0,0,0,0,Feature Envy,test
+JSONResponseMixin,0,1.0,37,5.2,1.6,0,0,1,Clean,train
+Migration,0,1.0,244,19.0,1.0,0,0,0,Clean,train
+Migration,0,1.0,225,8.0,2.0,0,0,0,Clean,train
+S3Url,0,0.0,11,7.0,3.0,0,0,0,Clean,train
+S3Sync,0,0.5,77,16.5,3.75,0,0,0,Clean,train
+PMJSONEncoder,0,0.0,4,3.0,2.0,0,0,0,Clean,train
+PMMail,7,0.6666666666666666,428,41.0,9.0,0,2,9,Long Method,train
+PMBatchMail,6,0.0,151,24.0,5.8,0,2,9,Feature Envy,train
+PMBounceManager,2,0.0,237,25.875,3.0,0,2,4,Clean,train
+PMMailMissingValueException,0,0.0,4,1.0,1.0,0,2,0,Clean,train
+PMMailSendException,0,0.0,8,1.5,1.0,0,3,0,Clean,train
+PMMailUnauthorizedException,0,0.0,4,0.0,0.0,1,2,0,Clean,train
+PMMailUnprocessableEntityException,0,0.0,6,0.0,0.0,1,2,0,Clean,test
+PMMailServerErrorException,0,0.0,5,0.0,0.0,1,2,0,Clean,train
+PMMailURLException,0,0.0,6,0.0,0.0,1,2,0,Clean,train
+PMMailInactiveRecipientException,0,0.0,6,0.0,0.0,1,2,0,Clean,train
+Timeline,0,0.0,68,4.8,1.8,0,0,0,Clean,train
+NullDatabaseConnectionError,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+TableNotFoundError,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+AttributeNotFoundError,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+Filter,0,0.0,11,4.0,1.0,0,0,0,Clean,train
+Filter,0,0.0,5,2.0,1.0,0,0,0,Clean,train
+Filter,0,0.0,14,11.0,2.0,0,0,0,Clean,test
+RedactorField,0,0.6666666666666666,13,2.6666666666666665,1.0,0,0,0,Clean,train
+Axis,0,0.0,14,4.0,1.0,0,1,0,Clean,train
+GenericStrategy,0,0.6666666666666666,150,47.666666666666664,14.0,0,2,0,Feature Envy,train
+SimplePathStrategy,0,0.6666666666666666,204,65.33333333333333,19.333333333333332,0,2,0,Long Method,train
+SingleStepStrategy,0,0.6666666666666666,67,20.0,9.333333333333334,0,2,0,Long Method,test
+Path,1,0.6666666666666666,129,28.25,5.5,0,1,8,Clean,train
+PathSyntaxError,0,0.0,9,6.0,2.0,0,1,37,Clean,train
+PathParser,11,0.3464052287581699,258,11.555555555555555,4.0,0,2,12,Clean,test
+Function,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BooleanFunction,0,0.6666666666666666,12,1.3333333333333333,1.0,1,1,0,Clean,train
+CeilingFunction,0,0.6666666666666666,11,1.3333333333333333,1.0,1,1,0,Clean,test
+ConcatFunction,0,0.0,14,2.3333333333333335,1.3333333333333333,1,1,0,Clean,train
+ContainsFunction,0,0.6666666666666666,13,2.0,1.0,1,1,0,Clean,train
+MatchesFunction,0,0.6666666666666666,19,2.25,1.0,1,1,0,Clean,train
+FalseFunction,0,1.0,6,1.0,1.0,1,0,0,Clean,train
+FloorFunction,0,0.6666666666666666,11,1.3333333333333333,1.0,1,1,0,Clean,train
+LocalNameFunction,0,1.0,9,1.5,1.5,1,0,0,Clean,test
+NameFunction,0,1.0,9,1.5,1.5,1,0,0,Clean,train
+NamespaceUriFunction,0,1.0,9,1.5,1.5,1,0,0,Clean,train
+NotFunction,0,0.6666666666666666,10,1.0,1.0,1,1,0,Clean,train
+NormalizeSpaceFunction,0,0.6666666666666666,13,1.3333333333333333,1.0,1,1,0,Clean,train
+NumberFunction,0,0.6666666666666666,9,1.3333333333333333,1.0,1,1,0,Clean,train
+RoundFunction,0,0.6666666666666666,11,1.3333333333333333,1.0,1,1,0,Clean,train
+StartsWithFunction,0,0.6666666666666666,13,2.0,1.0,1,1,0,Clean,train
+StringLengthFunction,0,0.6666666666666666,11,1.3333333333333333,1.0,1,1,0,Clean,train
+SubstringFunction,0,0.0,21,4.666666666666667,1.6666666666666667,1,1,0,Clean,train
+SubstringAfterFunction,0,0.6666666666666666,16,3.0,1.3333333333333333,1,1,0,Clean,test
+SubstringBeforeFunction,0,0.6666666666666666,16,3.0,1.3333333333333333,1,1,0,Clean,test
+TranslateFunction,0,0.6666666666666666,18,3.6666666666666665,1.0,1,1,0,Clean,train
+TrueFunction,0,1.0,6,1.0,1.0,1,0,0,Clean,test
+Literal,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+StringLiteral,0,0.0,8,1.0,1.0,1,2,0,Clean,test
+NumberLiteral,0,0.0,8,1.0,1.0,1,2,0,Clean,train
+VariableReference,0,0.0,8,1.0,1.0,1,2,0,Clean,test
+AndOperator,0,0.6666666666666666,13,2.6666666666666665,1.3333333333333333,0,2,0,Clean,test
+EqualsOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,train
+NotEqualsOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,train
+OrOperator,0,0.6666666666666666,13,2.6666666666666665,1.3333333333333333,0,2,0,Clean,train
+GreaterThanOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,test
+GreaterThanOrEqualOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,train
+LessThanOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,train
+LessThanOrEqualOperator,0,0.6666666666666666,11,2.0,1.0,0,1,0,Clean,train
+Image,0,1.0,69,24.5,5.0,0,1,0,Clean,train
+Figure,0,1.0,63,17.0,5.666666666666667,1,0,1,Long Method,train
+Parser,0,0.3904761904761905,105,4.866666666666666,2.066666666666667,0,0,0,Clean,train
+Html5EmailInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Html5NumberInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Html5DateInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Html5DateTimeInput,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+Html5TimeInput,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+JQueryColorPicker,0,0.0,13,3.0,2.0,0,0,0,Clean,train
+GetlineException,0,0.0,0,0.0,0.0,0,0,0,Clean,train
+ImplementationError,0,0.0,3,0.0,0.0,0,1,0,Clean,train
+BaseImpl,1,0.0,18,2.25,1.25,0,0,1,Clean,test
+GEOSImpl,0,0.0,5,2.0,1.0,1,0,0,Clean,train
+LineString,0,0.6428571428571429,121,11.375,1.875,0,1,2,Clean,test
+LineStringAdapter,0,0.5,32,4.5,1.75,0,1,1,Clean,train
+CloudVoxelStage,0,0.5,52,7.2,1.0,0,0,0,Clean,train
+SkinShadingStage,0,0.3333333333333333,33,7.333333333333333,2.0,0,0,0,Clean,test
+ComGoogleChrome,1,0.6666666666666666,46,13.0,4.0,0,0,1,Feature Envy,train
+RelMeParser,0,0.0,7,2.0,1.5,0,1,0,Clean,train
+Command,0,1.0,38,10.333333333333334,2.0,0,0,0,Clean,test
+MCQuestion,0,1.0,39,3.4,1.8,0,0,0,Clean,train
+Answer,0,0.0,19,1.0,1.0,0,0,0,Clean,test
+Migration,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+ServeView,0,1.0,35,13.5,4.5,0,0,0,Clean,train
+RedirectsMenuItem,0,0.0,4,3.0,1.0,0,0,0,Clean,train
+WagtailSnippetsAppConfig,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+EnvFormula,0,0.6666666666666666,18,2.6666666666666665,1.6666666666666667,0,0,0,Clean,train
+Sprinter,0,0.9722222222222222,31,1.4444444444444444,1.0,0,0,0,Clean,train
+Candidate,0,1.0,14,2.0,1.0,0,0,0,Clean,train
+Shamir,0,0.0,37,10.333333333333334,3.3333333333333335,0,0,0,Clean,train
+CONNECT_ACTIONS,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+SaveFileHandler,0,1.0,66,31.0,6.0,0,0,0,Feature Envy,test
+GameProfileError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+GameProfile,1,0.4,89,15.0,3.8,0,0,1,Clean,train
+IInsert,0,0.0,8,6.0,1.0,0,0,0,Clean,test
+TransactionalPage,0,0.0,10,1.3333333333333333,1.0,0,1,0,Clean,train
+Root,0,0.5,38,2.75,1.25,1,0,1,Clean,train
+Win32Reactor,0,0.5714285714285714,225,10.214285714285714,2.9285714285714284,0,1,2,Long Method,test
+_ThreadFDWrapper,0,0.3333333333333333,46,5.5,1.0,0,2,0,Clean,test
+_ThreadedWin32EventsMixin,2,0.0,56,7.75,1.25,0,0,3,Clean,train
+PrecomputePowerSetCache,0,0.0,12,2.3333333333333335,1.6666666666666667,0,0,0,Clean,train
+PrecomputeCache,0,0.0,6,1.0,1.0,0,0,0,Clean,test
+Mock,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+Migration,0,0.0,115,0.0,0.0,0,0,0,Clean,test
+_WorkItem,0,0.0,17,7.0,2.0,0,1,0,Clean,test
+ThreadPoolExecutor,1,0.0,50,10.25,2.0,0,0,1,Clean,train
+HgClient,0,0.5955882352941176,268,13.647058823529411,4.0588235294117645,0,0,0,Long Method,train
+SeparationCalculator,0,1.0,54,11.5,3.25,0,0,0,Clean,train
+LocalLogMerge,0,0.2857142857142857,68,6.125,1.5,0,0,0,Clean,train
+LinkIdentityOperation,0,0.4,59,6.5,1.5,0,0,0,Clean,train
+UserLogHandler,0,0.0,32,23.0,3.0,0,0,0,Clean,train
+UserLogDataHandler,0,0.6666666666666666,37,7.333333333333333,2.0,0,1,1,Clean,train
+UserNameDataHandler,0,1.0,26,7.5,2.5,0,1,1,Clean,train
+Canvas,0,0.7111111111111111,111,9.1,2.0,0,0,0,Clean,train
+MyRectVisual,0,0.0,73,27.0,1.0,0,0,0,Clean,train
+ApplicationBackend,0,0.3333333333333333,21,1.3333333333333333,1.0,0,1,1,Clean,train
+CanvasBackend,0,0.5047619047619047,106,4.866666666666666,1.4666666666666666,0,1,1,Clean,train
+SceneCanvas,0,0.796923076923077,581,17.916666666666668,3.125,0,0,0,God Class,test
+PipelineInspector,0,0.8,201,15.909090909090908,3.909090909090909,0,0,0,God Class,test
+PluginData,0,1.0,37,2.2,1.4,0,1,0,Clean,train
+ElementwiseProduct,0,0.0,22,12.0,3.0,0,0,0,Clean,train
+Dot,0,0.0,11,8.0,2.0,0,0,0,Clean,train
+Cross,0,0.0,16,13.0,2.0,0,0,0,Clean,test
+CartesianProduct,0,0.0,35,31.0,12.0,0,0,0,Long Method,train
+BlenderNavPanel,0,0.0,14,5.0,1.0,0,0,0,Clean,train
+RunModalTimer,0,0.6666666666666666,33,6.666666666666667,2.3333333333333335,0,0,0,Clean,train
+GoParser,0,0.4642857142857143,62,5.0,2.75,0,0,0,Clean,train
+Meta,0,1.0,19,6.0,1.0,0,0,0,Clean,train
+HotWater,0,0.9,34,4.6,1.6,0,0,0,Clean,train
+ConcreteCurrentReservation,0,0.0,67,7.5,1.5,0,0,0,Clean,train
+WaitingReservation,0,0.0,29,6.0,1.0,0,0,0,Clean,train
+TFtpDevice,3,0.0,28,12.0,2.5,0,4,7,Clean,train
+WlTFtpDeviceError,0,0.0,2,1.0,1.0,0,4,4,Clean,train
+WlTFtpDeviceCallingProcessError,0,0.0,2,1.0,1.0,1,4,4,Clean,train
+WlTFtpDeviceWaitingCommandError,0,0.0,2,1.0,1.0,1,4,4,Clean,train
+WlTFtpDeviceRetrievingOutputFromCommandError,0,0.0,2,1.0,1.0,1,4,4,Clean,train
+SortKey,0,1.0,11,1.6666666666666667,1.0,0,0,0,Clean,test
+RemoteUpstream,0,0.5,49,2.5555555555555554,1.4444444444444444,0,0,0,Clean,train
+sum,0,1.0,7,2.0,1.5,0,3,3,Clean,train
+len,0,1.0,7,2.0,1.5,0,3,3,Clean,train
+max,0,1.0,10,3.5,2.0,0,3,3,Clean,train
+min,0,1.0,10,3.5,2.0,0,3,3,Clean,train
+Checkbox,0,0.0,16,1.2,1.0,0,2,0,Clean,train
+Select,0,0.0,16,1.2,1.0,0,1,2,Clean,train
+Preferences,2,0.8571428571428571,84,8.5,5.0,0,1,7,Clean,test
+ExecutorMetaclass,0,0.0,18,13.0,3.0,0,0,0,Clean,train
+Executor,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+BaseConnector,0,1.0,17,1.6,1.0,0,1,0,Clean,test
+SqliteConnector,0,1.0,111,10.444444444444445,2.2222222222222223,1,0,1,Feature Envy,test
+ManagerBase,0,0.9,37,3.5,1.75,0,5,0,Clean,train
+FeedsManager,1,0.6666666666666666,275,22.0,1.9,1,4,13,Clean,train
+DatastreamsManager,0,0.7692307692307693,211,11.923076923076923,1.6153846153846154,0,4,12,God Class,train
+DatapointsManager,0,0.7424242424242424,225,15.75,1.5,0,4,11,God Class,train
+TriggersManager,0,0.2857142857142857,144,14.857142857142858,1.5714285714285714,1,4,10,Clean,train
+KeysManager,0,0.6428571428571429,134,11.25,1.75,1,4,9,Clean,train
+AppleTrailersIE,0,0.0,126,72.0,4.0,0,0,0,Feature Envy,train
+ChilloutzoneIE,0,0.0,83,45.0,7.0,0,0,0,Clean,train
+PyvideoIE,0,0.0,50,21.0,2.0,0,0,0,Clean,train
+MRPageRank,0,0.8333333333333334,55,11.25,2.0,0,0,0,Clean,test
+LineSpout,0,0.0,7,3.0,1.0,0,0,0,Clean,train
+JSONSerializer,0,1.0,28,12.0,2.5,0,0,0,Feature Envy,train
+Span,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+DiscardPushServlet,0,0.6666666666666666,49,14.333333333333334,1.3333333333333333,0,0,0,Clean,test
+stat_abline,0,0.0,55,50.0,13.0,0,0,0,Long Method,train
+PosTagger,0,0.8571428571428571,57,5.571428571428571,2.857142857142857,0,0,0,Clean,train
+BgpDump,0,0.25,219,21.666666666666668,7.333333333333333,0,0,0,Long Method,test
+Information,0,0.0,36,13.0,1.0,0,0,0,Data Class,train
+LoggingWrapper,0,1.0,87,8.0,2.25,0,0,0,Feature Envy,train
+FtpVsFtpd,0,0.0,93,26.0,9.0,0,0,0,Clean,train
+NeuralRegressor,0,0.7,25,2.2,1.4,0,0,0,Clean,train
+BokehWidget,0,1.0,78,9.666666666666666,3.0,0,0,0,Clean,train
+SqlBeautifierCommand,0,0.0,35,10.0,2.3333333333333335,0,0,0,Feature Envy,train
+Command,0,0.9333333333333333,148,18.333333333333332,4.166666666666667,0,0,0,Feature Envy,test
+Lomolino,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+BET_Sigmoidal_A,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+BET_Sigmoidal_B,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+BoltzmannSigmoidA,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,test
+BoltzmannSigmoidB,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+Chapman,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+DonLevinSigmoid,0,0.6666666666666666,52,7.333333333333333,1.3333333333333333,0,0,0,Clean,train
+FiveParameterLogistic,0,0.6666666666666666,50,6.0,1.3333333333333333,0,0,0,Clean,train
+FourParameterLogistic,0,0.6666666666666666,49,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+GeneralisedLogistic,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+GompertzA,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+GompertzB,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,test
+GompertzC,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+Hill,0,0.5,52,4.75,1.25,0,0,0,Clean,train
+Janoschek,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+Janoschek_Modified,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+LogisticA,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+LogisticB,0,0.6666666666666666,48,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+MagneticSaturation,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,test
+MorganMercerFlodin,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_YIII,0,0.6666666666666666,56,8.666666666666666,1.3333333333333333,0,0,0,Clean,test
+PetersBaskin_YII,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_YIV,0,0.6666666666666666,62,10.666666666666666,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_YI,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_YV,0,0.6666666666666666,63,11.0,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_YV_Scaled,0,0.6666666666666666,64,11.333333333333334,1.3333333333333333,0,0,0,Clean,train
+PetersBaskin_Y,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+Richards,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SigmoidA,0,0.6666666666666666,45,5.0,1.3333333333333333,0,0,0,Clean,train
+SigmoidA_Modified,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SigmoidB,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SigmoidB_Modified,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,test
+Weibull,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+WeibullCDF,0,0.6666666666666666,47,5.0,1.3333333333333333,0,0,0,Clean,train
+WeibullCDF_scaled,0,0.6666666666666666,48,5.333333333333333,1.3333333333333333,0,0,0,Clean,test
+WeibullPDF,0,0.6666666666666666,47,5.0,1.3333333333333333,0,0,0,Clean,train
+SimpleReciprocalA,0,0.6666666666666666,44,4.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_01,0,0.6666666666666666,44,4.666666666666667,1.3333333333333333,0,0,0,Clean,test
+SimpleEquation_02,0,0.6666666666666666,44,4.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_03,0,0.6666666666666666,45,5.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_04,0,0.6666666666666666,44,4.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_05,0,0.6666666666666666,44,4.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_06,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_07,0,0.5,52,4.75,1.25,0,0,0,Clean,test
+SimpleEquation_08,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_09,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,test
+SimpleEquation_10,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_13,0,0.6666666666666666,48,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_14,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_15,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,test
+SimpleEquation_16,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,test
+SimpleEquation_17,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_18,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_19,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_20,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_21,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_22,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_23,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_24,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_25,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_26,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_27,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_28,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_29,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_30,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_31,0,0.6666666666666666,45,5.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_32,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_33,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_34,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_35,0,0.6666666666666666,45,5.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_36,0,0.6666666666666666,45,5.0,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_37,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_38,0,0.6666666666666666,47,5.666666666666667,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_39,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_40,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_41,0,0.6666666666666666,46,5.333333333333333,1.3333333333333333,0,0,0,Clean,train
+SimpleEquation_42,0,0.6666666666666666,48,6.0,1.3333333333333333,0,0,0,Clean,train
+Config,0,0.0,24,3.75,1.5,0,0,0,Clean,test
+AliasedGroup,0,1.0,36,14.5,3.0,0,0,0,Clean,train
+Environment,0,0.6666666666666666,14,3.0,1.6666666666666667,0,0,0,Clean,train
+ComplexCLI,0,1.0,14,5.5,3.0,0,0,0,Clean,train
+Repo,0,0.3333333333333333,12,2.3333333333333335,1.3333333333333333,0,0,0,Clean,train
+URL,0,0.0,12,9.0,3.0,0,0,0,Clean,train
+ParameterSource,0,0.0,36,0.0,0.0,0,0,0,Clean,train
+Context,0,0.9395161290322581,748,19.285714285714285,2.892857142857143,0,6,15,God Class,train
+Command,0,0.9261538461538461,672,22.083333333333332,3.9583333333333335,0,6,26,God Class,test
+_FakeSubclassCheck,0,0.0,5,1.0,1.0,0,0,0,Clean,test
+_BaseCommand,0,0.0,4,0.0,0.0,1,0,0,Clean,train
+Group,0,0.8888888888888888,460,23.8,4.666666666666667,1,6,25,God Class,train
+_MultiCommand,0,0.0,4,0.0,0.0,2,0,0,Clean,train
+CommandCollection,0,0.0,55,7.75,2.5,2,3,8,Clean,test
+Parameter,0,0.7532467532467533,668,25.2,4.75,0,6,18,God Class,test
+Option,0,0.4678362573099415,802,35.31578947368421,9.210526315789474,1,6,20,Long Method,train
+Argument,0,0.8333333333333334,112,8.88888888888889,3.111111111111111,1,6,12,Clean,train
+ClickException,0,0.3333333333333333,30,3.75,1.25,0,8,14,Clean,train
+UsageError,0,0.0,43,13.5,3.5,1,8,15,Feature Envy,train
+BadParameter,0,0.0,42,9.5,2.0,2,8,9,Clean,test
+MissingParameter,0,0.3333333333333333,70,17.333333333333332,6.0,3,8,9,Long Method,train
+NoSuchOption,0,0.0,33,11.0,2.5,2,8,9,Clean,train
+NoSuchCommand,0,0.0,33,11.0,2.5,2,8,9,Clean,train
+BadOptionUsage,0,0.0,16,4.0,1.0,2,8,9,Clean,train
+BadArgumentUsage,0,0.0,6,0.0,0.0,2,0,0,Clean,test
+NoArgsIsHelpError,0,1.0,7,1.0,1.0,2,8,15,Clean,train
+FileError,0,0.0,17,4.5,1.5,1,8,9,Clean,test
+Abort,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Exit,0,0.0,12,1.0,1.0,0,9,0,Clean,train
+HelpFormatter,0,0.5909090909090909,189,12.333333333333334,2.0833333333333335,0,0,0,Clean,test
+_Option,0,0.0,55,16.333333333333332,4.333333333333333,0,1,0,Clean,train
+_Argument,0,0.0,28,12.5,3.0,0,1,0,Clean,train
+_ParsingState,0,0.0,5,4.0,1.0,0,1,0,Clean,train
+_OptionParser,3,0.4444444444444444,276,22.1,4.5,0,0,5,Clean,train
+CompletionItem,0,0.0,34,5.5,1.0,0,0,0,Clean,train
+_SourceVarsDict,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+ShellComplete,0,0.7857142857142857,108,8.0,1.0,0,1,8,Clean,test
+BashComplete,0,1.0,56,10.75,2.5,1,1,1,Clean,test
+ZshComplete,0,1.0,33,12.5,2.5,1,1,0,Clean,train
+FishComplete,0,1.0,34,13.0,3.5,1,1,0,Clean,train
+PowerShellComplete,0,1.0,31,10.0,2.0,1,1,0,Clean,train
+ParamTypeInfoDict,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+ParamType,0,1.0,174,10.875,1.375,0,10,12,Clean,train
+CompositeParamType,0,0.0,5,0.0,1.0,0,0,0,Clean,train
+FuncParamType,0,0.6666666666666666,25,5.666666666666667,2.0,0,8,8,Clean,train
+UnprocessedParamType,0,1.0,9,2.0,1.0,0,2,0,Clean,train
+StringParamType,0,1.0,22,8.5,3.0,0,2,0,Clean,test
+Choice,0,0.4666666666666667,173,12.2,2.0,0,8,8,Clean,test
+DateTimeInfoDict,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+DateTime,0,0.6,68,5.5,1.8333333333333333,0,8,8,Clean,test
+_NumberParamTypeBase,0,0.0,17,12.0,2.0,0,2,1,Clean,train
+_NumberRangeBase,0,0.4,101,13.333333333333334,4.0,0,8,22,Long Method,test
+IntParamType,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+IntRange,0,0.0,21,4.0,2.0,1,1,0,Clean,train
+FloatParamType,0,0.0,5,1.0,1.0,0,0,0,Clean,train
+FloatRange,0,1.0,40,10.0,3.0,1,1,7,Clean,train
+BoolParamType,0,1.0,66,8.333333333333334,1.6666666666666667,0,2,1,Clean,test
+UUIDParameterType,0,1.0,19,7.0,2.0,0,2,1,Clean,train
+FileInfoDict,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+File,0,0.4,128,16.2,2.8,0,8,8,Clean,train
+PathInfoDict,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+Path,0,0.3,188,27.0,6.4,0,8,8,Long Method,train
+TupleInfoDict,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+Tuple,0,0.0,50,5.2,1.2,0,8,8,Clean,train
+OptionHelpExtra,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+_LazyFile,0,0.6666666666666666,93,6.666666666666667,1.7777777777777777,0,0,0,Clean,train
+_KeepOpenFile,0,0.6,38,1.8333333333333333,1.0,0,0,0,Clean,train
+_PacifyFlushWrapper,0,0.0,26,3.0,1.6666666666666667,0,0,0,Clean,train
+_NonClosingTextIOWrapper,1,0.6666666666666666,23,6.0,1.3333333333333333,0,0,3,Clean,train
+_FixupStream,0,0.0,66,7.666666666666667,2.6666666666666665,0,1,0,Clean,train
+_AtomicFile,0,0.6190476190476191,33,2.7142857142857144,1.1428571428571428,0,1,0,Clean,train
+_BufferedTextPagerStream,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ProgressBar,0,0.6900584795321637,329,15.210526315789474,3.736842105263158,0,2,1,God Class,train
+MaybeStripAnsi,0,0.0,8,2.5,1.5,0,2,2,Clean,train
+Editor,0,0.8,113,24.5,5.25,0,1,2,Clean,train
+TextWrapper,0,0.5,150,33.25,9.25,0,0,0,Long Method,train
+Sentinel,0,0.0,12,1.0,1.0,0,0,0,Clean,train
+_WindowsConsoleRawIOBase,0,1.0,6,1.5,1.0,0,1,1,Clean,test
+_WindowsConsoleReader,0,1.0,32,14.5,3.5,1,0,0,Clean,train
+_WindowsConsoleWriter,0,1.0,29,7.666666666666667,2.3333333333333335,1,1,0,Clean,train
+ConsoleStream,0,0.6190476190476191,29,2.142857142857143,1.4285714285714286,0,1,2,Clean,train
+_EmojiListReturn,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+config,0,0.0,61,24.0,4.0,0,0,0,Clean,train
+EmojiMatch,1,0.5,58,8.4,1.4,0,1,2,Clean,test
+EmojiMatchZWJ,1,0.9,33,3.6,1.2,1,2,4,Clean,train
+EmojiMatchZWJNonRGI,0,0.0,22,3.3333333333333335,1.0,2,1,1,Clean,train
+Token,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+EmojiDataDict,0,0.0,22,13.0,4.0,0,0,0,Clean,test
+Formatter,0,0.0,36,13.0,5.0,0,1,1,Clean,test
+Handler,1,0.0,15,7.0,1.0,0,1,2,Clean,test
+Ratio,0,1.0,31,2.2,1.2,0,0,0,Clean,train
+ExifError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+InvalidExif,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ExifNotFound,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ExifHeader,0,0.6323529411764706,678,37.470588235294116,6.294117647058823,0,0,0,Long Method,train
+BoxVersion,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+BadSize,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Box,0,0.8333333333333334,45,3.0,1.0,0,1,0,Clean,test
+HEICExifFinder,3,0.9353846153846154,263,7.461538461538462,2.3076923076923075,0,0,5,God Class,train
+IfdTag,0,0.0,49,13.333333333333334,1.3333333333333333,0,0,0,Data Class,train
+JXLExifFinder,0,0.0,13,10.0,1.0,0,0,0,Clean,train
+FieldType,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+ExplanationStep,0,0.0,23,5.0,1.0,0,0,0,Clean,train
+ExplainedText,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+TextFixerConfig,0,0.0,136,0.0,0.0,0,0,0,Clean,train
+IncrementalDecoder,0,1.0,139,40.333333333333336,4.666666666666667,0,1,0,Feature Envy,train
+StreamWriter,0,0.0,3,1.0,1.0,0,0,0,Clean,train
+StreamReader,1,0.0,3,1.0,1.0,0,0,1,Clean,train
+CharData,0,0.0,8,3.0,2.0,0,0,0,Clean,test
+FlowCallable,0,0.0,5,2.0,1.0,0,0,0,Clean,train
+Cell,0,0.6428571428571429,81,7.125,1.625,0,0,0,Clean,test
+Client,0,0.21568627450980393,455,22.666666666666668,2.1666666666666665,0,0,0,Long Method,train
+UnSupportedExportFormat,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+GSpreadException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+WorksheetNotFound,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+NoValidUrlKeyFound,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+IncorrectCellLabel,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidInputValue,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+APIError,0,0.5,32,5.5,1.25,1,0,0,Clean,test
+SpreadsheetNotFound,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+HTTPClient,0,0.9761904761904762,474,19.714285714285715,1.7142857142857142,0,1,1,God Class,test
+BackOffHTTPClient,0,0.0,105,71.0,10.0,1,1,1,Long Method,train
+Spreadsheet,0,0.5024154589371981,754,14.195652173913043,1.4130434782608696,0,0,0,Clean,test
+StrEnum,0,1.0,12,2.3333333333333335,1.3333333333333333,0,0,0,Clean,train
+Dimension,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+MergeType,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+ValueRenderOption,0,0.0,3,0.0,0.0,1,0,0,Clean,test
+ValueInputOption,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+InsertDataOption,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+DateTimeOption,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+MimeType,0,0.0,7,0.0,0.0,1,0,0,Clean,train
+ExportFormat,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+PasteType,0,0.0,7,0.0,0.0,1,0,0,Clean,train
+PasteOrientation,0,0.0,2,0.0,0.0,1,0,0,Clean,test
+GridRangeType,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+ValidationConditionType,0,0.0,32,0.0,0.0,1,0,0,Clean,test
+TableDirection,0,0.0,3,0.0,0.0,1,0,0,Clean,train
+ValueRange,0,0.8333333333333334,73,6.5,1.25,0,1,1,Clean,test
+Worksheet,0,0.7362802335279399,3531,29.854545454545455,1.8727272727272728,0,1,3,God Class,train
+MayaDT,0,0.9472789115646258,322,3.673469387755102,1.2653061224489797,0,1,5,God Class,train
+MayaInterval,0,0.6375661375661376,260,6.392857142857143,2.5357142857142856,0,1,5,Clean,test
+BehaviorChangeWarning,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Converter,0,0.9642857142857143,53,3.5,1.5,0,0,0,Clean,train
+Definition,0,0.0,26,22.0,4.0,0,0,0,Clean,train
+WithDefErr,1,0.0,4,1.0,1.0,0,0,1,Clean,train
+PintError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DefinitionError,0,0.0,17,2.0,1.0,0,1,0,Clean,train
+DefinitionSyntaxError,0,0.0,12,1.0,1.0,0,0,0,Clean,train
+RedefinitionError,0,0.0,15,1.6666666666666667,1.0,0,0,0,Clean,train
+UndefinedUnitError,0,0.0,17,2.6666666666666665,1.6666666666666667,0,0,0,Clean,train
+PintTypeError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+DimensionalityError,0,0.0,43,10.0,1.6666666666666667,1,0,0,Clean,train
+OffsetUnitCalculusError,0,0.5,25,3.25,1.25,1,1,1,Clean,train
+LogarithmicUnitCalculusError,0,0.5,25,3.25,1.25,1,1,1,Clean,train
+UnitStrippedWarning,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+UnexpectedScaleInContainer,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+UndefinedBehavior,0,0.0,7,1.0,1.0,0,0,0,Clean,train
+PintAxisInfo,0,0.0,6,3.0,1.0,0,1,1,Clean,train
+PintConverter,1,0.9,35,4.4,2.0,0,1,2,Clean,train
+IteratorLookAhead,0,0.5,26,3.5,1.75,0,0,0,Clean,train
+EvalTreeNode,0,0.0,80,22.333333333333332,4.333333333333333,0,0,0,Clean,train
+Quantity,0,0.0,351,0.0,0.0,0,0,0,Clean,train
+Unit,0,0.0,25,0.0,0.0,0,0,0,Clean,test
+GenericUnitRegistry,0,0.0,9,0.0,0.0,0,0,0,Clean,test
+UnitRegistry,0,1.0,117,19.333333333333332,1.0,0,1,2,Clean,train
+LazyRegistry,0,0.9333333333333333,30,3.1666666666666665,1.6666666666666667,0,2,3,Clean,test
+ApplicationRegistry,0,0.2,56,3.3,1.3,0,2,1,Clean,train
+udict,0,1.0,7,1.0,1.0,0,2,0,Clean,train
+UnitsContainer,1,0.677536231884058,241,7.166666666666667,2.1666666666666665,0,1,8,God Class,train
+ParserHelper,1,0.6470588235294118,219,8.705882352941176,2.823529411764706,1,1,11,Clean,train
+SharedRegistryObject,0,1.0,53,17.0,2.5,0,1,0,Clean,train
+PrettyIPython,0,0.0,20,3.6666666666666665,2.0,0,0,0,Clean,train
+Handler,0,0.0,1,0.0,1.0,0,0,0,Clean,train
+ParserConfig,0,1.0,38,6.5,1.75,0,0,0,Feature Envy,train
+PintParsedStatement,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+FullFormatter,0,0.4444444444444444,217,19.0,4.333333333333333,0,0,0,Clean,test
+HTMLFormatter,0,0.7,146,27.0,2.8,0,0,0,Feature Envy,train
+LatexFormatter,0,0.7,124,22.6,1.6,0,1,3,Clean,train
+SIunitxFormatter,0,0.7,127,22.6,1.8,0,1,3,Clean,train
+BaseFormatter,0,0.0,2,1.0,1.0,0,0,0,Clean,train
+DefaultFormatter,0,0.7,134,23.8,2.2,1,3,9,Clean,train
+CompactFormatter,0,0.7,108,19.4,1.6,1,3,9,Clean,test
+PrettyFormatter,0,0.7,123,22.4,2.8,1,3,9,Clean,test
+RawFormatter,0,0.7,90,15.2,1.4,1,3,9,Clean,test
+SortKwds,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BabelKwds,0,0.0,5,0.0,0.0,0,0,0,Clean,test
+Formatter,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+EndDirectiveBlock,0,0.0,7,3.0,2.0,0,0,0,Clean,train
+DirectiveBlock,0,0.0,9,0.0,1.0,0,0,0,Clean,train
+DefinitionSyntaxError,0,0.6666666666666666,24,3.0,2.0,0,0,0,Clean,train
+ImportDefinition,0,1.0,11,2.0,1.5,0,0,0,Clean,train
+ForwardRelation,0,0.0,10,3.0,1.0,0,0,0,Clean,train
+BidirectionalRelation,0,0.0,12,3.0,1.0,0,0,0,Clean,train
+BeginContext,0,0.0,46,31.0,6.0,0,0,0,Clean,test
+ContextDefinition,0,0.7333333333333333,70,2.5,1.0,0,0,0,Clean,train
+BeginDefaults,0,0.0,10,3.0,2.0,0,0,0,Clean,train
+DefaultsDefinition,0,1.0,36,5.0,2.6666666666666665,0,0,0,Clean,train
+PintRootBlock,0,0.0,18,0.0,0.0,0,0,0,Clean,train
+_PintParser,0,0.0,25,4.0,1.5,0,0,2,Clean,train
+DefParser,0,0.5,81,16.5,4.25,0,1,0,Long Method,test
+BeginGroup,0,0.0,29,16.0,4.0,0,0,0,Clean,train
+GroupDefinition,0,0.8333333333333334,44,2.0,1.0,0,0,0,Clean,train
+Equality,0,0.0,15,8.0,3.0,0,0,0,Clean,train
+CommentDefinition,0,0.0,13,3.0,2.0,0,0,0,Clean,train
+PrefixDefinition,0,0.0,45,34.0,7.0,0,0,0,Clean,test
+UnitDefinition,0,0.0,71,52.0,9.0,0,0,0,Feature Envy,train
+DimensionDefinition,0,0.0,17,6.0,3.0,0,0,0,Clean,train
+DerivedDimensionDefinition,0,0.0,37,24.0,6.0,0,0,0,Clean,train
+AliasDefinition,0,0.0,19,8.0,3.0,0,0,0,Clean,train
+BaseUnitRule,0,0.0,10,8.0,3.0,0,0,0,Clean,train
+BeginSystem,0,0.0,31,18.0,4.0,0,0,0,Clean,train
+SystemDefinition,0,0.8333333333333334,45,2.0,1.0,0,0,0,Clean,train
+Relation,0,0.6666666666666666,34,3.0,1.0,0,0,0,Clean,train
+ForwardRelation,0,0.0,8,1.0,1.0,1,0,0,Clean,train
+BidirectionalRelation,0,0.0,10,1.0,1.0,1,0,0,Clean,train
+ContextDefinition,0,0.6666666666666666,67,16.666666666666668,5.0,0,0,0,Long Method,train
+Transformation,0,0.0,3,2.0,1.0,0,0,0,Clean,train
+ContextQuantity,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ContextUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Context,0,0.7818181818181819,230,14.090909090909092,2.0,0,1,0,God Class,train
+ContextChain,0,0.5714285714285714,70,7.142857142857143,1.4285714285714286,0,0,3,Clean,train
+_Decorator,0,0.0,1,0.0,1.0,0,0,0,Clean,train
+ContextCacheOverlay,0,0.0,10,5.0,1.0,0,1,0,Clean,train
+GenericContextRegistry,1,0.6794871794871795,384,26.23076923076923,3.1538461538461537,0,0,2,God Class,train
+ContextRegistry,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+DaskQuantity,0,0.8181818181818182,85,5.2727272727272725,1.0909090909090908,0,0,0,Clean,train
+DaskUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+GenericDaskRegistry,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+DaskRegistry,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+GroupDefinition,0,1.0,34,6.0,2.6666666666666665,0,0,0,Feature Envy,train
+GroupQuantity,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+GroupUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Group,0,0.6666666666666666,181,10.384615384615385,2.230769230769231,0,0,0,Clean,train
+GenericGroupRegistry,0,0.6944444444444444,118,9.444444444444445,1.8888888888888888,0,0,0,Clean,train
+GroupRegistry,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+MeasurementQuantity,1,0.0,11,9.0,4.0,0,0,1,Clean,test
+MeasurementUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Measurement,0,0.5,154,13.333333333333334,3.3333333333333335,0,1,0,Long Method,train
+GenericMeasurementRegistry,0,0.0,18,13.0,2.0,0,0,0,Clean,train
+MeasurementRegistry,0,0.0,4,0.0,0.0,0,0,0,Clean,test
+OffsetConverter,0,0.5,37,6.0,2.0,0,0,0,Clean,train
+LogarithmicConverter,0,0.8333333333333334,63,8.75,2.0,0,0,0,Clean,train
+NonMultiplicativeQuantity,0,0.6,57,7.333333333333333,2.6666666666666665,0,0,0,Clean,train
+NonMultiplicativeUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+GenericNonMultiplicativeRegistry,0,0.7619047619047619,277,35.0,4.571428571428571,0,0,0,Feature Envy,test
+NonMultiplicativeRegistry,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+NumpyQuantity,0,0.5666666666666667,351,11.916666666666666,3.5416666666666665,0,0,0,Long Method,train
+GenericNumpyRegistry,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+NumpyRegistry,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+NumpyUnit,0,0.0,28,25.0,5.0,0,0,0,Feature Envy,train
+NotNumeric,0,0.0,4,1.0,1.0,0,0,0,Clean,test
+Equality,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+CommentDefinition,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+DefaultsDefinition,0,0.0,10,4.0,3.0,0,0,0,Clean,test
+NamedDefinition,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+PrefixDefinition,1,0.5,35,4.0,2.5,1,0,1,Clean,train
+UnitDefinition,0,0.6,98,11.166666666666666,2.8333333333333335,1,0,0,Long Method,train
+DimensionDefinition,0,1.0,9,1.5,1.5,1,0,0,Clean,train
+DerivedDimensionDefinition,0,1.0,27,9.0,2.5,2,0,0,Feature Envy,train
+AliasDefinition,0,0.0,16,8.0,4.0,0,0,0,Clean,test
+ScaleConverter,0,0.0,19,6.0,2.0,0,1,0,Clean,train
+PlainQuantity,0,0.8478931140801644,1742,13.647727272727273,3.522727272727273,0,0,0,God Class,train
+RegistryCache,0,1.0,31,13.0,1.5,0,1,0,Clean,train
+RegistryMeta,0,0.0,8,3.0,1.0,0,0,1,Clean,train
+GenericPlainRegistry,1,0.9044162129461585,1354,20.25,3.5,0,1,1,God Class,train
+PlainRegistry,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+PlainUnit,0,0.5440860215053763,287,7.444444444444445,2.2222222222222223,0,0,0,Clean,train
+BaseUnitRule,0,0.0,8,0.0,0.0,0,0,0,Clean,train
+SystemDefinition,0,0.6666666666666666,48,10.666666666666666,4.0,0,0,0,Clean,train
+SystemQuantity,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+SystemUnit,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+System,0,0.6444444444444445,161,12.4,2.3,0,0,0,Clean,test
+Lister,0,0.0,9,1.3333333333333333,1.0,0,0,0,Clean,train
+GenericSystemRegistry,0,0.6153846153846154,226,14.666666666666666,2.75,0,0,0,Clean,test
+SystemRegistry,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+_IntentionallyEmptyModule,0,0.0,12,10.0,3.0,0,0,0,Clean,train
+_PluginSourceModule,1,0.0,13,4.0,1.5,0,2,5,Clean,train
+PluginBase,1,1.0,26,5.5,1.5,0,2,1,Clean,train
+PluginSource,1,0.6727272727272727,166,10.363636363636363,2.8181818181818183,0,3,1,God Class,test
+PluginBaseState,0,1.0,14,4.0,2.0,0,2,0,Clean,train
+_ImportHook,0,0.0,37,7.25,2.5,0,1,5,Clean,train
+FlaskyStyle,0,0.0,79,0.0,0.0,0,0,0,Clean,train
+Application,0,0.0,28,11.5,1.5,0,0,0,Clean,train
+PremailerError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ExternalNotFoundError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+ExternalFileLoadingError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Premailer,2,0.7777777777777778,595,57.2,13.0,0,0,2,Long Method,train
+JsonEncoder,0,1.0,26,9.5,4.5,0,0,0,Clean,train
+JsonFormatter,0,0.8055555555555556,183,17.77777777777778,3.3333333333333335,0,0,0,Clean,train
+Record,0,0.9636363636363636,79,4.818181818181818,1.6363636363636365,0,3,1,Clean,train
+RecordCollection,0,0.9120879120879121,148,8.428571428571429,2.357142857142857,0,2,4,God Class,train
+Database,1,0.8205128205128205,89,4.538461538461538,1.3846153846153846,0,1,8,Clean,train
+Connection,2,0.6222222222222222,96,7.5,1.7,0,1,6,Clean,train
+PublishCommand,0,1.0,30,4.25,1.25,0,0,0,Clean,train
+FlaskyStyle,0,0.0,79,0.0,0.0,0,0,0,Clean,train
+BaseAdapter,0,1.0,33,8.666666666666666,1.0,0,1,1,Clean,train
+HTTPAdapter,0,0.8095238095238095,590,34.6,4.133333333333334,1,1,1,God Class,train
+AuthBase,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+HTTPBasicAuth,0,0.8,28,2.75,1.0,1,0,0,Clean,train
+HTTPProxyAuth,0,0.0,5,2.0,1.0,2,0,0,Clean,train
+HTTPDigestAuth,0,0.6222222222222222,230,24.875,5.125,1,0,0,Long Method,train
+MockRequest,0,0.8021978021978022,80,2.642857142857143,1.1428571428571428,0,0,1,Clean,train
+MockResponse,0,0.0,18,2.3333333333333335,1.0,0,0,0,Clean,train
+CookieConflictError,0,0.0,3,0.0,0.0,0,1,0,Clean,test
+RequestsCookieJar,1,0.9966666666666667,285,8.68,2.56,0,1,1,God Class,train
+RequestException,0,0.0,15,7.0,4.0,0,1,1,Clean,train
+InvalidJSONError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+JSONDecodeError,0,1.0,21,8.0,1.0,2,1,1,Clean,train
+HTTPError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ConnectionError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ProxyError,0,0.0,1,0.0,0.0,2,0,0,Clean,test
+SSLError,0,0.0,1,0.0,0.0,2,0,0,Clean,train
+Timeout,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+ConnectTimeout,0,0.0,4,0.0,0.0,2,0,0,Clean,train
+ReadTimeout,0,0.0,1,0.0,0.0,2,0,0,Clean,train
+URLRequired,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+TooManyRedirects,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+MissingSchema,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidSchema,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidURL,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidHeader,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidProxyURL,0,0.0,1,0.0,0.0,2,0,0,Clean,train
+ChunkedEncodingError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+ContentDecodingError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+StreamConsumedError,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+RetryError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+UnrewindableBodyError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+RequestsWarning,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+FileModeWarning,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+RequestsDependencyWarning,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+RequestEncodingMixin,0,1.0,143,38.333333333333336,11.666666666666666,0,1,0,Feature Envy,train
+RequestHooksMixin,0,0.0,27,11.0,3.0,0,2,0,Clean,train
+Request,1,0.0,91,16.0,3.0,1,0,3,Clean,train
+PreparedRequest,0,0.6410256410256411,351,22.846153846153847,5.076923076923077,1,1,3,Long Method,train
+Response,0,0.8861538461538462,452,15.727272727272727,3.4545454545454546,0,0,0,God Class,train
+SessionRedirectMixin,0,0.9523809523809523,265,35.42857142857143,6.571428571428571,0,1,3,Feature Envy,train
+Session,0,0.9298245614035088,510,22.473684210526315,2.6315789473684212,1,1,2,God Class,train
+CaseInsensitiveDict,0,0.37777777777777777,73,2.5,1.2,0,1,0,Clean,train
+LookupDict,0,0.8095238095238095,34,3.0,1.2,0,0,1,Clean,train
+SupportsRead,0,0.0,1,0.0,1.0,0,0,0,Clean,train
+SupportsItems,0,0.0,1,0.0,1.0,0,0,0,Clean,test
+TextSuite,0,0.7802197802197802,47,1.4285714285714286,1.0,0,0,0,Clean,train
+TextHotCacheSuite,0,0.0,8,2.5,1.5,0,0,0,Clean,train
+SyntaxWrappingSuite,0,0.9,19,2.0,1.0,0,0,0,Clean,train
+TableSuite,0,1.0,29,8.0,1.0,0,0,0,Clean,train
+PrettySuite,0,0.0,16,2.25,1.0,0,0,0,Clean,test
+StyleSuite,0,0.9,18,1.8,1.0,0,0,0,Clean,train
+ColorSuite,0,0.0,14,1.75,1.0,0,0,0,Clean,train
+ColorSuiteCached,0,0.0,18,2.75,1.0,0,0,0,Clean,train
+SegmentSuite,0,0.0,11,4.0,1.0,0,0,0,Clean,test
+Point3D,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+Triangle,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+Model,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+Header,0,0.0,11,8.0,1.0,0,0,0,Clean,train
+EmailHighlighter,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+Clock,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+RequestHighlighter,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+RainbowHighlighter,0,0.0,3,2.0,2.0,0,0,0,Clean,test
+Bird,0,0.0,5,4.0,2.0,0,0,0,Clean,train
+Process,0,1.0,19,3.0,2.0,0,0,0,Clean,test
+RichRenderable,0,0.0,14,2.0,2.0,0,0,0,Clean,train
+Align,0,0.7142857142857143,222,25.285714285714285,5.0,0,0,0,Long Method,train
+VerticalCenter,0,0.0,54,9.0,2.5,0,0,0,Clean,test
+_AnsiToken,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+AnsiDecoder,0,0.6666666666666666,91,28.0,7.666666666666667,0,0,0,Feature Envy,test
+Bar,0,0.16666666666666666,76,14.5,2.25,0,0,0,Clean,train
+Box,0,0.8571428571428571,172,17.625,3.0,0,0,0,Clean,train
+CellTable,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+ColorSystem,0,1.0,12,1.0,1.0,0,1,0,Clean,test
+ColorType,0,0.0,10,1.0,1.0,0,0,0,Clean,train
+ColorParseError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Color,2,0.717948717948718,265,16.76923076923077,4.3076923076923075,0,0,2,God Class,train
+ColorTriplet,0,1.0,34,5.666666666666667,1.0,0,0,0,Clean,test
+Columns,0,0.0,155,45.333333333333336,8.666666666666666,0,0,0,Long Method,train
+NoChange,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+ConsoleDimensions,0,0.0,6,0.0,0.0,0,1,0,Clean,train
+ConsoleOptions,0,1.0,130,12.571428571428571,2.5714285714285716,0,1,0,Long Method,train
+RichCast,0,0.0,6,3.0,1.0,0,0,0,Clean,train
+ConsoleRenderable,0,0.0,6,3.0,1.0,0,1,0,Clean,train
+CaptureError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+NewLine,0,0.0,9,2.0,1.0,0,1,0,Clean,train
+ScreenUpdate,0,0.0,15,5.0,1.5,0,1,0,Clean,test
+Capture,1,0.16666666666666666,30,4.0,1.25,0,1,3,Clean,test
+ThemeContext,0,0.0,18,3.6666666666666665,1.0,0,1,2,Clean,train
+PagerContext,0,0.0,36,9.666666666666666,2.3333333333333335,0,1,3,Clean,train
+ScreenContext,1,0.0,44,8.75,2.75,0,1,4,Clean,train
+Group,0,0.5,30,3.75,1.5,0,2,0,Clean,train
+ConsoleThreadLocals,0,0.0,5,0.0,0.0,0,1,0,Clean,test
+RenderHook,0,0.0,16,12.0,1.0,0,1,0,Clean,train
+Console,9,0.9311871227364185,2061,27.363636363636363,4.106060606060606,0,4,20,God Class,train
+Constrain,0,0.0,27,5.0,1.6666666666666667,0,0,0,Clean,test
+Renderables,0,0.0,33,4.4,1.4,0,1,1,Clean,train
+Lines,0,0.2948717948717949,101,6.363636363636363,2.272727272727273,0,1,1,Long Method,train
+Control,0,0.9545454545454546,130,7.416666666666667,1.8333333333333333,0,0,0,Clean,test
+NoEmoji,0,0.0,1,0.0,0.0,0,1,0,Clean,test
+Emoji,1,0.6,53,7.8,1.4,0,0,1,Clean,test
+ConsoleError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+StyleError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+StyleSyntaxError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+MissingStyle,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+StyleStackError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+NotRenderableError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+MarkupError,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+LiveError,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+NoAltScreen,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+FileProxy,0,0.38095238095238093,49,4.714285714285714,1.7142857142857142,0,0,0,Clean,train
+Highlighter,0,1.0,30,12.0,2.0,0,1,3,Clean,train
+NullHighlighter,0,0.0,8,1.0,1.0,1,2,0,Clean,train
+RegexHighlighter,0,0.0,16,10.0,2.0,1,2,0,Clean,train
+ReprHighlighter,0,0.0,23,0.0,0.0,2,0,0,Clean,train
+JSONHighlighter,0,0.0,34,17.0,5.0,2,1,3,Clean,train
+ISO8601Highlighter,0,0.0,55,0.0,0.0,2,0,0,Clean,train
+JSON,0,0.6666666666666666,93,24.0,1.6666666666666667,0,0,0,Clean,train
+JupyterRenderable,0,0.0,15,5.0,2.0,0,0,0,Clean,train
+JupyterMixin,0,0.0,20,15.0,3.0,0,0,0,Clean,train
+LayoutRender,0,0.0,4,0.0,0.0,0,1,0,Clean,train
+LayoutError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+NoSplitter,0,0.0,1,0.0,0.0,1,1,0,Clean,train
+_Placeholder,0,0.0,26,9.5,2.0,0,1,0,Clean,test
+Splitter,0,1.0,18,4.5,1.0,0,1,0,Clean,train
+RowSplitter,0,1.0,17,5.0,1.5,1,1,0,Clean,train
+ColumnSplitter,0,1.0,17,5.0,1.5,1,1,0,Clean,test
+Layout,3,0.7843137254901961,273,12.277777777777779,2.2222222222222223,0,0,9,God Class,train
+_RefreshThread,0,0.0,16,3.0,1.6666666666666667,0,1,2,Clean,train
+Live,1,0.48717948717948717,256,16.46153846153846,4.923076923076923,0,1,2,Long Method,train
+LiveRender,0,0.2,103,14.0,2.3333333333333335,0,0,0,Clean,test
+RichHandler,0,0.6,223,33.6,4.4,0,0,0,Clean,test
+MarkdownElement,0,1.0,54,6.666666666666667,1.0,0,3,0,Clean,train
+UnknownElement,0,0.0,6,0.0,0.0,1,0,0,Clean,train
+TextElement,0,0.6666666666666666,13,1.3333333333333333,1.3333333333333333,1,3,2,Clean,train
+Paragraph,0,0.6666666666666666,17,2.0,1.3333333333333333,2,3,0,Clean,train
+HeadingFormat,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+Heading,0,0.5,31,3.0,1.0,2,2,15,Clean,train
+CodeBlock,0,0.6666666666666666,22,4.0,1.6666666666666667,2,3,0,Clean,train
+BlockQuote,0,0.0,23,4.666666666666667,1.3333333333333333,2,3,0,Clean,train
+HorizontalRule,0,0.0,10,5.0,1.0,1,0,0,Clean,train
+TableElement,0,0.0,38,10.333333333333334,3.3333333333333335,1,3,0,Clean,train
+TableHeaderElement,0,0.0,9,2.0,1.0,1,3,0,Clean,train
+TableBodyElement,0,0.0,9,2.0,1.0,1,3,0,Clean,train
+TableRowElement,0,0.0,9,2.0,1.0,1,3,0,Clean,train
+TableDataElement,0,0.6666666666666666,29,6.666666666666667,2.6666666666666665,1,4,0,Clean,test
+ListElement,0,0.5,29,4.75,2.0,1,3,2,Clean,test
+ListItem,0,0.0,39,7.0,2.0,2,4,0,Clean,train
+Link,0,1.0,8,2.0,1.0,2,3,0,Clean,train
+ImageItem,0,0.5,37,6.25,2.0,2,2,17,Clean,train
+MarkdownContext,0,0.0,45,6.6,1.6,0,4,3,Clean,train
+Markdown,1,0.6666666666666666,191,50.333333333333336,14.0,0,2,29,Long Method,train
+Tag,0,0.0,20,4.5,2.0,0,0,0,Clean,train
+Measurement,0,1.0,111,15.166666666666666,2.1666666666666665,0,0,0,Clean,train
+Padding,0,0.6,116,15.0,3.5,0,0,0,Long Method,test
+Pager,0,0.0,9,5.0,1.0,0,0,0,Clean,test
+SystemPager,0,1.0,8,1.5,1.0,1,0,0,Clean,train
+Palette,0,0.0,61,12.5,1.25,0,0,0,Feature Envy,train
+Panel,0,0.6666666666666666,280,40.666666666666664,5.166666666666667,0,0,0,Long Method,train
+Pretty,0,0.0,101,25.666666666666668,4.0,0,0,0,Data Class,train
+Node,1,1.0,81,15.0,5.0,0,1,3,Clean,train
+_Line,0,0.0,64,11.25,3.25,0,1,1,Clean,train
+_TrackThread,0,0.5,37,7.0,1.75,0,11,15,Clean,test
+_Reader,0,0.47186147186147187,100,2.3636363636363638,1.0454545454545454,0,11,5,Clean,train
+_ReadContext,0,0.0,18,3.6666666666666665,1.0,0,10,8,Clean,train
+ProgressColumn,0,0.6666666666666666,39,6.75,2.25,0,10,13,Clean,train
+RenderableColumn,0,0.0,14,2.5,1.0,1,9,12,Clean,train
+SpinnerColumn,0,0.0,47,11.0,1.6666666666666667,1,9,25,Clean,train
+TextColumn,0,0.0,27,11.0,2.5,1,10,12,Clean,train
+BarColumn,0,0.0,39,13.0,2.0,1,10,13,Clean,test
+TimeElapsedColumn,0,0.0,9,6.0,3.0,1,2,0,Clean,train
+TaskProgressColumn,0,0.6666666666666666,69,16.666666666666668,3.3333333333333335,2,10,12,Clean,train
+TimeRemainingColumn,0,0.0,45,16.0,4.5,1,10,12,Clean,train
+FileSizeColumn,0,0.0,6,3.0,1.0,1,2,0,Clean,train
+TotalFileSizeColumn,0,0.0,6,3.0,2.0,1,2,0,Clean,train
+MofNCompleteColumn,0,0.0,24,5.0,1.5,1,9,12,Clean,train
+DownloadColumn,0,0.0,46,18.5,3.0,1,9,12,Clean,train
+TransferSpeedColumn,0,0.0,9,6.0,3.0,1,2,0,Clean,test
+ProgressSample,0,0.0,6,0.0,0.0,0,1,0,Clean,train
+Task,0,0.8333333333333334,122,5.777777777777778,2.111111111111111,0,4,0,Clean,test
+Progress,8,0.7321937321937322,590,19.56,3.4,0,11,11,God Class,train
+ProgressBar,0,0.5,189,19.75,4.875,0,0,0,Long Method,train
+PromptError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+InvalidResponse,0,0.0,12,1.0,1.0,1,2,0,Clean,train
+PromptBase,1,0.9010989010989011,271,18.4,2.7,0,0,3,Clean,train
+Prompt,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+IntPrompt,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+FloatPrompt,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+Confirm,1,0.0,23,4.0,2.0,0,1,1,Clean,test
+Region,0,0.0,6,0.0,0.0,0,0,0,Clean,test
+ReprError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Rule,0,0.4,102,16.6,3.2,0,0,0,Clean,test
+Screen,0,0.0,36,12.0,3.5,0,0,0,Clean,train
+ControlType,0,0.0,18,0.0,0.0,0,0,0,Clean,train
+Segment,0,0.9891304347826086,635,22.916666666666668,4.375,0,2,0,God Class,train
+Segments,0,0.0,22,5.5,2.0,0,0,1,Clean,train
+SegmentLines,0,0.0,22,9.5,2.5,0,0,1,Clean,test
+Spinner,0,0.7,101,16.0,3.2,0,0,0,Clean,train
+Status,0,0.6111111111111112,95,7.222222222222222,1.4444444444444444,0,0,0,Clean,train
+_Bit,0,0.0,11,2.0,1.5,0,0,0,Clean,train
+Style,0,0.8428030303030303,719,16.0,5.696969696969697,0,0,0,God Class,train
+StyleStack,0,0.0,31,3.4,1.0,0,0,0,Clean,train
+Styled,0,0.0,23,3.6666666666666665,1.0,0,0,0,Clean,test
+SyntaxTheme,0,1.0,11,2.0,1.0,0,1,0,Clean,test
+PygmentsSyntaxTheme,0,0.3333333333333333,39,10.666666666666666,3.0,1,1,0,Clean,train
+ANSISyntaxTheme,0,0.3333333333333333,30,7.666666666666667,2.0,1,1,0,Clean,train
+_SyntaxHighlightRange,0,0.0,10,0.0,0.0,0,1,0,Clean,test
+PaddingProperty,0,1.0,8,1.5,1.0,0,0,0,Clean,train
+Syntax,3,0.7058823529411765,598,29.555555555555557,5.055555555555555,0,0,9,God Class,train
+Column,0,1.0,89,2.0,1.0,0,1,0,Clean,train
+Row,0,0.0,7,0.0,0.0,0,1,0,Clean,train
+_Cell,0,0.0,8,0.0,0.0,0,1,0,Clean,train
+Table,3,0.6578947368421053,782,38.72222222222222,8.5,0,0,3,Long Method,train
+TerminalTheme,0,0.0,20,9.0,2.0,0,0,0,Clean,train
+Span,0,0.8,68,8.0,1.6666666666666667,0,1,0,Clean,test
+Text,1,0.5569023569023569,1217,20.132075471698112,3.69811320754717,0,0,4,Long Method,test
+Theme,0,0.8333333333333334,67,12.0,1.75,0,0,0,Feature Envy,train
+ThemeStackError,0,0.0,1,0.0,0.0,0,1,0,Clean,test
+ThemeStack,1,0.0,30,6.333333333333333,1.6666666666666667,0,0,1,Clean,train
+Frame,0,0.0,6,0.0,0.0,0,1,0,Clean,train
+_SyntaxError,0,0.0,6,0.0,0.0,0,1,0,Clean,train
+Stack,0,0.0,8,0.0,0.0,0,1,0,Clean,train
+Trace,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+PathHighlighter,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+Traceback,5,0.8571428571428571,633,83.28571428571429,13.0,0,0,5,Long Method,test
+Tree,0,0.5,187,39.5,9.0,0,0,0,Long Method,train
+Inspect,0,0.8,216,31.666666666666668,7.833333333333333,0,0,0,Long Method,train
+LogRender,0,0.0,72,34.5,9.0,0,0,0,Long Method,train
+NullFile,0,1.0,61,1.263157894736842,1.0,0,0,0,Clean,train
+Edge,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+Stack,0,1.0,10,2.0,1.0,0,0,0,Clean,train
+LegacyWindowsError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+WindowsCoordinates,0,0.0,21,10.0,1.0,0,1,0,Clean,train
+CONSOLE_SCREEN_BUFFER_INFO,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+CONSOLE_CURSOR_INFO,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+LegacyWindowsTerm,2,0.21568627450980393,241,9.666666666666666,1.6111111111111112,0,0,2,Clean,train
+WindowsConsoleFeatures,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+ColorBox,0,1.0,18,7.5,2.0,0,0,0,Feature Envy,train
+ScheduleError,0,0.0,3,0.0,0.0,0,1,0,Clean,train
+ScheduleValueError,0,0.0,3,0.0,0.0,1,1,0,Clean,train
+IntervalError,0,0.0,3,0.0,0.0,2,1,0,Clean,train
+CancelJob,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+Scheduler,1,0.5333333333333333,127,9.9,2.0,0,0,2,Clean,train
+Job,3,0.6060606060606061,621,15.787878787878787,3.393939393939394,0,1,3,Long Method,test
+Row,0,0.2875816993464052,69,1.5555555555555556,1.1111111111111112,0,2,2,Clean,train
+Dataset,1,0.7752081406105458,749,12.51063829787234,2.978723404255319,0,2,10,God Class,train
+Databook,0,0.5833333333333334,72,5.666666666666667,1.7777777777777777,0,1,3,Clean,train
+TablibException,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+InvalidDatasetType,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidDimensions,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+InvalidDatasetIndex,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+HeadersNeeded,0,0.0,1,0.0,0.0,1,0,0,Clean,test
+UnsupportedFormat,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+CLIFormat,0,0.0,11,5.0,2.0,0,0,0,Clean,train
+CSVFormat,0,0.5,53,9.25,3.5,0,0,0,Feature Envy,train
+DBFFormat,0,1.0,55,14.0,3.0,0,0,0,Feature Envy,train
+DataFrameFormat,0,1.0,31,6.666666666666667,2.3333333333333335,0,0,0,Clean,train
+HTMLFormat,1,1.0,59,15.333333333333334,4.333333333333333,0,0,1,Feature Envy,train
+TablibHTMLParser,0,0.0,47,10.0,4.75,0,1,0,Clean,train
+JIRAFormat,0,1.0,33,5.0,1.75,0,0,0,Clean,train
+JSONFormat,0,1.0,43,5.2,1.4,0,0,0,Feature Envy,test
+LATEXFormat,0,1.0,124,12.0,2.3333333333333335,0,0,0,Clean,train
+ODSFormat,0,1.0,189,20.375,6.375,0,0,0,Feature Envy,train
+ReSTFormat,0,1.0,237,26.125,4.5,0,0,0,Feature Envy,train
+SQLFormat,0,1.0,62,11.75,5.25,0,0,0,Feature Envy,test
+TSVFormat,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+XLSFormat,0,1.0,154,16.0,4.0,0,0,0,Feature Envy,train
+XLSXFormat,0,1.0,187,20.125,5.125,0,0,0,Feature Envy,train
+YAMLFormat,0,1.0,54,7.4,1.6,0,0,0,Clean,test
+FormatDescriptorBase,0,0.0,12,4.5,2.0,0,2,0,Clean,train
+ImportExportBookDescriptor,0,0.0,7,2.0,1.0,1,1,1,Clean,train
+ImportExportSetDescriptor,0,0.0,7,2.0,1.0,1,1,1,Clean,test
+Registry,2,0.5,63,13.5,4.25,0,0,2,Feature Envy,train
+Dbf,0,0.6410256410256411,182,8.384615384615385,1.6153846153846154,0,0,0,Clean,train
+_FieldDefinition,0,0.6666666666666666,54,6.666666666666667,1.6666666666666667,0,1,0,Clean,test
+dbf_new,0,0.0,56,10.333333333333334,1.3333333333333333,0,0,1,Clean,train
+DbfFieldDef,0,0.8974358974358975,153,7.3076923076923075,1.5384615384615385,0,0,8,God Class,train
+DbfCharacterFieldDef,0,1.0,16,4.0,1.0,1,1,0,Clean,train
+DbfNumericFieldDef,0,1.0,41,14.5,3.0,1,1,0,Clean,train
+DbfFloatFieldDef,0,0.0,3,0.0,0.0,2,0,0,Clean,train
+DbfIntegerFieldDef,0,1.0,13,2.0,1.0,1,1,0,Clean,train
+DbfCurrencyFieldDef,0,1.0,13,2.0,1.0,1,1,0,Clean,train
+DbfLogicalFieldDef,0,1.0,30,10.5,3.5,1,1,0,Clean,train
+DbfMemoFieldDef,0,1.0,23,5.0,1.0,1,1,0,Clean,train
+DbfDateFieldDef,0,1.0,28,9.0,2.0,1,1,0,Clean,train
+DbfDateTimeFieldDef,0,0.0,36,10.5,2.0,1,1,0,Clean,test
+DbfHeader,0,0.5272727272727272,238,15.090909090909092,2.0,0,0,0,Clean,train
+DbfRecord,0,0.5274725274725275,237,11.357142857142858,1.8571428571428572,0,0,0,Clean,train
+classproperty,0,0.0,4,1.0,1.0,0,0,0,Clean,train
+_InvalidValue,0,1.0,34,1.0,1.0,0,0,0,Clean,train
+Comparison,0,0.9166666666666666,58,4.0,1.2222222222222223,0,0,0,Clean,train
+TqdmUpTo,0,0.0,20,11.0,2.0,0,0,0,Clean,train
+tqdm_asyncio,0,0.9333333333333333,72,9.333333333333334,2.8333333333333335,0,0,0,Clean,train
+TqdmCallback,0,0.7,33,4.6,1.4,0,0,0,Clean,train
+tqdm_gui,0,0.5,145,34.0,5.25,0,0,0,Clean,test
+TqdmCallback,0,0.7222222222222222,106,9.333333333333334,3.2222222222222223,0,0,0,Clean,train
+TqdmHBox,0,1.0,18,4.0,2.0,0,1,0,Clean,train
+tqdm_notebook,1,0.7111111111111111,215,20.444444444444443,5.888888888888889,0,0,1,Long Method,train
+FractionColumn,0,0.0,25,10.5,3.5,0,2,2,Clean,train
+RateColumn,0,0.0,23,9.5,2.5,0,2,2,Clean,train
+tqdm_rich,2,0.4,69,11.6,2.2,0,2,4,Clean,train
+TqdmTypeError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+TqdmKeyError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+TqdmWarning,0,0.0,9,4.0,2.0,0,0,4,Clean,train
+TqdmExperimentalWarning,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+TqdmDeprecationWarning,0,0.0,1,0.0,0.0,1,1,0,Clean,test
+TqdmMonitorWarning,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+TqdmDefaultWriteLock,0,0.8571428571428571,52,3.4285714285714284,1.8571428571428572,0,2,0,Clean,train
+Bar,0,0.6666666666666666,79,16.0,5.0,0,2,0,Data Class,test
+EMA,0,0.0,28,7.0,2.0,0,2,0,Clean,train
+tqdm,5,0.865047233468286,1286,27.307692307692307,6.794871794871795,0,1,7,God Class,train
+tqdm_tk,0,0.7777777777777778,164,15.11111111111111,3.6666666666666665,0,0,0,Long Method,train
+FormatReplace,0,0.0,12,2.0,1.0,0,3,0,Clean,train
+Comparable,0,0.9333333333333333,18,1.0,1.1666666666666667,0,0,0,Clean,train
+ObjectWrapper,0,0.9,22,2.6,1.2,0,3,0,Clean,test
+SimpleTextIOWrapper,0,0.6666666666666666,17,2.3333333333333335,1.0,1,2,6,Clean,test
+DisableOnWriteError,0,1.0,40,10.333333333333334,3.6666666666666665,1,2,5,Clean,train
+CallbackIOWrapper,0,0.0,23,22.0,3.0,1,2,5,Clean,train
+TqdmSynchronisationWarning,0,0.0,4,0.0,0.0,0,0,0,Clean,train
+TMonitor,0,0.2,88,10.5,2.3333333333333335,0,0,0,Clean,test
+_InterpreterLock,0,0.7,53,8.0,2.6,0,0,0,Clean,train
+DiscordIO,0,0.0,67,13.75,3.0,0,1,1,Clean,train
+tqdm_discord,1,0.0,49,7.0,2.75,0,1,4,Clean,train
+_TqdmLoggingHandler,0,0.0,16,6.5,2.0,0,0,0,Clean,test
+SlackIO,0,0.0,30,13.0,3.5,0,1,1,Clean,train
+tqdm_slack,1,0.0,50,11.0,2.6666666666666665,0,1,3,Clean,train
+TelegramIO,0,0.0,64,13.25,3.0,0,1,1,Clean,train
+tqdm_telegram,1,0.0,51,7.0,2.75,0,1,4,Clean,train
+MonoWorker,0,0.0,25,9.0,3.0,0,0,0,Clean,test
+DummyTqdmFile,0,0.0,24,5.666666666666667,2.3333333333333335,0,0,0,Clean,train
+_IanaTLD,0,1.0,24,6.0,3.0,0,0,0,Clean,train
+ValidationError,0,0.8333333333333334,23,3.5,1.25,0,0,0,Clean,test
+AbsMax,0,0.0,17,2.0,1.0,0,0,0,Clean,test
+AbsMin,0,0.0,17,2.0,1.0,0,0,0,Clean,train
+ContextWrapper,0,0.6,46,4.166666666666667,2.0,0,2,0,Clean,test
+BundleConfig,0,0.0,6,2.0,1.0,0,1,2,Clean,train
+Bundle,1,0.8275862068965517,741,21.566666666666666,4.433333333333334,0,1,3,God Class,train
+BaseCache,0,1.0,20,2.0,1.0,0,1,0,Clean,train
+MemoryCache,0,0.5,41,6.0,2.0,1,0,2,Clean,train
+FilesystemCache,0,0.0,54,10.5,3.0,1,1,0,Clean,train
+RegisterError,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+ConfigStorage,0,1.0,58,2.0,1.3,0,3,3,Clean,train
+Resolver,0,1.0,205,17.3,2.6,0,0,0,Feature Envy,train
+BundleRegistry,1,0.6,134,11.3,2.7,0,4,1,Long Method,train
+ConfigurationContext,0,0.07142857142857142,298,1.8928571428571428,1.25,0,3,0,Clean,train
+BaseEnvironment,0,0.0,39,14.0,1.0,1,2,7,Clean,train
+DictConfigStorage,0,0.0,19,2.4,1.4,1,3,13,Clean,test
+Environment,0,0.0,12,5.0,3.0,2,2,5,Clean,train
+EnvironmentError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BundleError,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+BuildError,0,0.0,1,0.0,0.0,1,0,0,Clean,train
+FilterError,0,0.0,1,0.0,0.0,2,0,0,Clean,train
+ImminentDeprecationWarning,0,0.0,11,0.0,0.0,0,0,0,Clean,train
+LoaderError,0,0.0,2,0.0,0.0,0,2,0,Clean,test
+YAMLLoader,1,0.8571428571428571,216,24.5,4.25,0,0,1,Feature Envy,train
+PythonLoader,1,0.0,45,11.333333333333334,3.0,0,0,1,Clean,train
+GlobLoader,0,1.0,23,8.0,2.0,0,0,0,Clean,train
+BaseHunk,0,1.0,21,1.8,1.2,0,2,3,Clean,test
+FileHunk,0,0.5,18,2.0,1.0,1,4,0,Clean,train
+UrlHunk,0,0.0,50,13.0,4.666666666666667,1,4,0,Long Method,train
+MemoryHunk,0,0.9,31,3.4,1.4,1,3,3,Clean,train
+MoreThanOneFilterError,0,0.0,4,2.0,1.0,0,1,4,Clean,train
+NoFilters,0,0.0,1,0.0,0.0,0,1,0,Clean,train
+FilterTool,3,0.3333333333333333,131,28.25,5.0,0,1,7,Clean,train
+CommandError,0,0.0,1,0.0,0.0,0,3,0,Clean,train
+Command,0,0.6666666666666666,15,1.3333333333333333,1.0,0,0,0,Clean,train
+BuildCommand,1,0.0,149,147.0,29.0,1,0,1,Feature Envy,train
+WatchCommand,0,0.0,88,27.333333333333332,6.333333333333333,1,0,0,Feature Envy,train
+CleanCommand,0,0.0,14,12.0,5.0,1,0,0,Clean,train
+CheckCommand,0,0.0,20,18.0,5.0,1,0,0,Clean,train
+CommandLineEnvironment,1,0.0,51,10.666666666666666,3.3333333333333335,0,1,1,Clean,train
+GenericArgparseImplementation,2,0.8444444444444444,176,12.4,2.8,0,0,3,Clean,test
+_LazyDescr,0,0.0,10,3.0,1.0,0,2,2,Clean,train
+MovedModule,0,0.0,12,4.0,2.0,1,2,2,Clean,train
+MovedAttribute,0,0.0,22,9.0,3.5,1,2,2,Clean,train
+_MovedItems,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+TempDirHelper,0,0.9230769230769231,106,5.615384615384615,1.5384615384615385,0,1,1,Feature Envy,train
+TempEnvironmentHelper,0,0.6666666666666666,23,3.6666666666666665,1.0,1,1,1,Clean,train
+BaseUpdater,0,1.0,19,3.0,1.0,0,1,0,Clean,train
+BundleDefUpdater,0,1.0,34,8.333333333333334,2.0,1,1,0,Clean,train
+TimestampUpdater,0,1.0,70,20.666666666666668,5.0,2,0,5,Feature Envy,train
+AlwaysUpdater,0,0.0,5,1.0,1.0,1,1,0,Clean,train
+VersionIndeterminableError,0,0.0,1,0.0,0.0,0,2,0,Clean,train
+Version,0,1.0,47,13.5,1.0,0,0,0,Clean,train
+TimestampVersion,1,1.0,53,9.0,2.75,1,0,1,Clean,test
+HashVersion,1,0.6666666666666666,34,5.333333333333333,2.0,1,1,1,Clean,train
+Manifest,0,1.0,38,1.0,1.0,0,0,0,Clean,train
+FileManifest,0,0.4666666666666667,42,2.8333333333333335,1.5,1,1,2,Clean,train
+JsonManifest,0,0.0,22,4.333333333333333,1.6666666666666667,2,1,3,Clean,test
+CacheManifest,0,1.0,25,2.6666666666666665,1.3333333333333333,1,0,0,Clean,test
+SymlinkManifest,0,0.0,11,1.0,1.0,1,1,0,Clean,train
+AssetsExtension,0,1.0,182,40.25,4.75,0,1,1,Feature Envy,test
+Jinja2Loader,0,0.3333333333333333,52,13.333333333333334,4.333333333333333,0,1,2,Clean,train
+AutoprefixerFilter,0,0.0,50,10.0,5.0,0,0,0,Clean,train
+Autoprefixer6Filter,0,0.0,25,12.0,5.0,1,0,0,Clean,train
+Babel,0,1.0,72,6.0,3.5,0,0,0,Clean,test
+CleanCSS,0,0.0,40,5.666666666666667,3.3333333333333335,0,0,0,Clean,train
+CleverCSS,0,0.0,16,1.5,1.0,0,0,0,Clean,train
+ClosureJS,0,1.0,35,7.666666666666667,2.3333333333333335,0,0,0,Clean,test
+ClosureStylesheetsBase,0,1.0,20,8.0,2.0,0,0,0,Clean,train
+ClosureStylesheetsCompiler,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+ClosureStylesheetsMinifier,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+ClosureTemplateFilter,0,0.6666666666666666,60,12.0,2.25,0,0,0,Clean,train
+CoffeeScript,0,0.0,50,27.0,9.0,0,0,0,Feature Envy,train
+CompassConfig,0,0.0,19,16.0,6.0,0,1,0,Clean,test
+Compass,1,0.0,189,140.0,8.0,0,0,2,Feature Envy,train
+CSSMin,0,0.0,18,3.5,1.5,0,0,0,Clean,train
+CSSPrefixer,0,0.0,17,3.5,1.5,0,0,0,Clean,train
+CSSUtils,0,0.0,23,5.5,1.0,0,0,0,Clean,train
+CSSDataUri,0,0.0,59,36.0,8.0,0,0,0,Clean,train
+DustJS,0,0.0,45,8.0,3.0,0,0,0,Clean,train
+Handlebars,0,0.0,63,28.0,7.0,0,0,0,Feature Envy,test
+Jade,0,0.0,118,17.0,3.0,0,0,0,Clean,train
+Jinja2,0,0.0,34,4.5,2.5,0,0,0,Clean,train
+JSMin,0,0.0,34,4.5,1.5,0,0,0,Clean,test
+JSTemplateFilter,0,1.0,32,5.25,1.5,0,1,1,Clean,train
+JST,0,0.6666666666666666,128,9.333333333333334,4.0,1,1,1,Clean,train
+Less,0,0.9,136,7.0,2.8,0,0,0,Clean,train
+Less,0,0.0,72,37.0,6.0,0,0,0,Feature Envy,train
+LibSass,0,0.3333333333333333,86,8.25,2.5,0,0,0,Clean,train
+NodeSass,0,0.0,81,42.0,13.0,0,0,0,Long Method,train
+NodeSCSS,0,0.0,9,3.0,1.0,1,0,0,Clean,train
+PostCSS,0,0.0,51,6.0,3.0,0,0,0,Clean,train
+PyScss,0,0.0,146,36.0,6.0,0,0,0,Clean,train
+RCSSMin,0,0.0,28,4.5,2.0,0,0,0,Clean,train
+ReplaceFilter,0,0.4,41,3.2,1.4,0,0,0,Clean,train
+RequireJSFilter,0,0.0,159,27.0,7.0,0,0,0,Clean,train
+Sass,0,0.8333333333333334,144,8.0,3.25,0,0,0,Clean,test
+SCSS,0,0.0,9,3.0,1.0,1,0,0,Clean,train
+RubySass,0,0.6666666666666666,202,12.75,6.0,0,0,0,Long Method,train
+RubySCSS,0,0.0,9,3.0,1.0,1,0,0,Clean,test
+Slimit,0,0.0,23,4.0,1.5,0,0,0,Clean,train
+Slimmer,0,0.0,5,3.0,1.0,0,0,0,Clean,train
+CSSSlimmer,0,0.0,8,1.0,1.0,1,0,0,Clean,train
+Spritemapper,0,0.0,82,26.5,3.5,0,0,0,Feature Envy,train
+Stylus,0,0.0,44,10.0,7.0,0,0,0,Clean,train
+TypeScript,0,0.0,46,28.0,4.0,0,0,0,Feature Envy,train
+UglifyJS,0,0.0,25,5.0,3.0,0,0,0,Clean,train
+YUIBase,0,1.0,18,7.0,1.5,0,0,0,Clean,train
+YUIJS,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+YUICSS,0,0.0,2,0.0,0.0,1,0,0,Clean,train
+option,0,0.0,11,5.0,2.0,0,1,1,Clean,train
+Filter,0,0.9393939393939394,219,12.75,2.5833333333333335,0,3,1,God Class,train
+CallableFilter,0,0.6666666666666666,22,4.333333333333333,1.0,1,1,1,Clean,train
+ExternalToolMetaclass,0,0.0,47,46.0,10.0,0,1,1,Clean,train
+ExternalTool,0,1.0,168,21.833333333333332,3.6666666666666665,0,1,2,Feature Envy,test
+JavaTool,0,0.0,25,5.5,1.5,1,1,3,Clean,train
+PatternRewriter,0,0.0,17,9.0,3.0,0,1,0,Clean,train
+CSSUrlRewriter,0,1.0,46,11.0,2.0,1,0,1,Clean,train
+CSSRewrite,0,0.4,91,9.6,3.2,0,0,0,Clean,train
+Pattern,0,0.0,7,2.0,1.0,0,1,0,Clean,test
+Patterns,0,0.0,2,1.0,1.0,0,1,0,Clean,train
+ParseMaster,2,0.7111111111111111,116,7.9,2.4,0,1,2,Clean,train
+JavaScriptPacker,1,0.9743589743589743,328,23.23076923076923,3.923076923076923,0,0,3,God Class,train
+JSPacker,0,0.0,16,4.0,1.0,0,0,0,Clean,train
+RJSMin,0,0.0,21,2.0,2.0,0,0,0,Clean,train
+ComplexWarning,0,0.0,8,0.0,0.0,0,0,0,Clean,train
+ModuleDeprecationWarning,0,0.0,14,0.0,0.0,0,0,0,Clean,train
+VisibleDeprecationWarning,0,0.0,8,0.0,0.0,0,0,0,Clean,train
+RankWarning,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+TooHardError,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+AxisError,0,0.0,88,9.5,2.5,0,0,0,Clean,train
+DTypePromotionError,0,0.0,47,0.0,0.0,0,0,0,Clean,train
+PytestTester,0,0.0,156,62.0,6.5,0,0,0,Long Method,train
+_ndptr,0,0.0,17,15.0,10.0,0,0,0,Clean,train
+_concrete_ndptr,0,1.0,25,7.5,1.0,1,0,0,Clean,test
+Language,0,0.0,6,0.0,0.0,0,0,0,Clean,train
+Op,0,0.0,18,0.0,0.0,0,0,0,Clean,test
+RelOp,0,1.0,27,6.5,2.0,0,2,0,Clean,test
+ArithOp,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+OpError,0,0.0,1,0.0,0.0,0,0,0,Clean,test
+Precedence,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+ExprWarning,0,0.0,1,0.0,0.0,0,0,0,Clean,train
+Expr,0,0.8891129032258065,630,17.53125,6.3125,0,2,3,God Class,train
+_Pair,0,0.0,16,3.0,1.6666666666666667,0,2,1,Clean,test
+_FromStringWorker,2,0.0,215,51.75,13.0,0,0,3,Long Method,train
+vectorize,0,0.38095238095238093,398,31.857142857142858,7.0,0,0,0,Long Method,test
+nd_grid,0,0.0,101,31.5,9.0,0,4,0,Long Method,train
+MGridClass,0,0.0,56,1.0,1.0,1,3,8,Clean,train
+OGridClass,0,0.0,46,1.0,1.0,1,3,8,Clean,train
+AxisConcatenator,0,0.6666666666666666,120,34.666666666666664,9.333333333333334,0,4,0,Long Method,test
+RClass,0,0.0,98,1.0,1.0,1,3,8,Clean,train
+CClass,0,0.0,28,1.0,1.0,1,3,8,Clean,test
+ndenumerate,0,0.6666666666666666,46,4.666666666666667,1.0,0,4,0,Clean,train
+ndindex,0,0.6666666666666666,68,6.0,2.0,0,4,0,Clean,train
+IndexExpression,0,0.0,54,2.5,2.0,0,4,0,Clean,train
+poly1d,0,0.546236559139785,366,6.068965517241379,2.310344827586207,0,0,0,Long Method,train
+container,0,0.2748633879781421,244,1.721311475409836,1.1147540983606556,0,0,0,Clean,train
+_Deprecate,0,0.0,64,25.0,4.5,0,0,0,Clean,train
+EigResult,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+EighResult,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+QRResult,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+SlogdetResult,0,0.0,2,0.0,0.0,0,0,0,Clean,test
+SVDResult,0,0.0,3,0.0,0.0,0,0,0,Clean,test
+LinAlgError,0,0.0,26,0.0,0.0,0,0,0,Clean,test
+matrix,0,0.9959677419354839,941,25.53125,2.25,0,0,0,God Class,train
+HermiteE,0,0.0,43,0.0,0.0,0,0,0,Clean,train
+Legendre,0,0.0,43,0.0,0.0,0,0,0,Clean,train
+_NestedSequence,0,1.0,65,2.0,1.0,0,0,0,Clean,test
+Infinity,0,0.9722222222222222,26,1.0,1.0,0,0,0,Clean,test
+NegativeInfinity,0,0.9722222222222222,26,1.0,1.0,0,0,0,Clean,train
+InvalidVersion,0,0.0,3,0.0,0.0,0,1,0,Clean,train
+_BaseVersion,0,0.9642857142857143,27,1.375,1.125,0,0,0,Clean,train
+LegacyVersion,0,0.7857142857142857,30,1.125,1.0,1,0,0,Clean,train
+Version,1,0.6428571428571429,104,9.75,2.375,1,0,1,Clean,train
+ArrowStringArrayMixin,0,0.3176470588235294,342,7.742857142857143,2.5142857142857142,0,0,0,Long Method,train
+ArrowExtensionArray,0,0.5811698467313106,2712,16.73381294964029,3.741007194244604,0,0,0,Long Method,train
+BaseAccessor,0,1.0,8,1.5,1.0,0,0,2,Clean,train
+SparseAccessor,0,0.8,191,27.833333333333332,1.5,1,2,2,Long Method,train
+SparseFrameAccessor,0,0.8,180,25.833333333333332,2.5,1,2,1,Clean,train
+BaseExprVisitor,0,0.7321937321937322,405,10.925925925925926,3.2962962962962963,0,3,1,God Class,train
+PandasExprVisitor,0,0.0,11,10.0,1.0,1,1,3,Clean,train
+PythonExprVisitor,0,0.0,4,3.0,1.0,1,1,3,Clean,train
+Expr,0,0.5714285714285714,58,3.857142857142857,1.2857142857142858,0,3,1,Clean,train
+Term,0,0.775,113,4.533333333333333,1.6666666666666667,0,3,2,Clean,test
+Constant,0,1.0,11,1.6666666666666667,1.0,1,1,0,Clean,test
+Op,0,0.6785714285714286,51,3.125,1.375,0,4,0,Clean,train
+BinOp,0,0.4,149,26.0,5.2,1,2,7,Long Method,train
+UnaryOp,0,0.5,46,5.5,2.25,1,2,5,Clean,test
+MathCall,0,0.3333333333333333,12,2.3333333333333335,1.0,1,3,5,Clean,test
+FuncNode,1,1.0,8,2.5,1.5,0,3,1,Clean,test
+NamedAgg,0,0.0,27,0.0,0.0,0,0,0,Clean,test
+SeriesGroupBy,0,0.8206896551724138,1172,33.2,3.4,0,1,3,God Class,train
+DataFrameGroupBy,1,0.7561576354679803,1496,44.13793103448276,3.689655172413793,0,1,5,God Class,train
+Grouper,0,0.6888888888888889,419,20.2,2.9,0,1,0,Long Method,train
+Grouping,0,0.7132352941176471,354,15.882352941176471,3.235294117647059,0,0,1,God Class,train
+FrozenList,0,1.0,96,4.545454545454546,1.3636363636363635,0,0,0,Clean,train
+Block,0,0.5412186379928315,1883,26.741935483870968,5.225806451612903,0,3,6,Long Method,train
+EABackedBlock,0,0.0,289,32.375,6.0,1,1,16,Long Method,train
+ExtensionBlock,0,0.34545454545454546,282,22.09090909090909,4.2727272727272725,2,2,5,Long Method,test
+NumpyBlock,0,0.0,23,2.5,1.25,1,0,1,Clean,train
+NumericBlock,0,0.0,3,0.0,0.0,2,0,0,Clean,train
+ObjectBlock,0,0.0,3,0.0,0.0,2,0,0,Clean,train
+NDArrayBackedExtensionBlock,0,0.0,11,3.0,1.0,2,0,0,Clean,train
+DatetimeLikeBlock,0,0.0,5,0.0,0.0,3,0,0,Clean,test
+DatetimeTZBlock,0,0.0,5,0.0,0.0,4,0,0,Clean,train
+NDFrameDescriberAbstract,0,1.0,20,4.0,1.0,0,1,0,Clean,train
+SeriesDescriber,0,0.0,9,4.0,1.0,1,0,0,Clean,train
+DataFrameDescriber,0,0.6666666666666666,65,15.333333333333334,3.6666666666666665,1,0,1,Clean,train
+_Unstacker,0,0.6818181818181818,331,21.333333333333332,3.0,0,0,0,God Class,train
+IntCastingNaNError,0,0.0,9,0.0,0.0,0,0,0,Clean,train
+NullFrequencyError,0,0.0,13,0.0,0.0,0,0,0,Clean,train
+PerformanceWarning,0,0.0,23,0.0,0.0,0,0,0,Clean,train
+UnsupportedFunctionCall,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+UnsortedIndexError,0,0.0,24,0.0,0.0,0,0,0,Clean,train
+ParserError,0,0.0,22,0.0,0.0,0,0,0,Clean,test
+DtypeWarning,0,0.0,52,0.0,0.0,0,0,0,Clean,train
+EmptyDataError,0,0.0,11,0.0,0.0,0,0,0,Clean,test
+ParserWarning,0,0.0,38,0.0,0.0,0,0,0,Clean,test
+MergeError,0,0.0,17,0.0,0.0,0,0,0,Clean,train
+AbstractMethodError,0,0.0,35,6.0,2.0,0,2,0,Clean,train
+NumbaUtilError,0,0.0,14,0.0,0.0,0,0,0,Clean,train
+DuplicateLabelError,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+InvalidIndexError,0,0.0,17,0.0,0.0,0,0,0,Clean,train
+DataError,0,0.0,13,0.0,0.0,0,0,0,Clean,test
+SpecificationError,0,0.0,25,0.0,0.0,0,0,0,Clean,train
+SettingWithCopyError,0,0.0,19,0.0,0.0,0,0,0,Clean,train
+SettingWithCopyWarning,0,0.0,19,0.0,0.0,0,0,0,Clean,train
+ChainedAssignmentError,0,0.0,20,0.0,0.0,0,0,0,Clean,train
+NumExprClobberingError,0,0.0,16,0.0,0.0,0,0,0,Clean,train
+UndefinedVariableError,0,0.0,23,6.0,2.0,0,1,2,Clean,train
+IndexingError,0,0.0,18,0.0,0.0,0,0,0,Clean,train
+PyperclipException,0,0.0,5,0.0,0.0,0,0,0,Clean,train
+PyperclipWindowsException,0,0.0,11,3.0,1.0,1,1,2,Clean,test
+CSSWarning,0,0.0,18,0.0,0.0,0,0,0,Clean,test
+PossibleDataLossError,0,0.0,9,0.0,0.0,0,0,0,Clean,test
+ClosedFileError,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+IncompatibilityWarning,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+AttributeConflictWarning,0,0.0,18,0.0,0.0,0,0,0,Clean,test
+DatabaseError,0,0.0,10,0.0,0.0,0,0,0,Clean,train
+PossiblePrecisionLoss,0,0.0,12,0.0,0.0,0,0,0,Clean,test
+ValueLabelTypeMismatch,0,0.0,9,0.0,0.0,0,0,0,Clean,test
+InvalidColumnName,0,0.0,12,0.0,0.0,0,0,0,Clean,train
+CategoricalConversionWarning,0,0.0,11,0.0,0.0,0,0,0,Clean,test
+LossySetitemError,0,0.0,7,0.0,0.0,0,0,0,Clean,test
+NoBufferPresent,0,0.0,3,0.0,0.0,0,0,0,Clean,train
+InvalidComparison,0,0.0,7,0.0,0.0,0,0,0,Clean,train
+CSSDict,0,0.0,2,0.0,0.0,0,0,0,Clean,train
+StylerRenderer,0,0.46405228758169936,1492,80.27777777777777,6.722222222222222,0,0,1,Long Method,train
+Tooltips,0,0.5,163,31.5,2.75,0,1,0,Clean,train
+Writer,0,0.8333333333333334,51,10.0,1.25,0,1,2,Clean,train
+SeriesWriter,0,0.0,12,3.0,3.0,1,1,0,Clean,train
+FrameWriter,0,0.0,27,10.5,4.0,1,1,0,Clean,train
+JSONTableWriter,0,0.0,77,35.5,5.5,2,0,3,Long Method,train
+JsonReader,2,0.9117647058823529,293,21.818181818181817,4.7272727272727275,0,1,3,God Class,test
+Parser,0,0.8214285714285714,239,25.875,6.5,0,4,4,Long Method,train
+SeriesParser,0,0.0,22,7.5,2.5,1,2,2,Clean,train
+FrameParser,0,0.0,113,25.5,6.5,1,2,3,Long Method,train
+CalibratedClassifierCV,0,0.5714285714285714,522,38.714285714285715,4.571428571428571,0,2,4,Long Method,train
+_CalibratedClassifier,0,0.0,95,35.0,5.5,0,1,6,Long Method,train
+_SigmoidCalibration,0,0.0,52,19.0,1.0,0,2,0,Clean,train
+_TemperatureScaling,0,0.6666666666666666,136,41.0,2.0,0,2,1,Long Method,train
+CalibrationDisplay,0,0.8333333333333334,375,72.75,2.0,0,0,0,Long Method,train
+_BaseNB,0,1.0,111,16.0,1.1666666666666667,0,1,9,Clean,train
+GaussianNB,0,0.9285714285714286,387,35.5,3.125,1,6,4,Long Method,train
+_BaseDiscreteNB,0,0.8545454545454545,255,19.363636363636363,2.5454545454545454,1,6,15,God Class,train
+MultinomialNB,0,0.8,125,4.8,1.0,2,6,9,Clean,test
+ComplementNB,0,0.7,152,7.6,1.4,2,6,9,Clean,train
+BernoulliNB,0,0.6666666666666666,167,8.333333333333334,1.5,2,5,11,Clean,train
+CategoricalNB,0,0.8727272727272727,308,15.727272727272727,1.8181818181818181,2,6,13,God Class,train
+_CFNode,0,0.0,152,24.5,2.5,0,1,2,Long Method,train
+_CFSubcluster,0,0.0,92,12.25,1.5,0,2,0,Clean,train
+Birch,2,0.8,371,22.0,2.4,0,0,4,Long Method,train
+OPTICS,0,0.0,361,60.5,5.5,0,0,0,Long Method,train
+HDBSCAN,0,0.26666666666666666,597,56.833333333333336,6.666666666666667,0,0,0,Long Method,train
+MinCovDet,0,0.16666666666666666,304,40.25,2.25,0,0,0,Clean,test
+LatentDirichletAllocation,0,0.7166666666666667,796,35.1875,2.8125,0,0,0,God Class,train
+PCA,0,0.6111111111111112,739,48.333333333333336,5.333333333333333,0,0,0,Long Method,train
+BaseEnsemble,0,0.4,81,6.5,1.5,0,0,1,Clean,train
+_BaseHeterogeneousEnsemble,0,0.6,129,16.0,2.8333333333333335,0,1,0,Clean,test
+VerboseReporter,0,0.3333333333333333,76,20.333333333333332,3.0,0,3,0,Clean,train
+BaseGradientBoosting,1,0.6210526315789474,770,35.3,4.45,0,2,8,Long Method,train
+GradientBoostingClassifier,0,0.8444444444444444,609,25.1,2.5,0,2,5,Clean,test
+GradientBoostingRegressor,0,1.0,458,19.0,1.3333333333333333,0,2,6,Clean,train
+IsolationForest,0,0.9393939393939394,590,30.916666666666668,1.9166666666666667,0,0,0,God Class,train
+_BinMapper,0,0.16666666666666666,258,42.5,4.75,0,0,0,Long Method,train
+__array_namespace_info__,0,1.0,360,57.2,3.4,0,0,0,Long Method,train
+Hyperparameter,0,1.0,96,11.0,6.5,0,9,0,Clean,train
+Kernel,4,0.9368421052631579,308,11.210526315789474,2.473684210526316,0,6,7,God Class,train
+NormalizedKernelMixin,0,0.0,23,17.0,1.0,0,4,0,Clean,train
+StationaryKernelMixin,0,0.0,8,2.0,1.0,0,3,0,Clean,train
+GenericKernelMixin,0,0.0,10,2.0,1.0,0,0,0,Clean,train
+CompoundKernel,0,0.0,161,11.11111111111111,1.5555555555555556,1,6,15,Clean,train
+KernelOperator,1,0.0,115,9.375,2.25,1,4,10,Clean,train
+Sum,0,0.6666666666666666,94,17.0,1.3333333333333333,2,4,9,Clean,train
+Product,0,0.6666666666666666,97,17.666666666666668,1.3333333333333333,2,4,9,Clean,train
+Exponentiation,1,0.09090909090909091,188,9.727272727272727,1.4545454545454546,1,6,19,Clean,train
+ConstantKernel,1,0.3,135,15.4,1.8,1,6,1,Clean,train
+WhiteKernel,1,0.3,120,14.0,2.0,1,5,1,Clean,train
+RBF,1,0.0,150,15.4,3.0,1,1,1,Clean,train
+Matern,0,0.0,197,37.666666666666664,6.333333333333333,2,0,11,Long Method,train
+RationalQuadratic,1,0.5,153,16.0,2.2,1,1,1,Clean,train
+ExpSineSquared,1,0.5,142,15.4,2.0,1,1,1,Clean,train
+DotProduct,1,0.5333333333333333,135,11.166666666666666,1.6666666666666667,1,6,1,Clean,train
+PairwiseKernel,1,0.5333333333333333,160,15.333333333333334,1.5,1,6,1,Clean,train
+KNNImputer,0,0.4,387,52.0,3.4,0,0,0,Long Method,test
+LinearModel,0,0.8333333333333334,50,10.0,2.0,0,1,0,Clean,test
+LinearClassifierMixin,0,1.0,74,21.333333333333332,2.6666666666666665,0,0,0,Clean,train
+SparseCoefMixin,0,0.0,55,23.5,1.5,0,0,0,Clean,train
+LinearRegression,0,0.0,244,40.666666666666664,4.0,0,0,1,Long Method,train
+_GeneralizedLinearRegressor,0,0.7619047619047619,437,43.285714285714285,3.0,0,3,3,Long Method,train
+PoissonRegressor,0,1.0,128,10.0,1.0,1,3,3,Clean,train
+GammaRegressor,0,1.0,129,10.0,1.0,1,3,3,Clean,train
+TweedieRegressor,0,0.0,177,18.0,3.0,1,3,3,Clean,train
+_MultimetricScorer,0,0.0,111,13.666666666666666,2.8333333333333335,0,1,4,Clean,train
+_BaseScorer,0,0.6785714285714286,137,12.875,2.0,0,3,2,Clean,train
+_Scorer,0,0.0,49,48.0,2.0,1,2,2,Clean,train
+_PassthroughScorer,0,0.6,35,3.5,1.0,0,2,0,Clean,train
+_CurveScorer,0,0.6666666666666666,102,23.666666666666668,1.3333333333333333,1,2,4,Clean,train
+BaseDistancesReductionDispatcher,0,1.0,109,31.333333333333332,6.333333333333333,0,4,2,Long Method,train
+ArgKmin,0,0.0,133,118.0,3.0,1,3,4,Long Method,test
+RadiusNeighbors,0,0.0,143,126.0,3.0,1,3,4,Long Method,train
+ArgKminClassMode,0,1.0,161,71.0,2.5,1,4,6,Long Method,test
+RadiusNeighborsClassMode,0,1.0,147,62.0,2.5,1,4,6,Long Method,train
+BayesianGaussianMixture,0,0.49473684210526314,817,24.1,1.8,0,0,0,Data Class,train
+NeighborsBase,0,0.0,322,75.25,16.75,0,1,1,Long Method,test
+KNeighborsMixin,0,0.3333333333333333,329,107.33333333333333,10.333333333333334,0,0,0,Long Method,train
+RadiusNeighborsMixin,0,0.5,353,86.0,8.75,0,1,1,Long Method,test
+NeighborhoodComponentsAnalysis,0,0.5,500,39.25,5.0,0,0,0,Long Method,train
+NearestCentroid,0,0.0,330,32.5,4.333333333333333,0,0,0,Long Method,train
+BaseOptimizer,0,1.0,60,9.75,1.5,0,2,2,Clean,train
+SGDOptimizer,0,0.0,122,17.0,2.75,1,2,2,Clean,train
+AdamOptimizer,0,0.0,90,21.0,1.0,1,2,2,Clean,train
+FunctionTransformer,0,0.7727272727272727,411,21.833333333333332,3.5833333333333335,0,0,0,God Class,test
+PolynomialFeatures,0,0.7857142857142857,492,46.5,7.125,0,1,2,Long Method,train
+SplineTransformer,0,0.4,670,84.83333333333333,10.0,0,1,1,Long Method,test
+SelfTrainingClassifier,0,0.5111111111111111,549,39.1,2.9,0,0,0,Long Method,train
+_NotAnArray,0,0.6666666666666666,18,1.6666666666666667,1.3333333333333333,0,0,0,Clean,train
+MissingValues,0,0.0,13,7.0,3.0,0,0,0,Clean,train
+_nandict,0,0.0,13,4.0,3.0,0,1,1,Clean,train
+_NaNCounter,0,0.6666666666666666,19,4.0,2.6666666666666665,0,1,1,Clean,train
+_IgnoreWarnings,0,0.2,54,6.6,1.8,0,0,0,Clean,train
+TempMemmap,0,0.3333333333333333,19,2.3333333333333335,1.0,0,0,0,Clean,train
+_Raises,0,0.0,42,19.0,6.0,0,0,0,Clean,train
+MinimalClassifier,0,0.8571428571428571,53,3.625,1.125,0,2,1,Clean,test
+MinimalRegressor,0,0.9047619047619048,44,3.142857142857143,1.1428571428571428,0,2,1,Clean,train
+MinimalTransformer,0,0.9523809523809523,42,2.7142857142857144,1.1428571428571428,0,0,2,Clean,test

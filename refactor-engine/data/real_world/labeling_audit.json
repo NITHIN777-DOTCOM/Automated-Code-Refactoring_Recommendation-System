@@ -1,0 +1,838 @@
+{
+  "generated_at": "2026-08-14T17:32:16.626362+00:00",
+  "corpus_dir": "data\\real_world\\raw_sources",
+  "row_count": 3206,
+  "metric_scope": {
+    "csv_features": "per-file",
+    "feature_envy_atfd_laa": "corpus",
+    "woc_inheritance": "corpus (global base-class resolution)"
+  },
+  "parse_stats": {
+    "files_seen": 4463,
+    "files_parsed_ok": 4237,
+    "files_failed": 226,
+    "files_on_test_paths": 499,
+    "classes_seen": 3593,
+    "classes_excluded_test_name": 1047,
+    "classes_excluded_test_path_only": 387
+  },
+  "feature_envy_by_scope": {
+    "file": 2,
+    "package": 4,
+    "repo": 10,
+    "corpus": 126
+  },
+  "inheritance_resolution": {
+    "unresolved": 2023,
+    "resolved": 382,
+    "partial": 730,
+    "no_bases": 458
+  },
+  "label_distribution": {
+    "Clean": 2752,
+    "Long Method": 173,
+    "God Class": 143,
+    "Feature Envy": 112,
+    "Data Class": 26
+  },
+  "previous_label_distribution": {
+    "Clean": 3197,
+    "Long Method": 212,
+    "God Class": 144,
+    "Data Class": 38,
+    "Feature Envy": 2
+  },
+  "label_transitions_previous_to_current": {
+    "Clean": {
+      "Clean": 2749,
+      "excluded (test path)": 370,
+      "Feature Envy": 74,
+      "Data Class": 4
+    },
+    "God Class": {
+      "God Class": 143,
+      "excluded (test path)": 1
+    },
+    "Data Class": {
+      "Data Class": 22,
+      "excluded (test path)": 13,
+      "Clean": 3
+    },
+    "Long Method": {
+      "Long Method": 173,
+      "Feature Envy": 36,
+      "excluded (test path)": 3
+    },
+    "Feature Envy": {
+      "Feature Envy": 2
+    }
+  },
+  "split": {
+    "test_size": 0.2,
+    "seed": 42,
+    "stratified_by": "label",
+    "per_label": {
+      "Clean": {
+        "total": 2752,
+        "train": 2202,
+        "test": 550
+      },
+      "Feature Envy": {
+        "total": 112,
+        "train": 90,
+        "test": 22
+      },
+      "God Class": {
+        "total": 143,
+        "train": 114,
+        "test": 29
+      },
+      "Data Class": {
+        "total": 26,
+        "train": 21,
+        "test": 5
+      },
+      "Long Method": {
+        "total": 173,
+        "train": 138,
+        "test": 35
+      }
+    }
+  },
+  "classes_by_source": {
+    "standard_dataset": 2234,
+    "git_repos": 751,
+    "site_packages": 221
+  },
+  "labels_by_source": {
+    "git_repos": {
+      "Clean": 638,
+      "God Class": 33,
+      "Long Method": 38,
+      "Feature Envy": 39,
+      "Data Class": 3
+    },
+    "site_packages": {
+      "Clean": 158,
+      "Long Method": 48,
+      "God Class": 14,
+      "Data Class": 1
+    },
+    "standard_dataset": {
+      "Clean": 1956,
+      "Feature Envy": 73,
+      "God Class": 96,
+      "Data Class": 22,
+      "Long Method": 87
+    }
+  },
+  "multi_rule_matches": {
+    "God Class + Long Method": 74,
+    "Feature Envy + Long Method": 36,
+    "God Class + Feature Envy": 6,
+    "Long Method + Data Class": 4,
+    "God Class + Feature Envy + Long Method": 4
+  },
+  "thresholds": {
+    "citations": {
+      "lanza_marinescu_2006": {
+        "short": "Lanza & Marinescu (2006)",
+        "full": "Lanza, M., & Marinescu, R. (2006). Object-Oriented Metrics in Practice. Springer. Detection strategies, Ch. 4-5.",
+        "note": "Primary numeric source. Implemented by the iPlasma tool, which Fontana et al. (2016) used as an Advisor when building their ML smell datasets."
+      },
+      "fontana_2016": {
+        "short": "Fontana et al. (2016)",
+        "full": "Arcelli Fontana, F., Mantyla, M. V., Zanoni, M., & Marino, A. (2016). Comparing and experimenting machine learning techniques for code smell detection. Empirical Software Engineering, 21(3), 1143-1191.",
+        "note": "Does not publish its own cutoffs: its oracle comes from Advisors (iPlasma, PMD, Marinescu 2002) plus manual labeling. Cited here for the methodology and for the God Class / Data Class / Feature Envy / Long Method label set we reuse; the numbers trace to Lanza & Marinescu via iPlasma."
+      },
+      "mccabe_1976": {
+        "short": "McCabe (1976)",
+        "full": "McCabe, T. J. (1976). A Complexity Measure. IEEE Transactions on Software Engineering, SE-2(4), 308-320.",
+        "note": "Source of the classic 'cyclomatic complexity above 10' review trigger."
+      },
+      "sandouka_aljamaan_2023": {
+        "short": "Sandouka & Aljamaan (2023)",
+        "full": "Sandouka, R., & Aljamaan, H. (2023). Python code smells detection using conventional machine learning models. PeerJ Computer Science, 9, e1370.",
+        "note": "Python-specific ML smell detection. Checked as a threshold source and deliberately NOT used for numbers: its Large Class / Long Method labels are inherited from the PySmell dataset rather than from disclosed numeric cutoffs, and its 18 features are Radon raw/Halstead metrics our AST engine does not compute."
+      },
+      "chen_2016_pysmell": {
+        "short": "Chen et al. (2016), PySmell",
+        "full": "Chen, Z., Chen, L., Ma, W., & Xu, B. (2016). Detecting Code Smells in Python Programs. SATE 2016, 18-23.",
+        "note": "The Python smell tool underlying Sandouka & Aljamaan's labels. Its thresholds are set by three strategies (experience / statistics / tuning machine) and live in the tool's configuration rather than in the paper, so no value here is attributed to it."
+      },
+      "common_practice": {
+        "short": "common practice",
+        "full": "Widely repeated rule of thumb with no single canonical study; see Fowler, M. (1999). Refactoring: Improving the Design of Existing Code. Addison-Wesley, for the qualitative smell definitions these operationalize.",
+        "note": "Flagged explicitly so these are never presented as a published measurement. Used only where a literature cutoff does not exist in a form our metrics can express."
+      }
+    },
+    "thresholds": {
+      "lcom_high": {
+        "our_metric": "lcom",
+        "rule": "lcom > 0.67",
+        "published_metric": "TCC < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "TCC counts method pairs that share an attribute; our LCOM counts pairs that do not, so TCC < 1/3 is exactly LCOM > 2/3 (~0.67). Consistent with the commonly cited LCOM > 0.7."
+      },
+      "wmc_very_high": {
+        "our_metric": "wmc",
+        "rule": "wmc >= 47",
+        "published_metric": "WMC >= 47 (VERY HIGH)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Sum of per-method cyclomatic complexity -- WMC's own definition."
+      },
+      "wmc_below_31": {
+        "our_metric": "wmc",
+        "rule": "wmc < 31",
+        "published_metric": "WMC < 31",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Data Class rule: too little behavior to justify the data it holds."
+      },
+      "wmc_below_47": {
+        "our_metric": "wmc",
+        "rule": "wmc < 47",
+        "published_metric": "WMC < 47",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Data Class rule, relaxed complexity bound for the many-attribute case."
+      },
+      "class_length_high": {
+        "our_metric": "class_length",
+        "rule": "class_length > 130",
+        "published_metric": "LOC(class) > 130 (HIGH)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "method_count_high": {
+        "our_metric": "method_count",
+        "rule": "method_count > 10",
+        "published_metric": "NOM > 10",
+        "source": "common practice",
+        "source_key": "common_practice",
+        "is_proxy": false,
+        "mapping_note": "Not a Lanza & Marinescu number -- their God Class rule uses WMC, not raw method count. Kept because a bloated manager class of many trivial methods carries low WMC and would otherwise be missed entirely."
+      },
+      "method_length_long": {
+        "our_metric": "max_method_length",
+        "rule": "max_method_length > 65",
+        "published_metric": "LOC(method) > 65",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "The Long Method rule as implemented in iPlasma, one of Fontana's Advisors."
+      },
+      "method_length_moderate": {
+        "our_metric": "max_method_length",
+        "rule": "max_method_length > 30",
+        "published_metric": "LOC(method) > 30",
+        "source": "common practice",
+        "source_key": "common_practice",
+        "is_proxy": false,
+        "mapping_note": "Paired with McCabe CC > 10 to catch dense-but-shorter methods."
+      },
+      "method_cc_high": {
+        "our_metric": "max_method_cc",
+        "rule": "max_method_cc > 10",
+        "published_metric": "v(G) > 10",
+        "source": "McCabe (1976)",
+        "source_key": "mccabe_1976",
+        "is_proxy": false,
+        "mapping_note": "Computed by engine/metrics.py:cyclomatic_complexity()."
+      },
+      "woc_low": {
+        "our_metric": "woc",
+        "rule": "woc < 0.33",
+        "published_metric": "WOC < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Share of public methods that do real work rather than just reading or writing one attribute."
+      },
+      "noam_nopa_gt_5": {
+        "our_metric": "noam_plus_nopa",
+        "rule": "noam_plus_nopa > 5",
+        "published_metric": "NOPA + NOAM > 5",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "noam_nopa_gt_8": {
+        "our_metric": "noam_plus_nopa",
+        "rule": "noam_plus_nopa > 8",
+        "published_metric": "NOPA + NOAM > 8",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "atfd_high": {
+        "our_metric": "atfd_proxy",
+        "rule": "atfd_proxy > 5",
+        "published_metric": "ATFD > 5 (FEW)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": true,
+        "mapping_note": "PROXY: we have no true access-to-foreign-data metric. Counts distinct external classes/methods the class reaches, excluding dunder, self- and base-class calls (see envy_metrics)."
+      },
+      "laa_low": {
+        "our_metric": "laa",
+        "rule": "laa < 0.33",
+        "published_metric": "LAA < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": true,
+        "mapping_note": "PROXY: own-attribute accesses over own accesses plus resolved foreign calls, aggregated across the class rather than computed per method as in the original."
+      }
+    },
+    "rules": [
+      {
+        "label": "God Class",
+        "formula": "LCOM > 2/3 AND NOM > 10 AND (WMC >= 47 OR LOC(class) > 130)",
+        "rationale": "Lanza & Marinescu's God Class strategy with ATFD dropped (not computable under per-file metric scope) and the size conjunct widened to catch low-complexity bloated managers.",
+        "thresholds_used": [
+          "lcom_high",
+          "method_count_high",
+          "wmc_very_high",
+          "class_length_high"
+        ]
+      },
+      {
+        "label": "Feature Envy",
+        "formula": "ATFD(proxy) > 5 AND LAA < 1/3",
+        "rationale": "Lanza & Marinescu's Feature Envy strategy with ATFD proxied by fan_out and FDP dropped (needs type resolution we do not have).",
+        "thresholds_used": [
+          "atfd_high",
+          "laa_low"
+        ]
+      },
+      {
+        "label": "Long Method",
+        "formula": "LOC(method) > 65 OR (v(G) > 10 AND LOC(method) > 30)",
+        "rationale": "iPlasma's Long Method LOC rule, OR McCabe's complexity trigger with a length floor.",
+        "thresholds_used": [
+          "method_length_long",
+          "method_cc_high",
+          "method_length_moderate"
+        ]
+      },
+      {
+        "label": "Data Class",
+        "formula": "WOC < 1/3 AND ((NOPA+NOAM > 5 AND WMC < 31) OR (NOPA+NOAM > 8 AND WMC < 47))",
+        "rationale": "Lanza & Marinescu's Data Class strategy, applied verbatim.",
+        "thresholds_used": [
+          "woc_low",
+          "noam_nopa_gt_5",
+          "wmc_below_31",
+          "noam_nopa_gt_8",
+          "wmc_below_47"
+        ]
+      }
+    ],
+    "precedence": [
+      "God Class",
+      "Feature Envy",
+      "Long Method",
+      "Data Class",
+      "Clean"
+    ]
+  },
+  "sanity_sample": {
+    "God Class": [
+      {
+        "class_name": "LazyTuple",
+        "file": "eth_py150\\cool-RR\\python_toolbox\\source_py3\\python_toolbox\\nifty_collections\\lazy_tuple.py",
+        "lines": "48-288",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class",
+          "Long Method"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.858,
+          "class_length": 240,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 16,
+          "wmc": 48,
+          "max_method_cc": 12,
+          "max_method_length": 37,
+          "avg_method_length": 10.188,
+          "avg_cyclomatic_complexity": 3.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 4,
+          "noam_plus_nopa": 4,
+          "atfd_proxy": 9,
+          "laa": 0.654
+        },
+        "source": "class LazyTuple(collections.Sequence):\n    '''\n    A lazy tuple which requests as few values as possible from its iterator.\n    \n    Wrap your iterators with `LazyTuple` and enjoy tuple-ish features like\n    indexed access, comparisons, length measuring, element counting and more.\n    \n    Example:\n    \n        def my_generator():\n            yield from ('hello', 'world', 'have', 'fun')\n            \n        lazy_tuple = LazyTuple(my_generator())\n        \n        assert lazy_tuple[2] == 'have'\n        assert len(lazy_tuple) == 4\n    \n    `LazyTuple` holds the given iterable and pulls items out of it. It pulls as\n    few items as it possibly can. For example, if you ask for the third\n    element, it will pull exactly three elements and then return the third one.\n    \n    Some actions require exhausting the entire iterator. For example, checking\n    the `LazyTuple` length, or doing indexex access with a negative index.\n    (e.g. asking for the seventh-to-last element.)\n    \n    If you're passing in an iterator you definitely know to be infinite,\n    specify `definitely_infinite=True`.\n    '''\n    ... [213 more lines]"
+      },
+      {
+        "class_name": "BaseClient",
+        "file": "eth_py150\\AppEnlight\\appenlight-client-python\\appenlight_client\\client.py",
+        "lines": "68-558",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class",
+          "Long Method"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.669,
+          "class_length": 490,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 17,
+          "wmc": 115,
+          "max_method_cc": 40,
+          "max_method_length": 124,
+          "avg_method_length": 26.529,
+          "avg_cyclomatic_complexity": 6.765,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd_proxy": 23,
+          "laa": 0.511
+        },
+        "source": "class BaseClient(object):\n\n    self_instance = None\n\n    __version__ = __version__\n    __protocol_version__ = __protocol_version__\n\n    def __init__(self, config=None, register_timing=True):\n        \"\"\"\n        at minimum client expects following keys to be present::\n\n            appenlight.api_key = YOUR_API_KEY\n\n        \"\"\"\n        self.uuid = uuid.uuid4()\n        self.log_handlers = []\n        self.update_config(config)\n        self.reinitialize()\n\n    def update_config(self, config):\n        self.config = {}\n        # general options\n        self.config['enabled'] = asbool(config.get('appenlight', True))\n        self.config['server_name'] = config.get('appenlight.server_name') \\\n                                     or socket.getfqdn()\n        if PY3:\n            default_client = 'python3'\n        else:\n    ... [463 more lines]"
+      },
+      {
+        "class_name": "Hue",
+        "file": "eth_py150\\openstack\\sahara\\sahara\\plugins\\mapr\\services\\hue\\hue.py",
+        "lines": "59-289",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.956,
+          "class_length": 230,
+          "cbo": 0,
+          "fan_in": 4,
+          "fan_out": 5,
+          "dit": 0,
+          "method_count": 17,
+          "wmc": 35,
+          "max_method_cc": 5,
+          "max_method_length": 51,
+          "avg_method_length": 10.824,
+          "avg_cyclomatic_complexity": 2.059,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 5,
+          "noam_plus_nopa": 5,
+          "atfd_proxy": 8,
+          "laa": 0.6
+        },
+        "source": "class Hue(s.Service):\n    THRIFT_VERSIONS = [5, 7]\n    THRIFT_VERSION = p.Config(\n        name=\"Thrift version\",\n        applicable_target=\"Hue\",\n        scope='cluster',\n        config_type=\"dropdown\",\n        config_values=[(v, v) for v in THRIFT_VERSIONS],\n        priority=1,\n        description=_(\n            'Specifies thrift version.')\n    )\n\n    def __init__(self):\n        super(Hue, self).__init__()\n        self._name = 'hue'\n        self._ui_name = 'Hue'\n        self._node_processes = [HUE]\n        self._ui_info = [('HUE', HUE, 'http://%s:8888')]\n        self._validation_rules = [\n            vu.exactly(1, HUE),\n            vu.on_same_node(HUE, httpfs.HTTP_FS),\n            vu.on_same_node(HUE_LIVY, spark.SPARK_SLAVE),\n        ]\n        self._priority = 2\n\n    def get_configs(self):\n        return [Hue.THRIFT_VERSION]\n    ... [203 more lines]"
+      }
+    ],
+    "Feature Envy": [
+      {
+        "class_name": "SMARTAlert",
+        "file": "eth_py150\\freenas\\freenas\\gui\\system\\alertmods\\smart.py",
+        "lines": "13-47",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 34,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 1,
+          "wmc": 9,
+          "max_method_cc": 9,
+          "max_method_length": 30,
+          "avg_method_length": 30.0,
+          "avg_cyclomatic_complexity": 9.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 8,
+          "laa": 0.0
+        },
+        "source": "class SMARTAlert(BaseAlert):\n\n    interval = 5\n\n    def run(self):\n        alerts = []\n\n        if not os.path.exists(SMART_FILE):\n            return alerts\n\n        lock = LockFile(SMART_FILE)\n\n        while not lock.i_am_locking():\n            try:\n                lock.acquire(timeout=5)\n            except LockTimeout:\n                return alerts\n\n        with open(SMART_FILE, 'rb') as f:\n            try:\n                data = pickle.loads(f.read())\n            except:\n                data = {}\n\n        for msgs in data.itervalues():\n            if not msgs:\n                continue\n            for msg in msgs:\n    ... [7 more lines]"
+      },
+      {
+        "class_name": "Start",
+        "file": "eth_py150\\esrlabs\\git-repo\\subcmds\\start.py",
+        "lines": "27-111",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy",
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 84,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 18,
+          "max_method_cc": 17,
+          "max_method_length": 68,
+          "avg_method_length": 35.5,
+          "avg_cyclomatic_complexity": 9.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd_proxy": 10,
+          "laa": 0.167
+        },
+        "source": "class Start(Command):\n  common = True\n  helpSummary = \"Start a new branch for development\"\n  helpUsage = \"\"\"\n%prog <newbranchname> [--all | <project>...]\n\"\"\"\n  helpDescription = \"\"\"\n'%prog' begins a new branch of development, starting from the\nrevision specified in the manifest.\n\"\"\"\n\n  def _Options(self, p):\n    p.add_option('--all',\n                 dest='all', action='store_true',\n                 help='begin branch in all projects')\n\n  def Execute(self, opt, args):\n    if not args:\n      self.Usage()\n\n    nb = args[0]\n    if not git.check_ref_format('heads/%s' % nb):\n      print(\"error: '%s' is not a valid name\" % nb, file=sys.stderr)\n      sys.exit(1)\n\n    err = []\n    projects = []\n    if not opt.all:\n    ... [57 more lines]"
+      },
+      {
+        "class_name": "DjangoOpenIDStore",
+        "file": "eth_py150\\cloudera\\hue\\desktop\\core\\ext-py\\django-openid-auth-0.5\\django_openid_auth\\store.py",
+        "lines": "40-131",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Clean",
+        "split": "test",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 91,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 7,
+          "wmc": 19,
+          "max_method_cc": 6,
+          "max_method_length": 23,
+          "avg_method_length": 11.143,
+          "avg_cyclomatic_complexity": 2.714,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 1,
+          "noam_plus_nopa": 1,
+          "atfd_proxy": 11,
+          "laa": 0.083
+        },
+        "source": "class DjangoOpenIDStore(OpenIDStore):\n    def __init__(self):\n        self.max_nonce_age = 6 * 60 * 60 # Six hours\n\n    def storeAssociation(self, server_url, association):\n        try:\n            assoc = Association.objects.get(\n                server_url=server_url, handle=association.handle)\n        except Association.DoesNotExist:\n            assoc = Association(\n                server_url=server_url,\n                handle=association.handle,\n                secret=base64.encodestring(association.secret),\n                issued=association.issued,\n                lifetime=association.lifetime,\n                assoc_type=association.assoc_type)\n        else:\n            assoc.secret = base64.encodestring(association.secret)\n            assoc.issued = association.issued\n            assoc.lifetime = association.lifetime\n            assoc.assoc_type = association.assoc_type\n        assoc.save()\n\n    def getAssociation(self, server_url, handle=None):\n        assocs = []\n        if handle is not None:\n            assocs = Association.objects.filter(\n                server_url=server_url, handle=handle)\n    ... [64 more lines]"
+      }
+    ],
+    "Long Method": [
+      {
+        "class_name": "AcceptCriticCommand",
+        "file": "eth_py150\\CriticMarkup\\CriticMarkup-toolkit\\Sublime Text 3 Package\\Critic Markup\\accept_critic.py",
+        "lines": "4-49",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 45,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 12,
+          "max_method_cc": 11,
+          "max_method_length": 39,
+          "avg_method_length": 21.0,
+          "avg_cyclomatic_complexity": 6.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 3,
+          "noam_plus_nopa": 3,
+          "atfd_proxy": 4,
+          "laa": 0.5
+        },
+        "source": "class AcceptCriticCommand(sublime_plugin.TextCommand):\n    def run(self, edit):\n        self.options = ['Accept', 'Reject']\n        # Need to find scope limits then do regex find within current scope\n        self.view.window().show_quick_panel(self.options, self.process_critic, sublime.MONOSPACE_FONT)\n\n    def process_critic(self, choice):\n        # Choice 0 is accept\n        sels = self.view.sel()\n        caret = []\n        add_edit = re.compile(r'(?s)\\{\\+\\+(.*?)\\+\\+[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}')\n        del_edit = re.compile(r'(?s)\\{\\-\\-(.*?)\\-\\-[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}')\n        sub_edit = re.compile(r'''(?s)\\{\\~\\~(?P<original>(?:[^\\~\\>]|(?:\\~(?!\\>)))+)\\~\\>(?P<new>(?:[^\\~\\~]|(?:\\~(?!\\~\\})))+)\\~\\~\\}''')\n        for sel in sels:\n            text = self.view.substr(sel)\n            # If something is selected...\n            if len(text) > 0:\n                a = add_edit.search(text)\n                d = del_edit.search(text)\n                s = sub_edit.search(text)\n                # edit = self.view.begin_edit()\n                if choice == 0:\n                    if a:\n                        # self.view.replace(edit, sel, a.group(1))\n                        self.view.run_command(\"critic_replace\", {\"a\": sel.a, \"b\": sel.b, \"txt\": a.group(1)})\n                    if d:\n                        # self.view.erase(edit, sel)\n                        self.view.run_command(\"critic_erase\", {\"a\": sel.a, \"b\": sel.b})\n    ... [18 more lines]"
+      },
+      {
+        "class_name": "StylerRenderer",
+        "file": "site_packages\\pandas\\io\\formats\\style_render.py",
+        "lines": "67-1559",
+        "source_category": "site_packages",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.464,
+          "class_length": 1492,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 1,
+          "dit": 0,
+          "method_count": 18,
+          "wmc": 121,
+          "max_method_cc": 17,
+          "max_method_length": 269,
+          "avg_method_length": 80.278,
+          "avg_cyclomatic_complexity": 6.722,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 30,
+          "noam_plus_nopa": 30,
+          "atfd_proxy": 19,
+          "laa": 0.861
+        },
+        "source": "class StylerRenderer:\n    \"\"\"\n    Base class to process rendering a Styler with a specified jinja2 template.\n    \"\"\"\n\n    loader = jinja2.PackageLoader(\"pandas\", \"io/formats/templates\")\n    env = jinja2.Environment(loader=loader, trim_blocks=True)\n    template_html = env.get_template(\"html.tpl\")\n    template_html_table = env.get_template(\"html_table.tpl\")\n    template_html_style = env.get_template(\"html_style.tpl\")\n    template_latex = env.get_template(\"latex.tpl\")\n    template_string = env.get_template(\"string.tpl\")\n\n    def __init__(\n        self,\n        data: DataFrame | Series,\n        uuid: str | None = None,\n        uuid_len: int = 5,\n        table_styles: CSSStyles | None = None,\n        table_attributes: str | None = None,\n        caption: str | tuple | list | None = None,\n        cell_ids: bool = True,\n        precision: int | None = None,\n    ) -> None:\n        # validate ordered args\n        if isinstance(data, Series):\n            data = data.to_frame()\n        if not isinstance(data, DataFrame):\n    ... [1465 more lines]"
+      },
+      {
+        "class_name": "TreeListHeaderWindow",
+        "file": "eth_py150\\cool-RR\\python_toolbox\\source_py2\\python_toolbox\\wx_tools\\widgets\\third_party\\hypertreelist.py",
+        "lines": "553-1207",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.547,
+          "class_length": 654,
+          "cbo": 1,
+          "fan_in": 4,
+          "fan_out": 32,
+          "dit": 0,
+          "method_count": 30,
+          "wmc": 102,
+          "max_method_cc": 27,
+          "max_method_length": 115,
+          "avg_method_length": 18.633,
+          "avg_cyclomatic_complexity": 3.4,
+          "woc": 0.897,
+          "noam": 3,
+          "nopa": 3,
+          "noam_plus_nopa": 6,
+          "atfd_proxy": 24,
+          "laa": 0.714
+        },
+        "source": "class TreeListHeaderWindow(wx.Window):\n    \"\"\" A window which holds the header of L{HyperTreeList}. \"\"\"\n    \n    def __init__(self, parent, id=wx.ID_ANY, owner=None, pos=wx.DefaultPosition,\n                 size=wx.DefaultSize, style=0, name=\"wxtreelistctrlcolumntitles\"):\n        \"\"\"\n        Default class constructor.\n\n        :param `parent`: the window parent. Must not be ``None``;\n        :param `id`: window identifier. A value of -1 indicates a default value;\n        :param `owner`: the window owner, in this case an instance of L{TreeListMainWindow};\n        :param `pos`: the control position. A value of (-1, -1) indicates a default position,\n         chosen by either the windowing system or wxPython, depending on platform;\n        :param `size`: the control size. A value of (-1, -1) indicates a default size,\n         chosen by either the windowing system or wxPython, depending on platform;\n        :param `style`: the window style;\n        :param `name`: the window name.\n        \"\"\"\n\n        wx.Window.__init__(self, parent, id, pos, size, style, name=name)\n        \n        self._owner = owner\n        self._currentCursor = wx.StockCursor(wx.CURSOR_DEFAULT)\n        self._resizeCursor = wx.StockCursor(wx.CURSOR_SIZEWE)\n        self._isDragging = False\n        self._dirty = False\n        self._total_col_width = 0\n        self._hotTrackCol = -1\n    ... [627 more lines]"
+      }
+    ],
+    "Data Class": [
+      {
+        "class_name": "BaseMaster",
+        "file": "eth_py150\\ployground\\ploy\\ploy\\common.py",
+        "lines": "155-177",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "test",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 22,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 1,
+          "wmc": 6,
+          "max_method_cc": 6,
+          "max_method_length": 21,
+          "avg_method_length": 21.0,
+          "avg_cyclomatic_complexity": 6.0,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 9,
+          "noam_plus_nopa": 9,
+          "atfd_proxy": 4,
+          "laa": 0.692
+        },
+        "source": "class BaseMaster(object):\n    def __init__(self, ctrl, id, master_config):\n        from ploy.config import ConfigSection  # avoid circular import\n        self.id = id\n        self.ctrl = ctrl\n        assert self.ctrl.__class__.__name__ == 'Controller'\n        self.main_config = self.ctrl.config\n        if not isinstance(master_config, ConfigSection):\n            master_config = ConfigSection(master_config)\n        self.master_config = master_config\n        self.known_hosts = self.ctrl.known_hosts\n        self.instances = {}\n        if getattr(self, 'section_info', None) is None:\n            self.section_info = {\n                None: self.instance_class,\n                self.sectiongroupname: self.instance_class}\n        for sectiongroupname, instance_class in self.section_info.items():\n            for sid, config in self.main_config.get(sectiongroupname, {}).items():\n                masters = config.get('master', self.id).split()\n                if self.id not in masters:\n                    continue\n                self.instances[sid] = instance_class(self, sid, config)\n                self.instances[sid].sectiongroupname = sectiongroupname"
+      },
+      {
+        "class_name": "SplashScreen",
+        "file": "eth_py150\\enthought\\pyface\\pyface\\ui\\wx\\splash_screen.py",
+        "lines": "42-141",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.333,
+          "class_length": 99,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 3,
+          "wmc": 7,
+          "max_method_cc": 4,
+          "max_method_length": 31,
+          "avg_method_length": 21.667,
+          "avg_cyclomatic_complexity": 2.333,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 6,
+          "noam_plus_nopa": 6,
+          "atfd_proxy": 3,
+          "laa": 0.769
+        },
+        "source": "class SplashScreen(MSplashScreen, Window):\n    \"\"\" The toolkit specific implementation of a SplashScreen.  See the\n    ISplashScreen interface for the API documentation.\n    \"\"\"\n\n\n    #### 'ISplashScreen' interface ############################################\n\n    image = Instance(ImageResource, ImageResource('splash'))\n\n    log_level = Int(DEBUG)\n\n    show_log_messages = Bool(True)\n\n    text = Unicode\n\n    text_color = Any\n\n    text_font = Any\n\n    text_location  = Tuple(5, 5)\n\n    ###########################################################################\n    # Protected 'IWidget' interface.\n    ###########################################################################\n\n    def _create_control(self, parent):\n        # Get the splash screen image.\n    ... [72 more lines]"
+      },
+      {
+        "class_name": "BeautifierOptions",
+        "file": "eth_py150\\akalongman\\sublimetext-codeformatter\\codeformatter\\lib\\cssbeautifier\\__init__.py",
+        "lines": "32-52",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 20,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 2,
+          "max_method_cc": 1,
+          "max_method_length": 9,
+          "avg_method_length": 8.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd_proxy": 0,
+          "laa": 1.0
+        },
+        "source": "class BeautifierOptions:\n    def __init__(self):\n        self.indent_size = 4\n        self.indent_char = ' '\n        self.indent_with_tabs = False\n        self.selector_separator_newline = True\n        self.end_with_newline = False\n        self.newline_between_rules = True\n        self.eol = '\\n'\n\n\n    def __repr__(self):\n        return \\\n\"\"\"indent_size = %d\nindent_char = [%s]\nindent_with_tabs = [%s]\nseparate_selectors_newline = [%s]\nend_with_newline = [%s]\nnewline_between_rules = [%s]\n\"\"\" % (self.indent_size, self.indent_char, self.indent_with_tabs,\n       self.selector_separator_newline, self.end_with_newline, self.newline_between_rules)"
+      }
+    ],
+    "Clean": [
+      {
+        "class_name": "RequestLocalStream",
+        "file": "eth_py150\\AppScale\\appscale\\AppServer\\google\\appengine\\runtime\\request_environment.py",
+        "lines": "80-96",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.4,
+          "class_length": 16,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 5,
+          "wmc": 5,
+          "max_method_cc": 1,
+          "max_method_length": 1,
+          "avg_method_length": 1.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 0,
+          "laa": 1.0
+        },
+        "source": "class RequestLocalStream(object):\n  \"\"\"A stream that delegates to a RequestEnvironment stream.\"\"\"\n\n  def __init__(self, request):\n    self._request = request\n\n  def close(self):\n    pass\n\n  def flush(self):\n    self._request.errors.flush()\n\n  def write(self, data):\n    self._request.errors.write(data)\n\n  def writelines(self, data):\n    self._request.errors.writelines(data)"
+      },
+      {
+        "class_name": "IllegalChild",
+        "file": "eth_py150\\cloudera\\hue\\desktop\\core\\ext-py\\tablib-0.10.0\\tablib\\packages\\odf3\\element.py",
+        "lines": "89-90",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 1,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 0,
+          "wmc": 0,
+          "max_method_cc": 0,
+          "max_method_length": 0,
+          "avg_method_length": 0.0,
+          "avg_cyclomatic_complexity": 0.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 0,
+          "laa": 1.0
+        },
+        "source": "class IllegalChild(Exception):\n    \"\"\" Complains if you add an element to a parent where it is not allowed \"\"\""
+      },
+      {
+        "class_name": "_CommentFinder",
+        "file": "eth_py150\\GoogleCloudPlatform\\appengine-flask-skeleton\\lib\\jinja2\\ext.py",
+        "lines": "516-550",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 34,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 3,
+          "wmc": 11,
+          "max_method_cc": 5,
+          "max_method_length": 13,
+          "avg_method_length": 7.667,
+          "avg_cyclomatic_complexity": 3.667,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 4,
+          "noam_plus_nopa": 4,
+          "atfd_proxy": 3,
+          "laa": 0.786
+        },
+        "source": "class _CommentFinder(object):\n    \"\"\"Helper class to find comments in a token stream.  Can only\n    find comments for gettext calls forwards.  Once the comment\n    from line 4 is found, a comment for line 1 will not return a\n    usable value.\n    \"\"\"\n\n    def __init__(self, tokens, comment_tags):\n        self.tokens = tokens\n        self.comment_tags = comment_tags\n        self.offset = 0\n        self.last_lineno = 0\n\n    def find_backwards(self, offset):\n        try:\n            for _, token_type, token_value in \\\n                    reversed(self.tokens[self.offset:offset]):\n                if token_type in ('comment', 'linecomment'):\n                    try:\n                        prefix, comment = token_value.split(None, 1)\n                    except ValueError:\n                        continue\n                    if prefix in self.comment_tags:\n                        return [comment.rstrip()]\n            return []\n        finally:\n            self.offset = offset\n    ... [7 more lines]"
+      }
+    ]
+  }
+}

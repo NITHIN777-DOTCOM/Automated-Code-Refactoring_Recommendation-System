@@ -18,3 +18,9 @@ report.json
 
 # Notes
 PHASE2_NOTES.md
+
+# Collected real-world corpus (large, third-party, mixed licenses -- see
+# data/real_world/corpus_manifest.json for provenance instead of committing it)
+data/real_world/raw_sources/
+data/real_world/.cache/
+data/real_world/parse_report.json

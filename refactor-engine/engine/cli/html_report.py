@@ -38,6 +38,7 @@ import os
 from datetime import datetime
 
 from engine.reasoning import ClassReasoning, FileReasoning, GraphReasoning
+from engine.thresholds import rule_for
 
 INK = "#112D4E"
 ACCENT = "#3F72AF"
@@ -574,6 +575,80 @@ def _measurements_section(cls: ClassReasoning) -> str:
     )
 
 
+def _benchmarks_takeaway(cls: ClassReasoning) -> str:
+    met = sum(1 for b in cls.benchmarks if b.exceeds)
+    total = len(cls.benchmarks)
+    if not total:
+        return ""
+    return f"Meets {met} of {total} published conditions."
+
+
+def _benchmarks_section(cls: ClassReasoning) -> str:
+    """Measured values against cited literature thresholds.
+
+    Deliberately separate from "What was measured", which compares this
+    class to the TRAINING data's distribution -- the model's own frame of
+    reference. This section answers a different question, the one that has
+    to survive review by someone who does not care what our classifier
+    thinks: how does it read against published cutoffs?
+    """
+    if not cls.benchmarks:
+        return ""
+
+    rows = []
+    for b in cls.benchmarks:
+        meets = "yes" if b.exceeds else "no"
+        meets_cell = f'<strong>{meets}</strong>' if b.exceeds else meets
+        name = _e(b.plain_name) + (' <span class="measure-level">proxy</span>' if b.is_proxy else "")
+        rows.append(
+            "<tr>"
+            f"<td>{name}</td>"
+            f'<td class="num mono">{_e(_fmt_benchmark(b.value))}</td>'
+            f'<td class="mono">{_e(b.operator)} {_e(_fmt_benchmark(b.threshold))}</td>'
+            f"<td>{meets_cell}</td>"
+            f"<td>{_e(b.published_metric)}</td>"
+            f"<td>{_e(b.source_short)}</td>"
+            "</tr>"
+        )
+
+    body = (
+        '<div class="scroll"><table><thead><tr>'
+        "<th>Metric</th><th>Measured</th><th>Published</th><th>Meets rule?</th>"
+        "<th>Published rule</th><th>Source</th>"
+        "</tr></thead><tbody>" + "".join(rows) + "</tbody></table></div>"
+    )
+
+    rule = rule_for(cls.smell)
+    if rule:
+        body += (
+            f'<p class="note plain">Detection rule: <code>{_e(rule.formula)}</code>. '
+            f"{_e(rule.rationale)}</p>"
+        )
+
+    proxies = [b for b in cls.benchmarks if b.is_proxy]
+    if proxies:
+        notes = " ".join(f"{b.plain_name}: {b.mapping_note}" for b in proxies)
+        body += (
+            '<p class="note">Rows marked <em>proxy</em> are not the published metric itself — '
+            f"our engine has no exact equivalent. {_e(notes)}</p>"
+        )
+
+    return _section(
+        "Against published thresholds",
+        _benchmarks_takeaway(cls),
+        "How this class reads against cutoffs taken from the code-smell literature, independent "
+        "of what the classifier concluded. Where the two disagree, both numbers are here to be "
+        "checked.",
+        body,
+    )
+
+
+def _fmt_benchmark(value) -> str:
+    if isinstance(value, float) and not float(value).is_integer():
+        return f"{value:.2f}"
+    return str(int(value))
+
+
 def _model_section(cls: ClassReasoning) -> str:
     model = cls.model
     body = []
@@ -752,6 +827,7 @@ def _class_section(cls: ClassReasoning) -> str:
         f'<span class="sep">/</span><span class="score">{_e(score)}</span></p>'
         f'<p class="summary-line">{_e(_sentence(cls.top_reason))}</p>'
         f"{_measurements_section(cls)}"
+        f"{_benchmarks_section(cls)}"
         f"{_model_section(cls)}"
         f"{_graph_section(cls)}"
         f"{_actions_section(cls)}"

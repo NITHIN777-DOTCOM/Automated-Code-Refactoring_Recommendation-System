@@ -13,6 +13,7 @@ from rich.table import Table
 from rich.text import Text
 
 from engine.cli.explanations import MODEL_EXPLANATION, SMELL_EXPLANATIONS
+from engine.thresholds import rule_for
 
 console = Console()
 
@@ -482,15 +483,57 @@ def print_smell_explanation(smell_name: str):
     console.print(Panel(Group(*parts), title=f"[bold {color}]{name}[/bold {color}]", border_style=color, padding=(1, 2)))
 
 
-def print_why_summary(reasoning):
-    """The terminal half of `refactor-scan why`: the headline and the one
-    factor that mattered most, per class.
+def _benchmark_table(benchmarks) -> Table:
+    """Measured value beside the published threshold it is judged against.
 
-    Deliberately capped at three lines per class no matter how much reasoning
-    sits behind it. A file with a dozen flagged classes still has to fit on
-    one screen -- anything longer belongs in the HTML report, which is what
-    the closing hint points at. The full breakdown is one flag away; a
-    terminal that has scrolled past what you wanted is not."""
+    The "Meets rule?" column is worded rather than symbolic on purpose.
+    Several published conjuncts are LOWER bounds -- a Data Class requires
+    WMC < 31 -- so a warning glyph next to "WMC 11" would read as "11 is too
+    high" when what it means is "this is low enough to satisfy the Data Class
+    condition". A yes/no against the stated rule cannot be misread that way.
+
+    The citation travels in the row rather than in a footnote: the point of
+    this section is that a reader can check a claim against the literature
+    without leaving the output.
+    """
+    table = Table(box=None, pad_edge=False, show_edge=False, header_style="bold dim")
+    table.add_column("Metric", no_wrap=True)
+    table.add_column("Measured", justify="right", no_wrap=True)
+    table.add_column("Published", no_wrap=True)
+    table.add_column("Meets rule?", justify="center", no_wrap=True)
+    table.add_column("Source", style="dim", overflow="fold")
+
+    for b in benchmarks:
+        meets = "[bold red]yes[/bold red]" if b.exceeds else "[green]no[/green]"
+        value_style = "bold red" if b.exceeds else "green"
+        name = b.plain_name + ("[dim] *[/dim]" if b.is_proxy else "")
+        table.add_row(
+            name,
+            f"[{value_style}]{_fmt_metric(b.value)}[/{value_style}]",
+            f"{b.operator} {_fmt_metric(b.threshold)}",
+            meets,
+            f"{b.published_metric} — {b.source_short}",
+        )
+    return table
+
+
+def _fmt_metric(value) -> str:
+    if isinstance(value, float) and not float(value).is_integer():
+        return f"{value:.2f}"
+    return str(int(value))
+
+
+def print_why_summary(reasoning):
+    """The terminal half of `refactor-scan why`: the headline, the one factor
+    that mattered most, and how the class measures against published
+    thresholds.
+
+    The per-class prose stays capped at three lines no matter how much
+    reasoning sits behind it -- a file with a dozen flagged classes still has
+    to fit on one screen, and anything longer belongs in the HTML report.
+    The benchmark table is the deliberate exception: it is the part a reader
+    is most likely to have to defend to someone else, so it is shown up
+    front rather than hidden behind --output."""
     for cls in reasoning.classes:
         color = _SMELL_COLORS.get(cls.smell, "white")
         console.print(
@@ -511,6 +554,31 @@ def print_why_summary(reasoning):
         body.add_row("Suggestion:" if cls.is_flagged else "Verdict:", cls.short_suggestion)
 
         console.print(Padding(body, (0, 0, 1, 2), expand=False))
+
+        if cls.benchmarks:
+            rule = rule_for(cls.smell)
+            header = "[bold]Against published thresholds[/bold]"
+            if rule:
+                # The formula is what turns a list of independent comparisons
+                # into a verdict -- without it, a reader cannot tell whether
+                # the rows are ANDed, ORed, or merely informational.
+                header += f"  [dim]rule: {rule.formula}[/dim]"
+            console.print(Padding(header, (0, 0, 0, 2)))
+            console.print(Padding(_benchmark_table(cls.benchmarks), (0, 0, 0, 4), expand=False))
+            if any(b.is_proxy for b in cls.benchmarks):
+                console.print(
+                    Padding(
+                        "[dim]* proxy metric — our engine has no exact equivalent; "
+                        "see engine/thresholds.py[/dim]",
+                        (0, 0, 0, 4),
+                    )
+                )
+            console.print()
+
+    console.print(
+        "[dim]Thresholds are published values, not this tool's opinion — "
+        "see [bold]engine/thresholds.py[/bold] for each one's source.[/dim]"
+    )
 
     console.print(
         "[dim]Run the same command with [bold]--output report.html[/bold] for the full "
