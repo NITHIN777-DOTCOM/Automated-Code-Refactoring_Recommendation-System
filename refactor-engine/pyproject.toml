@@ -37,6 +37,11 @@ refactor-scan = "engine.cli.main:main"
 include = ["engine*"]
 
 # The trained classifier ships inside the package -- without this, an
-# installed copy has no model to load and every prediction fails.
+# installed copy has no model to load and every prediction fails. The
+# models/ subdirectory holds the opt-in alternatives as self-contained
+# bundles (see engine/ml/bundle.py); it lives under engine/ rather than at
+# the repository root precisely so that `include = ["engine*"]` above ships
+# it, since a top-level models/ would exist in a checkout and vanish from an
+# installed refactor-scan.
 [tool.setuptools.package-data]
-"engine.ml" = ["*.pkl"]
+"engine.ml" = ["*.pkl", "models/*.joblib"]

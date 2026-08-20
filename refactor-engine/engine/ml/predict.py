@@ -27,19 +27,40 @@ from functools import lru_cache
 import joblib
 import numpy as np
 
+from engine.ml.bundle import load_bundle, resolve_model_spec
 from engine.ml.features import ENCODER_PATH, FEATURE_COLUMNS, SCALER_PATH
 
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "smell_classifier.pkl")
 
 
-@lru_cache(maxsize=1)
-def _load_artifacts():
+@lru_cache(maxsize=4)
+def _load_spec(spec: str):
+    """Load one resolved model spec. Cached per spec, so a comparison run that
+    alternates between two models still pays each load only once."""
+    if spec != "synthetic":
+        return load_bundle(spec).as_artifacts()
+
     for path in (MODEL_PATH, SCALER_PATH, ENCODER_PATH):
         if not os.path.exists(path):
             raise FileNotFoundError(
                 f"Missing model artifact: {path}. Run `python -m engine.ml.train` first."
             )
     return joblib.load(MODEL_PATH), joblib.load(SCALER_PATH), joblib.load(ENCODER_PATH)
+
+
+def _load_artifacts(model: str | None = None):
+    """The (model, scaler, encoder) triple for the selected classifier.
+
+    Defaults to the shipped synthetic-trained model. The real-world-trained
+    model from A.2/A.2b is opt-in: pass model="real", or set
+    REFACTOR_SCAN_MODEL=real in the environment. It is deliberately not the
+    default -- see engine/ml/bundle.py.
+
+    Resolution happens on every call rather than at import time so that
+    setting the environment variable takes effect for the next prediction
+    instead of only for a freshly started process.
+    """
+    return _load_spec(resolve_model_spec(model))
 
 
 def flatten_metrics(metrics_dict: dict) -> dict:
@@ -63,8 +84,8 @@ def flatten_metrics(metrics_dict: dict) -> dict:
     }
 
 
-def predict_smell(metrics_dict: dict) -> str:
-    model, scaler, label_encoder = _load_artifacts()
+def predict_smell(metrics_dict: dict, model_choice: str | None = None) -> str:
+    model, scaler, label_encoder = _load_artifacts(model_choice)
 
     features = flatten_metrics(metrics_dict)
     row = np.array([[features[col] for col in FEATURE_COLUMNS]], dtype=float)
@@ -74,10 +95,12 @@ def predict_smell(metrics_dict: dict) -> str:
     return str(label_encoder.inverse_transform(prediction)[0])
 
 
-def predict_smell_with_confidence(metrics_dict: dict) -> tuple[str, float]:
+def predict_smell_with_confidence(
+    metrics_dict: dict, model_choice: str | None = None
+) -> tuple[str, float]:
     """Same as predict_smell(), but also returns the model's probability for
     the winning class -- useful when triaging borderline real-world classes."""
-    model, scaler, label_encoder = _load_artifacts()
+    model, scaler, label_encoder = _load_artifacts(model_choice)
 
     features = flatten_metrics(metrics_dict)
     row = np.array([[features[col] for col in FEATURE_COLUMNS]], dtype=float)

@@ -125,29 +125,67 @@ _METRIC_LANGUAGE = {
             f"Typical: {_fmt(t, 1)}."
         ),
     },
+    # cbo, fan_in and dit carry BOTH an "unused" sentence and the usual
+    # high/typical/low set, because whether they are used is a property of the
+    # model rather than of the metric. All three are constant at zero across
+    # the synthetic training set, so the synthetic-trained classifier gives
+    # them zero importance and only ever reaches "unused". The real-world
+    # corpus varies on all three, so the real-data-trained model (opt-in via
+    # --model real) does learn from them and needs the full set.
     "cbo": {
         "plain_name": "How many other classes it depends on",
         "what_it_is": "The number of different other classes this one uses.",
+        "high": (
+            "This class leans on a lot of other classes to get its job done, so a change "
+            "to any one of them can ripple back into this one."
+        ),
+        "typical": "It depends on about as many other classes as most classes do.",
+        "low": "It depends on very few other classes, so it largely stands on its own.",
         "unused": lambda v: f"It depends on {_fmt(v)} other class{'' if v == 1 else 'es'}.",
-        "detail": lambda v, t: f"CBO {_fmt(v)}.",
+        "detail": lambda v, t: (
+            f"CBO {_fmt(v)} -- it uses {_fmt(v)} other class{'' if v == 1 else 'es'}. "
+            f"Typical class in the model's training data: {_fmt(t, 1)}."
+        ),
     },
     "fan_in": {
         "plain_name": "How many other classes rely on it",
         "what_it_is": "The number of other classes that call into this one.",
+        "high": (
+            "A lot of other classes depend on this one, which makes it an expensive place "
+            "to get wrong -- a mistake here surfaces in several places at once."
+        ),
+        "typical": "About as many other classes rely on it as you'd expect.",
+        "low": (
+            "Few other classes rely on it, so changing it is comparatively contained."
+        ),
         "unused": lambda v: (
             f"{_fmt(v)} other class{' uses' if v == 1 else 'es use'} it."
         ),
-        "detail": lambda v, t: f"Fan-in {_fmt(v)}.",
+        "detail": lambda v, t: (
+            f"Fan-in {_fmt(v)} -- {_fmt(v)} other class{' calls' if v == 1 else 'es call'} "
+            f"into it. Typical: {_fmt(t, 1)}."
+        ),
     },
     "dit": {
         "plain_name": "How deep its inheritance goes",
         "what_it_is": "How many parent classes sit above this one in the inheritance chain.",
+        "high": (
+            "It sits deep in an inheritance chain, so a good deal of how it behaves is "
+            "defined in classes above it rather than in the code you're reading."
+        ),
+        "typical": "Its place in the inheritance chain is unremarkable.",
+        "low": (
+            "It sits at or near the top of its inheritance chain, so what it does is "
+            "mostly defined right here rather than inherited."
+        ),
         "unused": lambda v: (
             "It doesn't inherit from anything in this file."
             if v == 0
             else f"It sits {_fmt(v)} level{'' if v == 1 else 's'} down an inheritance chain."
         ),
-        "detail": lambda v, t: f"Depth of inheritance {_fmt(v)}.",
+        "detail": lambda v, t: (
+            f"Depth of inheritance {_fmt(v)}. Typical: {_fmt(t, 1)}."
+        ),
     },
 }
 

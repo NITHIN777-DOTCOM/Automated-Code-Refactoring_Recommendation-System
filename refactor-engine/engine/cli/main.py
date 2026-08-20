@@ -22,6 +22,7 @@ from engine.cli.render import (
     print_smell_explanation,
     print_why_summary,
 )
+from engine.ml.bundle import MODEL_ENV_VAR, describe_model
 from engine.parser import DEFAULT_EXCLUDED_DIRS, is_excluded_dir
 from engine.pipeline import analyze_path
 from engine.reasoning import ClassNotFoundError, explain_file
@@ -47,6 +48,41 @@ click.rich_click.COMMAND_GROUPS = {
         {"name": "Commands", "commands": ["analyze", "why", "explain"]},
     ]
 }
+
+
+# Shared by analyze and why. The real-data-trained classifier is opt-in rather
+# than default -- see engine/ml/bundle.py -- and this is how a caller opts in
+# for a single run without changing anything on disk.
+_MODEL_OPTION = click.option(
+    "--model", "model_choice", metavar="NAME",
+    help="Classifier to use: 'synthetic' (default, shipped) or 'real' (trained on the "
+         "real-world corpus), or a path to a .joblib bundle. Also settable via "
+         f"${MODEL_ENV_VAR}.",
+)
+
+
+def _activate_model(model_choice):
+    """Select the classifier for this run, and say so when it isn't the default.
+
+    Set in the environment rather than threaded through analyze_path() and
+    explain_file(): the choice has to reach predict.py at the bottom of the
+    call stack, and every layer in between would otherwise grow a parameter it
+    does nothing with. Announced whenever it is not the default, so a number in
+    the output can never be silently attributable to the wrong model.
+    """
+    if model_choice:
+        os.environ[MODEL_ENV_VAR] = model_choice
+
+    try:
+        described = describe_model()
+    except (ValueError, FileNotFoundError) as exc:
+        raise click.UsageError(str(exc))
+
+    if not described["is_default"]:
+        console.print(
+            f"[yellow]Using the non-default classifier[/yellow] "
+            f"[bold]{described['name']}[/bold] (trained on {described['trained_on']})."
+        )
 
 
 def _file_count(path, exclude=()):
@@ -90,8 +126,10 @@ def cli(ctx):
     help="Additional directory name to skip (repeatable). venv/.venv/env/test_env/"
     "__pycache__/site-packages/.git/node_modules/build/dist/*.egg-info are always skipped.",
 )
-def analyze(path, output_format, output, audience, top, exclude):
+@_MODEL_OPTION
+def analyze(path, output_format, output, audience, top, exclude, model_choice):
     """Scan PATH (a directory or a single .py file) for code smells and report the results."""
+    _activate_model(model_choice)
     results = analyze_path(path, exclude=list(exclude))
     file_count = _file_count(path, exclude=exclude)
 
@@ -117,7 +155,8 @@ def analyze(path, output_format, output, audience, top, exclude):
     "--output", type=click.Path(dir_okay=False), metavar="FILE.html",
     help="Write the full illustrated reasoning to an HTML file instead of summarizing here.",
 )
-def why(path, class_name, output):
+@_MODEL_OPTION
+def why(path, class_name, output, model_choice):
     """Show the reasoning behind PATH's results -- what was measured, what the classifier made
     of it, and how the suggestion was reached.
 
@@ -126,6 +165,7 @@ def why(path, class_name, output):
     measurement in plain language, the model's own working, and a drawing of how the methods
     were grouped.
     """
+    _activate_model(model_choice)
     try:
         reasoning = explain_file(path, class_name=class_name, clean_fallback=bool(output))
     except ClassNotFoundError as exc:

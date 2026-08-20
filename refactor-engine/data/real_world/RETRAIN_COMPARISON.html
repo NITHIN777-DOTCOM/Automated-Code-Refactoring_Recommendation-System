@@ -1,0 +1,461 @@
+<title>Retraining on Real Code</title>
+<style>
+:root {
+  color-scheme: light dark;
+
+  /* Ground and ink, carried over from engine/cli/html_report.py. The neutrals
+     are the same navy at lower alpha rather than a grey scale, so nothing on
+     the page is an unconsidered mid-grey. */
+  --paper:      #F9F7F7;
+  --panel:      #FFFFFF;
+  --ink:        #112D4E;
+  --ink-70:     rgba(17, 45, 78, .72);
+  --ink-55:     rgba(17, 45, 78, .56);
+  --ink-30:     rgba(17, 45, 78, .30);
+  --wash:       #DBE2EF;
+  --rule:       rgba(17, 45, 78, .14);
+
+  /* Series identity. Validated as a categorical pair -- see module docstring. */
+  --old:        #A8562C;
+  --new:        #3F72AF;
+  --old-fill:   rgba(168, 86, 44, .16);
+  --new-fill:   rgba(63, 114, 175, .16);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --measure: 68ch;
+  --page: 940px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:    #0E1A2B;
+    --panel:    #14243A;
+    --ink:      #E3EAF3;
+    --ink-70:   rgba(227, 234, 243, .74);
+    --ink-55:   rgba(227, 234, 243, .58);
+    --ink-30:   rgba(227, 234, 243, .32);
+    --wash:     #1E3247;
+    --rule:     rgba(227, 234, 243, .18);
+    --old:      #C26E3A;
+    --new:      #6094D0;
+    --old-fill: rgba(194, 110, 58, .22);
+    --new-fill: rgba(96, 148, 208, .22);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:    #0E1A2B;
+  --panel:    #14243A;
+  --ink:      #E3EAF3;
+  --ink-70:   rgba(227, 234, 243, .74);
+  --ink-55:   rgba(227, 234, 243, .58);
+  --ink-30:   rgba(227, 234, 243, .32);
+  --wash:     #1E3247;
+  --rule:     rgba(227, 234, 243, .18);
+  --old:      #C26E3A;
+  --new:      #6094D0;
+  --old-fill: rgba(194, 110, 58, .22);
+  --new-fill: rgba(96, 148, 208, .22);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 28px 110px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--page); margin: 0 auto; }
+.measure { max-width: var(--measure); }
+
+/* ---------- masthead ---------- */
+.masthead { padding: 76px 0 0; display: flex; flex-direction: column; gap: 18px; }
+.eyebrow {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--new); font-weight: 700; margin: 0;
+}
+h1 {
+  font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.08; margin: 0; letter-spacing: -.015em; text-wrap: balance;
+}
+.standfirst {
+  font-size: 18px; line-height: 1.55; color: var(--ink-70); margin: 0;
+  max-width: var(--measure);
+}
+.dateline {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-55);
+  border-top: 1px solid var(--rule); padding-top: 14px; margin: 6px 0 0;
+  display: flex; flex-wrap: wrap; gap: 6px 26px;
+}
+
+/* ---------- sections ---------- */
+section { margin: 68px 0 0; display: flex; flex-direction: column; gap: 18px; }
+h2 {
+  font-family: var(--serif); font-weight: 400; font-size: 27px; line-height: 1.2;
+  margin: 0; letter-spacing: -.01em; text-wrap: balance;
+}
+h3 {
+  font-size: 12px; letter-spacing: .13em; text-transform: uppercase;
+  font-weight: 700; color: var(--ink-55); margin: 0;
+}
+p { margin: 0; max-width: var(--measure); }
+.lede { color: var(--ink-70); font-size: 15.5px; }
+
+/* ---------- KPI row ---------- */
+.kpis {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: 14px;
+}
+.kpi {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.kpi-name {
+  font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase;
+  font-weight: 700; color: var(--ink-55); line-height: 1.35;
+  /* Two lines' worth reserved whether or not this name needs them, so the
+     four headline figures share a baseline instead of stepping down wherever
+     a label happens to wrap. */
+  min-height: 2.7em;
+}
+.kpi-pair { display: flex; align-items: baseline; gap: 10px; }
+.kpi-from {
+  font-family: var(--mono); font-size: 19px; color: var(--ink-55);
+  font-variant-numeric: tabular-nums; text-decoration: line-through;
+  text-decoration-color: var(--ink-30);
+}
+.kpi-arrow { color: var(--ink-30); font-size: 15px; }
+.kpi-to {
+  font-family: var(--mono); font-size: 30px; font-weight: 600; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums; line-height: 1;
+}
+.kpi-delta { font-size: 12.5px; color: var(--ink-70); font-variant-numeric: tabular-nums; }
+
+/* ---------- chart ---------- */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13px; color: var(--ink-70);
+  align-items: center;
+}
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.swatch { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+.swatch.old { background: var(--old); }
+.swatch.new { background: var(--new); }
+
+.chart {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 24px 22px 18px; display: flex; flex-direction: column; gap: 20px;
+}
+.chart-row { display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: center; }
+.chart-label { display: flex; flex-direction: column; gap: 2px; }
+.chart-label b { font-size: 14px; font-weight: 600; }
+.chart-label small {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-55);
+  font-variant-numeric: tabular-nums;
+}
+.bars { display: flex; flex-direction: column; gap: 2px; }
+.bar-track { display: flex; align-items: center; gap: 9px; }
+.bar-rail {
+  /* display:block is load-bearing, not decoration: these are <span>s, and an
+     inline element ignores width and height outright -- the bars render as an
+     empty rail. */
+  display: block; flex: 1; height: 15px; background: var(--wash);
+  border-radius: 2px; overflow: hidden;
+}
+.bar {
+  display: block; height: 100%; border-radius: 0 3px 3px 0; min-width: 2px;
+  transition: filter .12s ease;
+}
+.bar.old { background: var(--old); }
+.bar.new { background: var(--new); }
+.bar-track:hover .bar { filter: brightness(1.12); }
+.bar-value {
+  font-family: var(--mono); font-size: 12px; width: 3.4em; flex: none;
+  font-variant-numeric: tabular-nums; color: var(--ink-70);
+}
+.axis {
+  display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+  border-top: 1px solid var(--rule); padding-top: 8px;
+}
+.ticks {
+  display: flex; justify-content: space-between; font-family: var(--mono);
+  font-size: 11px; color: var(--ink-55); padding-right: calc(3.4em + 9px);
+}
+
+/* ---------- tables ---------- */
+.scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+caption {
+  text-align: left; padding: 14px 16px 0; font-size: 12px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--ink-55);
+}
+th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid var(--rule); }
+thead th {
+  font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--ink-55); font-weight: 700; white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td.name { font-weight: 600; white-space: nowrap; }
+tr.total td { border-top: 2px solid var(--ink-30); font-weight: 700; }
+
+.tier {
+  display: inline-block; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
+  font-weight: 700; padding: 2px 8px; border-radius: 2px; white-space: nowrap;
+  border: 1px solid var(--ink-30); color: var(--ink-70);
+}
+.tier[data-tier="solid"] { border-color: var(--new); color: var(--new); }
+.tier[data-tier="not meaningful"] { border-style: dashed; color: var(--ink-55); }
+
+/* ---------- confusion ---------- */
+.matrices { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+.cm td.cell { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.cm td.diag { outline: 2px solid var(--new); outline-offset: -2px; font-weight: 700; }
+.cm th.rowhead { font-weight: 600; white-space: nowrap; font-size: 12.5px; }
+
+/* ---------- notes ---------- */
+.note {
+  background: var(--wash); border-radius: 3px; padding: 16px 18px;
+  font-size: 15px; max-width: var(--measure); color: var(--ink);
+}
+.callout {
+  border-left: 3px solid var(--new); padding: 4px 0 4px 18px;
+  font-size: 16px; max-width: var(--measure);
+}
+ul.findings { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+ul.findings li {
+  padding-left: 18px; border-left: 1px solid var(--rule); max-width: var(--measure);
+  font-size: 15px;
+}
+ul.findings li b { font-weight: 700; }
+code {
+  font-family: var(--mono); font-size: .88em; background: var(--wash);
+  padding: 1px 5px; border-radius: 2px;
+}
+pre {
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.6; margin: 0;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 16px 18px; overflow-x: auto; color: var(--ink);
+}
+pre .c { color: var(--ink-55); }
+
+footer {
+  margin-top: 84px; padding-top: 20px; border-top: 1px solid var(--ink-30);
+  font-size: 13px; color: var(--ink-55); max-width: var(--measure);
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+a { color: var(--new); }
+:focus-visible { outline: 2px solid var(--new); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+@media (max-width: 640px) {
+  body { padding: 0 18px 72px; }
+  .chart-row, .axis { grid-template-columns: 1fr; gap: 8px; }
+  .ticks { padding-right: 0; }
+}
+</style>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">refactor-scan &middot; model evaluation</p>
+  <h1>What changed when the classifier learned from real code</h1>
+  <p class="standfirst">The smell classifier was trained on generated example classes.
+  Retrained on real classes mined from open-source Python, it goes from getting
+  <strong>42.4%</strong> of real code right to
+  <strong>91.9%</strong> &mdash; and stops crying wolf on healthy code.</p>
+  <p class="dateline">
+    <span>20 August 2026</span>
+    <span>641 held-out real classes</span>
+    <span>both models, one test set</span>
+  </p>
+</header>
+
+<section>
+  <h2>The headline</h2>
+  <p class="lede">Both models measured on exactly the same 641 classes marked
+  <code>split&nbsp;==&nbsp;"test"</code> in the real corpus &mdash; rows neither model was
+  trained on.</p>
+  <div class="kpis"><div class="kpi"><div class="kpi-name">Overall accuracy</div><div class="kpi-pair"><span class="kpi-from">42.4%</span><span class="kpi-arrow" aria-hidden="true">&rarr;</span><span class="kpi-to">91.9%</span></div><div class="kpi-delta">+49.5 points</div></div><div class="kpi"><div class="kpi-name">Macro-F1 (all 5 smells equal)</div><div class="kpi-pair"><span class="kpi-from">0.215</span><span class="kpi-arrow" aria-hidden="true">&rarr;</span><span class="kpi-to">0.528</span></div><div class="kpi-delta">+0.313</div></div><div class="kpi"><div class="kpi-name">Weighted F1 (by prevalence)</div><div class="kpi-pair"><span class="kpi-from">0.528</span><span class="kpi-arrow" aria-hidden="true">&rarr;</span><span class="kpi-to">0.903</span></div><div class="kpi-delta">+0.375</div></div><div class="kpi"><div class="kpi-name">False alarms on 550 clean classes</div><div class="kpi-pair"><span class="kpi-from">322</span><span class="kpi-arrow" aria-hidden="true">&rarr;</span><span class="kpi-to">9</span></div><div class="kpi-delta">313 fewer interruptions</div></div></div>
+  <p class="callout">The old model raises a false alarm on <strong>58.5%
+  of clean code</strong>. On a 550-class codebase it would interrupt a developer 322 times
+  with nothing to show them. That is the finding that justifies retraining &mdash; not the
+  accuracy number.</p>
+</section>
+
+<section>
+  <h2>Per-class F1, side by side</h2>
+  <div class="legend">
+    <span><i class="swatch old"></i> Old &mdash; trained on synthetic examples</span>
+    <span><i class="swatch new"></i> New &mdash; trained on real code</span>
+  </div>
+  <div class="chart"><div class="chart-row"><div class="chart-label"><b>Clean</b><small>n = 550</small></div><div class="bars"><div class="bar-track"><span class="bar-rail"><span class="bar old" style="width:58.6%" title="Old model, Clean: F1 0.586 (precision 1.000, recall 0.415, n=550)"></span></span><span class="bar-value">0.586</span></div><div class="bar-track"><span class="bar-rail"><span class="bar new" style="width:95.8%" title="New model, Clean: F1 0.958 (precision 0.934, recall 0.984, n=550)"></span></span><span class="bar-value">0.958</span></div></div></div><div class="chart-row"><div class="chart-label"><b>Data Class</b><small>n = 5</small></div><div class="bars"><div class="bar-track"><span class="bar-rail"><span class="bar old" style="width:0.0%" title="Old model, Data Class: F1 0.000 (precision 0.000, recall 0.000, n=5)"></span></span><span class="bar-value">0.000</span></div><div class="bar-track"><span class="bar-rail"><span class="bar new" style="width:0.0%" title="New model, Data Class: F1 0.000 (precision 0.000, recall 0.000, n=5)"></span></span><span class="bar-value">0.000</span></div></div></div><div class="chart-row"><div class="chart-label"><b>Feature Envy</b><small>n = 22</small></div><div class="bars"><div class="bar-track"><span class="bar-rail"><span class="bar old" style="width:4.6%" title="Old model, Feature Envy: F1 0.046 (precision 0.028, recall 0.136, n=22)"></span></span><span class="bar-value">0.046</span></div><div class="bar-track"><span class="bar-rail"><span class="bar new" style="width:16.7%" title="New model, Feature Envy: F1 0.167 (precision 1.000, recall 0.091, n=22)"></span></span><span class="bar-value">0.167</span></div></div></div><div class="chart-row"><div class="chart-label"><b>God Class</b><small>n = 29</small></div><div class="bars"><div class="bar-track"><span class="bar-rail"><span class="bar old" style="width:10.5%" title="Old model, God Class: F1 0.105 (precision 0.065, recall 0.276, n=29)"></span></span><span class="bar-value">0.105</span></div><div class="bar-track"><span class="bar-rail"><span class="bar new" style="width:84.7%" title="New model, God Class: F1 0.847 (precision 0.833, recall 0.862, n=29)"></span></span><span class="bar-value">0.847</span></div></div></div><div class="chart-row"><div class="chart-label"><b>Long Method</b><small>n = 35</small></div><div class="bars"><div class="bar-track"><span class="bar-rail"><span class="bar old" style="width:33.7%" title="Old model, Long Method: F1 0.337 (precision 0.205, recall 0.943, n=35)"></span></span><span class="bar-value">0.337</span></div><div class="bar-track"><span class="bar-rail"><span class="bar new" style="width:66.7%" title="New model, Long Method: F1 0.667 (precision 0.750, recall 0.600, n=35)"></span></span><span class="bar-value">0.667</span></div></div></div><div class="axis"><div></div><div class="ticks"><span>0</span><span>0.25</span><span>0.50</span><span>0.75</span><span>1.0</span></div></div></div>
+  <p class="lede">F1 combines precision and recall into one number, from 0 to 1. Read every bar
+  against its <code>n</code>: the bottom two rest on 5 and 22 examples respectively.</p>
+</section>
+
+<section>
+  <h2>Full breakdown</h2>
+  <p class="lede"><strong>Precision</strong> &mdash; when the model claims this smell, how often
+  it is right. <strong>Recall</strong> &mdash; of the classes that really have this smell, how
+  many it finds.</p>
+  <div class="scroll"><table><caption>Synthetic-trained (current default) &middot; trained on data/labeled_dataset.csv (synthetic, n=400)</caption><thead><tr><th scope="col">Smell</th><th class="num" scope="col">Precision</th><th class="num" scope="col">Recall</th><th class="num" scope="col">F1</th><th class="num" scope="col">n</th><th class="num" scope="col">95% CI recall</th></tr></thead><tbody><tr><td class="name">Clean</td><td class="num">1.000</td><td class="num">0.415</td><td class="num">0.586</td><td class="num">550</td><td class="num">0.37&ndash;0.46</td></tr><tr><td class="name">Data Class</td><td class="num">0.000</td><td class="num">0.000</td><td class="num">0.000</td><td class="num">5</td><td class="num">0.00&ndash;0.43</td></tr><tr><td class="name">Feature Envy</td><td class="num">0.028</td><td class="num">0.136</td><td class="num">0.046</td><td class="num">22</td><td class="num">0.05&ndash;0.33</td></tr><tr><td class="name">God Class</td><td class="num">0.065</td><td class="num">0.276</td><td class="num">0.105</td><td class="num">29</td><td class="num">0.15&ndash;0.46</td></tr><tr><td class="name">Long Method</td><td class="num">0.205</td><td class="num">0.943</td><td class="num">0.337</td><td class="num">35</td><td class="num">0.81&ndash;0.98</td></tr><tr class="total"><td class="name">Overall accuracy</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.424</td><td class="num">641</td><td class="num">&mdash;</td></tr><tr><td class="name">Macro-average F1</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.215</td><td class="num">641</td><td class="num">&mdash;</td></tr><tr><td class="name">Weighted-average F1</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.528</td><td class="num">641</td><td class="num">&mdash;</td></tr></tbody></table></div>
+  <div class="scroll"><table><caption>Real-data-trained (new) &middot; trained on data/real_world/labeled_real_dataset.csv (real, n=3206)</caption><thead><tr><th scope="col">Smell</th><th class="num" scope="col">Precision</th><th class="num" scope="col">Recall</th><th class="num" scope="col">F1</th><th class="num" scope="col">n</th><th class="num" scope="col">95% CI recall</th></tr></thead><tbody><tr><td class="name">Clean</td><td class="num">0.934</td><td class="num">0.984</td><td class="num">0.958</td><td class="num">550</td><td class="num">0.97&ndash;0.99</td></tr><tr><td class="name">Data Class</td><td class="num">0.000</td><td class="num">0.000</td><td class="num">0.000</td><td class="num">5</td><td class="num">0.00&ndash;0.43</td></tr><tr><td class="name">Feature Envy</td><td class="num">1.000</td><td class="num">0.091</td><td class="num">0.167</td><td class="num">22</td><td class="num">0.03&ndash;0.28</td></tr><tr><td class="name">God Class</td><td class="num">0.833</td><td class="num">0.862</td><td class="num">0.847</td><td class="num">29</td><td class="num">0.69&ndash;0.95</td></tr><tr><td class="name">Long Method</td><td class="num">0.750</td><td class="num">0.600</td><td class="num">0.667</td><td class="num">35</td><td class="num">0.44&ndash;0.74</td></tr><tr class="total"><td class="name">Overall accuracy</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.919</td><td class="num">641</td><td class="num">&mdash;</td></tr><tr><td class="name">Macro-average F1</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.528</td><td class="num">641</td><td class="num">&mdash;</td></tr><tr><td class="name">Weighted-average F1</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">0.903</td><td class="num">641</td><td class="num">&mdash;</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>Which of these numbers can actually be trusted</h2>
+  <p class="lede">The real corpus is 85.8% ordinary code, so the per-class numbers rest on
+  wildly different amounts of evidence. Reading the F1 column without the <code>n</code>
+  column beside it is the easiest way to draw a wrong conclusion from this page.</p>
+  <div class="scroll"><table>
+    <thead><tr><th scope="col">Smell</th><th class="num" scope="col">Test n</th>
+    <th scope="col">Weight of evidence</th><th class="num" scope="col">95% CI recall</th>
+    <th scope="col">How to read it</th></tr></thead>
+    <tbody><tr><td class="name">Clean</td><td class="num">550</td><td><span class="tier" data-tier="solid">solid</span></td><td class="num">0.97&ndash;0.99</td><td>Large enough to report as a real measurement.</td></tr><tr><td class="name">Data Class</td><td class="num">5</td><td><span class="tier" data-tier="not meaningful">not meaningful</span></td><td class="num">0.00&ndash;0.43</td><td>Too few examples to measure anything. Reported for completeness only.</td></tr><tr><td class="name">Feature Envy</td><td class="num">22</td><td><span class="tier" data-tier="weak">weak</span></td><td class="num">0.03&ndash;0.28</td><td>One or two predictions move this several points. Treat as a hint.</td></tr><tr><td class="name">God Class</td><td class="num">29</td><td><span class="tier" data-tier="weak">weak</span></td><td class="num">0.69&ndash;0.95</td><td>One or two predictions move this several points. Treat as a hint.</td></tr><tr><td class="name">Long Method</td><td class="num">35</td><td><span class="tier" data-tier="indicative">indicative</span></td><td class="num">0.44&ndash;0.74</td><td>Enough to show the direction; the error bars are wide.</td></tr></tbody>
+  </table></div>
+  <h3>Stated plainly, so it is not glossed over</h3>
+  <ul class="findings">
+    <li><b>Data Class (n=5) &mdash; not meaningful.</b> Five test examples
+    cannot measure anything. Its F1 of 0.000 means the model never predicted Data Class on
+    those five, but the interval on that recall runs 0.00&ndash;0.43. The honest statement is
+    <em>&ldquo;we do not know how this model handles Data Class&rdquo;</em>, not
+    <em>&ldquo;the model fails at Data Class&rdquo;</em>.</li>
+    <li><b>Feature Envy (n=22) &mdash; too small to defend.</b> The score is
+    genuinely poor and the direction is probably real, but at this size a swing of two or three
+    classes moves F1 by more than 10 points.</li>
+    <li><b>God Class (n=29) and Long Method (n=35) &mdash; the two
+    that improved most</b>, and both sit right around the n=30 line. The
+    jumps are far too large to be sampling noise, but not worth quoting to three decimals.</li>
+    <li><b>Clean (n=550) &mdash; solid.</b> The only per-class number here with
+    enough behind it to stand alone &mdash; and the one that matters most in practice, because
+    false alarms on healthy code are what get a tool switched off.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Where each model's mistakes go</h2>
+  <div class="matrices">
+    <div class="scroll"><table class="cm"><caption>Synthetic-trained (current default)</caption><thead><tr><th scope="col">actual \ predicted</th><th class="num">Clean</th><th class="num">Data Class</th><th class="num">Feature Envy</th><th class="num">God Class</th><th class="num">Long Method</th></tr></thead><tbody><tr><th class="rowhead" scope="row">Clean</th><td class="cell diag" style="background: rgba(63,114,175,0.228)">228</td><td class="cell" style="background: rgba(63,114,175,0.020)">20</td><td class="cell" style="background: rgba(63,114,175,0.098)">98</td><td class="cell" style="background: rgba(63,114,175,0.111)">111</td><td class="cell" style="background: rgba(63,114,175,0.093)">93</td></tr><tr><th class="rowhead" scope="row">Data Class</th><td class="cell">0</td><td class="cell diag">0</td><td class="cell" style="background: rgba(63,114,175,0.220)">2</td><td class="cell" style="background: rgba(63,114,175,0.110)">1</td><td class="cell" style="background: rgba(63,114,175,0.220)">2</td></tr><tr><th class="rowhead" scope="row">Feature Envy</th><td class="cell">0</td><td class="cell">0</td><td class="cell diag" style="background: rgba(63,114,175,0.075)">3</td><td class="cell" style="background: rgba(63,114,175,0.050)">2</td><td class="cell" style="background: rgba(63,114,175,0.425)">17</td></tr><tr><th class="rowhead" scope="row">God Class</th><td class="cell">0</td><td class="cell">0</td><td class="cell" style="background: rgba(63,114,175,0.095)">5</td><td class="cell diag" style="background: rgba(63,114,175,0.152)">8</td><td class="cell" style="background: rgba(63,114,175,0.303)">16</td></tr><tr><th class="rowhead" scope="row">Long Method</th><td class="cell">0</td><td class="cell">0</td><td class="cell">0</td><td class="cell" style="background: rgba(63,114,175,0.031)">2</td><td class="cell diag" style="background: rgba(63,114,175,0.519)">33</td></tr></tbody></table></div>
+    <div class="scroll"><table class="cm"><caption>Real-data-trained (new)</caption><thead><tr><th scope="col">actual \ predicted</th><th class="num">Clean</th><th class="num">Data Class</th><th class="num">Feature Envy</th><th class="num">God Class</th><th class="num">Long Method</th></tr></thead><tbody><tr><th class="rowhead" scope="row">Clean</th><td class="cell diag" style="background: rgba(63,114,175,0.541)">541</td><td class="cell" style="background: rgba(63,114,175,0.002)">2</td><td class="cell">0</td><td class="cell" style="background: rgba(63,114,175,0.002)">2</td><td class="cell" style="background: rgba(63,114,175,0.005)">5</td></tr><tr><th class="rowhead" scope="row">Data Class</th><td class="cell" style="background: rgba(63,114,175,0.550)">5</td><td class="cell diag">0</td><td class="cell">0</td><td class="cell">0</td><td class="cell">0</td></tr><tr><th class="rowhead" scope="row">Feature Envy</th><td class="cell" style="background: rgba(63,114,175,0.375)">15</td><td class="cell">0</td><td class="cell diag" style="background: rgba(63,114,175,0.050)">2</td><td class="cell" style="background: rgba(63,114,175,0.075)">3</td><td class="cell" style="background: rgba(63,114,175,0.050)">2</td></tr><tr><th class="rowhead" scope="row">God Class</th><td class="cell" style="background: rgba(63,114,175,0.076)">4</td><td class="cell">0</td><td class="cell">0</td><td class="cell diag" style="background: rgba(63,114,175,0.474)">25</td><td class="cell">0</td></tr><tr><th class="rowhead" scope="row">Long Method</th><td class="cell" style="background: rgba(63,114,175,0.220)">14</td><td class="cell">0</td><td class="cell">0</td><td class="cell">0</td><td class="cell diag" style="background: rgba(63,114,175,0.330)">21</td></tr></tbody></table></div>
+  </div>
+  <p class="lede">Cell shading is proportional to each row's total; the outlined diagonal is
+  the correct answer. The old model's <code>Clean</code> row is the whole story: of
+  550 genuinely clean classes it labels only 228 clean and
+  scatters the other 322 across all four smells.</p>
+</section>
+
+<section>
+  <h2>What changed, in plain language</h2>
+  <p>The classifier was originally taught from 400 example classes that we generated ourselves.
+  Each was written to demonstrate exactly one problem &mdash; a class that was too long, a class
+  whose methods had nothing to do with each other, and so on. Those examples were deliberately
+  clear-cut, because the point of them was to check the detection machinery worked at all. The
+  model learned them almost perfectly, and its reported accuracy was correspondingly high.</p>
+  <p>The problem is that real code looks nothing like a textbook example. In our generated data,
+  four out of every five classes had something wrong with them. In real open-source Python, the
+  overwhelming majority of classes are perfectly ordinary. A model taught on the first kind of
+  data arrives at the second kind expecting to find problems everywhere &mdash; and duly finds
+  them. Measured against real code it had never seen, the old model got
+  42.4% of classes right and flagged 322 of 550 perfectly
+  healthy classes as having a problem.</p>
+  <p>So we rebuilt the training data from real code instead: 3,206 classes from real open-source
+  projects, labelled by measuring them against published thresholds from the code-smell
+  literature rather than generated to order. We retrained the same classifier &mdash; same
+  algorithm, same settings, same eight measurements, the only difference being what it was shown
+  &mdash; and tested it on the same 641 held-out real classes. Accuracy went from
+  42.4% to 91.9%, and false alarms on clean code fell from
+  322 to 9.</p>
+  <p class="note"><strong>The honest caveat.</strong> The new model buys much of that improvement
+  by being more cautious. It is very good at recognising ordinary code and leaving it alone, and
+  reliable on the two smells with real structural signatures &mdash; God Class and Long Method.
+  It is still weak at Feature Envy, and we genuinely cannot say how it handles Data Class,
+  because the corpus held only five test examples. Those are limitations of the data, not of the
+  retraining: the next useful step is collecting more examples of the rare smells, not tuning
+  the model.</p>
+</section>
+
+<section>
+  <h2>What changed technically</h2>
+  <div class="scroll"><table>
+    <thead><tr><th scope="col"></th><th scope="col">Old</th><th scope="col">New</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Training data</td><td>400 generated classes</td>
+        <td>2,565 real training rows</td></tr>
+      <tr><td class="name">Class balance</td><td>80 per smell (20% each)</td>
+        <td>85.8% Clean, mirroring real code</td></tr>
+      <tr><td class="name">Algorithm</td><td>RandomForest, 100 trees, balanced</td>
+        <td>RandomForest, 100 trees, balanced <em>(unchanged)</em></td></tr>
+      <tr><td class="name">Features</td><td>8 metrics</td><td>8 metrics <em>(unchanged)</em></td></tr>
+      <tr><td class="name">Usable features</td>
+        <td>5 of 8 &mdash; <code>cbo</code>, <code>dit</code>, <code>fan_in</code> constant at 0</td>
+        <td><strong>8 of 8</strong> &mdash; real code varies on all of them</td></tr>
+      <tr><td class="name">Train/test split</td><td>stratified 80/20, re-split each run</td>
+        <td>the corpus's own fixed <code>split</code> column</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede">The <em>usable features</em> row is worth a sentence at a viva. In the generated
+  data three of the eight measurements &mdash; coupling, inheritance depth, and how many other
+  classes call into this one &mdash; were identical for every example, so the model could learn
+  nothing from them and effectively ran on five inputs.</p>
+</section>
+
+<section>
+  <h2>Reproducing this</h2>
+  <pre><span class="c"># 1. Retrain on the real corpus (separate bundle; leaves the default model alone)</span>
+python -m engine.ml.train \
+    --dataset data/real_world/labeled_real_dataset.csv \
+    --split-column split \
+    --output engine/ml/models/classifier_real.joblib
+
+<span class="c"># 2. Score both models on the same held-out rows and regenerate this page</span>
+python -m engine.evaluate.report
+python -m engine.evaluate.comparison_page
+
+<span class="c"># 3. Try the new model without making it the default</span>
+refactor-scan analyze path/to/code.py --model real</pre>
+  <p class="note"><strong>The new model is not the default.</strong> The shipped classifier is
+  still the synthetic-trained one; the real-data model is opt-in via <code>--model real</code>
+  or <code>REFACTOR_SCAN_MODEL=real</code>, so the two can be compared on live code before
+  production switches over. Each model is stored with its own scaler, so neither can be
+  accidentally paired with the other's preprocessing.</p>
+</section>
+
+<section>
+  <h2>Methodology</h2>
+  <ul class="findings">
+    <li><b>Same test rows for both models.</b> The 641 rows marked <code>test</code> in the
+    corpus, exactly as the labelling run fixed them. Neither model was re-split.</li>
+    <li><b>Each model applied with its own scaler.</b> A model's scaler defines the input space
+    it was fitted in; scoring the old model through the new one's scaler would measure a model
+    that never existed.</li>
+    <li><b>The scaler is fitted on training rows only.</b> Held-out rows contribute nothing to
+    the means and standard deviations, so no test information reaches training.</li>
+    <li><b>Predictions compared as label strings, not encoder integers.</b> Two encoders fitted
+    on different datasets can map the same smell to different numbers; comparing codes would
+    score each model against a permuted answer key.</li>
+    <li><b>Recall intervals are Wilson 95%.</b> The textbook normal interval collapses to
+    [0,&nbsp;0] at zero successes, which would claim certainty from five examples.</li>
+    <li><b>Labels are threshold-derived, not hand-verified.</b> The corpus was labelled by
+    measuring each class against published cutoffs, so these scores measure agreement with those
+    published rules rather than with human judgement. That applies equally to both models, so
+    the comparison between them stays fair.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Generated by <code>python -m engine.evaluate.comparison_page</code> from a live evaluation
+  &mdash; every number on this page is read from the models, not transcribed.</p>
+  <p>The Markdown record of the same run is at
+  <code>data/real_world/RETRAIN_COMPARISON.md</code>.</p>
+</footer>
+
+</div>

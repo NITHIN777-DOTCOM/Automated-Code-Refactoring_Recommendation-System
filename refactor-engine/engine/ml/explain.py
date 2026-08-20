@@ -113,10 +113,16 @@ def explain_prediction(metrics_dict: dict) -> dict:
                 "z_score": z_scores[col],
                 "support": base_probability - without,
                 "importance": float(importances[i]),
-                # cbo/dit/fan_in are constant across the synthetic training
-                # set, so the forest never learned to use them. Ranking them
-                # would put a feature the model provably ignores at the top of
-                # an explanation of what the model did.
+                # A zero-importance column is one the forest never split on.
+                # Ranking it would put a feature the model provably ignores at
+                # the top of an explanation of what the model did.
+                #
+                # Which columns those are depends on the MODEL, not the metric:
+                # cbo/dit/fan_in are constant across the synthetic training set
+                # so the shipped classifier ignores all three, while the
+                # real-world-trained model (engine/ml/bundle.py) does use them.
+                # Anything consuming this flag must handle either case -- see
+                # the language table in engine/reasoning.py.
                 "used_by_model": float(importances[i]) > 0.0,
             }
         )
