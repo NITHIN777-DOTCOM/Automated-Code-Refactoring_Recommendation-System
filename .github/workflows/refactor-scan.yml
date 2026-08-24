@@ -1,0 +1,134 @@
+name: refactor-scan
+
+# Informational code-smell review on every pull request.
+#
+# Scans ONLY the Python files the PR changed, not the whole repository: a
+# full-repo scan would re-report every pre-existing smell on every PR, which
+# trains reviewers to ignore the comment entirely.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Least privilege. `pull-requests: write` is the only elevated scope needed,
+# and it exists solely to upsert one comment.
+permissions:
+  contents: read
+  pull-requests: write
+
+# A fast follow-up push should cancel the run for the commit it replaced --
+# nobody needs a comment describing a commit that is no longer the PR head.
+concurrency:
+  group: refactor-scan-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the PR head
+        uses: actions/checkout@v4
+        with:
+          # The merge-base diff below needs both branches present, so the
+          # default depth-1 checkout is not enough.
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Work out which Python files this PR changes
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" 2>/dev/null || true
+
+          # Three-dot: compare against the MERGE BASE, so files that only
+          # changed on the base branch since this PR forked are not reported
+          # as if the PR touched them.
+          #
+          # --diff-filter=ACMR excludes deletions: a file the PR deleted has
+          # nothing left to scan, and passing it to the analyzer would be a
+          # guaranteed "file not found".
+          git diff --name-only --diff-filter=ACMR "$BASE_SHA...$HEAD_SHA" -- '*.py' \
+            > changed_python_files.txt || true
+
+          count=$(wc -l < changed_python_files.txt | tr -d ' ')
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Changed Python files: $count"
+          cat changed_python_files.txt
+
+      - name: Set up Python
+        if: steps.changed.outputs.count != '0'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install refactor-scan
+        if: steps.changed.outputs.count != '0'
+        # Installed from this repository so the Action always tests the code
+        # in the PR's own checkout. In another project, replace this with:
+        #   pip install "refactor-scan>=0.4"
+        run: pip install ./refactor-engine
+
+      - name: Scan the changed files
+        if: steps.changed.outputs.count != '0'
+        id: scan
+        # Never let a scanner crash fail someone's PR. The comment step below
+        # is skipped when no body was produced, so a failure here degrades to
+        # "no comment" rather than a red check on unrelated work.
+        continue-on-error: true
+        run: |
+          python -m engine.ci.pr_comment \
+            --files-from changed_python_files.txt \
+            --output refactor-scan-comment.md
+
+      - name: Post or update the PR comment
+        if: steps.changed.outputs.count != '0' && hashFiles('refactor-scan-comment.md') != ''
+        # A PR from a fork gets a read-only token, so commenting is rejected.
+        # That is expected, not a failure: the same report was already written
+        # to the job summary by the step above, so the result is still visible.
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('refactor-scan-comment.md', 'utf8');
+            const MARKER = '<!-- refactor-scan-report -->';
+
+            // Find our own previous comment by its invisible marker and edit
+            // it, so a PR with twenty pushes ends up with one comment that is
+            // always current -- not twenty stale ones.
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find(
+              (c) => c.user.type === 'Bot' && c.body && c.body.includes(MARKER)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+              core.info(`Updated existing comment ${existing.id}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+              core.info('Created a new comment');
+            }
+
+      - name: Note when the PR changes no Python
+        if: steps.changed.outputs.count == '0'
+        # Explicitly a no-op: no comment, no failure. A docs-only PR should
+        # not collect a "nothing to report" note on every push.
+        run: echo "No Python files changed in this PR -- nothing to scan."
