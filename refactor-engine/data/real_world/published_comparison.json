@@ -1,0 +1,530 @@
+{
+  "libraries": {
+    "numpy": {
+      "label": "NumPy 1.9.2",
+      "source": "PyPI sdist",
+      "parse_stats": {
+        "files_seen": 352,
+        "files_parsed_ok": 351,
+        "classes_seen": 923,
+        "methods_seen": 4485,
+        "files_failed": 1
+      },
+      "all_classes": {
+        "our_class_length": {
+          "n": 923,
+          "mean": 69.49,
+          "median": 27,
+          "std": 178.32,
+          "p25": 8.0,
+          "p75": 64.0,
+          "p90": 136.0,
+          "min": 0,
+          "max": 3033
+        },
+        "radon_loc": {
+          "n": 923,
+          "mean": 70.49,
+          "median": 28,
+          "std": 178.32,
+          "p25": 9.0,
+          "p75": 65.0,
+          "p90": 137.0,
+          "min": 1,
+          "max": 3034
+        }
+      },
+      "production_classes_only": {
+        "n": 258,
+        "our_class_length": {
+          "n": 258,
+          "mean": 88.07,
+          "median": 26.5,
+          "std": 240.44,
+          "p25": 7.0,
+          "p75": 69.0,
+          "p90": 194.0,
+          "min": 1,
+          "max": 3033
+        },
+        "radon_loc": {
+          "n": 258,
+          "mean": 89.07,
+          "median": 27.5,
+          "std": 240.44,
+          "p25": 8.0,
+          "p75": 70.0,
+          "p90": 195.0,
+          "min": 2,
+          "max": 3034
+        }
+      },
+      "agreement_class_length_vs_radon_loc": {
+        "n": 923,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 923,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      }
+    },
+    "django": {
+      "label": "Django 1.8.2",
+      "source": "PyPI sdist",
+      "parse_stats": {
+        "files_seen": 2100,
+        "files_parsed_ok": 2100,
+        "classes_seen": 4990,
+        "methods_seen": 16127
+      },
+      "all_classes": {
+        "our_class_length": {
+          "n": 4990,
+          "mean": 42.23,
+          "median": 9.0,
+          "std": 112.94,
+          "p25": 2.0,
+          "p75": 36.0,
+          "p90": 104.0,
+          "min": 1,
+          "max": 2414
+        },
+        "radon_loc": {
+          "n": 4990,
+          "mean": 43.23,
+          "median": 10.0,
+          "std": 112.94,
+          "p25": 3.0,
+          "p75": 37.0,
+          "p90": 105.0,
+          "min": 2,
+          "max": 2415
+        }
+      },
+      "production_classes_only": {
+        "n": 1348,
+        "our_class_length": {
+          "n": 1348,
+          "mean": 54.65,
+          "median": 19.0,
+          "std": 120.07,
+          "p25": 5.0,
+          "p75": 55.0,
+          "p90": 134.0,
+          "min": 1,
+          "max": 1945
+        },
+        "radon_loc": {
+          "n": 1348,
+          "mean": 55.65,
+          "median": 20.0,
+          "std": 120.07,
+          "p25": 6.0,
+          "p75": 56.0,
+          "p90": 135.0,
+          "min": 2,
+          "max": 1946
+        }
+      },
+      "agreement_class_length_vs_radon_loc": {
+        "n": 4990,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 4990,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1.0,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      }
+    },
+    "matplotlib": {
+      "label": "Matplotlib 1.4.3",
+      "source": "PyPI sdist",
+      "parse_stats": {
+        "files_seen": 1731,
+        "files_parsed_ok": 1723,
+        "classes_seen": 1164,
+        "methods_seen": 6152,
+        "files_failed": 8
+      },
+      "all_classes": {
+        "our_class_length": {
+          "n": 1164,
+          "mean": 89.8,
+          "median": 31.0,
+          "std": 274.63,
+          "p25": 10.0,
+          "p75": 84.0,
+          "p90": 199.0,
+          "min": 1,
+          "max": 7111
+        },
+        "radon_loc": {
+          "n": 1164,
+          "mean": 90.8,
+          "median": 32.0,
+          "std": 274.63,
+          "p25": 11.0,
+          "p75": 85.0,
+          "p90": 200.0,
+          "min": 2,
+          "max": 7112
+        }
+      },
+      "production_classes_only": {
+        "n": 1054,
+        "our_class_length": {
+          "n": 1054,
+          "mean": 94.71,
+          "median": 35.0,
+          "std": 285.74,
+          "p25": 13.0,
+          "p75": 90.0,
+          "p90": 206.0,
+          "min": 1,
+          "max": 7111
+        },
+        "radon_loc": {
+          "n": 1054,
+          "mean": 95.71,
+          "median": 36.0,
+          "std": 285.74,
+          "p25": 14.0,
+          "p75": 91.0,
+          "p90": 207.0,
+          "min": 2,
+          "max": 7112
+        }
+      },
+      "agreement_class_length_vs_radon_loc": {
+        "n": 1164,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 1164,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1.0,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      }
+    },
+    "scipy": {
+      "label": "SciPy 0.16.0b2",
+      "source": "GitHub tag v0.16.0b2",
+      "parse_stats": {
+        "files_seen": 522,
+        "files_parsed_ok": 516,
+        "classes_seen": 1231,
+        "methods_seen": 7181,
+        "files_failed": 6
+      },
+      "all_classes": {
+        "our_class_length": {
+          "n": 1231,
+          "mean": 73.2,
+          "median": 35,
+          "std": 173.08,
+          "p25": 12.0,
+          "p75": 75.0,
+          "p90": 156.0,
+          "min": 1,
+          "max": 4466
+        },
+        "radon_loc": {
+          "n": 1231,
+          "mean": 74.2,
+          "median": 36,
+          "std": 173.08,
+          "p25": 13.0,
+          "p75": 76.0,
+          "p90": 157.0,
+          "min": 2,
+          "max": 4467
+        }
+      },
+      "production_classes_only": {
+        "n": 420,
+        "our_class_length": {
+          "n": 420,
+          "mean": 85.18,
+          "median": 41.0,
+          "std": 143.78,
+          "p25": 13.0,
+          "p75": 81.0,
+          "p90": 202.0,
+          "min": 1,
+          "max": 1127
+        },
+        "radon_loc": {
+          "n": 420,
+          "mean": 86.18,
+          "median": 42.0,
+          "std": 143.78,
+          "p25": 14.0,
+          "p75": 82.0,
+          "p90": 203.0,
+          "min": 2,
+          "max": 1128
+        }
+      },
+      "agreement_class_length_vs_radon_loc": {
+        "n": 1231,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 1231,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      }
+    }
+  },
+  "combined": {
+    "n_classes": 8308,
+    "n_methods": 33945,
+    "class_length": {
+      "ours_all": {
+        "n": 8308,
+        "mean": 56.52,
+        "median": 15.0,
+        "std": 162.91,
+        "p25": 4.0,
+        "p75": 52.0,
+        "p90": 129.0,
+        "min": 0,
+        "max": 7111
+      },
+      "radon_loc_all": {
+        "n": 8308,
+        "mean": 57.52,
+        "median": 16.0,
+        "std": 162.91,
+        "p25": 5.0,
+        "p75": 53.0,
+        "p90": 130.0,
+        "min": 1,
+        "max": 7112
+      },
+      "ours_production_only": {
+        "n": 3080,
+        "mean": 75.32,
+        "median": 28.0,
+        "std": 205.56,
+        "p25": 8.0,
+        "p75": 69.0,
+        "p90": 168.0,
+        "min": 1,
+        "max": 7111
+      }
+    },
+    "method_length": {
+      "ours_all": {
+        "n": 33945,
+        "mean": 10.53,
+        "median": 6,
+        "std": 16.57,
+        "p25": 2.0,
+        "p75": 12.0,
+        "p90": 24.0,
+        "min": 0,
+        "max": 532
+      },
+      "ours_plus1_all": {
+        "n": 33945,
+        "mean": 11.53,
+        "median": 7,
+        "std": 16.57,
+        "p25": 3.0,
+        "p75": 13.0,
+        "p90": 25.0,
+        "min": 1,
+        "max": 533
+      },
+      "radon_loc_all": {
+        "n": 33945,
+        "mean": 11.53,
+        "median": 7,
+        "std": 16.57,
+        "p25": 3.0,
+        "p75": 13.0,
+        "p90": 25.0,
+        "min": 1,
+        "max": 533
+      },
+      "ours_production_only": {
+        "n": 14935,
+        "mean": 11.5,
+        "median": 5,
+        "std": 20.39,
+        "p25": 2.0,
+        "p75": 12.0,
+        "p90": 28.0,
+        "min": 0,
+        "max": 532
+      }
+    },
+    "histograms": {
+      "our_class_length": {
+        "0-10": {
+          "count": 3398,
+          "pct": 40.9
+        },
+        "10-20": {
+          "count": 1095,
+          "pct": 13.2
+        },
+        "20-35": {
+          "count": 965,
+          "pct": 11.6
+        },
+        "35-50": {
+          "count": 674,
+          "pct": 8.1
+        },
+        "50-100": {
+          "count": 1043,
+          "pct": 12.6
+        },
+        "100-200": {
+          "count": 641,
+          "pct": 7.7
+        },
+        "200-400": {
+          "count": 312,
+          "pct": 3.8
+        },
+        "400-800": {
+          "count": 127,
+          "pct": 1.5
+        },
+        "800-inf": {
+          "count": 53,
+          "pct": 0.6
+        }
+      },
+      "radon_loc_class": {
+        "0-10": {
+          "count": 3213,
+          "pct": 38.7
+        },
+        "10-20": {
+          "count": 1208,
+          "pct": 14.5
+        },
+        "20-35": {
+          "count": 989,
+          "pct": 11.9
+        },
+        "35-50": {
+          "count": 689,
+          "pct": 8.3
+        },
+        "50-100": {
+          "count": 1071,
+          "pct": 12.9
+        },
+        "100-200": {
+          "count": 642,
+          "pct": 7.7
+        },
+        "200-400": {
+          "count": 316,
+          "pct": 3.8
+        },
+        "400-800": {
+          "count": 127,
+          "pct": 1.5
+        },
+        "800-inf": {
+          "count": 53,
+          "pct": 0.6
+        }
+      },
+      "our_method_length": {
+        "0-10": {
+          "count": 22964,
+          "pct": 67.7
+        },
+        "10-20": {
+          "count": 6354,
+          "pct": 18.7
+        },
+        "20-35": {
+          "count": 2801,
+          "pct": 8.3
+        },
+        "35-50": {
+          "count": 952,
+          "pct": 2.8
+        },
+        "50-100": {
+          "count": 686,
+          "pct": 2.0
+        },
+        "100-200": {
+          "count": 163,
+          "pct": 0.5
+        },
+        "200-400": {
+          "count": 22,
+          "pct": 0.1
+        },
+        "400-800": {
+          "count": 3,
+          "pct": 0.0
+        },
+        "800-inf": {
+          "count": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "agreement": {
+      "class_length_vs_radon_loc": {
+        "n": 8308,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 8308,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1.0,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      },
+      "method_length_vs_radon_loc": {
+        "n": 33945,
+        "exact_match": 0,
+        "exact_match_pct": 0.0,
+        "within_1_line": 33945,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": -1,
+        "median_diff": -1,
+        "min_diff": -1,
+        "max_diff": -1,
+        "pearson_r": 1.0
+      },
+      "method_length_plus1_vs_radon_loc": {
+        "n": 33945,
+        "exact_match": 33945,
+        "exact_match_pct": 100.0,
+        "within_1_line": 33945,
+        "within_1_line_pct": 100.0,
+        "mean_diff_ours_minus_theirs": 0,
+        "median_diff": 0,
+        "min_diff": 0,
+        "max_diff": 0,
+        "pearson_r": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Why these classes were flagged &middot; orcid.py</title></head><body><style>
+:root {
+  --ink: #112D4E;
+  --accent: #3F72AF;
+  --wash: #DBE2EF;
+  --paper: #F9F7F7;
+  /* Depth of the same ink, standing in for a grey scale the palette doesn't have. */
+  --ink-70: rgba(17, 45, 78, .72);
+  --ink-55: rgba(17, 45, 78, .56);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0 24px 96px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.7 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 780px; margin: 0 auto; }
+
+/* ---------- page header ---------- */
+.masthead { padding: 72px 0 0; }
+.eyebrow {
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 20px; font-weight: 600;
+}
+h1 {
+  font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.15;
+  margin: 0 0 18px; letter-spacing: -.01em;
+}
+.standfirst { font-size: 17px; color: var(--ink-70); margin: 0 0 26px; max-width: 60ch; }
+.dateline {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-55);
+  border-top: 1px solid var(--wash); padding-top: 14px; margin: 0;
+  display: flex; flex-wrap: wrap; gap: 6px 18px;
+}
+.dateline .path { word-break: break-all; }
+
+/* ---------- contents ---------- */
+.contents { margin: 34px 0 0; padding: 0; list-style: none; }
+.contents li { border-bottom: 1px solid var(--wash); }
+.contents li:first-child { border-top: 1px solid var(--wash); }
+.contents a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 11px 2px; text-decoration: none; color: var(--ink);
+}
+.contents a:hover { color: var(--accent); }
+.contents .name { font-family: var(--mono); font-size: 14px; }
+.contents .label { font-size: 13px; color: var(--ink-55); text-align: right; }
+
+/* ---------- class ---------- */
+.class { margin: 72px 0 0; border-top: 2px solid var(--ink); padding-top: 22px; }
+.class .file {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink-55); margin: 0 0 10px;
+}
+.class h2 {
+  font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.2;
+  margin: 0 0 8px; letter-spacing: -.01em;
+}
+.verdict { font-size: 15px; margin: 0 0 16px; color: var(--ink); }
+.verdict .smell { font-weight: 600; }
+.verdict .sep { color: var(--accent); padding: 0 8px; }
+.verdict .score { color: var(--ink-70); }
+.summary-line { font-size: 17px; line-height: 1.6; margin: 0 0 30px; max-width: 58ch; }
+
+/* ---------- collapsible sections ---------- */
+details { border-top: 1px solid var(--wash); }
+details:last-of-type { border-bottom: 1px solid var(--wash); }
+summary {
+  list-style: none; cursor: pointer; padding: 16px 0 16px 30px; position: relative;
+  transition: background-color .12s ease;
+}
+summary::-webkit-details-marker { display: none; }
+summary:hover { background: var(--wash); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+summary::before {
+  content: "+"; position: absolute; left: 6px; top: 15px;
+  font-family: var(--mono); font-size: 15px; color: var(--accent); line-height: 1.6;
+}
+details[open] > summary::before { content: "\2212"; }
+details[open] > summary { background: none; }
+.s-title { display: block; font-size: 15.5px; font-weight: 600; }
+.s-take { display: block; font-size: 14px; color: var(--ink-70); margin-top: 2px; max-width: 62ch; }
+.body { padding: 4px 0 34px 30px; }
+.lede { font-size: 14.5px; color: var(--ink-70); margin: 0 0 26px; max-width: 62ch; }
+
+/* ---------- measurements ---------- */
+.measure { padding: 16px 0; border-top: 1px solid var(--wash); }
+.measure:first-of-type { border-top: none; padding-top: 0; }
+.measure-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  margin-bottom: 5px;
+}
+.measure-name { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; font-weight: 600; }
+.measure-level { font-size: 12px; color: var(--ink-55); white-space: nowrap; }
+.measure-level.notable { color: var(--accent); }
+.measure p { margin: 0 0 7px; font-size: 15.5px; max-width: 60ch; }
+.figure { font-family: var(--mono); font-size: 12px; color: var(--ink-55); max-width: 68ch; line-height: 1.6; }
+.subhead {
+  font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink-55); margin: 34px 0 4px; padding-top: 14px; border-top: 2px solid var(--wash);
+}
+
+/* ---------- factors ---------- */
+.factor { padding: 18px 0; border-top: 1px solid var(--wash); }
+.factor:first-of-type { border-top: none; padding-top: 0; }
+.factor p { margin: 0 0 12px; font-size: 15.5px; max-width: 62ch; }
+.gauge { display: flex; align-items: center; gap: 12px; margin-bottom: 9px; }
+.track { flex: 1; max-width: 300px; height: 8px; border: 1px solid var(--accent); }
+.track > span { display: block; height: 100%; background: var(--accent); }
+.track.hollow > span {
+  background: repeating-linear-gradient(
+    135deg, var(--accent) 0 2px, transparent 2px 5px
+  );
+}
+.gauge .verdict-word {
+  font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent); white-space: nowrap; font-weight: 600;
+}
+
+/* ---------- notes ---------- */
+.note {
+  background: var(--wash); padding: 16px 18px; margin: 0 0 26px;
+  font-size: 14.5px; max-width: 64ch;
+}
+.note:last-child { margin-bottom: 0; }
+.note.plain { background: none; border-left: 2px solid var(--wash); padding: 2px 0 2px 18px; }
+
+/* ---------- graph ---------- */
+.graph { margin: 0 0 22px; overflow-x: auto; }
+.graph svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.key {
+  display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 0 0 26px;
+  font-size: 12.5px; color: var(--ink-55);
+}
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key i { display: block; width: 20px; height: 0; border-top: 2px solid var(--accent); }
+.key i.faint { border-top-style: dashed; opacity: .5; }
+.key i.dot { width: 10px; height: 10px; border: 0; border-radius: 50%; background: var(--ink); }
+.key i.ring { width: 10px; height: 10px; border: 2px solid var(--accent); border-radius: 50%; background: none; }
+
+/* ---------- groups ---------- */
+.group { padding: 16px 0; border-top: 1px solid var(--wash); }
+.group:first-of-type { border-top: none; padding-top: 0; }
+.group-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.group-num {
+  font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 600;
+}
+.group h4 { font-family: var(--mono); font-size: 15px; font-weight: 600; margin: 0; }
+.group .members { font-family: var(--mono); font-size: 13px; color: var(--ink-55); margin: 0 0 7px; }
+.group p { margin: 0; font-size: 15px; max-width: 62ch; }
+
+/* ---------- tables ---------- */
+.scroll { overflow-x: auto; margin: 0 0 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--wash); }
+th {
+  font-size: 11px; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--ink-55); font-weight: 600; border-bottom: 1px solid var(--ink);
+}
+td.mono { font-family: var(--mono); font-size: 13px; }
+td.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- actions ---------- */
+.action { padding: 15px 0; border-top: 1px solid var(--wash); font-size: 15.5px; max-width: 62ch; }
+.action:first-of-type { border-top: none; padding-top: 0; }
+
+/* ---------- footer ---------- */
+footer {
+  margin-top: 80px; padding-top: 20px; border-top: 2px solid var(--ink);
+  font-size: 13.5px; color: var(--ink-70); max-width: 68ch;
+}
+footer code { font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
+footer p { margin: 0 0 10px; }
+
+@media (max-width: 560px) {
+  body { padding: 0 18px 64px; }
+  h1 { font-size: 31px; }
+  .body { padding-left: 0; }
+}
+</style><div class="wrap"><header class="masthead"><p class="eyebrow">refactor-scan &middot; why</p><h1>The reasoning behind these findings</h1><p class="standfirst">1 of the 4 classes in this file was flagged. Each one below opens with what it found; the working behind it is folded away underneath.</p><p class="dateline"><span class="path">C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\social-core\social_core\backends\orcid.py</span><span>1 class</span><span>24 August 2026, 15:21</span></p></header><article class="class" id="class-ORCIDOAuth2"><p class="file">orcid.py</p><h2>ORCIDOAuth2</h2><p class="verdict"><span class="smell">Feature Envy</span><span class="sep">/</span><span class="score">90% confidence</span></p><p class="summary-line">This class mixes several unrelated jobs -- most pairs of its methods have no data in common with each other.</p><details><summary><span class="s-title">What was measured</span><span class="s-take">Stands out for how much its methods have in common, how much decision-making its methods do and 1 more.</span></summary><div class="body"><p class="lede">Nothing here reads what your code means. Eight structural facts are counted off the code&#x27;s shape, and those numbers are the entire basis for everything below.</p><div class="measure"><div class="measure-head"><span class="measure-name">How much its methods have in common</span><span class="measure-level notable">higher than usual</span></div><p>This class mixes several unrelated jobs -- most pairs of its methods have no data in common with each other.</p><div class="figure">LCOM 1.00 on a 0-1 scale, where 0 means every pair of methods shares data and 1 means no pair does. Typical class in the model&#x27;s training data: 0.33.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How much decision-making its methods do</span><span class="measure-level notable">higher than usual</span></div><p>Its methods contain a lot of branching, so there are many different routes through the code and many cases to test.</p><div class="figure">4.0 decision points per method on average. Typical: 1.6.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How long its methods are</span><span class="measure-level notable">higher than usual</span></div><p>Its methods are long -- each one does a lot of work before it finishes.</p><div class="figure">35.0 lines per method on average. Typical: 7.0 lines.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How big the class is</span><span class="measure-level">about average</span></div><p>The class is an ordinary size.</p><div class="figure">125 lines. Typical class in the model&#x27;s training data: 90 lines.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How much it reaches into other classes</span><span class="measure-level">about average</span></div><p>It uses other classes about as much as most classes do.</p><div class="figure">0 distinct references out to other classes in this file. Typical: 2.1.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How many other classes rely on it</span><span class="measure-level">about average</span></div><p>About as many other classes rely on it as you&#x27;d expect.</p><div class="figure">Fan-in 0 -- 0 other classes call into it. Typical: 1.3.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How deep its inheritance goes</span><span class="measure-level">about average</span></div><p>Its place in the inheritance chain is unremarkable.</p><div class="figure">Depth of inheritance 0. Typical: 0.2.</div></div><div class="measure"><div class="measure-head"><span class="measure-name">How many other classes it depends on</span><span class="measure-level">about average</span></div><p>It depends on about as many other classes as most classes do.</p><div class="figure">CBO 0 -- it uses 0 other classes. Typical class in the model&#x27;s training data: 0.1.</div></div></div></details><details><summary><span class="s-title">Against published thresholds</span><span class="s-take">Meets 0 of 2 published conditions.</span></summary><div class="body"><p class="lede">How this class reads against cutoffs taken from the code-smell literature, independent of what the classifier concluded. Where the two disagree, both numbers are here to be checked.</p><div class="scroll"><table><thead><tr><th>Metric</th><th>Measured</th><th>Published</th><th>Meets rule?</th><th>Published rule</th><th>Source</th></tr></thead><tbody><tr><td>Foreign data reached (ATFD proxy) <span class="measure-level">proxy</span></td><td class="num mono">0</td><td class="mono">&gt; 5</td><td>no</td><td>ATFD &gt; 5 (FEW)</td><td>Lanza &amp; Marinescu (2006)</td></tr><tr><td>Attribute locality (LAA) <span class="measure-level">proxy</span></td><td class="num mono">1</td><td class="mono">&lt; 0.33</td><td>no</td><td>LAA &lt; 1/3</td><td>Lanza &amp; Marinescu (2006)</td></tr></tbody></table></div><p class="note plain">Detection rule: <code>ATFD(proxy) &gt; 5 AND LAA &lt; 1/3</code>. Lanza &amp; Marinescu&#x27;s Feature Envy strategy with ATFD proxied by fan_out and FDP dropped (needs type resolution we do not have).</p><p class="note">Rows marked <em>proxy</em> are not the published metric itself — our engine has no exact equivalent. Foreign data reached (ATFD proxy): PROXY: we have no true access-to-foreign-data metric. Counts distinct external classes/methods the class reaches, excluding dunder, self- and base-class calls (see envy_metrics). Attribute locality (LAA): PROXY: own-attribute accesses over own accesses plus resolved foreign calls, aggregated across the class rather than computed per method as in the original.</p></div></details><details><summary><span class="s-title">Why the classifier reached this conclusion</span><span class="s-take">Mostly how much its methods have in common -- worth 62 points of confidence on its own.</span></summary><div class="body"><p class="lede">Each measurement was tested by asking a simple question: if this one number were ordinary instead of what it is, would the answer change? How far the model&#x27;s confidence falls is how much that measurement was really doing.</p><p class="note">Feature Envy: A method that spends more time working with another class&#x27;s data than its own -- calling that other class&#x27;s methods or reading its fields over and over to do its job.</p><div class="factor"><div class="measure-head"><span class="measure-name">How much its methods have in common</span></div><p>This class mixes several unrelated jobs -- most pairs of its methods have no data in common with each other. This was the strongest single factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 62 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:100%"></span></span></div><div class="figure">LCOM 1.00 on a 0-1 scale, where 0 means every pair of methods shares data and 1 means no pair does. Typical class in the model&#x27;s training data: 0.33. The model weights this metric 19% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How much decision-making its methods do</span></div><p>Its methods contain a lot of branching, so there are many different routes through the code and many cases to test. This was a supporting factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 44 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:71%"></span></span></div><div class="figure">4.0 decision points per method on average. Typical: 1.6. The model weights this metric 17% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How long its methods are</span></div><p>Its methods are long -- each one does a lot of work before it finishes. This was a supporting factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 40 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:65%"></span></span></div><div class="figure">35.0 lines per method on average. Typical: 7.0 lines. The model weights this metric 22% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How big the class is</span></div><p>The class is an ordinary size. This was a supporting factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 27 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:44%"></span></span></div><div class="figure">125 lines. Typical class in the model&#x27;s training data: 90 lines. The model weights this metric 29% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How much it reaches into other classes</span></div><p>It uses other classes about as much as most classes do. This was a supporting factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 22 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:35%"></span></span></div><div class="figure">0 distinct references out to other classes in this file. Typical: 2.1. The model weights this metric 5% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How many other classes rely on it</span></div><p>About as many other classes rely on it as you&#x27;d expect. This was a supporting factor behind the Feature Envy label: if this one measurement were ordinary instead, the model&#x27;s confidence in Feature Envy would fall by about 20 points.</p><div class="gauge"><span class="verdict-word">pushed toward</span><span class="track"><span style="width:32%"></span></span></div><div class="figure">Fan-in 0 -- 0 other classes call into it. Typical: 1.3. The model weights this metric 5% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How deep its inheritance goes</span></div><p>Its place in the inheritance chain is unremarkable. On its own this made no difference to the outcome -- the model&#x27;s answer is the same with or without it.</p><div class="gauge"><span class="verdict-word">no effect</span><span class="track hollow"><span style="width:0%"></span></span></div><div class="figure">Depth of inheritance 0. Typical: 0.2. The model weights this metric 3% overall, across every class it looks at.</div></div><div class="factor"><div class="measure-head"><span class="measure-name">How many other classes it depends on</span></div><p>It depends on about as many other classes as most classes do. On its own this made no difference to the outcome -- the model&#x27;s answer is the same with or without it.</p><div class="gauge"><span class="verdict-word">no effect</span><span class="track hollow"><span style="width:0%"></span></span></div><div class="figure">CBO 0 -- it uses 0 other classes. Typical class in the model&#x27;s training data: 0.1. The model weights this metric 1% overall, across every class it looks at.</div></div><p class="note">The model settled on Feature Envy with 90% confidence, which is literally the share of its 100 decision trees that voted that way. The classifier was trained on synthetic example classes written to demonstrate one smell each, not on real-world code. It is a fast first opinion worth checking, not a verdict -- which is exactly why this page shows its working.</p></div></details><details><summary><span class="s-title">How its methods relate to each other</span><span class="s-take">Its methods don&#x27;t separate cleanly along the data they use.</span></summary><div class="body"><p class="lede">Before any suggestion is made, the class is turned into a picture of which methods belong with which -- based only on the data each one touches.</p><div class="graph"><svg viewBox="0 0 490 300" width="490" role="img" aria-label="Diagram of which methods work on the same data" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, Menlo, Consolas, monospace"><line x1="245.0" y1="50.0" x2="331.6" y2="200.0" stroke="#3F72AF" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="4 4"><title>get_user_email calls get_user_details</title></line><circle cx="245.0" cy="50.0" r="8" fill="#F9F7F7" stroke="#3F72AF" stroke-width="2"><title>get_user_email - uses no class data</title></circle><text x="245.0" y="34.0" text-anchor="start" font-size="12.5" fill="#112D4E">get_user_email</text><circle cx="331.6" cy="200.0" r="8" fill="#F9F7F7" stroke="#3F72AF" stroke-width="2"><title>get_user_details - uses no class data</title></circle><text x="348.9" y="214.0" text-anchor="start" font-size="12.5" fill="#112D4E">get_user_details</text><circle cx="158.4" cy="200.0" r="8" fill="#F9F7F7" stroke="#3F72AF" stroke-width="2"><title>user_data - uses: USER_DATA_URL, USER_ID_URL</title></circle><text x="141.1" y="214.0" text-anchor="end" font-size="12.5" fill="#112D4E">user_data</text></svg></div><div class="key"><span><i></i> work on the same data</span><span><i class="faint"></i> one calls the other</span><span><i class="ring"></i> shares data with no group</span></div><p class="note plain">Every method in the class becomes a dot. Two dots are joined by a solid line when both methods touch the same piece of the class&#x27;s data (self.something) -- the thicker the line, the more data they have in common. A dashed line means one method simply calls the other. Nothing here reads what the code means; it only tracks which methods touch which data.</p><p class="note">No group of 2+ methods shares fields; no extraction candidate found.</p><div class="group"><div class="group-head"><h4>Left on their own</h4></div><p class="members">get_user_details(), get_user_email(), user_data()</p><p>These methods share no data with any group, so nothing suggests where they should go. They stay where they are.</p></div></div></details><details><summary><span class="s-title">What to do about it</span><span class="s-take">Flagged, but no clean split point was found -- needs a manual look</span></summary><div class="body"><p class="lede">Putting the three steps above together: this is what the measurements, the model and the grouping add up to.</p><div class="action">Feature Envy detected, but this class&#x27;s outbound calls don&#x27;t concentrate on any one other class in the scan — there&#x27;s no single destination to move a method into. The envied class may live outside the scanned path.</div></div></details></article><footer><p>Every number on this page can be checked. <code>refactor-scan analyze &lt;path&gt; --format json</code> emits the same measurements and findings in machine-readable form; <code>refactor-scan explain &lt;smell&gt;</code> defines any label above in plain language; <code>refactor-scan explain --model</code> describes the classifier in full.</p></footer></div></body></html>

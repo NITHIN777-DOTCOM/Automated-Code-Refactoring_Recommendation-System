@@ -123,7 +123,15 @@ def _base_class_names(class_node: ast.ClassDef) -> list[str]:
     return names
 
 
-def _parse_class(class_node: ast.ClassDef, file_path: str) -> ClassInfo:
+def _parse_class(class_node: ast.ClassDef, file_path: str, parent_class: str | None) -> ClassInfo:
+    """Build a ClassInfo from class_node's OWN direct body only.
+
+    A nested class living in class_node.body is a ClassDef, not a
+    FunctionDef/AsyncFunctionDef, so the loop below already skips it -- its
+    methods and lines are never folded into this class's own methods/fields.
+    parse_file() parses that nested class separately, as its own independent
+    ClassInfo, so nothing here needs to know it exists.
+    """
     methods = []
     fields = set()
 
@@ -141,19 +149,53 @@ def _parse_class(class_node: ast.ClassDef, file_path: str) -> ClassInfo:
         base_classes=_base_class_names(class_node),
         start_line=class_node.lineno,
         end_line=getattr(class_node, "end_lineno", class_node.lineno),
+        parent_class=parent_class,
     )
 
 
+def _enclosing_class_names(tree: ast.Module) -> dict[int, str]:
+    """Map id(class_node) -> name of the nearest ClassDef textually
+    enclosing it (at any depth, through methods/if-blocks/etc.), for every
+    ClassDef in the tree. A module-level class has no entry.
+
+    Built with one parent-pointer pass rather than tracked during a
+    recursive descent -- ast has no parent links, and this is the standard
+    way to get them without hand-rolling recursion over every node type
+    (FunctionDef, If, For, Try, ...) that could contain a nested class.
+    """
+    parent_of: dict[int, ast.AST] = {}
+    for node in ast.walk(tree):
+        for child in ast.iter_child_nodes(node):
+            parent_of[id(child)] = node
+
+    enclosing: dict[int, str] = {}
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ClassDef):
+            continue
+        ancestor = parent_of.get(id(node))
+        while ancestor is not None and not isinstance(ancestor, ast.ClassDef):
+            ancestor = parent_of.get(id(ancestor))
+        if ancestor is not None:
+            enclosing[id(node)] = ancestor.name
+
+    return enclosing
+
+
 def parse_file(filepath: str) -> list[ClassInfo]:
+    """Every class in a file, at ANY nesting depth, each as its own
+    independent ClassInfo -- module-level classes and classes nested inside
+    another class (e.g. Django's `class Meta:`) or inside a function/method.
+    """
     with open(filepath, "r", encoding="utf-8") as f:
         source = f.read()
 
     tree = ast.parse(source, filename=filepath)
+    enclosing = _enclosing_class_names(tree)
     classes = []
 
-    for node in ast.iter_child_nodes(tree):
+    for node in ast.walk(tree):
         if isinstance(node, ast.ClassDef):
-            classes.append(_parse_class(node, filepath))
+            classes.append(_parse_class(node, filepath, enclosing.get(id(node))))
 
     return classes
 

@@ -212,7 +212,11 @@ def collect_records(raw_dir: str) -> tuple[list[dict], dict]:
         scopes = _scope_keys(file_path, raw_dir)
 
         for cls in classes:
-            metrics = metrics_by_class.get(cls.name)
+            # id(cls), not cls.name -- two classes in this file can share a
+            # name now that nested classes are parsed independently (e.g.
+            # several Django models each with their own `class Meta:`), and
+            # a name-keyed lookup would silently drop all but the last one.
+            metrics = metrics_by_class.get(id(cls))
             if metrics is None:
                 continue
 

@@ -169,7 +169,10 @@ def _analyze_classes(classes: list) -> dict:
 
     results = {}
     for cls in classes:
-        metrics = metrics_by_class.get(cls.name)
+        # id(cls), not cls.name -- two classes in this file can share a name
+        # (e.g. sibling models each with their own nested `class Meta:`),
+        # and a name-keyed lookup would silently resolve to the wrong one.
+        metrics = metrics_by_class.get(id(cls))
         if metrics is None:
             logger.warning("No metrics computed for %s in %s; skipping", cls.name, cls.file_path)
             continue

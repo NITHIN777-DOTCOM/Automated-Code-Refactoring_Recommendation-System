@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-14T16:52:32.251132+00:00",
+  "generated_at": "2026-08-24T07:00:04.384226+00:00",
   "target_total_files": [
-    4000,
-    5000
+    6500,
+    7500
   ],
-  "total_files_collected": 4500,
+  "total_files_collected": 9151,
   "sources": [
     {
       "name": "eth_py150",
@@ -204,6 +204,214 @@
       "file_count": 900,
       "license": "unknown/mixed (aggregated from public GitHub repos; underlying snippets retain their original repo's license per the CodeSearchNet dataset card)",
       "note": "Predominantly standalone functions, not classes -- supplementary source, not expected to contribute meaningfully to the parsed-class count."
+    },
+    {
+      "name": "git_repos_expansion",
+      "category": "git_repos",
+      "origin": "Shallow clones (git clone --depth 1) of real public GitHub Python projects",
+      "citation": "N/A -- primary sources, cited individually by repo URL",
+      "access_date": "2026-08-24",
+      "file_count": 3644,
+      "license": "per-repo, see items[].license",
+      "items": [
+        {
+          "name": "httpie",
+          "url": "https://github.com/httpie/cli",
+          "repo_category": "small",
+          "file_count": 133,
+          "license": "BSD"
+        },
+        {
+          "name": "faker",
+          "url": "https://github.com/joke2k/faker",
+          "repo_category": "small",
+          "file_count": 813,
+          "license": "unknown"
+        },
+        {
+          "name": "arrow",
+          "url": "https://github.com/arrow-py/arrow",
+          "repo_category": "small",
+          "file_count": 21,
+          "license": "Apache-2.0"
+        },
+        {
+          "name": "tenacity",
+          "url": "https://github.com/jd/tenacity",
+          "repo_category": "small",
+          "file_count": 20,
+          "license": "Apache-2.0"
+        },
+        {
+          "name": "more-itertools",
+          "url": "https://github.com/more-itertools/more-itertools",
+          "repo_category": "small",
+          "file_count": 7,
+          "license": "unknown"
+        },
+        {
+          "name": "boltons",
+          "url": "https://github.com/mahmoud/boltons",
+          "repo_category": "small",
+          "file_count": 65,
+          "license": "BSD"
+        },
+        {
+          "name": "glom",
+          "url": "https://github.com/mahmoud/glom",
+          "repo_category": "small",
+          "file_count": 32,
+          "license": "BSD-3-Clause"
+        },
+        {
+          "name": "dateparser",
+          "url": "https://github.com/scrapinghub/dateparser",
+          "repo_category": "small",
+          "file_count": 282,
+          "license": "BSD"
+        },
+        {
+          "name": "humanize",
+          "url": "https://github.com/python-humanize/humanize",
+          "repo_category": "small",
+          "file_count": 13,
+          "license": "unknown"
+        },
+        {
+          "name": "jsonschema",
+          "url": "https://github.com/python-jsonschema/jsonschema",
+          "repo_category": "small",
+          "file_count": 39,
+          "license": "unknown"
+        },
+        {
+          "name": "cerberus",
+          "url": "https://github.com/pyeve/cerberus",
+          "repo_category": "small",
+          "file_count": 23,
+          "license": "ISC"
+        },
+        {
+          "name": "voluptuous",
+          "url": "https://github.com/alecthomas/voluptuous",
+          "repo_category": "small",
+          "file_count": 12,
+          "license": "BSD"
+        },
+        {
+          "name": "wrapt",
+          "url": "https://github.com/GrahamDumpleton/wrapt",
+          "repo_category": "small",
+          "file_count": 121,
+          "license": "BSD"
+        },
+        {
+          "name": "funcy",
+          "url": "https://github.com/Suor/funcy",
+          "repo_category": "small",
+          "file_count": 35,
+          "license": "BSD"
+        },
+        {
+          "name": "cookiecutter",
+          "url": "https://github.com/cookiecutter/cookiecutter",
+          "repo_category": "small",
+          "file_count": 90,
+          "license": "BSD"
+        },
+        {
+          "name": "django-taggit",
+          "url": "https://github.com/jazzband/django-taggit",
+          "repo_category": "data_class_target",
+          "file_count": 63,
+          "license": "BSD"
+        },
+        {
+          "name": "django-mptt",
+          "url": "https://github.com/django-mptt/django-mptt",
+          "repo_category": "data_class_target",
+          "file_count": 26,
+          "license": "unknown"
+        },
+        {
+          "name": "attrs",
+          "url": "https://github.com/python-attrs/attrs",
+          "repo_category": "data_class_target",
+          "file_count": 56,
+          "license": "MIT"
+        },
+        {
+          "name": "flask-appbuilder",
+          "url": "https://github.com/dpgaspar/Flask-AppBuilder",
+          "repo_category": "data_class_target",
+          "file_count": 320,
+          "license": "BSD"
+        },
+        {
+          "name": "mezzanine",
+          "url": "https://github.com/stephenmcd/mezzanine",
+          "repo_category": "feature_envy_target",
+          "file_count": 196,
+          "license": "BSD"
+        },
+        {
+          "name": "django-oscar",
+          "url": "https://github.com/django-oscar/django-oscar",
+          "repo_category": "feature_envy_target",
+          "file_count": 828,
+          "license": "BSD"
+        },
+        {
+          "name": "social-core",
+          "url": "https://github.com/python-social-auth/social-core",
+          "repo_category": "feature_envy_target",
+          "file_count": 356,
+          "license": "BSD"
+        },
+        {
+          "name": "flask-restful",
+          "url": "https://github.com/flask-restful/flask-restful",
+          "repo_category": "feature_envy_target",
+          "file_count": 25,
+          "license": "BSD"
+        },
+        {
+          "name": "eve",
+          "url": "https://github.com/pyeve/eve",
+          "repo_category": "feature_envy_target",
+          "file_count": 68,
+          "license": "BSD"
+        }
+      ],
+      "clone_failures": [
+        {
+          "name": "django-simple-history",
+          "url": "https://github.com/jazzband/django-simple-history",
+          "error": "Command '['git', 'clone', '--depth', '1', '--quiet', 'https://github.com/jazzband/django-simple-history', 'C:\\\\Users\\\\Juju\\\\Desktop\\\\Automated_Code_Refactoring_System\\\\refactor-engine\\\\data\\\\real_world\\\\raw_sources\\\\git_repos\\\\django-simple-history']' returned non-zero exit status 128."
+        }
+      ]
+    },
+    {
+      "name": "eth_py150_extra",
+      "category": "standard_dataset",
+      "origin": "ETH SRI Lab py150 dataset -- second sampling pass, additive",
+      "citation": "Veselin Raychev, Pavol Bielik, Martin Vechev. \"Probabilistic Model for Code with Decision Trees.\" OOPSLA 2016.",
+      "url": "https://files.sri.inf.ethz.ch/data/py150_files.tar.gz",
+      "access_date": "2026-08-24",
+      "file_count": 700,
+      "license": "unknown/mixed (aggregated from public GitHub repos; per-repo attribution in github_repos.txt inside the source archive, no single blanket license)"
+    },
+    {
+      "name": "codesearchnet_extra",
+      "category": "codesearchnet",
+      "origin": "CodeSearchNet Python subset -- second sampling pass, additive",
+      "citation": "Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, Marc Brockschmidt. \"CodeSearchNet Challenge: Evaluating the State of Semantic Code Search.\" arXiv:1909.09436 (2019).",
+      "url": "https://huggingface.co/datasets/code-search-net/code_search_net",
+      "access_date": "2026-08-24",
+      "file_count": 300,
+      "license": "unknown/mixed (aggregated from public GitHub repos; underlying snippets retain their original repo's license per the CodeSearchNet dataset card)",
+      "note": "Predominantly standalone functions, not classes -- supplementary source, not expected to contribute meaningfully to the parsed-class count."
     }
-  ]
+  ],
+  "expansion_generated_at": "2026-08-24T07:00:04.384241+00:00"
 }

@@ -69,8 +69,8 @@ def test_method_length(tmp_path):
     classes = _write_and_parse(tmp_path, source)
     method = classes[0].methods[0]
 
-    assert method_length(method) == method.end_line - method.start_line
-    assert method_length(method) == 4
+    assert method_length(method) == method.end_line - method.start_line + 1
+    assert method_length(method) == 5
 
 
 def test_class_length(tmp_path):
@@ -85,7 +85,27 @@ def test_class_length(tmp_path):
     classes = _write_and_parse(tmp_path, source)
     cls = classes[0]
 
-    assert class_length(cls) == cls.end_line - cls.start_line
+    assert class_length(cls) == cls.end_line - cls.start_line + 1
+
+
+def test_single_line_method_measures_one_not_zero(tmp_path):
+    source = """
+    class OneLiner:
+        def ping(self): return True
+    """
+    classes = _write_and_parse(tmp_path, source)
+    method = classes[0].methods[0]
+
+    assert method_length(method) == 1
+
+
+def test_single_line_class_measures_one_not_zero(tmp_path):
+    source = """
+    class Marker: pass
+    """
+    classes = _write_and_parse(tmp_path, source)
+
+    assert class_length(classes[0]) == 1
 
 
 def test_lcom_cohesive_vs_non_cohesive(tmp_path):

@@ -27,6 +27,11 @@ class ClassInfo:
     base_classes: list[str] = field(default_factory=list)
     start_line: int = 0
     end_line: int = 0
+    # Name of the class textually enclosing this one (e.g. "Meta" nested
+    # inside a Django model), or None for a module-level class. Metrics and
+    # labeling treat a nested class as an independent ClassInfo regardless --
+    # this is metadata for callers that want to know it was nested.
+    parent_class: str | None = None
 
 
 @dataclass

@@ -97,6 +97,110 @@ def test_multiple_classes_in_one_file(tmp_path):
     assert derived.base_classes == ["Base"]
 
 
+def test_nested_class_is_detected_as_its_own_independent_class(tmp_path):
+    source = """
+    class Article:
+        title = "x"
+
+        def save(self):
+            pass
+
+        class Meta:
+            ordering = ["title"]
+            verbose_name = "article"
+    """
+    classes = _write_and_parse(tmp_path, source)
+
+    names = {c.name for c in classes}
+    assert names == {"Article", "Meta"}
+
+    outer = next(c for c in classes if c.name == "Article")
+    inner = next(c for c in classes if c.name == "Meta")
+
+    # The outer class's own methods are unaffected by the nested class --
+    # Meta contributes no FunctionDef to Article.methods.
+    assert [m.name for m in outer.methods] == ["save"]
+    assert outer.parent_class is None
+    assert inner.parent_class == "Article"
+
+    # The nested class is measured as an independent class in its own
+    # right: no methods of its own here, but it exists as a real ClassInfo
+    # with its own line span, not folded into Article's metrics.
+    assert inner.methods == []
+    assert inner.start_line > outer.start_line
+    assert inner.end_line <= outer.end_line
+
+
+def test_two_levels_of_nested_classes_are_all_detected(tmp_path):
+    source = """
+    class Outer:
+        def outer_method(self):
+            pass
+
+        class Middle:
+            def middle_method(self):
+                pass
+
+            class Inner:
+                def inner_method(self):
+                    pass
+    """
+    classes = _write_and_parse(tmp_path, source)
+
+    by_name = {c.name: c for c in classes}
+    assert set(by_name) == {"Outer", "Middle", "Inner"}
+
+    assert by_name["Outer"].parent_class is None
+    assert by_name["Middle"].parent_class == "Outer"
+    assert by_name["Inner"].parent_class == "Middle"
+
+    # Each class's own methods stay its own -- no method leaks up or down
+    # a nesting level.
+    assert [m.name for m in by_name["Outer"].methods] == ["outer_method"]
+    assert [m.name for m in by_name["Middle"].methods] == ["middle_method"]
+    assert [m.name for m in by_name["Inner"].methods] == ["inner_method"]
+
+
+def test_sibling_classes_with_same_named_nested_class_dont_collide(tmp_path):
+    """Two Django-style models, each with its own `class Meta:` -- the
+    scenario compute_all_metrics() must not let collide via a name-keyed
+    dict (see engine/metrics.py compute_all_metrics docstring)."""
+    from engine.metrics import compute_all_metrics
+
+    source = """
+    class Author:
+        def save(self):
+            pass
+
+        class Meta:
+            ordering = ["name"]
+
+    class Book:
+        def save(self):
+            pass
+
+        def publish(self):
+            pass
+
+        class Meta:
+            ordering = ["title"]
+            unique_together = ["title", "author"]
+    """
+    classes = _write_and_parse(tmp_path, source)
+    metas = [c for c in classes if c.name == "Meta"]
+    assert len(metas) == 2
+
+    metrics = compute_all_metrics(classes)
+    author_meta = next(c for c in metas if c.parent_class == "Author")
+    book_meta = next(c for c in metas if c.parent_class == "Book")
+
+    # Looked up by id(cls), each Meta gets ITS OWN metrics, not the other's.
+    author_entry = metrics[id(author_meta)]
+    book_entry = metrics[id(book_meta)]
+    assert author_entry is not book_entry
+    assert author_entry["class_length"] != book_entry["class_length"]
+
+
 def test_obviously_unused_import_is_flagged(tmp_path):
     path = _write(tmp_path, """
     import os

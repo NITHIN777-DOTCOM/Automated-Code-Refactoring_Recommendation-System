@@ -1,0 +1,360 @@
+[label] scanning C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources ...
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\codesearchnet\csn_00487.py:6: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  cmd_grep = ['grep', '^0\.0\.0\.0']
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\codesearchnet\csn_00754.py:7: SyntaxWarning: "\W" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\W"? A raw string is also an option.
+  resource_uri = re.sub('\W', ' ', resource_uri)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\codesearchnet\csn_00768.py:9: SyntaxWarning: "\W" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\W"? A raw string is also an option.
+  resource_uri = re.sub('\W', '', resource_uri)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\adobe\brackets-shell\gyp\pylib\gyp\generator\ninja.py:1562: SyntaxWarning: "\$" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\$"? A raw string is also an option.
+  command=('$ld $ldflags -o $out -Wl,-rpath=\$$ORIGIN/lib '
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\akalongman\sublimetext-codeformatter\codeformatter\lib\cssbeautifier\__init__.py:86: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  WHITE_RE = re.compile("^\s+$")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\akalongman\sublimetext-codeformatter\codeformatter\lib\cssbeautifier\__init__.py:87: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  WORD_RE = re.compile("[\w$\-_]")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\aldebaran\qibuild\python\qisys\test\test_ui.py:97: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  assert record_messages.find(".*test_ui.py.*(\d+).*in.*bar")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\google\appengine\api\files\gs.py:86: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  r'/gs/bucket/file\*' => '/gs/bucket/file*'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\google\appengine\_internal\django\template\defaulttags.py:1100: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  ('^client/(\d+)/$', 'app_name.client')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\lib\django-1.2\django\db\backends\__init__.py:378: SyntaxWarning: "\%" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\%"? A raw string is also an option.
+  return smart_unicode(x).replace("\\", "\\\\").replace("%", "\%").replace("_", "\_")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\lib\django-1.2\django\db\backends\__init__.py:378: SyntaxWarning: "\_" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\_"? A raw string is also an option.
+  return smart_unicode(x).replace("\\", "\\\\").replace("%", "\%").replace("_", "\_")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\lib\django-1.4\django\contrib\admindocs\urls.py:33: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  url('^models/(?P<app_label>[^\.]+)\.(?P<model_name>[^/]+)/$',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\AppScale\appscale\AppServer\lib\django-1.4\django\contrib\gis\maps\google\gmap.py:21: SyntaxWarning: "\:" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\:"? A raw string is also an option.
+  vml_css  = mark_safe('v\:* {behavior:url(#default#VML);}') # CSS for IE VML
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ARM-software\workload-automation\wlauto\utils\misc.py:619: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  _bash_color_regex = re.compile('\x1b\[[0-9;]+m')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\babble\babble\include\jython\Lib\dbexts.py:658: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  self.ctypeRE = re.compile("\[(jdbc|odbc|default)\]")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\blaze\odo\odo\backends\hdfs.py:514: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  hdfs_pattern = '(((?P<user>[a-zA-Z]\w*)@)?(?P<host>[\w.-]*)?(:(?P<port>\d+))?:)?(?P<path>[/\w.*-]+)'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\boakley\robotframework-lint\rflint\parser\common.py:26: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  '''Return a list of settings (statements with cell[1] matching \[.*?\])
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\BRML\climin\climin\adam.py:45: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
+  m_t   & \\leftarrow \\beta_{1,t} \cdot g_t + (1 - \\beta_{1, t}) \cdot m_{t-1} \\\\
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\burke-software\django-report-builder\report_builder\urls.py:26: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  url('^report/(?P<pk>\d+)/$', views.ReportSPAView.as_view(), name="report_update_view"),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CGATOxford\cgat\CGAT\CBioPortal.py:871: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  if re.search("[^0-9\.\-]", value):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CGATOxford\cgat\CGAT\CBioPortal.py:874: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  elif re.search("[0-9]+\.[0-9]+", value):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CGATOxford\cgat\scripts\bed2plot.py:145: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  name = re.sub("\s", "_", bed.name)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\chrippa\livestreamer\src\livestreamer\plugins\common_jwplayer.py:10: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  _playlist_re = re.compile("\(?\{.*playlist: (\[.*\]),.*?\}\)?;", re.DOTALL)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\chrippa\livestreamer\src\livestreamer\plugins\common_jwplayer.py:11: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  _js_to_json = partial(re.compile("(\w+):\s").sub, r'"\1":')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\cloudera\hue\apps\oozie\src\oozie\models.py:61: SyntaxWarning: "\-" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\-"? A raw string is also an option.
+  name_validator = RegexValidator(regex='^[a-zA-Z_][\-_a-zA-Z0-9]{1,39}$',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:3708: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  If there are volumes in the ``LoopbackBlockDeviceAPI``\ 's "attached"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:3871: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  Tests for ``CreateFilesystem``\ 's ``IStateChange`` implementation.
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:3998: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  Tests for ``MountBlockDevice``\ 's ``IStateChange`` implementation, as
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:4513: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  ``CreateBlockDeviceDataset.run`` uses the ``IDeployer``\ 's API object
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:4532: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  ``CreateBlockDeviceDataset.run`` uses the ``IDeployer``\ 's API object
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:4583: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  ``CreateBlockDeviceDataset.run`` uses the ``IDeployer``\ 's API object
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ClusterHQ\flocker\flocker\node\agents\test\test_blockdevice.py:4631: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  Tests for ``AttachVolume``\ 's ``IStateChange`` implementation.
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\coleifer\irc\bots\googlebot.py:26: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  self.ping('^find me (?P<query>\S+)', self.find_me),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\common\patterns.py:25: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  AVATAR_PATH_RE = r'^image/' + AVATAR_PARTIAL_PATH_RE + '\.jpg'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\django\contrib\localflavor\nl\forms.py:12: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  pc_re = re.compile('^\d{4}[A-Z]{2}$')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\django\contrib\localflavor\nl\forms.py:13: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  sofi_re = re.compile('^\d{9}$')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\django\contrib\localflavor\nl\forms.py:14: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  numeric_re = re.compile('^\d+$')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\django\contrib\localflavor\nl\forms.py:60: SyntaxWarning: "\-" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\-"? A raw string is also an option.
+  phone_nr = re.sub('[\-\s\(\)]', '', smart_unicode(value))
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\gdata\blogger\__init__.py:36: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  blog_name_pattern = re.compile('(http://)(\w*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\gdata\blogger\__init__.py:37: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  blog_id_pattern = re.compile('(tag:blogger.com,1999:blog-)(\w*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\gdata\blogger\__init__.py:38: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  blog_id2_pattern = re.compile('tag:blogger.com,1999:user-(\d+)\.blog-(\d+)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\gdata\blogger\__init__.py:94: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  post_id_pattern = re.compile('(tag:blogger.com,1999:blog-)(\w*)(.post-)(\w*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\CollabQ\CollabQ\vendor\gdata\blogger\__init__.py:163: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  comment_id_pattern = re.compile('.*-(\w*)$')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\dimagi\commcare-hq\corehq\apps\hqpillow_retry\views.py:255: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  if re.search('@dimagi\.com$', couch_user.username):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\dpgaspar\Flask-AppBuilder\examples\mongoengine\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = '\2\1thisismyscretkey\1\2\e\y\y\h'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\enthought\traits\traits\util\clean_strings.py:25: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  wordparts = re.split('[^\w\.\-]+', name)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\enthought\traitsui\examples\tutorials\doc_examples\examples\instance_editor_selection.py:20: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  regex = '\d\d\d[-]\d\d\d\d' )
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\eutester\midget.py:758: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  if re.match('^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$', chain):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\eutester\midget.py:809: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  if re.match('^sg-\w{8}$', group):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\eutester\windows_instance.py:98: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  if (re.search("\S", str(dict[key])) and not re.search("\D", str(dict[key]))):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\eutester\windows_instance.py:98: SyntaxWarning: "\D" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\D"? A raw string is also an option.
+  if (re.search("\S", str(dict[key])) and not re.search("\D", str(dict[key]))):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\testcases\cloud_admin\install_imaging_service.py:178: SyntaxWarning: "\$" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\$"? A raw string is also an option.
+  '\$ModLoad imudp', conf)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\testcases\cloud_admin\install_imaging_service.py:180: SyntaxWarning: "\$" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\$"? A raw string is also an option.
+  '\$UDPServerRun ' +
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\testcases\cloud_admin\install_imaging_service.py:184: SyntaxWarning: "\$" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\$"? A raw string is also an option.
+  '\$UDPServerAddress 0.0.0.0', conf)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\eucalyptus\eutester\testcases\cloud_admin\install_imaging_service.py:205: SyntaxWarning: "\#" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\#"? A raw string is also an option.
+  machine.sys('perl -p -i -e "s/^*.*' +str(orig_key) + '/\#' +
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\fictivekin\openrecipes\scrapy_proj\openrecipes\spiders\bbcgoodfood_spider.py:100: SyntaxWarning: "\?" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\?"? A raw string is also an option.
+  Rule(SgmlLinkExtractor(allow=('/searchAZ.do\?pager\.offset=\d+'))),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\fictivekin\openrecipes\scrapy_proj\openrecipes\spiders\bbcgoodfood_spider.py:101: SyntaxWarning: "\?" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\?"? A raw string is also an option.
+  Rule(SgmlLinkExtractor(allow=('/searchAZ.do\?letter=[a-zA-Z]+'))),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\fictivekin\openrecipes\scrapy_proj\openrecipes\spiders\bbcgoodfood_spider.py:102: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  Rule(SgmlLinkExtractor(allow=('/recipes/\d+/.+/?'),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\fictivekin\openrecipes\scrapy_proj\openrecipes\spiders\bbcgoodfood_spider.py:103: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  deny='/recipes/\d+/.+/?\?.+'),
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\fluentpython\example-code\03-dict-set\index.py:11: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  WORD_RE = re.compile('\w+')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\freenas\freenas\gui\jails\migrations\0019_templates_to_9_2_1_6.py:12: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  version_regex = re.compile('9.2.[0-9\.]+')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\freenas\freenas\gui\jails\migrations\0019_templates_to_9_2_1_6.py:15: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  '(9.2[0-9\.]+?/RELEASE/(x86|x64)/jails/).+', jt.jt_url)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\freenas\freenas\gui\jails\migrations\0019_templates_to_9_2_1_6.py:22: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  version_regex = re.compile('9.2.[0-9\.]+')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\freenas\freenas\gui\middleware\notifier.py:1558: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  volume.vol_guid = re.sub('\s+', ' ', line).split(' ')[2]
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\freenas\freenas\gui\middleware\notifier.py:2282: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  m = re.match('^(?P<ntgroup>.+) \((?P<SID>S-[0-9\-]+)\) -> (?P<unixgroup>.+)$', line)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\globocom\database-as-a-service\dbaas\workflow\steps\util\__init__.py:295: SyntaxWarning: "\`" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\`"? A raw string is also an option.
+  TODAY=\`date +%Y_%m_%d\`
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\globocom\tapioca\tapioca\spec.py:73: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  normalized = re.sub('[/\.{}]', '_', path)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\goFrendiAsgard\kokoropy\kokoropy\packages\sqlalchemy\pool.py:47: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  :param \*\*params: will be passed through to *poolclass*
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\goFrendiAsgard\kokoropy\kokoropy\packages\sqlalchemy\pool.py:923: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  :param \**kw: Other keyword arguments including
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\GoogleCloudPlatform\appengine-flask-skeleton\lib\jinja2\ext.py:90: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  :class:`~jinja2.lexer.Token`\s, but it doesn't have to return a
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\huntlyc\Sublime-Wordpress-Dev-Plugin\wordpress_dev.py:100: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+  repatt = '(?:\/\/)?(define\(\'DB_NAME\'.*)'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\huntlyc\Sublime-Wordpress-Dev-Plugin\wordpress_dev.py:106: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  dbrepat = "define\('DB_NAME\',\s+'([^']*)'\);\s*(\/\/(.*))?"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\huntlyc\Sublime-Wordpress-Dev-Plugin\wordpress_dev.py:182: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  debugpat = "define\('WP_DEBUG\',\s+(true|false)\);"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\iBaa\PlexConnect\PILBackgrounds.py:28: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  id = re.search('/library/metadata/(?P<ratingKey>\S+)/art/(?P<fileId>\S+)', url)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ithinksw\philo\philo\loaders\database.py:10: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  :class:`philo.loaders.database.Loader` enables loading of template code from :class:`.Template`\ s. This would let :class:`.Template`\ s be used with ``{% include %}`` and ``{% extends %}`` tags, as well as any other features that use template loading.
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\karesansui\karesansui\karesansui\gadget\hostby1service.py:61: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  '/host/(\d+)/service/?(\.part)$', HostBy1Service,
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lalinsky\acoustid-server\acoustid\api\v2\__init__.py:77: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  if not re.match('^[$A-Za-z_][0-9A-Za-z_]*(\.[$A-Za-z_][0-9A-Za-z_]*)*$', callback):
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lanffy\myVimrc\sublimeText\Data\Packages\BracketHighlighter\bh_modules\tagnameselect.py:11: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  tag_name = '[\w\:\.\-]+'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lyda\chkcrontab\chkcrontab_lib.py:810: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  chkcrontab_cmd = re.compile('##*\s*chkcrontab:\s*(.*)=(.*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lyda\chkcrontab\chkcrontab_lib.py:811: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  assignment_line_re = re.compile('[a-zA-Z_][a-zA-Z0-9_]*\s*=(.*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lyda\chkcrontab\chkcrontab_lib.py:812: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  at_line_re = re.compile('@(\S+)\s+(\S+)\s+(.*)')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lyda\chkcrontab\chkcrontab_lib.py:813: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  cron_time_field_re = '[\*0-9a-zA-Z,/-]+'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\lyda\chkcrontab\chkcrontab_lib.py:815: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  '^\s*(%s)\s+(%s)\s+(%s)\s+(%s)\s+(%s)\s+(\S+)\s+(.*)' %
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\manahl\mdf\docs\ipython_console_highlighting.py:58: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  input_prompt = re.compile("(In \[[0-9]+\]: )|(   \.\.\.+:)")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\manahl\mdf\docs\ipython_console_highlighting.py:59: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  output_prompt = re.compile("(Out\[[0-9]+\]: )|(   \.\.\.+:)")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\manahl\mdf\docs\ipython_console_highlighting.py:60: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  continue_prompt = re.compile("   \.\.\.+:")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\manahl\mdf\docs\ipython_console_highlighting.py:61: SyntaxWarning: "\-" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\-"? A raw string is also an option.
+  tb_start = re.compile("\-+")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\mgaitan\waliki\waliki\rst2html5.py:753: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  template = '\(%s\)' % math_code
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\mozilla\standup\standup\apps\status\helpers.py:42: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  return day and re.match('^\d{4}-\d{2}-\d{2}$', day)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\mrknow\filmkodi\plugin.video.specto\resources\lib\resolvers\ipithos.py:30: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  url = re.compile('//.+?/([\w]+)').findall(url)[0]
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\mrknow\filmkodi\plugin.video.specto\resources\lib\resolvers\ipithos.py:35: SyntaxWarning: "\)" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\)"? A raw string is also an option.
+  result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\mrknow\filmkodi\plugin.video.specto\resources\lib\resolvers\vk.py:29: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+  except: oid, id = re.compile('\/video(.*)_(.*)').findall(url)[0]
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\openstack\horizon\horizon\templatetags\shellfilter.py:29: SyntaxWarning: "\`" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\`"? A raw string is also an option.
+  '`': '\`',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\openstack\rack\rack\openstack\common\db\sqlalchemy\migration.py:74: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  UNIQUE_PATTERN = "CONSTRAINT (\w+) UNIQUE \(([^\)]+)\)"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\openstack\swift\swift\common\ring\utils.py:229: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  allowed = re.compile("(?!-)[A-Z\d-]{1,63}(?<!-)$", re.IGNORECASE)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\pantsbuild\pants\src\python\pants\backend\jvm\targets\jar_library.py:35: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  :param jars: List of `jar <#jar>`_\s to depend upon.
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\pydata\pandas\pandas\io\sql.py:1456: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  pat = re.compile('\s+')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\python-openxml\python-docx\docx\oxml\xmlchemy.py:43: SyntaxWarning: "\w" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\w"? A raw string is also an option.
+  '( *</?[\w:]+)(.*?)(/?>)([^<]*</[\w:]+>)?$'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\reviewboard\rbtools\rbtools\clients\mercurial.py:630: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  parents = re.split(':[^\s]+\s*', parents)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\rtcTo\rtc2git\rtcFunctions.py:183: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  regex = "\(_[\w-]+\)"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\rtucker-mozilla\mozilla_inventory\systems\views.py:387: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  matches = re.search('^nic\.(\d+)', str(kv.key) )
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\scipy\scipy\tools\validate_runtests_log.py:43: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  r = re.compile("Ran (?P<num_tests>\d+) tests in (?P<time>\d+\S+)")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\shellderp\sublime-robot-plugin\lib\robot_scanner.py:20: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  detect_robot_regex = '\*+\s*(settings?|metadata|(user )?keywords?|test ?cases?|variables?)'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\sidnei\txstatsd\txstatsd\server\processor.py:32: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  SPACES = re.compile("\s+")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\sidnei\txstatsd\txstatsd\server\processor.py:33: SyntaxWarning: "\/" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\/"? A raw string is also an option.
+  SLASHES = re.compile("\/+")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\sidnei\txstatsd\txstatsd\server\processor.py:34: SyntaxWarning: "\-" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\-"? A raw string is also an option.
+  NON_ALNUM = re.compile("[^a-zA-Z_\-0-9\.]")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\sidnei\txstatsd\txstatsd\server\processor.py:35: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  RATE = re.compile("^@([\d\.]+)")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\sixohsix\twitter\twitter\util.py:163: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  m.group(1) for m in re.finditer("\s*([^,\s]+)\s*,?\s*", list_of_hosts))
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\SpriteLink\NIPAP\tests\performance\speedtest.py:48: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  m = re.match("([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)", arg_prefix)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\spulec\moto\moto\apigateway\urls.py:18: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  '{0}/restapis/(?P<function_id>[^/]+)/resources/(?P<resource_id>[^/]+)/methods/(?P<method_name>[^/]+)/integration/responses/(?P<status_code>\d+)/?$': APIGatewayResponse().integration_responses,
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\genmod\families\family.py:813: SyntaxWarning: "\m" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\m"? A raw string is also an option.
+  A good choice for the binomial family is :math:`\mu_0 = (Y_i + 0.5)/2`
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\genmod\families\family.py:1686: SyntaxWarning: "\_" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\_"? A raw string is also an option.
+  resid\_anscombe_i = (\log(endog) - \log(\mu)) / \sqrt{mu}
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\tsa\statespace\tools.py:671: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  written as :math:`(\Sigma, A_1, \dots, A_p)`, where :math:`p` is the order
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\tsa\statespace\tools.py:859: SyntaxWarning: "\h" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\h"? A raw string is also an option.
+  \hat \Gamma(s) = \frac{1}{n} \sum_{t=1}^{n-s}
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\tsa\statespace\tools.py:927: SyntaxWarning: "\G" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\G"? A raw string is also an option.
+  \Gamma(j) = E(y_t y_{t-j}')
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\statsmodels\statsmodels\statsmodels\tsa\statespace\tools.py:1222: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  y_t = A_1 y_{t-1} + \dots + A_p y_{t-p} + \varepsilon_t
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\Theano\Theano\theano\tensor\nlinalg.py:56: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
+  matrix :math:`A_{inv}` such that the dot product :math:`A \cdot A_{inv}`
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\Theano\Theano\theano\tensor\nlinalg.py:131: SyntaxWarning: "\c" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\c"? A raw string is also an option.
+  :math:`A_0 \cdot A_1 \cdot A_2 \cdot .. \cdot A_N`.
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\TigorC\django-redactorjs\redactor\fields.py:23: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  add_introspection_rules([], ['^redactor\.fields\.RedactorField'])
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\timonwong\OmniMarkupPreviewer\OmniMarkupLib\Renderers\libs\python2\genshi\path.py:663: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  _tokenize = re.compile('("[^"]*")|(\'[^\']*\')|((?:\d+)?\.\d+)|(%s)|([^%s\s]+)|\s+' % (
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\tonyfischetti\sake\functests\test3\functest.py:137: SyntaxWarning: "\)" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\)"? A raw string is also an option.
+  bash -c "cat <(echo -n 'qstats version ') <(cat qstats-documentation.html | grep version | perl -pe 's/.*version (.+?)\)<.*/\\1/') | figlet > VERSION.txt"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\tonyfischetti\sake\functests\test3\functest.py:463: SyntaxWarning: "\)" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\)"? A raw string is also an option.
+  bash -c "cat <(echo -n 'qstats version ') <(cat qstats-documentation.html | grep version | perl -pe 's/.*version (.+?)\)<.*/\\1/') | figlet > VERSION.txt"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\tonyfischetti\sake\functests\test3\functest.py:803: SyntaxWarning: "\)" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\)"? A raw string is also an option.
+  bash -c "cat <(echo -n 'qstats version ') <(cat qstats-documentation.html | grep version | perl -pe 's/.*version (.+?)\)<.*/\\1/') | figlet > VERSION.txt"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\tonyfischetti\sake\functests\test3\functest.py:992: SyntaxWarning: "\)" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\)"? A raw string is also an option.
+  bash -c "cat <(echo -n 'qstats version ') <(cat qstats-documentation.html | grep version | perl -pe 's/.*version (.+?)\)<.*/\\1/') | figlet > VERSION.txt"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\typesupply\woffTools\Lib\woffTools\test\test_validate.py:1214: SyntaxWarning: "\A" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\A"? A raw string is also an option.
+  metadata = "\A" * 8
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\ucb-sts\sts\sts\experiments\lifecycle.py:42: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  'cpu_info' : backtick("cat 2>/dev/null /proc/cpuinfo | grep 'model name[[:space:]]' | uniq | sed 's/.*://' | perl -pi -e 's/\s+/ /g'")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpBftpd.py:13: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  versionStr = "\d+\.\d+(\.\d+)?(([a-z])|(rc\d))?"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpBftpd.py:15: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  "^220 bftpd " + versionStr + " at \d+\.\d+\.\d+\.\d+ ready",
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpBftpd.py:19: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  "bftpd (\d+\.\d+) at",
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpBftpd.py:37: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  impl_2_re = re.compile("^220 \(bftpd\)\r\n$", re.IGNORECASE)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpVsFtpd.py:12: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  versionStr = "\d+\.\d+(\.\d+)?(([a-z])|(rc\d))?"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpVsFtpd.py:14: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  "^220 (\()?vsFTPd (\d+(\.\d+)*)[+]?",
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpVsFtpd.py:17: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  version_re = re.compile("vsFTPd (\d+\.\d+\.\d+)", re.IGNORECASE)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\FtpVsFtpd.py:18: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  rev_re = re.compile("\((ext\.(?:\d+))\)", re.IGNORECASE)
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\microsoft_exchange.py:37: SyntaxWarning: "\+" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\+"? A raw string is also an option.
+  banner_re = re.compile("\+OK (?:Welcome to )?Microsoft Exchange (?:Server )?(2[0-9][0-9][0-9]) POP3")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\eth_py150\zmap\ztag\ztag\annotations\microsoft_exchange.py:57: SyntaxWarning: "\*" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\*"? A raw string is also an option.
+  banner_re = re.compile("\* OK Microsoft Exchange (?:Server )?(2[0-9][0-9][0-9]) IMAP")
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\bin\config.py:5: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = '\2\1thisismyscretkey\1\2\e\y\y\h'
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\base_api\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\base_filters\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\composite_keys\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\crud_rest_api\config.py:7: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\employees\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\enums\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\extendsecurity\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\extendsecurity2\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\masterdetail\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\oauth\config.py:8: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\productsale\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickactions\config.py:13: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickcharts\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickcharts2\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickfiles\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickhowto\config.py:9: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickhowto2\config.py:13: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickhowto3\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickimages\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quickmigrate\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quicksqlviews\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\quicktemplates\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\react-rest-api\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\related_fields\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\saml\config.py:22: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\simpleform\config.py:13: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\simpleview1\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\simpleview2\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\user_registration\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\flask-appbuilder\examples\widgets\config.py:6: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\httpie\extras\scripts\generate_man_pages.py:24: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  '"': '\[dq]',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\httpie\extras\scripts\generate_man_pages.py:25: SyntaxWarning: "\[" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\["? A raw string is also an option.
+  "'": '\[aq]',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\httpie\extras\scripts\generate_man_pages.py:26: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  '~': '\(ti',
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\httpie\extras\scripts\generate_man_pages.py:27: SyntaxWarning: "\(" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\("? A raw string is also an option.
+  '’': "\(ga",
+C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\raw_sources\git_repos\httpie\extras\scripts\generate_man_pages.py:28: SyntaxWarning: "\e" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\e"? A raw string is also an option.
+  '\\': '\e',
+[label] parsed 8861/9151 files (290 failed), 10771 classes kept (3590 excluded by test-class name)
+[label] comparing Feature Envy yield across scopes ...
+[label]   file=4  package=17  repo=63  corpus=415
+[label] labeling with --envy-scope corpus ...
+[label] path-based test exclusion drops 2941 further classes (7830 remain)
+[label] wrote 7830 labeled rows -> C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\labeled_real_dataset.csv
+[label] audit written -> C:\Users\Juju\Desktop\Automated_Code_Refactoring_System\refactor-engine\data\real_world\labeling_audit.json
+[label] ======================================================================
+[label] LABEL DISTRIBUTION
+[label]   Clean           6880 (87.9%)   train= 5504  test=1376
+[label]   Feature Envy     358 ( 4.6%)   train=  286  test=  72
+[label]   God Class        278 ( 3.6%)   train=  222  test=  56
+[label]   Long Method      269 ( 3.4%)   train=  215  test=  54
+[label]   Data Class        45 ( 0.6%)   train=   36  test=   9
+[label] ======================================================================

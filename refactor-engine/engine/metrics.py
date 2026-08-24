@@ -27,7 +27,7 @@ def average_method_length(class_info: ClassInfo) -> MetricResult:
     if not class_info.methods:
         return MetricResult(class_name=class_info.name, metric_name="average_method_length", value=0.0)
 
-    lengths = [m.end_line - m.start_line + 1 for m in class_info.methods]
+    lengths = [method_length(m) for m in class_info.methods]
     return MetricResult(
         class_name=class_info.name,
         metric_name="average_method_length",
@@ -55,7 +55,8 @@ def cyclomatic_complexity(method: MethodInfo) -> int:
 
 
 def method_length(method: MethodInfo) -> int:
-    return method.end_line - method.start_line
+    """Inclusive line count -- a single-line method measures 1, not 0."""
+    return method.end_line - method.start_line + 1
 
 
 def parameter_count(method: MethodInfo) -> int:
@@ -63,7 +64,8 @@ def parameter_count(method: MethodInfo) -> int:
 
 
 def class_length(cls: ClassInfo) -> int:
-    return cls.end_line - cls.start_line
+    """Inclusive line count -- a single-line class measures 1, not 0."""
+    return cls.end_line - cls.start_line + 1
 
 
 def lcom(cls: ClassInfo) -> float:
@@ -165,6 +167,21 @@ def depth_of_inheritance(cls: ClassInfo, all_classes: list[ClassInfo]) -> int:
 
 
 def compute_all_metrics(classes: list[ClassInfo]) -> dict:
+    """Per-class metrics, keyed by both `cls.name` AND `id(cls)`.
+
+    Two classes sharing a name in the same file are routine now that nested
+    classes are parsed as independent entities -- e.g. five Django models in
+    one models.py each carrying their own `class Meta:`. Keying by name alone
+    would let the later same-named class silently overwrite the earlier
+    one's entry, dropping it from every downstream lookup.
+
+    The name key is kept, unchanged, for existing single-class-per-name
+    callers (tests, the synthetic dataset generator) that look a class up by
+    its name string. Callers iterating a class list where a name collision
+    is possible should look up by `id(cls)` instead -- guaranteed unique
+    within one call, and resolvable because they already hold the ClassInfo
+    object.
+    """
     results = {}
 
     for cls in classes:
@@ -176,7 +193,7 @@ def compute_all_metrics(classes: list[ClassInfo]) -> dict:
             for m in cls.methods
         }
 
-        results[cls.name] = {
+        entry = {
             "class_length": class_length(cls),
             "lcom": lcom(cls),
             "cbo": cbo(cls, classes),
@@ -185,5 +202,7 @@ def compute_all_metrics(classes: list[ClassInfo]) -> dict:
             "depth_of_inheritance": depth_of_inheritance(cls, classes),
             "methods": method_metrics,
         }
+        results[cls.name] = entry
+        results[id(cls)] = entry
 
     return results

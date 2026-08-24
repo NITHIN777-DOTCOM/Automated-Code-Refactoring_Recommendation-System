@@ -1,70 +1,70 @@
 {
-  "generated_at": "2026-08-14T17:32:16.626362+00:00",
+  "generated_at": "2026-08-24T11:23:36.152510+00:00",
   "corpus_dir": "data\\real_world\\raw_sources",
-  "row_count": 3206,
+  "row_count": 7830,
   "metric_scope": {
     "csv_features": "per-file",
     "feature_envy_atfd_laa": "corpus",
     "woc_inheritance": "corpus (global base-class resolution)"
   },
   "parse_stats": {
-    "files_seen": 4463,
-    "files_parsed_ok": 4237,
-    "files_failed": 226,
-    "files_on_test_paths": 499,
-    "classes_seen": 3593,
-    "classes_excluded_test_name": 1047,
-    "classes_excluded_test_path_only": 387
+    "files_seen": 9151,
+    "files_parsed_ok": 8861,
+    "files_failed": 290,
+    "files_on_test_paths": 1407,
+    "classes_seen": 10771,
+    "classes_excluded_test_name": 3590,
+    "classes_excluded_test_path_only": 2941
   },
   "feature_envy_by_scope": {
-    "file": 2,
-    "package": 4,
-    "repo": 10,
-    "corpus": 126
+    "file": 4,
+    "package": 17,
+    "repo": 63,
+    "corpus": 415
   },
   "inheritance_resolution": {
-    "unresolved": 2023,
-    "resolved": 382,
-    "partial": 730,
-    "no_bases": 458
+    "unresolved": 4997,
+    "partial": 1795,
+    "resolved": 1667,
+    "no_bases": 2312
   },
   "label_distribution": {
-    "Clean": 2752,
-    "Long Method": 173,
-    "God Class": 143,
-    "Feature Envy": 112,
-    "Data Class": 26
+    "Clean": 6880,
+    "Feature Envy": 358,
+    "God Class": 278,
+    "Long Method": 269,
+    "Data Class": 45
   },
   "previous_label_distribution": {
-    "Clean": 3197,
-    "Long Method": 212,
-    "God Class": 144,
-    "Data Class": 38,
-    "Feature Envy": 2
+    "Clean": 10079,
+    "Long Method": 353,
+    "God Class": 281,
+    "Data Class": 54,
+    "Feature Envy": 4
   },
   "label_transitions_previous_to_current": {
     "Clean": {
-      "Clean": 2749,
-      "excluded (test path)": 370,
-      "Feature Envy": 74,
-      "Data Class": 4
+      "Clean": 6875,
+      "excluded (test path)": 2921,
+      "Feature Envy": 273,
+      "Data Class": 10
     },
     "God Class": {
-      "God Class": 143,
-      "excluded (test path)": 1
+      "God Class": 278,
+      "excluded (test path)": 3
     },
     "Data Class": {
-      "Data Class": 22,
-      "excluded (test path)": 13,
-      "Clean": 3
+      "Data Class": 35,
+      "excluded (test path)": 14,
+      "Clean": 5
     },
     "Long Method": {
-      "Long Method": 173,
-      "Feature Envy": 36,
+      "Long Method": 269,
+      "Feature Envy": 81,
       "excluded (test path)": 3
     },
     "Feature Envy": {
-      "Feature Envy": 2
+      "Feature Envy": 4
     }
   },
   "split": {
@@ -73,65 +73,71 @@
     "stratified_by": "label",
     "per_label": {
       "Clean": {
-        "total": 2752,
-        "train": 2202,
-        "test": 550
+        "total": 6880,
+        "train": 5504,
+        "test": 1376
       },
       "Feature Envy": {
-        "total": 112,
-        "train": 90,
-        "test": 22
+        "total": 358,
+        "train": 286,
+        "test": 72
       },
       "God Class": {
-        "total": 143,
-        "train": 114,
-        "test": 29
+        "total": 278,
+        "train": 222,
+        "test": 56
       },
       "Data Class": {
-        "total": 26,
-        "train": 21,
-        "test": 5
+        "total": 45,
+        "train": 36,
+        "test": 9
       },
       "Long Method": {
-        "total": 173,
-        "train": 138,
-        "test": 35
+        "total": 269,
+        "train": 215,
+        "test": 54
       }
     }
   },
   "classes_by_source": {
-    "standard_dataset": 2234,
-    "git_repos": 751,
-    "site_packages": 221
+    "codesearchnet": 22,
+    "standard_dataset": 3034,
+    "git_repos": 4552,
+    "site_packages": 222
   },
   "labels_by_source": {
+    "codesearchnet": {
+      "Clean": 22
+    },
     "git_repos": {
-      "Clean": 638,
-      "God Class": 33,
-      "Long Method": 38,
-      "Feature Envy": 39,
-      "Data Class": 3
+      "Long Method": 95,
+      "Feature Envy": 231,
+      "God Class": 144,
+      "Clean": 4072,
+      "Data Class": 10
     },
     "site_packages": {
       "Clean": 158,
-      "Long Method": 48,
+      "Long Method": 46,
       "God Class": 14,
+      "Feature Envy": 3,
       "Data Class": 1
     },
     "standard_dataset": {
-      "Clean": 1956,
-      "Feature Envy": 73,
-      "God Class": 96,
-      "Data Class": 22,
-      "Long Method": 87
+      "Clean": 2628,
+      "Feature Envy": 124,
+      "God Class": 120,
+      "Data Class": 34,
+      "Long Method": 128
     }
   },
   "multi_rule_matches": {
-    "God Class + Long Method": 74,
-    "Feature Envy + Long Method": 36,
-    "God Class + Feature Envy": 6,
-    "Long Method + Data Class": 4,
-    "God Class + Feature Envy + Long Method": 4
+    "God Class + Long Method": 113,
+    "Feature Envy + Long Method": 81,
+    "God Class + Feature Envy": 21,
+    "God Class + Feature Envy + Long Method": 14,
+    "Long Method + Data Class": 5,
+    "God Class + Data Class": 1
   },
   "thresholds": {
     "citations": {
@@ -349,9 +355,9 @@
   "sanity_sample": {
     "God Class": [
       {
-        "class_name": "LazyTuple",
-        "file": "eth_py150\\cool-RR\\python_toolbox\\source_py3\\python_toolbox\\nifty_collections\\lazy_tuple.py",
-        "lines": "48-288",
+        "class_name": "PithosClient",
+        "file": "eth_py150\\grnet\\kamaki\\kamaki\\clients\\pithos\\__init__.py",
+        "lines": "111-1636",
         "source_category": "standard_dataset",
         "matched_rules": [
           "God Class",
@@ -360,64 +366,128 @@
         "previous_label": "God Class",
         "split": "train",
         "metrics": {
-          "lcom": 0.858,
-          "class_length": 240,
+          "lcom": 0.961,
+          "class_length": 1526,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
-          "method_count": 16,
-          "wmc": 48,
-          "max_method_cc": 12,
-          "max_method_length": 37,
-          "avg_method_length": 10.188,
-          "avg_cyclomatic_complexity": 3.0,
-          "woc": 1.0,
-          "noam": 0,
-          "nopa": 4,
-          "noam_plus_nopa": 4,
-          "atfd_proxy": 9,
-          "laa": 0.654
-        },
-        "source": "class LazyTuple(collections.Sequence):\n    '''\n    A lazy tuple which requests as few values as possible from its iterator.\n    \n    Wrap your iterators with `LazyTuple` and enjoy tuple-ish features like\n    indexed access, comparisons, length measuring, element counting and more.\n    \n    Example:\n    \n        def my_generator():\n            yield from ('hello', 'world', 'have', 'fun')\n            \n        lazy_tuple = LazyTuple(my_generator())\n        \n        assert lazy_tuple[2] == 'have'\n        assert len(lazy_tuple) == 4\n    \n    `LazyTuple` holds the given iterable and pulls items out of it. It pulls as\n    few items as it possibly can. For example, if you ask for the third\n    element, it will pull exactly three elements and then return the third one.\n    \n    Some actions require exhausting the entire iterator. For example, checking\n    the `LazyTuple` length, or doing indexex access with a negative index.\n    (e.g. asking for the seventh-to-last element.)\n    \n    If you're passing in an iterator you definitely know to be infinite,\n    specify `definitely_infinite=True`.\n    '''\n    ... [213 more lines]"
-      },
-      {
-        "class_name": "BaseClient",
-        "file": "eth_py150\\AppEnlight\\appenlight-client-python\\appenlight_client\\client.py",
-        "lines": "68-558",
-        "source_category": "standard_dataset",
-        "matched_rules": [
-          "God Class",
-          "Long Method"
-        ],
-        "previous_label": "God Class",
-        "split": "train",
-        "metrics": {
-          "lcom": 0.669,
-          "class_length": 490,
-          "cbo": 0,
-          "fan_in": 0,
-          "fan_out": 0,
-          "dit": 0,
-          "method_count": 17,
-          "wmc": 115,
-          "max_method_cc": 40,
-          "max_method_length": 124,
-          "avg_method_length": 26.529,
-          "avg_cyclomatic_complexity": 6.765,
+          "method_count": 63,
+          "wmc": 199,
+          "max_method_cc": 21,
+          "max_method_length": 135,
+          "avg_method_length": 23.143,
+          "avg_cyclomatic_complexity": 3.159,
           "woc": 1.0,
           "noam": 0,
           "nopa": 8,
           "noam_plus_nopa": 8,
-          "atfd_proxy": 23,
-          "laa": 0.511
+          "atfd_proxy": 32,
+          "laa": 0.467
         },
-        "source": "class BaseClient(object):\n\n    self_instance = None\n\n    __version__ = __version__\n    __protocol_version__ = __protocol_version__\n\n    def __init__(self, config=None, register_timing=True):\n        \"\"\"\n        at minimum client expects following keys to be present::\n\n            appenlight.api_key = YOUR_API_KEY\n\n        \"\"\"\n        self.uuid = uuid.uuid4()\n        self.log_handlers = []\n        self.update_config(config)\n        self.reinitialize()\n\n    def update_config(self, config):\n        self.config = {}\n        # general options\n        self.config['enabled'] = asbool(config.get('appenlight', True))\n        self.config['server_name'] = config.get('appenlight.server_name') \\\n                                     or socket.getfqdn()\n        if PY3:\n            default_client = 'python3'\n        else:\n    ... [463 more lines]"
+        "source": "class PithosClient(PithosRestClient):\n    \"\"\"Synnefo Pithos+ API client\"\"\"\n\n    def __init__(self, endpoint_url, token, account=None, container=None):\n        super(PithosClient, self).__init__(\n            endpoint_url, token, account, container)\n\n    def use_alternative_account(self, func, *args, **kwargs):\n        \"\"\"Run method with an alternative account UUID, as long as kwargs\n           contain a non-None \"alternative_account\" argument\n        \"\"\"\n        alternative_account = kwargs.pop('alternative_account', None)\n        bu_account = self.account\n        try:\n            if alternative_account and alternative_account != self.account:\n                self.account = alternative_account\n            return func(*args, **kwargs)\n        finally:\n            self.account = bu_account\n\n    def create_container(\n            self,\n            container=None, sizelimit=None, versioning=None, metadata=None,\n            project_id=None, **kwargs):\n        \"\"\"\n        :param container: (str) if not given, self.container is used instead\n\n        :param sizelimit: (int) container total size limit in bytes\n    ... [1498 more lines]"
       },
       {
-        "class_name": "Hue",
-        "file": "eth_py150\\openstack\\sahara\\sahara\\plugins\\mapr\\services\\hue\\hue.py",
-        "lines": "59-289",
+        "class_name": "LDObject",
+        "file": "eth_py150\\benadida\\helios-server\\helios\\datatypes\\__init__.py",
+        "lines": "94-283",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class"
+        ],
+        "previous_label": "God Class",
+        "split": "test",
+        "metrics": {
+          "lcom": 0.895,
+          "class_length": 190,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 7,
+          "dit": 0,
+          "method_count": 15,
+          "wmc": 40,
+          "max_method_cc": 9,
+          "max_method_length": 25,
+          "avg_method_length": 9.8,
+          "avg_cyclomatic_complexity": 2.667,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd_proxy": 5,
+          "laa": 0.762
+        },
+        "source": "class LDObject(object):\n    \"\"\"\n    A linked-data object wraps another object and serializes it according to a particular\n    data format. For example, a legacy election LDObject instance will wrap an Election object\n    and serialize its fields according to the specs for that version.\n\n    To accomodate old JSON types, we allow  classes to do basically whatever they want,\n    or to let this base class serialize pure JSON thingies, without the JSON-LD.\n    \"\"\"\n\n    # whether or not to add JSON-LD things\n    USE_JSON_LD = True\n\n    # fields to serialize\n    FIELDS = []\n\n    # structured fields are other LD objects, not simple types\n    STRUCTURED_FIELDS = {}\n\n    # the underlying object type, which contains algorithms, to instantiate by default\n    WRAPPED_OBJ_CLASS = None\n\n    def __init__(self, wrapped_obj):\n        self.wrapped_obj = wrapped_obj\n        self.structured_fields = {}\n\n    @classmethod\n    def instantiate(cls, obj, datatype=None):\n    ... [162 more lines]"
+      },
+      {
+        "class_name": "TreeManager",
+        "file": "git_repos\\django-mptt\\mptt\\managers.py",
+        "lines": "51-1372",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "God Class",
+          "Long Method"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.733,
+          "class_length": 1322,
+          "cbo": 1,
+          "fan_in": 0,
+          "fan_out": 1,
+          "dit": 0,
+          "method_count": 43,
+          "wmc": 147,
+          "max_method_cc": 16,
+          "max_method_length": 137,
+          "avg_method_length": 29.233,
+          "avg_cyclomatic_complexity": 3.419,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd_proxy": 46,
+          "laa": 0.632
+        },
+        "source": "class TreeManager(models.Manager.from_queryset(TreeQuerySet)):\n    \"\"\"\n    A manager for working with trees of objects.\n    \"\"\"\n\n    def contribute_to_class(self, model, name):\n        super().contribute_to_class(model, name)\n\n        if not model._meta.abstract:\n            self.tree_model = _get_tree_model(model)\n\n            self._base_manager = None\n            if self.tree_model and self.tree_model is not model and not model._meta.proxy:\n                # _base_manager is the treemanager on tree_model (MTI only).\n                # Proxy models share the same DB table so they don't need\n                # delegation; keeping _base_manager None lets their own\n                # queryset be used, which returns instances of the proxy class.\n                self._base_manager = self.tree_model._tree_manager\n\n    def get_queryset(self, *args, **kwargs):\n        \"\"\"\n        Ensures that this manager always returns nodes in tree order.\n        \"\"\"\n        return (\n            super()\n            .get_queryset(*args, **kwargs)\n            .order_by(self.tree_id_attr, self.left_attr)\n        )\n    ... [1294 more lines]"
+      },
+      {
+        "class_name": "IndexedSet",
+        "file": "git_repos\\boltons\\boltons\\setutils.py",
+        "lines": "68-470",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "God Class"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.788,
+          "class_length": 403,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 10,
+          "dit": 0,
+          "method_count": 43,
+          "wmc": 114,
+          "max_method_cc": 9,
+          "max_method_length": 20,
+          "avg_method_length": 7.116,
+          "avg_cyclomatic_complexity": 2.651,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 3,
+          "noam_plus_nopa": 3,
+          "atfd_proxy": 10,
+          "laa": 0.825
+        },
+        "source": "class IndexedSet(MutableSet):\n    \"\"\"``IndexedSet`` is a :class:`collections.MutableSet` that maintains\n    insertion order and uniqueness of inserted elements. It's a hybrid\n    type, mostly like an OrderedSet, but also :class:`list`-like, in\n    that it supports indexing and slicing.\n\n    Args:\n        other (iterable): An optional iterable used to initialize the set.\n\n    >>> x = IndexedSet(list(range(4)) + list(range(8)))\n    >>> x\n    IndexedSet([0, 1, 2, 3, 4, 5, 6, 7])\n    >>> x - set(range(2))\n    IndexedSet([2, 3, 4, 5, 6, 7])\n    >>> x[-1]\n    7\n    >>> fcr = IndexedSet('freecreditreport.com')\n    >>> ''.join(fcr[:fcr.index('.')])\n    'frecditpo'\n\n    Standard set operators and interoperation with :class:`set` are\n    all supported:\n\n    >>> fcr & set('cash4gold.com')\n    IndexedSet(['c', 'd', 'o', '.', 'm'])\n\n    As you can see, the ``IndexedSet`` is almost like a ``UniqueList``,\n    retaining only one copy of a given value, in the order it was\n    ... [375 more lines]"
+      },
+      {
+        "class_name": "Profile",
+        "file": "eth_py150\\veegee\\guv\\guv\\util\\profile.py",
+        "lines": "50-218",
         "source_category": "standard_dataset",
         "matched_rules": [
           "God Class"
@@ -425,65 +495,65 @@
         "previous_label": "God Class",
         "split": "train",
         "metrics": {
-          "lcom": 0.956,
-          "class_length": 230,
-          "cbo": 0,
-          "fan_in": 4,
-          "fan_out": 5,
-          "dit": 0,
-          "method_count": 17,
-          "wmc": 35,
-          "max_method_cc": 5,
-          "max_method_length": 51,
-          "avg_method_length": 10.824,
-          "avg_cyclomatic_complexity": 2.059,
-          "woc": 1.0,
-          "noam": 0,
-          "nopa": 5,
-          "noam_plus_nopa": 5,
-          "atfd_proxy": 8,
-          "laa": 0.6
-        },
-        "source": "class Hue(s.Service):\n    THRIFT_VERSIONS = [5, 7]\n    THRIFT_VERSION = p.Config(\n        name=\"Thrift version\",\n        applicable_target=\"Hue\",\n        scope='cluster',\n        config_type=\"dropdown\",\n        config_values=[(v, v) for v in THRIFT_VERSIONS],\n        priority=1,\n        description=_(\n            'Specifies thrift version.')\n    )\n\n    def __init__(self):\n        super(Hue, self).__init__()\n        self._name = 'hue'\n        self._ui_name = 'Hue'\n        self._node_processes = [HUE]\n        self._ui_info = [('HUE', HUE, 'http://%s:8888')]\n        self._validation_rules = [\n            vu.exactly(1, HUE),\n            vu.on_same_node(HUE, httpfs.HTTP_FS),\n            vu.on_same_node(HUE_LIVY, spark.SPARK_SLAVE),\n        ]\n        self._priority = 2\n\n    def get_configs(self):\n        return [Hue.THRIFT_VERSION]\n    ... [203 more lines]"
-      }
-    ],
-    "Feature Envy": [
-      {
-        "class_name": "SMARTAlert",
-        "file": "eth_py150\\freenas\\freenas\\gui\\system\\alertmods\\smart.py",
-        "lines": "13-47",
-        "source_category": "standard_dataset",
-        "matched_rules": [
-          "Feature Envy"
-        ],
-        "previous_label": "Clean",
-        "split": "train",
-        "metrics": {
-          "lcom": 0.0,
-          "class_length": 34,
+          "lcom": 0.821,
+          "class_length": 169,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
-          "method_count": 1,
-          "wmc": 9,
-          "max_method_cc": 9,
-          "max_method_length": 30,
-          "avg_method_length": 30.0,
-          "avg_cyclomatic_complexity": 9.0,
+          "method_count": 13,
+          "wmc": 30,
+          "max_method_cc": 7,
+          "max_method_length": 33,
+          "avg_method_length": 10.923,
+          "avg_cyclomatic_complexity": 2.308,
           "woc": 1.0,
           "noam": 0,
-          "nopa": 0,
-          "noam_plus_nopa": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
           "atfd_proxy": 8,
-          "laa": 0.0
+          "laa": 0.724
         },
-        "source": "class SMARTAlert(BaseAlert):\n\n    interval = 5\n\n    def run(self):\n        alerts = []\n\n        if not os.path.exists(SMART_FILE):\n            return alerts\n\n        lock = LockFile(SMART_FILE)\n\n        while not lock.i_am_locking():\n            try:\n                lock.acquire(timeout=5)\n            except LockTimeout:\n                return alerts\n\n        with open(SMART_FILE, 'rb') as f:\n            try:\n                data = pickle.loads(f.read())\n            except:\n                data = {}\n\n        for msgs in data.itervalues():\n            if not msgs:\n                continue\n            for msg in msgs:\n    ... [7 more lines]"
+        "source": "class Profile(profile_orig.Profile):\n    base = profile_orig.Profile\n\n    def __init__(self, timer=None, bias=None):\n        self.current_tasklet = greenlet.getcurrent()\n        self.thread_id = thread.get_ident()\n        self.base.__init__(self, timer, bias)\n        self.sleeping = {}\n\n    def __call__(self, *args):\n        \"\"\"make callable, allowing an instance to be the profiler\"\"\"\n        self.dispatcher(*args)\n\n    def _setup(self):\n        self._has_setup = True\n        self.cur = None\n        self.timings = {}\n        self.current_tasklet = greenlet.getcurrent()\n        self.thread_id = thread.get_ident()\n        self.simulate_call(\"profiler\")\n\n    def start(self, name=\"start\"):\n        if getattr(self, \"running\", False):\n            return\n        self._setup()\n        self.simulate_call(\"start\")\n        self.running = True\n        sys.setprofile(self.dispatcher)\n    ... [141 more lines]"
       },
       {
-        "class_name": "Start",
-        "file": "eth_py150\\esrlabs\\git-repo\\subcmds\\start.py",
-        "lines": "27-111",
+        "class_name": "Plugin",
+        "file": "eth_py150\\lsaffre\\lino\\lino\\core\\plugin.py",
+        "lines": "21-290",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.974,
+          "class_length": 270,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 20,
+          "wmc": 35,
+          "max_method_cc": 4,
+          "max_method_length": 28,
+          "avg_method_length": 6.35,
+          "avg_cyclomatic_complexity": 1.75,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 10,
+          "noam_plus_nopa": 10,
+          "atfd_proxy": 7,
+          "laa": 0.682
+        },
+        "source": "class Plugin(object):\n    \"\"\"The base class for all plugins.\n\n    For an introduction, see :doc:`/dev/plugins`.\n\n    A :class:`Plugin` is an optional descriptor for an app which gets\n    defined and configured before Django models start to load.\n    Lino creates one :class:`Plugin` instance for every installed app.\n\n    The :class:`Plugin` class is comparable to Django's `AppConfig\n    <https://docs.djangoproject.com/en/1.7/ref/applications/>`_ class\n    which has been added in version 1.7., but there is at least one\n    fundamental difference: in Lino the :class:`Plugin` instances for\n    all installed apps are available (in :attr:`dd.plugins\n    <lino.core.site.Site.plugins>`) when the :xfile:`settings.py` file\n    has been loaded and *before* Django starts to load the first\n    :xfile:`models.py`.  This is possible because Plugins are defined\n    in your app's :xfile:`__init__.py` file.\n\n    Unlike Django's `AppConfig`, you *cannot* define a `Plugin` in\n    your :xfile:`models.py` file, you *must* define it in your app's\n    :xfile:`__init__.py`.  This limitation has the advantage of making\n    certain things possible which are not possible in plain Django.\n\n    Plugins get instiantiated when the :class:`Site` object\n    instantiates (i.e. before Django settings are ready).\n\n    \"\"\"\n    ... [242 more lines]"
+      }
+    ],
+    "Feature Envy": [
+      {
+        "class_name": "InternationalizationExtension",
+        "file": "eth_py150\\GoogleCloudPlatform\\appengine-flask-skeleton\\lib\\jinja2\\ext.py",
+        "lines": "156-387",
         "source_category": "standard_dataset",
         "matched_rules": [
           "Feature Envy",
@@ -492,65 +562,194 @@
         "previous_label": "Long Method",
         "split": "train",
         "metrics": {
-          "lcom": 1.0,
-          "class_length": 84,
+          "lcom": 0.833,
+          "class_length": 232,
           "cbo": 0,
           "fan_in": 0,
-          "fan_out": 0,
-          "dit": 0,
-          "method_count": 2,
-          "wmc": 18,
-          "max_method_cc": 17,
-          "max_method_length": 68,
-          "avg_method_length": 35.5,
-          "avg_cyclomatic_complexity": 9.0,
+          "fan_out": 7,
+          "dit": 1,
+          "method_count": 9,
+          "wmc": 52,
+          "max_method_cc": 19,
+          "max_method_length": 93,
+          "avg_method_length": 23.667,
+          "avg_cyclomatic_complexity": 5.778,
           "woc": 1.0,
           "noam": 0,
           "nopa": 2,
           "noam_plus_nopa": 2,
-          "atfd_proxy": 10,
-          "laa": 0.167
+          "atfd_proxy": 19,
+          "laa": 0.321
         },
-        "source": "class Start(Command):\n  common = True\n  helpSummary = \"Start a new branch for development\"\n  helpUsage = \"\"\"\n%prog <newbranchname> [--all | <project>...]\n\"\"\"\n  helpDescription = \"\"\"\n'%prog' begins a new branch of development, starting from the\nrevision specified in the manifest.\n\"\"\"\n\n  def _Options(self, p):\n    p.add_option('--all',\n                 dest='all', action='store_true',\n                 help='begin branch in all projects')\n\n  def Execute(self, opt, args):\n    if not args:\n      self.Usage()\n\n    nb = args[0]\n    if not git.check_ref_format('heads/%s' % nb):\n      print(\"error: '%s' is not a valid name\" % nb, file=sys.stderr)\n      sys.exit(1)\n\n    err = []\n    projects = []\n    if not opt.all:\n    ... [57 more lines]"
+        "source": "class InternationalizationExtension(Extension):\n    \"\"\"This extension adds gettext support to Jinja2.\"\"\"\n    tags = set(['trans'])\n\n    # TODO: the i18n extension is currently reevaluating values in a few\n    # situations.  Take this example:\n    #   {% trans count=something() %}{{ count }} foo{% pluralize\n    #     %}{{ count }} fooss{% endtrans %}\n    # something is called twice here.  One time for the gettext value and\n    # the other time for the n-parameter of the ngettext function.\n\n    def __init__(self, environment):\n        Extension.__init__(self, environment)\n        environment.globals['_'] = _gettext_alias\n        environment.extend(\n            install_gettext_translations=self._install,\n            install_null_translations=self._install_null,\n            install_gettext_callables=self._install_callables,\n            uninstall_gettext_translations=self._uninstall,\n            extract_translations=self._extract,\n            newstyle_gettext=False\n        )\n\n    def _install(self, translations, newstyle=None):\n        gettext = getattr(translations, 'ugettext', None)\n        if gettext is None:\n            gettext = translations.gettext\n        ngettext = getattr(translations, 'ungettext', None)\n    ... [204 more lines]"
       },
       {
-        "class_name": "DjangoOpenIDStore",
-        "file": "eth_py150\\cloudera\\hue\\desktop\\core\\ext-py\\django-openid-auth-0.5\\django_openid_auth\\store.py",
-        "lines": "40-131",
+        "class_name": "TimestampUpdater",
+        "file": "git_repos\\webassets\\src\\webassets\\updater.py",
+        "lines": "110-180",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Feature Envy",
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 71,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 5,
+          "dit": 2,
+          "method_count": 3,
+          "wmc": 15,
+          "max_method_cc": 12,
+          "max_method_length": 53,
+          "avg_method_length": 21.667,
+          "avg_cyclomatic_complexity": 5.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 7,
+          "laa": 0.0
+        },
+        "source": "class TimestampUpdater(BundleDefUpdater):\n\n    id = 'timestamp'\n\n    def check_timestamps(self, bundle, ctx, o_modified=None):\n        from .bundle import Bundle\n        from webassets.version import TimestampVersion\n\n        if not o_modified:\n            try:\n                resolved_output = bundle.resolve_output(ctx)\n            except BundleError:\n                # This exception will occur when the bundle output has\n                # placeholder, but a version cannot be found. If the\n                # user has defined a manifest, this will just be the first\n                # build. Return True to let it happen.\n                # However, if no manifest is defined, raise an error,\n                # because otherwise, this updater would always return True,\n                # and thus not do its job at all.\n                if ctx.manifest is None:\n                    raise BuildError((\n                        '%s uses a version placeholder, and you are '\n                        'using \"%s\" versions. To use automatic '\n                        'building in this configuration, you need to '\n                        'define a manifest.' % (bundle, ctx.versions)))\n                return True\n\n            try:\n    ... [43 more lines]"
+      },
+      {
+        "class_name": "DerivedDimensionDefinition",
+        "file": "git_repos\\pint\\pint\\facets\\plain\\definitions.py",
+        "lines": "232-259",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 28,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 2,
+          "method_count": 2,
+          "wmc": 5,
+          "max_method_cc": 4,
+          "max_method_length": 18,
+          "avg_method_length": 10.0,
+          "avg_cyclomatic_complexity": 2.5,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd_proxy": 6,
+          "laa": 0.25
+        },
+        "source": "class DerivedDimensionDefinition(DimensionDefinition):\n    \"\"\"Definition of a derived dimension.\"\"\"\n\n    #: reference dimensions.\n    reference: UnitsContainer\n\n    @property\n    def is_base(self) -> bool:\n        return False\n\n    def __post_init__(self):\n        if not errors.is_valid_dimension_name(self.name):\n            raise self.def_err(errors.MSG_INVALID_DIMENSION_NAME)\n\n        if not all(map(errors.is_dim, self.reference.keys())):\n            return self.def_err(\n                \"derived dimensions must only reference other dimensions\"\n            )\n\n        invalid = tuple(\n            itertools.filterfalse(errors.is_valid_dimension_name, self.reference.keys())\n        )\n\n        if invalid:\n            raise self.def_err(\n                f\"refers to {', '.join(invalid)} that \"\n                + errors.MSG_INVALID_DIMENSION_NAME\n            )"
+      },
+      {
+        "class_name": "PlanetLabAggregate",
+        "file": "eth_py150\\fp7-ofelia\\ocf\\expedient\\src\\python\\expedient_geni\\planetlab\\sfa-models.py",
+        "lines": "387-455",
         "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 69,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 6,
+          "dit": 0,
+          "method_count": 4,
+          "wmc": 7,
+          "max_method_cc": 3,
+          "max_method_length": 33,
+          "avg_method_length": 14.25,
+          "avg_cyclomatic_complexity": 1.75,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 3,
+          "noam_plus_nopa": 3,
+          "atfd_proxy": 14,
+          "laa": 0.176
+        },
+        "source": "class PlanetLabAggregate(GENIAggregate):\n    information = \\\n\"\"\"\nA PlanetLab Aggregate exposed through the GENI API.\n\"\"\"\n    \n    class Meta:\n        verbose_name = \"PlanetLab GENI-API Aggregate\"\n    \n    def __unicode__(self):\n        return u\"PlanetLab GENI-API Aggregate at %s\" % self.url\n    \n    def _to_rspec(self, slice):\n        \"\"\"\n        See L{GENIAggregate._to_rspec}.\n        \"\"\"\n        info = slice.planetlabsliceinfo\n        stime, duration = get_start_duration(info.start_time, info.end_time)\n        rspec = et.Element(\"RSpec\", dict(\n            start_time=\"%s\" % stime,\n            duration = \"%s\" % duration,\n        ))\n        \n        for net in PlanetLabNetwork.objects.filter(aggregate__pk=self):\n            rspec.append(net.get_as_elem(slice))\n        \n        return rspec\n    ... [41 more lines]"
+      },
+      {
+        "class_name": "LegacyAuth",
+        "file": "git_repos\\social-core\\social_core\\backends\\legacy.py",
+        "lines": "8-45",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.9,
+          "class_length": 38,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 5,
+          "wmc": 9,
+          "max_method_cc": 3,
+          "max_method_length": 18,
+          "avg_method_length": 6.6,
+          "avg_cyclomatic_complexity": 1.8,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd_proxy": 9,
+          "laa": 0.25
+        },
+        "source": "class LegacyAuth(BaseAuth):\n    def auth_url(self) -> str:\n        return cast(\"str\", self.setting(\"FORM_URL\"))\n\n    def auth_html(self) -> str:\n        return self.strategy.render_html(tpl=cast(\"str\", self.setting(\"FORM_HTML\")))\n\n    def uses_redirect(self) -> bool:\n        return bool(cast(\"str\", self.setting(\"FORM_URL\"))) and not cast(\n            \"str\", self.setting(\"FORM_HTML\")\n        )\n\n    def auth_complete(self, *args, **kwargs):\n        \"\"\"Completes login process, must return user instance\"\"\"\n        id_key = self.id_key()\n        if id_key not in self.data:\n            raise AuthMissingParameter(self, id_key)\n        kwargs.update({\"response\": self.data, \"backend\": self})\n        return self.strategy.authenticate(*args, **kwargs)\n\n    def get_user_details(self, response):\n        \"\"\"Return user details\"\"\"\n        email = response.get(\"email\", \"\")\n        username = response.get(\"username\", \"\")\n        fullname, first_name, last_name = self.get_user_names(\n            response.get(\"fullname\", \"\"),\n            response.get(\"first_name\", \"\"),\n            response.get(\"last_name\", \"\"),\n    ... [10 more lines]"
+      },
+      {
+        "class_name": "Provider",
+        "file": "git_repos\\faker\\faker\\providers\\ssn\\es_MX\\__init__.py",
+        "lines": "134-255",
+        "source_category": "git_repos",
         "matched_rules": [
           "Feature Envy"
         ],
         "previous_label": "Clean",
         "split": "test",
         "metrics": {
-          "lcom": 1.0,
-          "class_length": 91,
+          "lcom": 0.5,
+          "class_length": 122,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
-          "method_count": 7,
-          "wmc": 19,
-          "max_method_cc": 6,
-          "max_method_length": 23,
-          "avg_method_length": 11.143,
-          "avg_cyclomatic_complexity": 2.714,
+          "method_count": 4,
+          "wmc": 9,
+          "max_method_cc": 4,
+          "max_method_length": 41,
+          "avg_method_length": 28.0,
+          "avg_cyclomatic_complexity": 2.25,
           "woc": 1.0,
           "noam": 0,
           "nopa": 1,
           "noam_plus_nopa": 1,
-          "atfd_proxy": 11,
-          "laa": 0.083
+          "atfd_proxy": 7,
+          "laa": 0.3
         },
-        "source": "class DjangoOpenIDStore(OpenIDStore):\n    def __init__(self):\n        self.max_nonce_age = 6 * 60 * 60 # Six hours\n\n    def storeAssociation(self, server_url, association):\n        try:\n            assoc = Association.objects.get(\n                server_url=server_url, handle=association.handle)\n        except Association.DoesNotExist:\n            assoc = Association(\n                server_url=server_url,\n                handle=association.handle,\n                secret=base64.encodestring(association.secret),\n                issued=association.issued,\n                lifetime=association.lifetime,\n                assoc_type=association.assoc_type)\n        else:\n            assoc.secret = base64.encodestring(association.secret)\n            assoc.issued = association.issued\n            assoc.lifetime = association.lifetime\n            assoc.assoc_type = association.assoc_type\n        assoc.save()\n\n    def getAssociation(self, server_url, handle=None):\n        assocs = []\n        if handle is not None:\n            assocs = Association.objects.filter(\n                server_url=server_url, handle=handle)\n    ... [64 more lines]"
+        "source": "class Provider(BaseProvider):\n    \"\"\"\n    A Faker provider for the Mexican SSN, RFC and CURP\n    \"\"\"\n\n    ssn_formats = (\"###########\",)\n\n    def ssn(self) -> str:\n        \"\"\"\n        Mexican Social Security Number, as given by IMSS.\n\n        :return: a random Mexican SSN\n        \"\"\"\n        office = self.random_int(min=1, max=99)\n        birth_year = self.random_int(min=0, max=99)\n        start_year = self.random_int(min=0, max=99)\n        serial = self.random_int(min=1, max=9999)\n\n        num = f\"{office:02d}{start_year:02d}{birth_year:02d}{serial:04d}\"\n\n        check = ssn_checksum(map(int, num))\n        num += str(check)\n\n        return num\n\n    def curp(self) -> str:\n        \"\"\"\n        See https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Registro_de_Poblaci%C3%B3n.\n    ... [94 more lines]"
       }
     ],
     "Long Method": [
       {
-        "class_name": "AcceptCriticCommand",
-        "file": "eth_py150\\CriticMarkup\\CriticMarkup-toolkit\\Sublime Text 3 Package\\Critic Markup\\accept_critic.py",
-        "lines": "4-49",
+        "class_name": "Ui_MainWindow",
+        "file": "eth_py150\\bitxbay\\BitXBay\\bitmessageqt\\bitmessageui.py",
+        "lines": "26-3940",
         "source_category": "standard_dataset",
         "matched_rules": [
           "Long Method"
@@ -559,30 +758,159 @@
         "split": "train",
         "metrics": {
           "lcom": 0.0,
-          "class_length": 45,
+          "class_length": 3915,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
           "method_count": 2,
-          "wmc": 12,
-          "max_method_cc": 11,
-          "max_method_length": 39,
-          "avg_method_length": 21.0,
+          "wmc": 2,
+          "max_method_cc": 1,
+          "max_method_length": 3687,
+          "avg_method_length": 1956.5,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 194,
+          "noam_plus_nopa": 194,
+          "atfd_proxy": 7,
+          "laa": 0.98
+        },
+        "source": "class Ui_MainWindow(object):\n    def setupUi(self, MainWindow):\n        MainWindow.setObjectName(_fromUtf8(\"MainWindow\"))\n        MainWindow.resize(885, 594)\n        icon = QtGui.QIcon()\n        icon.addPixmap(QtGui.QPixmap(_fromUtf8(\":/newPrefix/images/can-icon-24px.png\")), QtGui.QIcon.Normal, QtGui.QIcon.Off)\n        MainWindow.setWindowIcon(icon)\n        MainWindow.setStyleSheet(_fromUtf8(\"QTabBar::tab:!selected\\n\"\n\" {\\n\"\n\"border-color: rgba(47, 53, 64, 255);\\n\"\n\" border-style: solid;\\n\"\n\" border-top-width:1px;\\n\"\n\" border-left-width:2px;\\n\"\n\" border-right-width:2px;\\n\"\n\" }\\n\"\n\"\\n\"\n\"/* ----- QProgressBar ---- */\\n\"\n\"\\n\"\n\"QProgressBar {\\n\"\n\"    background-color:  rgba(47, 53, 64, 255);\\n\"\n\"    border-bottom-color: rgb(90, 100, 112);\\n\"\n\"    border-bottom-style: solid;\\n\"\n\"    border-bottom-width:1px;\\n\"\n\"    text-align: center;\\n\"\n\"    border-radius: 3px;\\n\"\n\"    color:#fff;\\n\"\n\"    padding:0;\\n\"\n\"    margin:0;\\n\"\n    ... [3887 more lines]"
+      },
+      {
+        "class_name": "Command",
+        "file": "eth_py150\\behave\\behave\\behave4cmd0\\command_shell.py",
+        "lines": "69-161",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 93,
+          "cbo": 1,
+          "fan_in": 0,
+          "fan_out": 1,
+          "dit": 0,
+          "method_count": 3,
+          "wmc": 18,
+          "max_method_cc": 12,
+          "max_method_length": 62,
+          "avg_method_length": 25.0,
           "avg_cyclomatic_complexity": 6.0,
           "woc": 1.0,
           "noam": 0,
-          "nopa": 3,
-          "noam_plus_nopa": 3,
-          "atfd_proxy": 4,
-          "laa": 0.5
+          "nopa": 5,
+          "noam_plus_nopa": 5,
+          "atfd_proxy": 10,
+          "laa": 0.333
         },
-        "source": "class AcceptCriticCommand(sublime_plugin.TextCommand):\n    def run(self, edit):\n        self.options = ['Accept', 'Reject']\n        # Need to find scope limits then do regex find within current scope\n        self.view.window().show_quick_panel(self.options, self.process_critic, sublime.MONOSPACE_FONT)\n\n    def process_critic(self, choice):\n        # Choice 0 is accept\n        sels = self.view.sel()\n        caret = []\n        add_edit = re.compile(r'(?s)\\{\\+\\+(.*?)\\+\\+[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}')\n        del_edit = re.compile(r'(?s)\\{\\-\\-(.*?)\\-\\-[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}')\n        sub_edit = re.compile(r'''(?s)\\{\\~\\~(?P<original>(?:[^\\~\\>]|(?:\\~(?!\\>)))+)\\~\\>(?P<new>(?:[^\\~\\~]|(?:\\~(?!\\~\\})))+)\\~\\~\\}''')\n        for sel in sels:\n            text = self.view.substr(sel)\n            # If something is selected...\n            if len(text) > 0:\n                a = add_edit.search(text)\n                d = del_edit.search(text)\n                s = sub_edit.search(text)\n                # edit = self.view.begin_edit()\n                if choice == 0:\n                    if a:\n                        # self.view.replace(edit, sel, a.group(1))\n                        self.view.run_command(\"critic_replace\", {\"a\": sel.a, \"b\": sel.b, \"txt\": a.group(1)})\n                    if d:\n                        # self.view.erase(edit, sel)\n                        self.view.run_command(\"critic_erase\", {\"a\": sel.a, \"b\": sel.b})\n    ... [18 more lines]"
+        "source": "class Command(object):\n    \"\"\"\n    Helper class to run commands as subprocess,\n    collect their output and subprocess returncode.\n    \"\"\"\n    DEBUG = False\n    COMMAND_MAP = {\n        \"behave\": os.path.normpath(\"{0}/bin/behave\".format(TOP))\n    }\n    PREPROCESSOR_MAP = {}\n    POSTPROCESSOR_MAP = {}\n    USE_SHELL = sys.platform.startswith(\"win\")\n\n    @staticmethod\n    def preprocess_command(preprocessors, cmdargs, command=None, cwd=\".\"):\n        if not os.path.isdir(cwd):\n            return cmdargs\n        elif not command:\n            command = \" \".join(cmdargs)\n\n        for preprocess in preprocessors:\n            cmdargs = preprocess(command, cmdargs, cwd)\n        return cmdargs\n\n    @staticmethod\n    def postprocess_command(postprocessors, command_result):\n        for postprocess in postprocessors:\n            command_result = postprocess(command_result)\n    ... [65 more lines]"
       },
       {
-        "class_name": "StylerRenderer",
-        "file": "site_packages\\pandas\\io\\formats\\style_render.py",
-        "lines": "67-1559",
+        "class_name": "RangeQuerySetWrapper",
+        "file": "eth_py150\\getsentry\\sentry\\src\\sentry\\utils\\query.py",
+        "lines": "24-104",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method",
+          "Data Class"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 81,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 21,
+          "max_method_cc": 15,
+          "max_method_length": 51,
+          "avg_method_length": 36.5,
+          "avg_cyclomatic_complexity": 10.5,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd_proxy": 6,
+          "laa": 0.7
+        },
+        "source": "class RangeQuerySetWrapper(object):\n    \"\"\"\n    Iterates through a queryset by chunking results by ``step`` and using GREATER THAN\n    and LESS THAN queries on the primary key.\n\n    Very efficient, but ORDER BY statements will not work.\n    \"\"\"\n    def __init__(self, queryset, step=1000, limit=None, min_id=None,\n                 order_by='pk', callbacks=()):\n        # Support for slicing\n        if queryset.query.low_mark == 0 and not \\\n                (queryset.query.order_by or queryset.query.extra_order_by):\n            if limit is None:\n                limit = queryset.query.high_mark\n            queryset.query.clear_limits()\n        else:\n            raise InvalidQuerySetError\n\n        self.limit = limit\n        if limit:\n            self.step = min(limit, abs(step))\n            self.desc = step < 0\n        else:\n            self.step = abs(step)\n            self.desc = step < 0\n        self.queryset = queryset\n        self.min_value = min_id\n        self.order_by = order_by\n    ... [53 more lines]"
+      },
+      {
+        "class_name": "Charcoal",
+        "file": "eth_py150\\sky-shiny\\smolder\\charcoal\\charcoal.py",
+        "lines": "102-294",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.444,
+          "class_length": 193,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 9,
+          "wmc": 39,
+          "max_method_cc": 12,
+          "max_method_length": 84,
+          "avg_method_length": 20.444,
+          "avg_cyclomatic_complexity": 4.333,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 11,
+          "noam_plus_nopa": 11,
+          "atfd_proxy": 18,
+          "laa": 0.625
+        },
+        "source": "class Charcoal(object):\n    def __init__(self, test, host, output_format=None):\n        \"\"\"\n\n        :rtype : object\n        \"\"\"\n\n        self.passed = 0\n        self.failed = 0\n        self.duration_ms = 0\n        try:\n            validictory.validate(test, SCHEMA)\n            LOG.debug(\"Valid schema\")\n        except ValueError as error:\n            LOG.error(\"Error, invalid test format: {0}.  Tests now use v0.2 format. v0.1 branch is still available.\"\n                      .format(error))\n            raise\n\n        try:\n            self.port = test[\"port\"]\n        except (AttributeError, KeyError):\n            print(\"Warning: No port definition found in the first test, using port 80 as default.\")\n            try:\n                if test[\"protocol\"] == \"https\":\n                    self.port = 443\n                else:\n                    self.port = 80\n            except (AttributeError, KeyError):\n    ... [165 more lines]"
+      },
+      {
+        "class_name": "Figure",
+        "file": "eth_py150\\timonwong\\OmniMarkupPreviewer\\OmniMarkupLib\\Renderers\\libs\\python3\\docutils\\parsers\\rst\\directives\\images.py",
+        "lines": "101-164",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "test",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 64,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 1,
+          "dit": 1,
+          "method_count": 3,
+          "wmc": 17,
+          "max_method_cc": 14,
+          "max_method_length": 47,
+          "avg_method_length": 18.0,
+          "avg_cyclomatic_complexity": 5.667,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 11,
+          "noam_plus_nopa": 11,
+          "atfd_proxy": 8,
+          "laa": 0.467
+        },
+        "source": "class Figure(Image):\n\n    def align(argument):\n        return directives.choice(argument, Figure.align_h_values)\n\n    def figwidth_value(argument):\n        if argument.lower() == 'image':\n            return 'image'\n        else:\n            return directives.length_or_percentage_or_unitless(argument, 'px')\n\n    option_spec = Image.option_spec.copy()\n    option_spec['figwidth'] = figwidth_value\n    option_spec['figclass'] = directives.class_option\n    option_spec['align'] = align\n    has_content = True\n\n    def run(self):\n        figwidth = self.options.pop('figwidth', None)\n        figclasses = self.options.pop('figclass', None)\n        align = self.options.pop('align', None)\n        (image_node,) = Image.run(self)\n        if isinstance(image_node, nodes.system_message):\n            return [image_node]\n        figure_node = nodes.figure('', image_node)\n        if figwidth == 'image':\n            if PIL and self.state.document.settings.file_insertion_enabled:\n                imagepath = urllib.request.url2pathname(image_node['uri'])\n    ... [36 more lines]"
+      },
+      {
+        "class_name": "RadiusNeighbors",
+        "file": "site_packages\\sklearn\\metrics\\_pairwise_distances_reduction\\_dispatcher.py",
+        "lines": "306-449",
         "source_category": "site_packages",
         "matched_rules": [
           "Long Method"
@@ -590,124 +918,60 @@
         "previous_label": "Long Method",
         "split": "train",
         "metrics": {
-          "lcom": 0.464,
-          "class_length": 1492,
+          "lcom": 0.0,
+          "class_length": 144,
           "cbo": 0,
-          "fan_in": 0,
-          "fan_out": 1,
-          "dit": 0,
-          "method_count": 18,
-          "wmc": 121,
-          "max_method_cc": 17,
-          "max_method_length": 269,
-          "avg_method_length": 80.278,
-          "avg_cyclomatic_complexity": 6.722,
+          "fan_in": 3,
+          "fan_out": 4,
+          "dit": 1,
+          "method_count": 1,
+          "wmc": 3,
+          "max_method_cc": 3,
+          "max_method_length": 127,
+          "avg_method_length": 127.0,
+          "avg_cyclomatic_complexity": 3.0,
           "woc": 1.0,
           "noam": 0,
-          "nopa": 30,
-          "noam_plus_nopa": 30,
-          "atfd_proxy": 19,
-          "laa": 0.861
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 0,
+          "laa": 1.0
         },
-        "source": "class StylerRenderer:\n    \"\"\"\n    Base class to process rendering a Styler with a specified jinja2 template.\n    \"\"\"\n\n    loader = jinja2.PackageLoader(\"pandas\", \"io/formats/templates\")\n    env = jinja2.Environment(loader=loader, trim_blocks=True)\n    template_html = env.get_template(\"html.tpl\")\n    template_html_table = env.get_template(\"html_table.tpl\")\n    template_html_style = env.get_template(\"html_style.tpl\")\n    template_latex = env.get_template(\"latex.tpl\")\n    template_string = env.get_template(\"string.tpl\")\n\n    def __init__(\n        self,\n        data: DataFrame | Series,\n        uuid: str | None = None,\n        uuid_len: int = 5,\n        table_styles: CSSStyles | None = None,\n        table_attributes: str | None = None,\n        caption: str | tuple | list | None = None,\n        cell_ids: bool = True,\n        precision: int | None = None,\n    ) -> None:\n        # validate ordered args\n        if isinstance(data, Series):\n            data = data.to_frame()\n        if not isinstance(data, DataFrame):\n    ... [1465 more lines]"
-      },
-      {
-        "class_name": "TreeListHeaderWindow",
-        "file": "eth_py150\\cool-RR\\python_toolbox\\source_py2\\python_toolbox\\wx_tools\\widgets\\third_party\\hypertreelist.py",
-        "lines": "553-1207",
-        "source_category": "standard_dataset",
-        "matched_rules": [
-          "Long Method"
-        ],
-        "previous_label": "Long Method",
-        "split": "train",
-        "metrics": {
-          "lcom": 0.547,
-          "class_length": 654,
-          "cbo": 1,
-          "fan_in": 4,
-          "fan_out": 32,
-          "dit": 0,
-          "method_count": 30,
-          "wmc": 102,
-          "max_method_cc": 27,
-          "max_method_length": 115,
-          "avg_method_length": 18.633,
-          "avg_cyclomatic_complexity": 3.4,
-          "woc": 0.897,
-          "noam": 3,
-          "nopa": 3,
-          "noam_plus_nopa": 6,
-          "atfd_proxy": 24,
-          "laa": 0.714
-        },
-        "source": "class TreeListHeaderWindow(wx.Window):\n    \"\"\" A window which holds the header of L{HyperTreeList}. \"\"\"\n    \n    def __init__(self, parent, id=wx.ID_ANY, owner=None, pos=wx.DefaultPosition,\n                 size=wx.DefaultSize, style=0, name=\"wxtreelistctrlcolumntitles\"):\n        \"\"\"\n        Default class constructor.\n\n        :param `parent`: the window parent. Must not be ``None``;\n        :param `id`: window identifier. A value of -1 indicates a default value;\n        :param `owner`: the window owner, in this case an instance of L{TreeListMainWindow};\n        :param `pos`: the control position. A value of (-1, -1) indicates a default position,\n         chosen by either the windowing system or wxPython, depending on platform;\n        :param `size`: the control size. A value of (-1, -1) indicates a default size,\n         chosen by either the windowing system or wxPython, depending on platform;\n        :param `style`: the window style;\n        :param `name`: the window name.\n        \"\"\"\n\n        wx.Window.__init__(self, parent, id, pos, size, style, name=name)\n        \n        self._owner = owner\n        self._currentCursor = wx.StockCursor(wx.CURSOR_DEFAULT)\n        self._resizeCursor = wx.StockCursor(wx.CURSOR_SIZEWE)\n        self._isDragging = False\n        self._dirty = False\n        self._total_col_width = 0\n        self._hotTrackCol = -1\n    ... [627 more lines]"
+        "source": "class RadiusNeighbors(BaseDistancesReductionDispatcher):\n    \"\"\"Compute radius-based neighbors for two sets of vectors.\n\n    For each row-vector X[i] of the queries X, find all the indices j of\n    row-vectors in Y such that:\n\n                        dist(X[i], Y[j]) <= radius\n\n    The distance function `dist` depends on the values of the `metric`\n    and `metric_kwargs` parameters.\n\n    This class is not meant to be instantiated, one should only use\n    its :meth:`compute` classmethod which handles allocation and\n    deallocation consistently.\n    \"\"\"\n\n    @classmethod\n    def compute(\n        cls,\n        X,\n        Y,\n        radius,\n        metric=\"euclidean\",\n        chunk_size=None,\n        metric_kwargs=None,\n        strategy=None,\n        return_distance=False,\n        sort_results=False,\n    ... [116 more lines]"
       }
     ],
     "Data Class": [
       {
-        "class_name": "BaseMaster",
-        "file": "eth_py150\\ployground\\ploy\\ploy\\common.py",
-        "lines": "155-177",
-        "source_category": "standard_dataset",
-        "matched_rules": [
-          "Data Class"
-        ],
-        "previous_label": "Data Class",
-        "split": "test",
-        "metrics": {
-          "lcom": 0.0,
-          "class_length": 22,
-          "cbo": 0,
-          "fan_in": 0,
-          "fan_out": 0,
-          "dit": 0,
-          "method_count": 1,
-          "wmc": 6,
-          "max_method_cc": 6,
-          "max_method_length": 21,
-          "avg_method_length": 21.0,
-          "avg_cyclomatic_complexity": 6.0,
-          "woc": 0.0,
-          "noam": 0,
-          "nopa": 9,
-          "noam_plus_nopa": 9,
-          "atfd_proxy": 4,
-          "laa": 0.692
-        },
-        "source": "class BaseMaster(object):\n    def __init__(self, ctrl, id, master_config):\n        from ploy.config import ConfigSection  # avoid circular import\n        self.id = id\n        self.ctrl = ctrl\n        assert self.ctrl.__class__.__name__ == 'Controller'\n        self.main_config = self.ctrl.config\n        if not isinstance(master_config, ConfigSection):\n            master_config = ConfigSection(master_config)\n        self.master_config = master_config\n        self.known_hosts = self.ctrl.known_hosts\n        self.instances = {}\n        if getattr(self, 'section_info', None) is None:\n            self.section_info = {\n                None: self.instance_class,\n                self.sectiongroupname: self.instance_class}\n        for sectiongroupname, instance_class in self.section_info.items():\n            for sid, config in self.main_config.get(sectiongroupname, {}).items():\n                masters = config.get('master', self.id).split()\n                if self.id not in masters:\n                    continue\n                self.instances[sid] = instance_class(self, sid, config)\n                self.instances[sid].sectiongroupname = sectiongroupname"
-      },
-      {
-        "class_name": "SplashScreen",
-        "file": "eth_py150\\enthought\\pyface\\pyface\\ui\\wx\\splash_screen.py",
-        "lines": "42-141",
-        "source_category": "standard_dataset",
+        "class_name": "IfdTag",
+        "file": "git_repos\\exif-py\\exifread\\core\\ifd_tag.py",
+        "lines": "8-57",
+        "source_category": "git_repos",
         "matched_rules": [
           "Data Class"
         ],
         "previous_label": "Data Class",
         "split": "train",
         "metrics": {
-          "lcom": 0.333,
-          "class_length": 99,
+          "lcom": 0.0,
+          "class_length": 50,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
           "method_count": 3,
-          "wmc": 7,
-          "max_method_cc": 4,
-          "max_method_length": 31,
-          "avg_method_length": 21.667,
-          "avg_cyclomatic_complexity": 2.333,
+          "wmc": 4,
+          "max_method_cc": 2,
+          "max_method_length": 25,
+          "avg_method_length": 14.333,
+          "avg_cyclomatic_complexity": 1.333,
           "woc": 0.0,
           "noam": 0,
-          "nopa": 6,
-          "noam_plus_nopa": 6,
-          "atfd_proxy": 3,
-          "laa": 0.769
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd_proxy": 0,
+          "laa": 1.0
         },
-        "source": "class SplashScreen(MSplashScreen, Window):\n    \"\"\" The toolkit specific implementation of a SplashScreen.  See the\n    ISplashScreen interface for the API documentation.\n    \"\"\"\n\n\n    #### 'ISplashScreen' interface ############################################\n\n    image = Instance(ImageResource, ImageResource('splash'))\n\n    log_level = Int(DEBUG)\n\n    show_log_messages = Bool(True)\n\n    text = Unicode\n\n    text_color = Any\n\n    text_font = Any\n\n    text_location  = Tuple(5, 5)\n\n    ###########################################################################\n    # Protected 'IWidget' interface.\n    ###########################################################################\n\n    def _create_control(self, parent):\n        # Get the splash screen image.\n    ... [72 more lines]"
+        "source": "class IfdTag:\n    \"\"\"\n    Represents an IFD tag.\n    \"\"\"\n\n    def __init__(\n        self,\n        printable: str,\n        tag: int,\n        field_type: FieldType,\n        values,\n        field_offset: int,\n        field_length: int,\n        prefer_printable: bool = True,\n    ) -> None:\n        # printable version of data\n        self.printable = printable\n        # tag ID number\n        self.tag = tag\n        # field type as index into FIELD_TYPES\n        self.field_type = field_type\n        # offset of start of field in bytes from beginning of IFD\n        self.field_offset = field_offset\n        # length of data field in bytes\n        self.field_length = field_length\n        # either string, bytes or list of data items\n        # TODO: sort out this type mess!\n        self.values = values\n    ... [22 more lines]"
       },
       {
         "class_name": "BeautifierOptions",
@@ -721,7 +985,7 @@
         "split": "train",
         "metrics": {
           "lcom": 0.0,
-          "class_length": 20,
+          "class_length": 21,
           "cbo": 0,
           "fan_in": 0,
           "fan_out": 0,
@@ -729,8 +993,8 @@
           "method_count": 2,
           "wmc": 2,
           "max_method_cc": 1,
-          "max_method_length": 9,
-          "avg_method_length": 8.0,
+          "max_method_length": 10,
+          "avg_method_length": 9.0,
           "avg_cyclomatic_complexity": 1.0,
           "woc": 0.0,
           "noam": 0,
@@ -740,52 +1004,180 @@
           "laa": 1.0
         },
         "source": "class BeautifierOptions:\n    def __init__(self):\n        self.indent_size = 4\n        self.indent_char = ' '\n        self.indent_with_tabs = False\n        self.selector_separator_newline = True\n        self.end_with_newline = False\n        self.newline_between_rules = True\n        self.eol = '\\n'\n\n\n    def __repr__(self):\n        return \\\n\"\"\"indent_size = %d\nindent_char = [%s]\nindent_with_tabs = [%s]\nseparate_selectors_newline = [%s]\nend_with_newline = [%s]\nnewline_between_rules = [%s]\n\"\"\" % (self.indent_size, self.indent_char, self.indent_with_tabs,\n       self.selector_separator_newline, self.end_with_newline, self.newline_between_rules)"
+      },
+      {
+        "class_name": "InspectedValidator",
+        "file": "git_repos\\cerberus\\cerberus\\validator.py",
+        "lines": "1584-1671",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "test",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 88,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 1,
+          "dit": 0,
+          "method_count": 3,
+          "wmc": 17,
+          "max_method_cc": 9,
+          "max_method_length": 60,
+          "avg_method_length": 27.667,
+          "avg_cyclomatic_complexity": 5.667,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd_proxy": 8,
+          "laa": 0.5
+        },
+        "source": "class InspectedValidator(type):\n    \"\"\"Metaclass for all validators\"\"\"\n\n    def __new__(cls, *args):\n        if '__doc__' not in args[2]:\n            args[2].update({'__doc__': args[1][0].__doc__})\n        return super(InspectedValidator, cls).__new__(cls, *args)\n\n    def __init__(cls, *args):\n        def attributes_with_prefix(prefix):\n            return tuple(\n                x[len(prefix) + 2 :]\n                for x in dir(cls)\n                if x.startswith('_' + prefix + '_')\n            )\n\n        super(InspectedValidator, cls).__init__(*args)\n\n        cls._types_from_methods, cls.validation_rules = (), {}\n        for attribute in attributes_with_prefix('validate'):\n            # TODO remove inspection of type test methods in next major release\n            if attribute.startswith('type_'):\n                cls._types_from_methods += (attribute[len('type_') :],)\n            else:\n                cls.validation_rules[attribute] = cls.__get_rule_schema(\n                    '_validate_' + attribute\n                )\n    ... [60 more lines]"
+      },
+      {
+        "class_name": "ListStyle",
+        "file": "eth_py150\\cloudera\\hue\\desktop\\core\\ext-py\\openpyxl-2.3.0-b2\\openpyxl\\drawing\\text.py",
+        "lines": "421-463",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 43,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 1,
+          "wmc": 1,
+          "max_method_cc": 1,
+          "max_method_length": 23,
+          "avg_method_length": 23.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 10,
+          "noam_plus_nopa": 10,
+          "atfd_proxy": 0,
+          "laa": 1.0
+        },
+        "source": "class ListStyle(Serialisable):\n\n    tagname = \"lstStyle\"\n    namespace = DRAWING_NS\n\n    defPPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl1pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl2pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl3pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl4pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl5pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl6pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl7pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl8pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    lvl9pPr = Typed(expected_type=ParagraphProperties, allow_none=True)\n    extLst = Typed(expected_type=OfficeArtExtensionList, allow_none=True)\n\n    __elements__ = (\"defPPr\", \"lvl1pPr\", \"lvl2pPr\", \"lvl3pPr\", \"lvl4pPr\",\n                    \"lvl5pPr\", \"lvl6pPr\", \"lvl7pPr\", \"lvl8pPr\", \"lvl9pPr\")\n\n    def __init__(self,\n                 defPPr=None,\n                 lvl1pPr=None,\n                 lvl2pPr=None,\n                 lvl3pPr=None,\n                 lvl4pPr=None,\n                 lvl5pPr=None,\n                 lvl6pPr=None,\n    ... [15 more lines]"
+      },
+      {
+        "class_name": "CachedMethod",
+        "file": "git_repos\\boltons\\boltons\\cacheutils.py",
+        "lines": "479-532",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 54,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 4,
+          "wmc": 15,
+          "max_method_cc": 6,
+          "max_method_length": 20,
+          "avg_method_length": 11.75,
+          "avg_cyclomatic_complexity": 3.75,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 6,
+          "noam_plus_nopa": 6,
+          "atfd_proxy": 4,
+          "laa": 0.846
+        },
+        "source": "class CachedMethod:\n    \"\"\"Similar to :class:`CachedFunction`, this type is used by\n    :func:`cachedmethod` to wrap methods in caching logic.\n    \"\"\"\n    def __init__(self, func, cache, scoped=True, typed=False, key=None):\n        self.func = func\n        self.__isabstractmethod__ = getattr(func, '__isabstractmethod__', False)\n        if isinstance(cache, str):\n            self.get_cache = attrgetter(cache)\n        elif callable(cache):\n            self.get_cache = cache\n        elif not (callable(getattr(cache, '__getitem__', None))\n                  and callable(getattr(cache, '__setitem__', None))):\n            raise TypeError('expected cache to be an attribute name,'\n                            ' dict-like object, or callable returning'\n                            ' a dict-like object, not %r' % cache)\n        else:\n            def _get_cache(obj):\n                return cache\n            self.get_cache = _get_cache\n        self.scoped = scoped\n        self.typed = typed\n        self.key_func = key or make_cache_key\n        self.bound_to = None\n\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n    ... [26 more lines]"
+      },
+      {
+        "class_name": "Configuration",
+        "file": "eth_py150\\google\\compare-codecs\\lib\\encoder_configuration.py",
+        "lines": "27-57",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.643,
+          "class_length": 31,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 8,
+          "wmc": 9,
+          "max_method_cc": 2,
+          "max_method_length": 8,
+          "avg_method_length": 2.875,
+          "avg_cyclomatic_complexity": 1.125,
+          "woc": 0.0,
+          "noam": 7,
+          "nopa": 4,
+          "noam_plus_nopa": 11,
+          "atfd_proxy": 1,
+          "laa": 0.917
+        },
+        "source": "class Configuration(object):\n  def __init__(self):\n    self.work_directory = os.environ['CODEC_WORKDIR']\n    self.sys_directory = os.environ['WORKDIR']\n    self.tool_directory = os.environ['CODEC_TOOLPATH']\n    self.score_path = os.getenv('CODEC_SCOREPATH', '').split(':')\n    # Splitting an empty string gives an 1-element result. Remove that.\n    if self.score_path == ['']:\n      self.score_path = []\n\n  def workdir(self):\n    return self.work_directory\n\n  def sysdir(self):\n    return self.sys_directory\n\n  def tooldir(self):\n    return self.tool_directory\n\n  def scorepath(self):\n    \"\"\"Additional directories to search for scores after workdir.\"\"\"\n    return self.score_path\n\n  def override_workdir_for_test(self, test_workdir):\n    self.work_directory = test_workdir\n\n  def override_sysdir_for_test(self, test_sysdir):\n    self.sys_directory = test_sysdir\n    ... [3 more lines]"
       }
     ],
     "Clean": [
       {
-        "class_name": "RequestLocalStream",
-        "file": "eth_py150\\AppScale\\appscale\\AppServer\\google\\appengine\\runtime\\request_environment.py",
-        "lines": "80-96",
+        "class_name": "Session",
+        "file": "eth_py150\\openstack\\freezer-api\\freezer_api\\api\\v1\\sessions.py",
+        "lines": "137-259",
         "source_category": "standard_dataset",
         "matched_rules": [],
         "previous_label": "Clean",
         "split": "train",
         "metrics": {
-          "lcom": 0.4,
-          "class_length": 16,
+          "lcom": 0.222,
+          "class_length": 123,
           "cbo": 0,
           "fan_in": 1,
           "fan_out": 0,
           "dit": 0,
-          "method_count": 5,
-          "wmc": 5,
-          "max_method_cc": 1,
-          "max_method_length": 1,
-          "avg_method_length": 1.0,
-          "avg_cyclomatic_complexity": 1.0,
+          "method_count": 8,
+          "wmc": 26,
+          "max_method_cc": 7,
+          "max_method_length": 38,
+          "avg_method_length": 13.0,
+          "avg_cyclomatic_complexity": 3.25,
           "woc": 1.0,
           "noam": 0,
-          "nopa": 0,
-          "noam_plus_nopa": 0,
-          "atfd_proxy": 0,
-          "laa": 1.0
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd_proxy": 3,
+          "laa": 0.833
         },
-        "source": "class RequestLocalStream(object):\n  \"\"\"A stream that delegates to a RequestEnvironment stream.\"\"\"\n\n  def __init__(self, request):\n    self._request = request\n\n  def close(self):\n    pass\n\n  def flush(self):\n    self._request.errors.flush()\n\n  def write(self, data):\n    self._request.errors.write(data)\n\n  def writelines(self, data):\n    self._request.errors.writelines(data)"
+        "source": "class Session(resource.BaseResource):\n    \"\"\"\n    A class to manage the actions that can be taken upon a\n    Session data structure.\n    It modifies information contained in its document\n    in accordance to the requested action\n    \"\"\"\n    def __init__(self, doc):\n        self.doc = doc\n        self.action_result = ''\n        self.need_update = False\n\n    @property\n    def session_tag(self):\n        return self.doc.get('session_tag', 0)\n\n    @session_tag.setter\n    def session_tag(self, value):\n        self.doc['session_tag'] = value\n\n    def execute_action(self, action, params):\n        if action == 'start':\n            try:\n                self.start(params['job_id'], params['current_tag'])\n            except freezer_api_exc.BadDataFormat:\n                raise\n            except Exception as e:\n                raise freezer_api_exc.FreezerAPIException(e)\n    ... [95 more lines]"
       },
       {
-        "class_name": "IllegalChild",
-        "file": "eth_py150\\cloudera\\hue\\desktop\\core\\ext-py\\tablib-0.10.0\\tablib\\packages\\odf3\\element.py",
-        "lines": "89-90",
-        "source_category": "standard_dataset",
+        "class_name": "Migration",
+        "file": "git_repos\\django-oscar\\src\\oscar\\apps\\offer\\migrations\\0001_initial.py",
+        "lines": "15-280",
+        "source_category": "git_repos",
         "matched_rules": [],
         "previous_label": "Clean",
         "split": "train",
         "metrics": {
           "lcom": 0.0,
-          "class_length": 1,
+          "class_length": 266,
           "cbo": 0,
-          "fan_in": 2,
+          "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
           "method_count": 0,
@@ -801,37 +1193,127 @@
           "atfd_proxy": 0,
           "laa": 1.0
         },
-        "source": "class IllegalChild(Exception):\n    \"\"\" Complains if you add an element to a parent where it is not allowed \"\"\""
+        "source": "class Migration(migrations.Migration):\n\n    dependencies = [\n        ('catalogue', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n\n    operations = [\n        migrations.CreateModel(\n            name='Benefit',\n            fields=[\n                ('id', models_AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('type', models.CharField(verbose_name='Type', max_length=128, blank=True, choices=[('Percentage', \"Discount is a percentage off of the product's value\"), ('Absolute', \"Discount is a fixed amount off of the basket's total\"), ('Multibuy', 'Discount is to give the cheapest product for free'), ('Fixed price', 'Get the products that meet the condition for a fixed price'), ('Shipping absolute', 'Discount is a fixed amount of the shipping cost'), ('Shipping fixed price', 'Get shipping for a fixed price'), ('Shipping percentage', 'Discount is a percentage off of the shipping cost')])),\n                ('value', oscar.models.fields.PositiveDecimalField(max_digits=12, decimal_places=2, blank=True, verbose_name='Value', null=True)),\n                ('max_affected_items', models.PositiveIntegerField(verbose_name='Max Affected Items', blank=True, help_text='Set this to prevent the discount consuming all items within the range that are in the basket.', null=True)),\n                ('proxy_class', oscar.models.fields.NullCharField(unique=True, verbose_name='Custom class', default=None, max_length=255)),\n            ],\n            options={\n                'verbose_name_plural': 'Benefits',\n                'verbose_name': 'Benefit',\n            },\n            bases=(models.Model,),\n        ),\n        migrations.CreateModel(\n            name='Condition',\n            fields=[\n                ('id', models_AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('type', models.CharField(verbose_name='Type', max_length=128, blank=True, choices=[('Count', 'Depends on number of items in basket that are in condition range'), ('Value', 'Depends on value of items in basket that are in condition range'), ('Coverage', 'Needs to contain a set number of DISTINCT items from the condition range')])),\n    ... [238 more lines]"
       },
       {
-        "class_name": "_CommentFinder",
-        "file": "eth_py150\\GoogleCloudPlatform\\appengine-flask-skeleton\\lib\\jinja2\\ext.py",
-        "lines": "516-550",
+        "class_name": "Provider",
+        "file": "git_repos\\faker\\faker\\providers\\ssn\\en_IE\\__init__.py",
+        "lines": "4-21",
+        "source_category": "git_repos",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 18,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 1,
+          "wmc": 1,
+          "max_method_cc": 1,
+          "max_method_length": 7,
+          "avg_method_length": 7.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd_proxy": 2,
+          "laa": 0.333
+        },
+        "source": "class Provider(BaseProvider):\n    \"\"\"\n    A Faker provider for the Irish VAT IDs\n    \"\"\"\n\n    vat_id_formats = (\n        \"IE#?#####?\",\n        \"IE#######?\",\n        \"IE#######??\",\n    )\n\n    def vat_id(self) -> str:\n        \"\"\"\n        http://ec.europa.eu/taxation_customs/vies/faq.html#item_11\n        :return: a random Irish VAT ID\n        \"\"\"\n\n        return self.bothify(self.random_element(self.vat_id_formats))"
+      },
+      {
+        "class_name": "IncrementalDecoder",
+        "file": "eth_py150\\Southpaw-TACTIC\\TACTIC\\src\\context\\client\\tactic-api-python-4.0.api04\\Lib\\encodings\\iso2022_jp_2.py",
+        "lines": "20-22",
         "source_category": "standard_dataset",
         "matched_rules": [],
         "previous_label": "Clean",
         "split": "train",
         "metrics": {
           "lcom": 0.0,
-          "class_length": 34,
+          "class_length": 3,
           "cbo": 0,
-          "fan_in": 1,
+          "fan_in": 0,
           "fan_out": 0,
           "dit": 0,
-          "method_count": 3,
-          "wmc": 11,
-          "max_method_cc": 5,
-          "max_method_length": 13,
-          "avg_method_length": 7.667,
-          "avg_cyclomatic_complexity": 3.667,
+          "method_count": 0,
+          "wmc": 0,
+          "max_method_cc": 0,
+          "max_method_length": 0,
+          "avg_method_length": 0.0,
+          "avg_cyclomatic_complexity": 0.0,
           "woc": 1.0,
           "noam": 0,
-          "nopa": 4,
-          "noam_plus_nopa": 4,
-          "atfd_proxy": 3,
-          "laa": 0.786
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 0,
+          "laa": 1.0
         },
-        "source": "class _CommentFinder(object):\n    \"\"\"Helper class to find comments in a token stream.  Can only\n    find comments for gettext calls forwards.  Once the comment\n    from line 4 is found, a comment for line 1 will not return a\n    usable value.\n    \"\"\"\n\n    def __init__(self, tokens, comment_tags):\n        self.tokens = tokens\n        self.comment_tags = comment_tags\n        self.offset = 0\n        self.last_lineno = 0\n\n    def find_backwards(self, offset):\n        try:\n            for _, token_type, token_value in \\\n                    reversed(self.tokens[self.offset:offset]):\n                if token_type in ('comment', 'linecomment'):\n                    try:\n                        prefix, comment = token_value.split(None, 1)\n                    except ValueError:\n                        continue\n                    if prefix in self.comment_tags:\n                        return [comment.rstrip()]\n            return []\n        finally:\n            self.offset = offset\n    ... [7 more lines]"
+        "source": "class IncrementalDecoder(mbc.MultibyteIncrementalDecoder,\n                         codecs.IncrementalDecoder):\n    codec = codec"
+      },
+      {
+        "class_name": "PyScss",
+        "file": "git_repos\\webassets\\src\\webassets\\filter\\pyscss.py",
+        "lines": "10-156",
+        "source_category": "git_repos",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 147,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 12,
+          "max_method_cc": 9,
+          "max_method_length": 40,
+          "avg_method_length": 37.0,
+          "avg_cyclomatic_complexity": 6.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 9,
+          "noam_plus_nopa": 9,
+          "atfd_proxy": 6,
+          "laa": 0.667
+        },
+        "source": "class PyScss(Filter):\n    \"\"\"Converts `Scss <http://sass-lang.com/>`_ markup to real CSS.\n\n    This uses `PyScss <https://github.com/Kronuz/pyScss>`_, a native\n    Python implementation of the Scss language. The PyScss module needs\n    to be installed. It's API has been changing; currently, version\n    1.1.5 is known to be supported.\n\n    This is an alternative to using the ``sass`` or ``scss`` filters,\n    which are based on the original, external tools.\n\n    .. note::\n        The Sass syntax is not supported by PyScss. You need to use\n        the ``sass`` filter based on the original Ruby implementation\n        instead.\n\n    *Supported configuration options:*\n\n    PYSCSS_DEBUG_INFO (debug_info)\n        Include debug information in the output for use with FireSass.\n\n        If unset, the default value will depend on your\n        :attr:`Environment.debug` setting.\n\n    PYSCSS_LOAD_PATHS (load_paths)\n        Additional load paths that PyScss should use.\n\n        .. warning::\n    ... [119 more lines]"
+      },
+      {
+        "class_name": "Child",
+        "file": "eth_py150\\Alexis-benoist\\eralchemy\\example\\simple.py",
+        "lines": "17-21",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 5,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 0,
+          "wmc": 0,
+          "max_method_cc": 0,
+          "max_method_length": 0,
+          "avg_method_length": 0.0,
+          "avg_cyclomatic_complexity": 0.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 0,
+          "noam_plus_nopa": 0,
+          "atfd_proxy": 0,
+          "laa": 1.0
+        },
+        "source": "class Child(Base):\n    __tablename__ = 'child'\n    id = Column(Integer, primary_key=True)\n    parent_id = Column(ForeignKey('parent.id'))\n    parent = relationship('Parent', backref='children')"
       }
     ]
   }
