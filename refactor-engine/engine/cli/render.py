@@ -603,3 +603,215 @@ def print_model_explanation():
     console.print(
         Panel(Group(*parts), title="[bold]How the classifier works[/bold]", border_style="#6A5ACD", padding=(1, 2))
     )
+
+
+# ---------------------------------------------------------------------------
+# evaluate: our detector vs real refactoring history
+# ---------------------------------------------------------------------------
+
+
+def _hit_mark(hit: bool) -> Text:
+    return Text("HIT ", style="bold green") if hit else Text("miss", style="dim")
+
+
+def print_evaluation_report(results: dict, show_commits: bool = True) -> None:
+    """Render the refactor-history evaluation.
+
+    The caveat is printed FIRST and again under the headline numbers, on
+    purpose: this is a lower bound, and a reader skimming for a percentage
+    must not be able to reach one without passing the reason it is not a
+    recall figure.
+    """
+    console.print()
+    console.print(
+        Panel(
+            Text(results["caveat"], style="yellow"),
+            title="[bold yellow]Read this before the numbers[/bold yellow]",
+            border_style="yellow",
+        )
+    )
+
+    for repo in results["repos"]:
+        _print_repo_notes(repo)
+
+    if show_commits:
+        for repo in results["repos"]:
+            _print_repo_commits(repo)
+
+    _print_evaluation_summary(results)
+
+
+def _print_repo_notes(repo: dict) -> None:
+    """A clear, specific explanation in place of a silently-empty result --
+    printed BEFORE the per-commit table so a reader sees why a table might be
+    empty or short before they reach it, not after being confused by it."""
+    for note in repo.get("notes", []):
+        console.print()
+        console.print(
+            Panel(
+                Text(note, style="yellow"),
+                title=f"[bold yellow]{repo['repo']}[/bold yellow]",
+                border_style="yellow",
+            )
+        )
+
+
+def _print_repo_commits(repo: dict) -> None:
+    if not repo["commits"]:
+        # The explanation already printed via _print_repo_notes -- an empty
+        # table here would just be confusing noise on top of it.
+        return
+
+    table = Table(
+        title=f"[bold]{repo['repo']}[/bold] — per-commit result",
+        title_justify="left",
+        header_style="bold cyan",
+        expand=False,
+    )
+    table.add_column("commit", style="dim", no_wrap=True)
+    table.add_column("detected by", no_wrap=True)
+    table.add_column("refactor target", overflow="fold")
+    table.add_column("signal", no_wrap=True)
+    table.add_column("we flagged it as", no_wrap=True)
+    table.add_column("", no_wrap=True)
+
+    for commit in repo["commits"]:
+        detected = "+".join(commit["detected_by"])
+        if not commit["has_structural_target"]:
+            table.add_row(
+                commit["short_hash"],
+                detected,
+                Text("(no structural target — keyword only)", style="dim italic"),
+                "—",
+                "—",
+                Text("n/a", style="dim"),
+            )
+            continue
+
+        for i, target in enumerate(commit["targets"]):
+            table.add_row(
+                commit["short_hash"] if i == 0 else "",
+                detected if i == 0 else "",
+                f"{target['class']}  [dim]({target['file']})[/dim]",
+                target["signal"].replace("_", " "),
+                (
+                    f"[bold]{target['flagged_as']}[/bold] ({target['confidence']})"
+                    if target["flagged"]
+                    else Text("not flagged", style="dim")
+                ),
+                _hit_mark(target["flagged"]),
+            )
+
+    console.print()
+    console.print(table)
+
+
+def _rate(value) -> str:
+    return "n/a" if value is None else f"{value:.1%}"
+
+
+def _print_evaluation_summary(results: dict) -> None:
+    overall = results["overall"]
+
+    headline = Table(box=None, show_header=False, pad_edge=False)
+    headline.add_column(style="bold")
+    headline.add_column(justify="right")
+    headline.add_row("Commits evaluated", str(overall["commits_evaluated"]))
+    headline.add_row(
+        "  with a structural target (checkable)", str(overall["commits_with_structural_target"])
+    )
+    headline.add_row(
+        "  keyword-only (no verifiable target)",
+        str(overall["commits_without_structural_target"]),
+    )
+    headline.add_row("", "")
+    headline.add_row(
+        "[green]TARGETED hit rate[/green] (commits)",
+        f"[bold green]{overall['commits_hit']}/{overall['commits_with_structural_target']}"
+        f" = {_rate(overall['targeted_hit_rate'])}[/bold green]",
+    )
+    headline.add_row(
+        "TARGETED hit rate (individual targets)",
+        f"{overall['targets_flagged']}/{overall['targets_total']}"
+        f" = {_rate(overall['target_level_hit_rate'])}",
+    )
+    headline.add_row(
+        "[dim]FILE-LEVEL hit rate (much weaker)[/dim]",
+        f"[dim]{overall['file_level_hits']}/{overall['commits_evaluated']}"
+        f" = {_rate(overall['file_level_hit_rate'])}[/dim]",
+    )
+
+    console.print()
+    console.print(
+        Panel(headline, title="[bold]Aggregate[/bold]", border_style="cyan", expand=False)
+    )
+
+    if overall["by_smell_type"]:
+        smell_table = Table(
+            title="Which smell flagged the refactor target",
+            title_justify="left",
+            header_style="bold cyan",
+            expand=False,
+        )
+        smell_table.add_column("smell")
+        smell_table.add_column("targets caught", justify="right")
+        for smell, count in overall["by_smell_type"].items():
+            colour = _SMELL_COLORS.get(smell, "white")
+            smell_table.add_row(f"[{colour}]{smell}[/{colour}]", str(count))
+        console.print()
+        console.print(smell_table)
+
+    if overall["by_signal"]:
+        signal_table = Table(
+            title="By what the real commit did",
+            title_justify="left",
+            header_style="bold cyan",
+            expand=False,
+        )
+        signal_table.add_column("structural signal")
+        signal_table.add_column("targets", justify="right")
+        signal_table.add_column("flagged", justify="right")
+        signal_table.add_column("rate", justify="right")
+        for signal, stats in sorted(overall["by_signal"].items()):
+            rate = stats["flagged"] / stats["targets"] if stats["targets"] else None
+            signal_table.add_row(
+                signal.replace("_", " "),
+                str(stats["targets"]),
+                str(stats["flagged"]),
+                _rate(rate),
+            )
+        console.print()
+        console.print(signal_table)
+
+    if overall["by_detector"]:
+        detector_table = Table(
+            title="By how the commit was found (these are different populations)",
+            title_justify="left",
+            header_style="bold cyan",
+            expand=False,
+        )
+        detector_table.add_column("detector")
+        detector_table.add_column("commits", justify="right")
+        detector_table.add_column("checkable", justify="right")
+        detector_table.add_column("hits", justify="right")
+        detector_table.add_column("targeted rate", justify="right")
+        detector_table.add_column("file-level hits", justify="right")
+        for name, stats in sorted(overall["by_detector"].items()):
+            rate = stats["hits"] / stats["with_target"] if stats["with_target"] else None
+            detector_table.add_row(
+                name,
+                str(stats["commits"]),
+                str(stats["with_target"]),
+                str(stats["hits"]),
+                _rate(rate),
+                str(stats["file_level_hits"]),
+            )
+        console.print()
+        console.print(detector_table)
+
+    console.print()
+    console.print(
+        Text(results["caveat"], style="yellow italic"),
+        style="yellow",
+    )
+    console.print()

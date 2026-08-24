@@ -26,16 +26,46 @@ FEATURE_COLUMNS = [
     "fan_out",
 ]
 
+# Real ATFD/FDP (C.2), appended rather than substituted. A model is fitted
+# under ONE column list and is meaningless under any other, so the shipped
+# synthetic classifier -- trained on the eight above, before these existed --
+# must keep being fed exactly those eight. Which list a given model uses is
+# recorded in its bundle metadata (`features`) and read back at predict time;
+# FEATURE_COLUMNS stays the 8-column default so every existing caller and the
+# legacy three-file layout behave exactly as before.
+ENVY_FEATURE_COLUMNS = [
+    "atfd",
+    "fdp",
+    "fdp_concentration",
+]
+
+EXTENDED_FEATURE_COLUMNS = FEATURE_COLUMNS + ENVY_FEATURE_COLUMNS
+
+
+def columns_for(df, requested: list[str] | None = None) -> list[str]:
+    """Which feature list to use for `df`.
+
+    Explicit `requested` wins. Otherwise the extended list is used when the
+    dataframe actually carries every envy column, and the legacy eight
+    otherwise -- so an old CSV trains an old-shaped model without a flag, and
+    a re-labelled one picks up the new features without a flag either.
+    """
+    if requested:
+        return list(requested)
+    if all(col in df.columns for col in EXTENDED_FEATURE_COLUMNS):
+        return list(EXTENDED_FEATURE_COLUMNS)
+    return list(FEATURE_COLUMNS)
+
 _HERE = os.path.dirname(os.path.abspath(__file__))
 SCALER_PATH = os.path.join(_HERE, "scaler.pkl")
 ENCODER_PATH = os.path.join(_HERE, "label_encoder.pkl")
 
 
-def _impute(df):
-    return df[FEATURE_COLUMNS].apply(lambda col: col.fillna(col.median()))
+def _impute(df, columns=None):
+    return df[columns or FEATURE_COLUMNS].apply(lambda col: col.fillna(col.median()))
 
 
-def fit_scaler(train_df):
+def fit_scaler(train_df, columns=None):
     """Fit a StandardScaler on TRAINING rows only, returning (X_train, scaler).
 
     Training rows only, deliberately. A scaler fitted on the full dataset has
@@ -50,7 +80,7 @@ def fit_scaler(train_df):
     path is only safe when the model about to be written is the shared model.
     """
     scaler = StandardScaler()
-    return scaler.fit_transform(_impute(train_df).values), scaler
+    return scaler.fit_transform(_impute(train_df, columns).values), scaler
 
 
 def fit_label_encoder(labels):
@@ -66,7 +96,7 @@ def fit_label_encoder(labels):
     return encoder
 
 
-def transform_features(df, scaler):
+def transform_features(df, scaler, columns=None):
     """Apply an ALREADY-FITTED scaler to `df` -- the inference-side path.
 
     Used when evaluating a trained model on rows it has never seen: the
@@ -76,7 +106,7 @@ def transform_features(df, scaler):
     synthetic-trained model look better on real data than it really is, by
     handing it real-world means it never learned from.
     """
-    return scaler.transform(_impute(df).values)
+    return scaler.transform(_impute(df, columns).values)
 
 
 def build_feature_matrix(df):

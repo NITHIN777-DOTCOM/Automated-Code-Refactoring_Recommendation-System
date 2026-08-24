@@ -101,7 +101,10 @@ from __future__ import annotations
 import ast
 import fnmatch
 import os
+from collections import Counter
 from dataclasses import dataclass
+
+from engine.metrics import foreign_accesses
 
 # ---------------------------------------------------------------------------
 # Citations
@@ -352,17 +355,33 @@ THRESHOLDS: dict[str, Threshold] = {
         ),
         Threshold(
             key="atfd_high",
-            metric="atfd_proxy",
-            plain_name="Foreign data reached (ATFD proxy)",
+            metric="atfd",
+            plain_name="Foreign data reached (ATFD)",
             operator=">",
             value=5,
             published_metric="ATFD > 5 (FEW)",
             source_key="lanza_marinescu_2006",
-            is_proxy=True,
             mapping_note=(
-                "PROXY: we have no true access-to-foreign-data metric. Counts distinct external "
-                "classes/methods the class reaches, excluding dunder, self- and base-class calls "
-                "(see envy_metrics)."
+                "Direct, no longer a proxy. Counts distinct (provider, attribute) pairs the "
+                "class reads off objects other than self, excluding dunder attributes and "
+                "explicit base-class access. Providers are grouped by receiver VARIABLE NAME "
+                "(stage 1, no type inference), so two same-named variables of different types "
+                "would be conflated."
+            ),
+        ),
+        Threshold(
+            key="fdp_few",
+            metric="fdp",
+            plain_name="Distinct foreign providers (FDP)",
+            operator="<=",
+            value=5,
+            published_metric="FDP <= 5 (FEW)",
+            source_key="lanza_marinescu_2006",
+            mapping_note=(
+                "Now computable and no longer dropped from the rule. Distinguishes a class "
+                "fixated on one or two neighbours (real Feature Envy, fixable by Move Method) "
+                "from one touching a little of everything (dispersed coupling, a different "
+                "problem). Same stage-1 receiver-name caveat as ATFD."
             ),
         ),
         Threshold(
@@ -375,8 +394,9 @@ THRESHOLDS: dict[str, Threshold] = {
             source_key="lanza_marinescu_2006",
             is_proxy=True,
             mapping_note=(
-                "PROXY: own-attribute accesses over own accesses plus resolved foreign calls, "
-                "aggregated across the class rather than computed per method as in the original."
+                "APPROXIMATION: the foreign half is now a real ATFD rather than resolved call "
+                "names, but this is still aggregated across the whole class where Lanza & "
+                "Marinescu define LAA per method."
             ),
         ),
     ]
@@ -425,15 +445,21 @@ def _god_class(m: dict) -> bool:
 
 
 def _feature_envy(m: dict) -> bool:
-    # Lanza & Marinescu: ATFD > FEW AND LAA < 1/3 AND FDP <= FEW.
-    # FDP (foreign data providers) is dropped -- we cannot distinguish how
-    # many distinct providers a call set touches without type resolution.
-    # Both remaining conjuncts read the cleaned proxies from envy_metrics(),
-    # which need all_classes; without them derive_metrics omits the keys and
-    # the rule stays silent rather than firing on a partial measurement.
-    return THRESHOLDS["atfd_high"].exceeded_by(m.get("atfd_proxy")) and THRESHOLDS[
-        "laa_low"
-    ].exceeded_by(m.get("laa"))
+    # Lanza & Marinescu, now VERBATIM and with no dropped conjunct:
+    #   ATFD > FEW AND LAA < 1/3 AND FDP <= FEW
+    # The FDP arm used to be dropped as needing type resolution. Grouping
+    # foreign reads by receiver name makes it computable (engine.metrics.fdp),
+    # and it is what stops a class that touches a dozen unrelated providers a
+    # little -- dispersed coupling, not envy -- from being labelled Feature
+    # Envy and handed a Move Method suggestion that cannot work.
+    #
+    # A class with no foreign access at all has fdp == 0, which satisfies
+    # `<= 5` trivially; the ATFD arm is what excludes it, and must stay first.
+    return (
+        THRESHOLDS["atfd_high"].exceeded_by(m.get("atfd"))
+        and THRESHOLDS["laa_low"].exceeded_by(m.get("laa"))
+        and THRESHOLDS["fdp_few"].exceeded_by(m.get("fdp"))
+    )
 
 
 def _long_method(m: dict) -> bool:
@@ -487,11 +513,13 @@ RULES: tuple[Rule, ...] = (
     ),
     Rule(
         label="Feature Envy",
-        formula="ATFD(proxy) > 5 AND LAA < 1/3",
-        threshold_keys=("atfd_high", "laa_low"),
+        formula="ATFD > 5 AND LAA < 1/3 AND FDP <= 5",
+        threshold_keys=("atfd_high", "laa_low", "fdp_few"),
         rationale=(
-            "Lanza & Marinescu's Feature Envy strategy with ATFD proxied by fan_out and FDP "
-            "dropped (needs type resolution we do not have)."
+            "Lanza & Marinescu's Feature Envy strategy, all three conjuncts, with a real "
+            "ATFD measured from foreign attribute reads rather than proxied by fan_out. "
+            "Providers are resolved by receiver variable name (stage 1, no type inference); "
+            "LAA remains aggregated per class rather than per method."
         ),
     ),
     Rule(
@@ -684,6 +712,10 @@ class ClassSummary:
     public_fields: tuple[str, ...]
     calls: frozenset[str]
     own_field_accesses: int
+    # Real ATFD/FDP input: (receiver, attribute) foreign reads, already
+    # filtered by engine.metrics.foreign_accesses(). Carried on the summary
+    # so corpus-scale labeling gets the real metric without holding ASTs.
+    foreign_accesses: tuple[tuple[str, str], ...] = ()
 
 
 def summarize_class(cls, scope_key: str = "", file_path: str = "") -> ClassSummary:
@@ -708,6 +740,7 @@ def summarize_class(cls, scope_key: str = "", file_path: str = "") -> ClassSumma
         public_fields=tuple(f for f in cls.fields if not f.startswith("_")),
         calls=frozenset(calls),
         own_field_accesses=sum(len(m.fields_accessed) for m in cls.methods),
+        foreign_accesses=tuple(foreign_accesses(cls)),
     )
 
 
@@ -739,69 +772,68 @@ def build_index(summaries) -> CorpusIndex:
     return CorpusIndex(by_scope=by_scope, by_name=by_name)
 
 
-def envy_from_summary(summary: ClassSummary, index: CorpusIndex) -> dict:
-    """ATFD and LAA proxies for the Feature Envy rule.
+def envy_from_summary(summary: ClassSummary, index: CorpusIndex | None = None) -> dict:
+    """REAL ATFD, FDP and LAA for the Feature Envy rule.
 
-    Computed here rather than reusing engine/metrics.py's fan_out, which is
-    the right number for its own purpose but wrong as an ATFD stand-in.
-    fan_out resolves a call by NAME against every class in scope, and three
-    kinds of match inflate it in ways that have nothing to do with envy:
+    WHAT CHANGED, AND WHY IT MATTERS
+    --------------------------------
+    This used to return an `atfd_proxy` derived from resolving the class's
+    outbound CALL NAMES against every class in scope, because the parser
+    discarded foreign attribute reads and there was nothing better available.
+    engine/parser.py now records them, so this is the real metric: a count of
+    the foreign DATA the class actually touches, taken straight from its own
+    AST.
 
-      1. Dunder calls. A file defining 40 exception subclasses gives every
-         one of them a `__init__` and a `__str__`, so name resolution maps
-         each sibling's constructor call onto all 40 owners. In an earlier
-         labeling pass this handed a SIX-LINE exception subclass a fan_out
-         of 41 and a Feature Envy label. Calling a constructor or a protocol
-         method is inheritance, not envy.
-      2. Self-calls. `self.save()` records the call name `save`; if any
-         other class in scope also defines `save`, the call resolves outward
-         even though it never left the object.
-      3. Base-class calls. Reaching into the class you inherit from is
-         exactly what inheritance is for.
+    Three consequences worth stating, because they are the whole point of the
+    change:
 
-    COUNTING RULE: distinct call NAMES, not name-x-owner pairs. This is what
-    makes the number stable as the scope widens. Counting pairs meant that
-    widening from one file to the whole corpus turned a single `process()`
-    call into +300 ATFD simply because 300 unrelated projects happen to
-    define a method by that name -- the metric would measure corpus size
-    rather than the class.
+      1. NO SCOPE SENSITIVITY. The proxy's value depended on how many other
+         classes happened to be visible -- the same corpus yielded 4 matches
+         at file scope and 405 at corpus scope, a 100x swing driven purely by
+         coincidental name collisions between unrelated projects. A foreign
+         attribute read is visible in the class's own body, so `index` is no
+         longer consulted at all. It stays in the signature (unused) because
+         every caller passes one and the corpus-scope machinery around it is
+         still needed for WOC's base-class resolution.
+      2. NO SELF/OWN-METHOD CONFUSION. The proxy had to discard any call
+         whose name matched one of this class's own methods, because it could
+         not tell `self.save()` from `other.save()`. Receivers are known now,
+         so `other.save()` counts and `self.save()` does not.
+      3. FDP IS COMPUTABLE. Lanza & Marinescu's rule has always been
+         ATFD > FEW AND LAA < 1/3 AND FDP <= FEW; we previously dropped the
+         FDP conjunct as needing type resolution. Grouping reads by receiver
+         name gives a usable stage-1 FDP, so the rule is now implemented in
+         full. See MethodInfo.foreign_accesses for the naming caveat.
     """
-    scope = index.by_scope.get(summary.scope_key)
-    if scope is None:
-        return {"atfd_proxy": 0, "laa": 1.0}
+    pairs = summary.foreign_accesses
+    per_provider: dict[str, set[str]] = {}
+    for receiver, attribute in pairs:
+        per_provider.setdefault(receiver, set()).add(attribute)
 
-    class_names = scope["class_names"]
-    owners = scope["owners"]
-    base_names = set(summary.base_classes)
+    counts = Counter({recv: len(attrs) for recv, attrs in per_provider.items()})
+    atfd = sum(counts.values())
+    total_accesses = atfd
+    concentration = (
+        counts.most_common(1)[0][1] / total_accesses if total_accesses else 0.0
+    )
 
-    foreign: set[str] = set()
-    for call in summary.calls:
-        if _is_dunder(call) or call in summary.method_names or call in base_names:
-            continue
-        if call in class_names and call != summary.name:
-            foreign.add(call)
-            continue
-        call_owners = owners.get(call)
-        if call_owners and (call_owners - {summary.name}):
-            foreign.add(call)
-
-    atfd = len(foreign)
     total = summary.own_field_accesses + atfd
     return {
-        "atfd_proxy": atfd,
+        "atfd": atfd,
+        "fdp": len(counts),
+        "fdp_concentration": round(concentration, 4),
         "laa": (summary.own_field_accesses / total) if total else 1.0,
     }
 
 
-def envy_metrics(cls, all_classes) -> dict:
-    """Single-scope convenience wrapper around envy_from_summary().
+def envy_metrics(cls, all_classes=None) -> dict:
+    """Real ATFD/FDP/LAA for one ClassInfo.
 
-    Used by the CLI, where "everything visible" is just the one file being
-    explained and building a throwaway index is cheap.
+    `all_classes` is accepted and ignored -- kept so the existing call sites
+    (CLI, reasoning) keep working unchanged now that the metric no longer
+    needs a resolution scope at all.
     """
-    scope = "_local"
-    index = build_index([summarize_class(c, scope, getattr(c, "file_path", "")) for c in all_classes])
-    return envy_from_summary(summarize_class(cls, scope, getattr(cls, "file_path", "")), index)
+    return envy_from_summary(summarize_class(cls, "", getattr(cls, "file_path", "")))
 
 
 # ---------------------------------------------------------------------------
@@ -986,19 +1018,20 @@ def derive_metrics(metrics: dict, cls=None, all_classes=None) -> dict:
     }
 
     if cls is not None:
+        # ATFD/FDP/LAA need no resolution scope now that they are measured
+        # from the class's own foreign attribute reads, so the envy metrics
+        # are available whether or not `all_classes` was supplied. Only WOC
+        # still needs an index, to resolve inherited methods across files.
+        summary = summarize_class(cls, "_local", getattr(cls, "file_path", ""))
+        derived.update(envy_from_summary(summary))
+
         if all_classes is None:
-            # No scope to resolve against: body-scoped accessors only, and no
-            # envy proxies at all.
             derived.update(accessor_metrics(cls))
         else:
-            scope = "_local"
             summaries = [
-                summarize_class(c, scope, getattr(c, "file_path", "")) for c in all_classes
+                summarize_class(c, "_local", getattr(c, "file_path", "")) for c in all_classes
             ]
-            index = build_index(summaries)
-            summary = summarize_class(cls, scope, getattr(cls, "file_path", ""))
-            derived.update(envy_from_summary(summary, index))
-            derived.update(woc_from_summary(summary, index))
+            derived.update(woc_from_summary(summary, build_index(summaries)))
 
     return derived
 

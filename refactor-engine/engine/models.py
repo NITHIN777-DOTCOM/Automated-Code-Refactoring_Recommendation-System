@@ -16,6 +16,17 @@ class MethodInfo:
     body: ast.AST | None = None
     calls_made: list[str] = field(default_factory=list)
     fields_accessed: list[str] = field(default_factory=list)
+    # (receiver_name, attribute_name) for every `x.attr` / `x.attr()` read
+    # where `x` is a plain name that is NOT self -- the raw input to the real
+    # ATFD/FDP metrics. Order-preserving and NOT deduplicated: how often a
+    # receiver is reached is what FDP concentration measures.
+    #
+    # STAGE 1 LIMITATION (name-based, no type inference): the receiver is the
+    # literal variable name, so two differently-typed objects that happen to
+    # share a variable name -- `cfg` meaning a Config in one method and a
+    # ConfigParser in another -- are conflated into one provider. Stage 2
+    # (type resolution) is what fixes that; see docs/LITERATURE_REVIEW.md 6.1.
+    foreign_accesses: list[tuple[str, str]] = field(default_factory=list)
 
 
 @dataclass

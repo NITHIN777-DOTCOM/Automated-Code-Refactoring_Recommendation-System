@@ -33,7 +33,24 @@ from engine.ml.bundle import (
     resolve_model_spec,
     save_bundle,
 )
-from engine.ml.features import ENCODER_PATH, FEATURE_COLUMNS, SCALER_PATH, fit_scaler
+from engine.ml.features import (
+    ENCODER_PATH,
+    EXTENDED_FEATURE_COLUMNS,
+    FEATURE_COLUMNS,
+    SCALER_PATH,
+    columns_for,
+    fit_scaler,
+)
+
+
+def _bundle_columns(bundle):
+    """The feature list a bundle was fitted under.
+
+    Models are no longer all 8-column: one trained after real ATFD/FDP
+    landed takes 11. A test that hardcodes FEATURE_COLUMNS against an
+    arbitrary bundle is asserting the wrong thing.
+    """
+    return list(bundle.metadata.get("features") or FEATURE_COLUMNS)
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -92,7 +109,7 @@ def test_bundle_round_trips_and_predicts_identically(tmp_path):
 
     df = pd.read_csv(REAL_DATASET)
     test_df = df[df["split"] == "test"]
-    scaled = bundle.scaler.transform(test_df[FEATURE_COLUMNS].values)
+    scaled = bundle.scaler.transform(test_df[_bundle_columns(bundle)].values)
 
     # Loading through as_artifacts() must be the same three objects.
     model, scaler, encoder = bundle.as_artifacts()
@@ -173,14 +190,16 @@ def test_the_scaler_is_fitted_on_training_rows_only():
     df = pd.read_csv(REAL_DATASET)
     train_df = df[df["split"] == "train"]
 
-    _, scaler = fit_scaler(train_df)
-    assert np.allclose(scaler.mean_, train_df[FEATURE_COLUMNS].mean().values)
+    columns = columns_for(train_df)
+    _, scaler = fit_scaler(train_df, columns)
+    assert np.allclose(scaler.mean_, train_df[columns].mean().values)
 
     # And the shipped real bundle was actually built that way.
     if os.path.exists(REAL_BUNDLE):
         bundle = load_bundle(REAL_BUNDLE)
-        assert np.allclose(bundle.scaler.mean_, train_df[FEATURE_COLUMNS].mean().values)
-        assert not np.allclose(bundle.scaler.mean_, df[FEATURE_COLUMNS].mean().values)
+        bundle_cols = _bundle_columns(bundle)
+        assert np.allclose(bundle.scaler.mean_, train_df[bundle_cols].mean().values)
+        assert not np.allclose(bundle.scaler.mean_, df[bundle_cols].mean().values)
 
 
 # ---------------------------------------------------------------------------
@@ -210,7 +229,16 @@ def test_each_model_is_applied_with_its_own_scaler():
 
     synthetic_scaler = joblib.load(SCALER_PATH)
     real_scaler = load_bundle(REAL_BUNDLE).scaler
-    assert not np.allclose(synthetic_scaler.mean_, real_scaler.mean_)
+
+    # The two scalers now differ in SHAPE as well as in values: the shipped
+    # synthetic model predates real ATFD/FDP and was fitted on 8 columns,
+    # the real-data model on 11. Different lengths already prove they are
+    # not interchangeable; only compare values when the shapes match.
+    if synthetic_scaler.mean_.shape == real_scaler.mean_.shape:
+        assert not np.allclose(synthetic_scaler.mean_, real_scaler.mean_)
+    else:
+        assert len(real_scaler.mean_) == len(EXTENDED_FEATURE_COLUMNS)
+        assert len(synthetic_scaler.mean_) == len(FEATURE_COLUMNS)
 
     # And the real model genuinely outperforms on real data -- the finding the
     # whole comparison exists to establish.
@@ -247,7 +275,7 @@ def test_every_feature_has_wording_for_every_level():
     """
     from engine.reasoning import _METRIC_LANGUAGE
 
-    for feature in FEATURE_COLUMNS:
+    for feature in EXTENDED_FEATURE_COLUMNS:
         language = _METRIC_LANGUAGE[feature]
         for level in ("high", "typical", "low"):
             assert level in language, f"{feature} has no {level!r} wording"

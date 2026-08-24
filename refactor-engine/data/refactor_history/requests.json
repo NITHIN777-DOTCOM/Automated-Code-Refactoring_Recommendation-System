@@ -1,0 +1,733 @@
+{
+  "repo": "requests",
+  "repo_path": "C:\\Users\\Juju\\Desktop\\Automated_Code_Refactoring_System\\refactor-engine\\data\\real_world\\raw_sources\\git_repos\\requests",
+  "commits_scanned": 400,
+  "candidate_count": 18,
+  "candidates": [
+    {
+      "commit_hash": "6f66281a1d6326b1b9c4ac09ca30de0fc4e6ef43",
+      "message": "Add hasattr checks for remaining protocol isinstance checks (#7505)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/_types.py",
+        "src/requests/models.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 24,
+      "deletions": 7,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2230,
+            "lines_after": 2245
+          }
+        ]
+      },
+      "short_hash": "6f66281a1d63",
+      "file_pairs": [
+        {
+          "file": "src/requests/_types.py",
+          "before_path": "requests/6f66281a1d63/before/src/requests/_types.py",
+          "after_path": "requests/6f66281a1d63/after/src/requests/_types.py"
+        },
+        {
+          "file": "src/requests/models.py",
+          "before_path": "requests/6f66281a1d63/before/src/requests/models.py",
+          "after_path": "requests/6f66281a1d63/after/src/requests/models.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/6f66281a1d63/before/tests/test_requests.py",
+          "after_path": "requests/6f66281a1d63/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "6f205ff422bccd5e4c4fc0b64c5f3e7df5181db6",
+      "message": "Fix `_encode_files` detection for `__getattr__`-based file wrappers (#7502)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/models.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 14,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2219,
+            "lines_after": 2230
+          }
+        ]
+      },
+      "short_hash": "6f205ff422bc",
+      "file_pairs": [
+        {
+          "file": "src/requests/models.py",
+          "before_path": "requests/6f205ff422bc/before/src/requests/models.py",
+          "after_path": "requests/6f205ff422bc/after/src/requests/models.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/6f205ff422bc/before/tests/test_requests.py",
+          "after_path": "requests/6f205ff422bc/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "6404f345e562d962abe6700a1c357ec1e7e18232",
+      "message": "Fix `prepare_body` stream detection for `__getattr__`-based file wrappers (#7433)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/models.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 18,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2204,
+            "lines_after": 2219
+          }
+        ]
+      },
+      "short_hash": "6404f345e562",
+      "file_pairs": [
+        {
+          "file": "src/requests/models.py",
+          "before_path": "requests/6404f345e562/before/src/requests/models.py",
+          "after_path": "requests/6404f345e562/after/src/requests/models.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/6404f345e562/before/tests/test_requests.py",
+          "after_path": "requests/6404f345e562/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "185f587a78e2d2df31ae8af8c95d97a012213df7",
+      "message": "Cleanup docs and add i18n wrappers (#7354)",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "cleanup"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "docs/conf.py"
+      ],
+      "insertions": 8,
+      "deletions": 9,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "185f587a78e2",
+      "file_pairs": [
+        {
+          "file": "docs/conf.py",
+          "before_path": "requests/185f587a78e2/before/docs/conf.py",
+          "after_path": "requests/185f587a78e2/after/docs/conf.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "ef439eb779c1eba7cbdeeeb302b11e1e061b4b7d",
+      "message": "Prevent Response self-reference in redirect history (#7328)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/sessions.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 9,
+      "deletions": 2,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2196,
+            "lines_after": 2204
+          }
+        ]
+      },
+      "short_hash": "ef439eb779c1",
+      "file_pairs": [
+        {
+          "file": "src/requests/sessions.py",
+          "before_path": "requests/ef439eb779c1/before/src/requests/sessions.py",
+          "after_path": "requests/ef439eb779c1/after/src/requests/sessions.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/ef439eb779c1/before/tests/test_requests.py",
+          "after_path": "requests/ef439eb779c1/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "389eea58dfb2f2ee096421a812e3af29c0298951",
+      "message": "Cleanup extracted file after extract_zipped_path test (#7305)",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "cleanup"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "tests/test_utils.py"
+      ],
+      "insertions": 6,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "389eea58dfb2",
+      "file_pairs": [
+        {
+          "file": "tests/test_utils.py",
+          "before_path": "requests/389eea58dfb2/before/tests/test_utils.py",
+          "after_path": "requests/389eea58dfb2/after/tests/test_utils.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "7bc45877a86192af77645e156eb3744f95b47dae",
+      "message": "Add new test to check netrc auth leak (#6962)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "tests/test_requests.py"
+      ],
+      "insertions": 31,
+      "deletions": 0,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2163,
+            "lines_after": 2193
+          }
+        ]
+      },
+      "short_hash": "7bc45877a861",
+      "file_pairs": [
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/7bc45877a861/before/tests/test_requests.py",
+          "after_path": "requests/7bc45877a861/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "c65c780849563c891f35ffc98d3198b71011c012",
+      "message": "Add two more tests exercising the adapter (#6936)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "tests/test_requests.py"
+      ],
+      "insertions": 26,
+      "deletions": 0,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 2,
+            "lines_before": 2137,
+            "lines_after": 2163
+          }
+        ]
+      },
+      "short_hash": "c65c78084956",
+      "file_pairs": [
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/c65c78084956/before/tests/test_requests.py",
+          "after_path": "requests/c65c78084956/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "a62a2d35d918baa8e793f7aa4fb41527644dfca5",
+      "message": "Allow for overriding of specific pool key params",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/adapters.py"
+      ],
+      "insertions": 69,
+      "deletions": 9,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/requests/adapters.py",
+            "class": "HTTPAdapter",
+            "methods_gained": 1,
+            "lines_before": 493,
+            "lines_after": 553
+          }
+        ]
+      },
+      "short_hash": "a62a2d35d918",
+      "file_pairs": [
+        {
+          "file": "src/requests/adapters.py",
+          "before_path": "requests/a62a2d35d918/before/src/requests/adapters.py",
+          "after_path": "requests/a62a2d35d918/after/src/requests/adapters.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "c0813a2d910ea6b4f8438b91d315b8d181302356",
+      "message": "Use TLS settings in selecting connection pool",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/requests/adapters.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 64,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/requests/adapters.py",
+            "class": "HTTPAdapter",
+            "methods_gained": 1,
+            "lines_before": 441,
+            "lines_after": 470
+          },
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestPreparingURLs",
+            "methods_gained": 1,
+            "lines_before": 167,
+            "lines_after": 174
+          }
+        ]
+      },
+      "short_hash": "c0813a2d910e",
+      "file_pairs": [
+        {
+          "file": "src/requests/adapters.py",
+          "before_path": "requests/c0813a2d910e/before/src/requests/adapters.py",
+          "after_path": "requests/c0813a2d910e/after/src/requests/adapters.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/c0813a2d910e/before/tests/test_requests.py",
+          "after_path": "requests/c0813a2d910e/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "889910c77a9618dc59dd800c17913e2b1644cee3",
+      "message": "Added tests for status code 425 definitions.",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "tests/test_requests.py"
+      ],
+      "insertions": 13,
+      "deletions": 0,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestPreparingURLs",
+            "methods_gained": 1,
+            "lines_before": 152,
+            "lines_after": 165
+          }
+        ]
+      },
+      "short_hash": "889910c77a96",
+      "file_pairs": [
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/889910c77a96/before/tests/test_requests.py",
+          "after_path": "requests/889910c77a96/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "f6707042d8b18d2a3737380bf58ff020872fb07b",
+      "message": "Unit test for string containing multi-byte UTF-8",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "tests/test_requests.py"
+      ],
+      "insertions": 17,
+      "deletions": 0,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 2,
+            "lines_before": 2137,
+            "lines_after": 2154
+          }
+        ]
+      },
+      "short_hash": "f6707042d8b1",
+      "file_pairs": [
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/f6707042d8b1/before/tests/test_requests.py",
+          "after_path": "requests/f6707042d8b1/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "dfe46c1b7f55c9377caecba2119be14d3cce74e5",
+      "message": "refactor: prefer dictionary comphrension to loop (#6187)",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "refactor"
+      ],
+      "signals": [],
+      "files_changed": [
+        "requests/utils.py"
+      ],
+      "insertions": 1,
+      "deletions": 5,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "dfe46c1b7f55",
+      "file_pairs": [
+        {
+          "file": "requests/utils.py",
+          "before_path": "requests/dfe46c1b7f55/before/requests/utils.py",
+          "after_path": "requests/dfe46c1b7f55/after/requests/utils.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "message": "Merge pull request from GHSA-j8r2-6x86-q33q",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "requests/sessions.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 23,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2131,
+            "lines_after": 2151
+          }
+        ]
+      },
+      "short_hash": "74ea7cf7a6a2",
+      "file_pairs": [
+        {
+          "file": "requests/sessions.py",
+          "before_path": "requests/74ea7cf7a6a2/before/requests/sessions.py",
+          "after_path": "requests/74ea7cf7a6a2/after/requests/sessions.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/74ea7cf7a6a2/before/tests/test_requests.py",
+          "after_path": "requests/74ea7cf7a6a2/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "7f694b79e114c06fac5ec06019cada5a61e5570f",
+      "message": "Allow str/bytes subclasses to be used as header parts",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "requests/_internal_utils.py",
+        "requests/utils.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 48,
+      "deletions": 13,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 2106,
+            "lines_after": 2131
+          }
+        ]
+      },
+      "short_hash": "7f694b79e114",
+      "file_pairs": [
+        {
+          "file": "requests/_internal_utils.py",
+          "before_path": "requests/7f694b79e114/before/requests/_internal_utils.py",
+          "after_path": "requests/7f694b79e114/after/requests/_internal_utils.py"
+        },
+        {
+          "file": "requests/utils.py",
+          "before_path": "requests/7f694b79e114/before/requests/utils.py",
+          "after_path": "requests/7f694b79e114/after/requests/utils.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/7f694b79e114/before/tests/test_requests.py",
+          "after_path": "requests/7f694b79e114/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "79c4a017fe341fb989d3a7876cf4e44b87601b58",
+      "message": "Fix environment CA Bundle resolution",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "requests/sessions.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 49,
+      "deletions": 6,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 1957,
+            "lines_after": 1993
+          }
+        ]
+      },
+      "short_hash": "79c4a017fe34",
+      "file_pairs": [
+        {
+          "file": "requests/sessions.py",
+          "before_path": "requests/79c4a017fe34/before/requests/sessions.py",
+          "after_path": "requests/79c4a017fe34/after/requests/sessions.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/79c4a017fe34/before/tests/test_requests.py",
+          "after_path": "requests/79c4a017fe34/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "95f456733656ed93645ff0250bfa54f6d256f6fe",
+      "message": "Wrap urllib3's SSLError as requests' SSLError (#6057)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "requests/models.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 50,
+      "deletions": 5,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestRequests",
+            "methods_gained": 1,
+            "lines_before": 1937,
+            "lines_after": 1957
+          }
+        ]
+      },
+      "short_hash": "95f456733656",
+      "file_pairs": [
+        {
+          "file": "requests/models.py",
+          "before_path": "requests/95f456733656/before/requests/models.py",
+          "after_path": "requests/95f456733656/after/requests/models.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/95f456733656/before/tests/test_requests.py",
+          "after_path": "requests/95f456733656/after/tests/test_requests.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "fa1b0a367abc8488542f7ce7c02a3614ad8aa09d",
+      "message": "Initialize JsonDecodeError before initializing IOError (#6036)",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "requests/exceptions.py",
+        "tests/test_requests.py"
+      ],
+      "insertions": 23,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "tests/test_requests.py",
+            "class": "TestPreparingURLs",
+            "methods_gained": 1,
+            "lines_before": 158,
+            "lines_after": 168
+          }
+        ]
+      },
+      "short_hash": "fa1b0a367abc",
+      "file_pairs": [
+        {
+          "file": "requests/exceptions.py",
+          "before_path": "requests/fa1b0a367abc/before/requests/exceptions.py",
+          "after_path": "requests/fa1b0a367abc/after/requests/exceptions.py"
+        },
+        {
+          "file": "tests/test_requests.py",
+          "before_path": "requests/fa1b0a367abc/before/tests/test_requests.py",
+          "after_path": "requests/fa1b0a367abc/after/tests/test_requests.py"
+        }
+      ]
+    }
+  ]
+}

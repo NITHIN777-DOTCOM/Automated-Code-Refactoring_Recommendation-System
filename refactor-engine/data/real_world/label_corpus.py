@@ -108,6 +108,12 @@ CSV_COLUMNS = [
     "dit",
     "fan_in",
     "fan_out",
+    # Real ATFD/FDP (C.2). Appended AFTER the original eight so the column
+    # order the previous models were fitted under is untouched -- a model
+    # trained on the old 8 still lines up if pointed at this file.
+    "atfd",
+    "fdp",
+    "fdp_concentration",
     "label",
     "split",
 ]
@@ -263,21 +269,27 @@ def _index_for_scope(records: list[dict], scope: str):
 
 
 def feature_envy_counts_by_scope(records: list[dict]) -> dict[str, int]:
-    """How many classes satisfy the Feature Envy rule under each scope.
+    """Feature Envy yield under each scope -- now a SCOPE-INVARIANCE CHECK.
 
-    Reported because the scope choice is a judgement call with a real cost
-    on either side -- too narrow and the label is unlearnable, too wide and
-    name-based resolution starts matching unrelated projects -- and the
-    decision should be made against numbers.
+    This used to be a judgement call presented as numbers: the old ATFD proxy
+    resolved outbound call names against every class in view, so widening the
+    lookup from one file to the whole corpus swung the count from 4 to 405
+    without a single line of source changing. Picking a scope meant picking a
+    smell rate.
+
+    Real ATFD reads foreign attribute accesses out of the class's own body,
+    so scope cannot affect it. These four numbers are now EXPECTED TO BE
+    IDENTICAL, and the run still reports all four precisely because a
+    divergence would mean the scope sensitivity had crept back in.
     """
     envy_rule = next(rule for rule in RULES if rule.label == "Feature Envy")
     counts = {}
     for scope in ENVY_SCOPES:
-        index, summaries = _index_for_scope(records, scope)
+        _, summaries = _index_for_scope(records, scope)
         counts[scope] = sum(
             1
             for record, summary in zip(records, summaries)
-            if envy_rule.matches({**record["base"], **envy_from_summary(summary, index)})
+            if envy_rule.matches({**record["base"], **envy_from_summary(summary)})
         )
     return counts
 
@@ -288,22 +300,18 @@ def label_records(records: list[dict], envy_scope: str) -> dict:
     Computing both in one pass is what lets the run report exactly which
     rows the WOC and scope fixes moved, instead of asserting an improvement.
     """
-    envy_index, envy_summaries = _index_for_scope(records, envy_scope)
-    file_index, file_summaries = _index_for_scope(records, "file")
-    # Inheritance is resolved globally: an imported base class is no less
-    # inherited for living in another file.
+    # envy_scope is retained as a CLI flag for compatibility but no longer
+    # influences the envy metrics: real ATFD/FDP are scope-free (see
+    # feature_envy_counts_by_scope). Only WOC still resolves across files.
     inherit_index, _ = _index_for_scope(records, "corpus")
 
     status_counts = Counter()
 
-    for record, envy_summary, file_summary in zip(records, envy_summaries, file_summaries):
+    for record in records:
         base = record["base"]
+        envy = envy_from_summary(record["summary"])
 
-        previous = {
-            **base,
-            **body_scoped_woc(record["summary"]),
-            **envy_from_summary(file_summary, file_index),
-        }
+        previous = {**base, **body_scoped_woc(record["summary"]), **envy}
         record["previous_label"], _ = label_for(previous)
 
         woc = woc_from_summary(
@@ -311,7 +319,7 @@ def label_records(records: list[dict], envy_scope: str) -> dict:
         )
         status_counts[woc.pop("inheritance_status")] += 1
 
-        current = {**base, **woc, **envy_from_summary(envy_summary, envy_index)}
+        current = {**base, **woc, **envy}
         label, matched = label_for(current)
 
         record["derived"] = current

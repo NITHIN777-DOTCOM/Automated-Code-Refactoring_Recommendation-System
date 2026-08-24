@@ -40,7 +40,13 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_recall_fscore_support
 
 from engine.ml.bundle import REAL_MODEL_PATH, load_bundle
-from engine.ml.features import ENCODER_PATH, FEATURE_COLUMNS, SCALER_PATH, transform_features
+from engine.ml.features import (
+    ENCODER_PATH,
+    FEATURE_COLUMNS,
+    SCALER_PATH,
+    columns_for,
+    transform_features,
+)
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_HERE))
@@ -179,7 +185,10 @@ def evaluate_synthetic(test_df: pd.DataFrame, class_names: list[str]) -> ModelSc
     scaler = joblib.load(SCALER_PATH)
     encoder = joblib.load(ENCODER_PATH)
 
-    X = transform_features(test_df, scaler)
+    # The shipped model predates real ATFD/FDP and was fitted on the
+    # original eight columns; it must keep being scored on exactly those,
+    # whatever extra columns the corpus has grown since.
+    X = transform_features(test_df, scaler, FEATURE_COLUMNS)
     predicted = encoder.inverse_transform(model.predict(X))
 
     return _score(
@@ -197,7 +206,10 @@ def evaluate_real(test_df: pd.DataFrame, class_names: list[str],
     """The retrained model, applied with the scaler stored in its own bundle."""
     bundle = load_bundle(bundle_path)
 
-    X = transform_features(test_df, bundle.scaler)
+    # Whatever this bundle was actually fitted on -- 8 columns for a model
+    # trained before C.2, 11 for one trained after.
+    real_columns = list(bundle.metadata.get("features") or FEATURE_COLUMNS)
+    X = transform_features(test_df, bundle.scaler, real_columns)
     predicted = bundle.label_encoder.inverse_transform(bundle.model.predict(X))
 
     metadata = bundle.metadata
@@ -228,5 +240,6 @@ def compare(dataset_path: str = REAL_DATASET_PATH,
         "test_size": len(test_df),
         "synthetic": evaluate_synthetic(test_df, class_names),
         "real": evaluate_real(test_df, class_names, bundle_path),
-        "feature_columns": list(FEATURE_COLUMNS),
+        "feature_columns": columns_for(test_df),
+        "synthetic_feature_columns": list(FEATURE_COLUMNS),
     }

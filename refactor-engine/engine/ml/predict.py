@@ -35,17 +35,34 @@ MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "smell_cla
 
 @lru_cache(maxsize=4)
 def _load_spec(spec: str):
-    """Load one resolved model spec. Cached per spec, so a comparison run that
-    alternates between two models still pays each load only once."""
+    """Load one resolved model spec as (model, scaler, encoder, columns).
+
+    `columns` is the feature list the model was FITTED on, read from bundle
+    metadata. A model is only meaningful under its own column list, and the
+    two now differ: the shipped synthetic model predates real ATFD/FDP and
+    takes the original 8, while a model retrained on the re-labelled corpus
+    takes 11. Feeding either one the other's matrix would not raise -- it
+    would silently score a model that never existed -- so the columns travel
+    with the artifacts rather than being read from a module-level constant.
+    """
     if spec != "synthetic":
-        return load_bundle(spec).as_artifacts()
+        bundle = load_bundle(spec)
+        model, scaler, encoder = bundle.as_artifacts()
+        return model, scaler, encoder, tuple(
+            bundle.metadata.get("features") or FEATURE_COLUMNS
+        )
 
     for path in (MODEL_PATH, SCALER_PATH, ENCODER_PATH):
         if not os.path.exists(path):
             raise FileNotFoundError(
                 f"Missing model artifact: {path}. Run `python -m engine.ml.train` first."
             )
-    return joblib.load(MODEL_PATH), joblib.load(SCALER_PATH), joblib.load(ENCODER_PATH)
+    return (
+        joblib.load(MODEL_PATH),
+        joblib.load(SCALER_PATH),
+        joblib.load(ENCODER_PATH),
+        tuple(FEATURE_COLUMNS),
+    )
 
 
 def _load_artifacts(model: str | None = None):
@@ -81,14 +98,21 @@ def flatten_metrics(metrics_dict: dict) -> dict:
         "dit": metrics_dict.get("depth_of_inheritance", metrics_dict.get("dit", 0)),
         "fan_in": metrics_dict.get("fan_in", 0),
         "fan_out": metrics_dict.get("fan_out", 0),
+        # Real ATFD/FDP. compute_all_metrics() supplies these directly; the
+        # defaults cover a caller passing a hand-built metrics dict from
+        # before they existed, where "no foreign access measured" is the
+        # honest reading.
+        "atfd": metrics_dict.get("atfd", 0),
+        "fdp": metrics_dict.get("fdp", 0),
+        "fdp_concentration": metrics_dict.get("fdp_concentration", 0.0),
     }
 
 
 def predict_smell(metrics_dict: dict, model_choice: str | None = None) -> str:
-    model, scaler, label_encoder = _load_artifacts(model_choice)
+    model, scaler, label_encoder, columns = _load_artifacts(model_choice)
 
     features = flatten_metrics(metrics_dict)
-    row = np.array([[features[col] for col in FEATURE_COLUMNS]], dtype=float)
+    row = np.array([[features[col] for col in columns]], dtype=float)
     scaled = scaler.transform(row)
 
     prediction = model.predict(scaled)
@@ -100,10 +124,10 @@ def predict_smell_with_confidence(
 ) -> tuple[str, float]:
     """Same as predict_smell(), but also returns the model's probability for
     the winning class -- useful when triaging borderline real-world classes."""
-    model, scaler, label_encoder = _load_artifacts(model_choice)
+    model, scaler, label_encoder, columns = _load_artifacts(model_choice)
 
     features = flatten_metrics(metrics_dict)
-    row = np.array([[features[col] for col in FEATURE_COLUMNS]], dtype=float)
+    row = np.array([[features[col] for col in columns]], dtype=float)
     scaled = scaler.transform(row)
 
     probabilities = model.predict_proba(scaled)[0]

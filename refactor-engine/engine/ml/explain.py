@@ -29,7 +29,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from engine.ml.features import FEATURE_COLUMNS
+from engine.ml.features import FEATURE_COLUMNS  # noqa: F401  (re-exported for callers)
 
 # Same-package internals: the artifacts are lru_cached in predict.py and
 # re-loading them here would double the memory for no benefit.
@@ -53,12 +53,12 @@ def training_means() -> dict[str, float]:
     value" quoted in an explanation can never drift away from the numbers the
     shipped model was actually fitted on.
     """
-    _, scaler, _ = _load_artifacts()
-    return {col: float(mean) for col, mean in zip(FEATURE_COLUMNS, scaler.mean_)}
+    _, scaler, _, columns = _load_artifacts()
+    return {col: float(mean) for col, mean in zip(columns, scaler.mean_)}
 
 
-def _z_scores(scaled_row: np.ndarray) -> dict[str, float]:
-    return {col: float(scaled_row[0, i]) for i, col in enumerate(FEATURE_COLUMNS)}
+def _z_scores(scaled_row: np.ndarray, columns) -> dict[str, float]:
+    return {col: float(scaled_row[0, i]) for i, col in enumerate(columns)}
 
 
 def explain_prediction(metrics_dict: dict) -> dict:
@@ -85,10 +85,12 @@ def explain_prediction(metrics_dict: dict) -> dict:
           ],                          # ranked, strongest support first
         }
     """
-    model, scaler, label_encoder = _load_artifacts()
+    # Columns come from the selected model, not a module constant: the
+    # explanation must describe the features the model actually used.
+    model, scaler, label_encoder, columns = _load_artifacts()
 
     features = flatten_metrics(metrics_dict)
-    row = np.array([[features[col] for col in FEATURE_COLUMNS]], dtype=float)
+    row = np.array([[features[col] for col in columns]], dtype=float)
     scaled = scaler.transform(row)
 
     probabilities = model.predict_proba(scaled)[0]
@@ -96,11 +98,11 @@ def explain_prediction(metrics_dict: dict) -> dict:
     base_probability = float(probabilities[best])
 
     means = training_means()
-    z_scores = _z_scores(scaled)
+    z_scores = _z_scores(scaled, columns)
     importances = model.feature_importances_
 
     contributions = []
-    for i, col in enumerate(FEATURE_COLUMNS):
+    for i, col in enumerate(columns):
         neutralised = scaled.copy()
         neutralised[0, i] = NEUTRAL_SCALED_VALUE
         without = float(model.predict_proba(neutralised)[0][best])

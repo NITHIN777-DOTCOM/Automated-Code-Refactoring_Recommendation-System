@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+from collections import Counter
 
 from engine.models import ClassInfo, MethodInfo, MetricResult
 
@@ -149,6 +150,115 @@ def fan_in(cls: ClassInfo, all_classes: list[ClassInfo]) -> int:
     return len(callers)
 
 
+# ---------------------------------------------------------------------------
+# Real ATFD / FDP (Lanza & Marinescu)
+#
+# These replace the old fan_out-derived "ATFD proxy". fan_out survives as its
+# own metric -- it answers "how many other classes does this one call into",
+# which is a useful coupling number in its own right -- but it is no longer
+# presented as a stand-in for access-to-foreign-data, because a real one now
+# exists: engine/parser.py records every non-self `x.attr` read, which the
+# proxy never had access to.
+#
+# STAGE 1: name-based. Providers are grouped by the literal receiver variable
+# name, with no type inference. See MethodInfo.foreign_accesses.
+# ---------------------------------------------------------------------------
+
+
+def _is_dunder(name: str) -> bool:
+    return name.startswith("__") and name.endswith("__")
+
+
+def foreign_accesses(cls: ClassInfo) -> list[tuple[str, str]]:
+    """This class's (receiver, attribute) foreign reads, after exclusions.
+
+    Excluded, each for a reason that is about inheritance or plumbing rather
+    than envy:
+
+      * dunder attributes -- protocol machinery, not another class's data.
+      * a receiver that is one of our own base class NAMES, e.g.
+        `BaseOAuth2.setting(...)`: that is an explicit super-call, and
+        reaching into the class you inherit from is what inheritance is for.
+
+    Note what is NOT excluded any more. The old proxy had to drop any call
+    whose name matched one of our own methods, because it only saw a bare
+    call name and could not tell `self.save()` from `other.save()`. Receivers
+    are known here, so `other.save()` is correctly counted as foreign even
+    when this class also defines `save`.
+    """
+    base_names = set(cls.base_classes)
+    return [
+        (receiver, attribute)
+        for method in cls.methods
+        for receiver, attribute in method.foreign_accesses
+        if not _is_dunder(attribute) and receiver not in base_names
+    ]
+
+
+def atfd(cls: ClassInfo) -> int:
+    """Access To Foreign Data: distinct (provider, attribute) pairs reached.
+
+    Pairs rather than bare attribute names, so a class that reads `.name` off
+    three different providers scores 3 -- it is touching three separate pieces
+    of foreign data, which is what the metric is meant to capture.
+    """
+    return len(set(foreign_accesses(cls)))
+
+
+def foreign_data_providers(cls: ClassInfo) -> Counter:
+    """How many distinct attributes this class reads off each provider."""
+    per_provider: dict[str, set[str]] = {}
+    for receiver, attribute in foreign_accesses(cls):
+        per_provider.setdefault(receiver, set()).add(attribute)
+    return Counter({receiver: len(attrs) for receiver, attrs in per_provider.items()})
+
+
+def fdp(cls: ClassInfo) -> int:
+    """Foreign Data Providers: how many distinct providers the reads land on.
+
+    Lanza & Marinescu use FDP <= FEW to separate real Feature Envy -- a class
+    fixated on ONE neighbour, which Move Method can fix -- from a class that
+    touches a little of everything, which is a dispersed-coupling problem
+    needing entirely different advice.
+    """
+    return len(foreign_data_providers(cls))
+
+
+def fdp_concentration(cls: ClassInfo) -> float:
+    """Share of foreign reads landing on the single most-read provider.
+
+    1.0 = every foreign read goes to one provider (textbook envy); near 0 =
+    scattered across many. Returns 0.0 when there is no foreign access at
+    all, which is a "no concentration to speak of" sentinel rather than a
+    measurement -- read it together with atfd, never alone.
+    """
+    providers = foreign_data_providers(cls)
+    total = sum(providers.values())
+    if not total:
+        return 0.0
+    return providers.most_common(1)[0][1] / total
+
+
+def envy_metrics_for(cls: ClassInfo) -> dict:
+    """The real ATFD/FDP/LAA triple for one class.
+
+    LAA is own-attribute reads over own-plus-foreign. It is closer to the
+    published metric than the old proxy was -- the foreign half is now a real
+    foreign-data count rather than resolved call names -- but it is still
+    aggregated across the whole class where Lanza & Marinescu define it per
+    method, so it stays flagged as an approximation.
+    """
+    own = sum(len(m.fields_accessed) for m in cls.methods)
+    foreign = atfd(cls)
+    total = own + foreign
+    return {
+        "atfd": foreign,
+        "fdp": fdp(cls),
+        "fdp_concentration": round(fdp_concentration(cls), 4),
+        "laa": (own / total) if total else 1.0,
+    }
+
+
 def depth_of_inheritance(cls: ClassInfo, all_classes: list[ClassInfo]) -> int:
     class_map = {c.name: c for c in all_classes}
     depth = 0
@@ -201,6 +311,12 @@ def compute_all_metrics(classes: list[ClassInfo]) -> dict:
             "fan_out": fan_out(cls, classes),
             "depth_of_inheritance": depth_of_inheritance(cls, classes),
             "methods": method_metrics,
+            # Real ATFD/FDP. Unlike cbo/fan_in/fan_out these need no
+            # `classes` scope at all: a foreign attribute read is visible in
+            # the class's own AST, which is precisely why it does not suffer
+            # the scope sensitivity that made the old proxy swing 4 -> 405
+            # between file and corpus scope.
+            **envy_metrics_for(cls),
         }
         results[cls.name] = entry
         results[id(cls)] = entry

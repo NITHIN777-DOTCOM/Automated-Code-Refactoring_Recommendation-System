@@ -8,20 +8,25 @@ installed `refactor-scan` command.
 
 from __future__ import annotations
 
+import json
 import os
 import sys
 
 import rich_click as click
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 
 from engine.cli.html_report import write_report
 from engine.cli.render import (
     console,
     print_analyze_report,
     print_banner,
+    print_evaluation_report,
     print_model_explanation,
     print_smell_explanation,
     print_why_summary,
 )
+from engine.evaluate.git_mining import MAX_SCAN_LIMIT_CEILING
+from engine.evaluate.refactor_eval import evaluate as run_evaluation
 from engine.ml.bundle import MODEL_ENV_VAR, describe_model
 from engine.parser import DEFAULT_EXCLUDED_DIRS, is_excluded_dir
 from engine.pipeline import analyze_path
@@ -45,7 +50,7 @@ click.rich_click.STYLE_COMMAND = "bold magenta"
 click.rich_click.STYLE_HELPTEXT_FIRST_LINE = "bold"
 click.rich_click.COMMAND_GROUPS = {
     "refactor-scan": [
-        {"name": "Commands", "commands": ["analyze", "why", "explain"]},
+        {"name": "Commands", "commands": ["analyze", "why", "explain", "evaluate"]},
     ]
 }
 
@@ -213,6 +218,120 @@ def explain(smell_name, model):
     if not smell_name:
         raise click.UsageError('Provide a smell name (e.g. explain "God Class") or use --model.')
     print_smell_explanation(smell_name)
+
+
+@cli.command()
+@click.argument(
+    "repo", required=False, type=click.Path(exists=False, file_okay=False, dir_okay=True)
+)
+@click.option(
+    "--history-dir", default=os.path.join("data", "refactor_history"), metavar="DIR",
+    help="Where mined before/after pairs live. Default: data/refactor_history.",
+)
+@click.option(
+    "--format", "output_format", type=click.Choice(["console", "json"]), default="console",
+    help="Output format.",
+)
+@click.option("--output", default="evaluation.json", help="Report path (--format json only).")
+@click.option(
+    "--remine", is_flag=True,
+    help="Re-mine REPO even if it has already been mined into --history-dir.",
+)
+@click.option(
+    "--max-commits", "scan_limit", type=int, default=400, metavar="N",
+    help="How many commits back (from HEAD) to scan when mining a repo (mining only). "
+         f"Capped at {MAX_SCAN_LIMIT_CEILING} regardless of what's passed. This is the "
+         "ONLY commit-count knob -- distinct from --max-candidates below, which caps how "
+         "many matches to KEEP, not how far back to look.",
+)
+@click.option(
+    "--max-candidates", type=int, default=40,
+    help="Cap on refactoring candidates extracted per repo (mining only). Not the same "
+         "knob as --max-commits: this limits how many MATCHES are kept once found.",
+)
+@click.option(
+    "--no-commits", is_flag=True,
+    help="Console output: show only the aggregate summary, not the per-commit table.",
+)
+@click.option(
+    "--no-progress", is_flag=True,
+    help="Suppress the progress bar shown while mining a large, not-yet-mined repo.",
+)
+@_MODEL_OPTION
+def evaluate(
+    repo, history_dir, output_format, output, remine, scan_limit, max_candidates,
+    no_commits, no_progress, model_choice,
+):
+    """Check the detector against real refactoring history.
+
+    Runs the analysis over the BEFORE state of each mined refactoring commit
+    and reports how often we independently flagged the class the developers
+    then went on to restructure.
+
+    REPO may be a path to a git repository (mined first if not already), or
+    the name of a repository already mined into --history-dir. Omit it to
+    evaluate every repository already mined there.
+
+    Note the hit rate is a LOWER BOUND, not a recall figure: being refactored
+    is not the same as being smelly.
+    """
+    _activate_model(model_choice)
+
+    on_progress = None
+    progress_ctx = None
+    if not no_progress:
+        # Only mining is slow (one or more `git show` calls per commit); a
+        # repo that's already mined just reads its manifest and analyzes the
+        # before-states, so this bar only ever appears when there's actually
+        # something to wait for -- evaluate() never calls on_progress
+        # otherwise (see its docstring).
+        progress_ctx = Progress(
+            SpinnerColumn(),
+            TextColumn("[bold]{task.description}"),
+            BarColumn(),
+            TextColumn("{task.completed}/{task.total} commits"),
+            TextColumn("[green]{task.fields[found]} candidate(s) found[/green]"),
+            console=console,
+            transient=True,
+        )
+        task_id = None
+
+        def on_progress(walked, total, found):  # noqa: F811 -- intentional shadow
+            nonlocal task_id
+            if task_id is None:
+                task_id = progress_ctx.add_task("Mining commit history", total=total, found=found)
+            progress_ctx.update(task_id, completed=walked, found=found)
+
+    try:
+        if progress_ctx is not None:
+            with progress_ctx:
+                results = run_evaluation(
+                    repo, history_dir, remine=remine,
+                    scan_limit=scan_limit, max_candidates=max_candidates,
+                    on_progress=on_progress,
+                )
+        else:
+            results = run_evaluation(
+                repo, history_dir, remine=remine,
+                scan_limit=scan_limit, max_candidates=max_candidates,
+            )
+    except (ValueError, FileNotFoundError) as exc:
+        raise click.UsageError(str(exc)) from exc
+
+    if output_format == "json":
+        with open(output, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2)
+        overall = results["overall"]
+        console.print(
+            f"[bold]Evaluated[/bold] {overall['commits_evaluated']} refactoring commits "
+            f"across {len(results['repos'])} repo(s)"
+        )
+        console.print(f"[bold green]Report written to[/bold green] {output}")
+        for note in results.get("notes", []):
+            console.print(f"[yellow]Note:[/yellow] {note}")
+        console.print(f"[yellow]{results['caveat']}[/yellow]")
+    else:
+        print_evaluation_report(results, show_commits=not no_commits)
 
 
 def main():

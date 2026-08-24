@@ -49,6 +49,7 @@ from engine.ml.features import (
     ENCODER_PATH,
     FEATURE_COLUMNS,
     SCALER_PATH,
+    columns_for,
     fit_label_encoder,
     fit_scaler,
     transform_features,
@@ -102,14 +103,14 @@ def _print_feature_importances(model, feature_names):
         print(f"  {rank}. {feature_names[idx]:<28} {importances[idx]:.4f}  {bar}")
 
 
-def _print_per_class_feature_means(df):
+def _print_per_class_feature_means(df, columns):
     """Raw (unscaled) per-class means, so feature importances can be sanity
     checked against which metric actually separates which smell."""
-    grouped = df.groupby("label")[FEATURE_COLUMNS].mean()
+    grouped = df.groupby("label")[columns].mean()
     col_width = 13
-    print("  " + "label".ljust(14) + "".join(c[:12].rjust(col_width) for c in FEATURE_COLUMNS))
+    print("  " + "label".ljust(14) + "".join(c[:12].rjust(col_width) for c in columns))
     for label, row in grouped.iterrows():
-        print("  " + label.ljust(14) + "".join(f"{row[c]:>{col_width}.2f}" for c in FEATURE_COLUMNS))
+        print("  " + label.ljust(14) + "".join(f"{row[c]:>{col_width}.2f}" for c in columns))
 
 
 def _parse_args(argv=None):
@@ -181,7 +182,12 @@ def main(argv=None):
     dataset_path = os.path.abspath(args.dataset)
     df = pd.read_csv(dataset_path)
     labels = df["label"].values
-    feature_names = FEATURE_COLUMNS
+    # Which feature list this dataset supports. A re-labelled corpus carrying
+    # the real ATFD/FDP columns trains an 11-feature model; an older CSV
+    # without them still trains the original 8-feature shape. The choice is
+    # recorded in the bundle so inference feeds the model what it was fitted
+    # on -- see engine/ml/features.py.
+    feature_names = columns_for(df)
 
     # The label space is fixed across the whole dataset (see fit_label_encoder).
     label_encoder = fit_label_encoder(labels)
@@ -197,8 +203,8 @@ def main(argv=None):
 
     # Split BEFORE fitting the scaler, so held-out rows contribute nothing to
     # the means and standard deviations the model is trained under.
-    X_train, scaler = fit_scaler(df[is_train])
-    X_test = transform_features(df[is_test], scaler)
+    X_train, scaler = fit_scaler(df[is_train], feature_names)
+    X_test = transform_features(df[is_test], scaler, feature_names)
     y_train, y_test = y[is_train], y[is_test]
     labels_train, labels_test = labels[is_train], labels[is_test]
 
@@ -260,7 +266,7 @@ def main(argv=None):
     _print_feature_importances(model, feature_names)
     print()
     print("Per-class raw feature means (for sanity-checking the above):")
-    _print_per_class_feature_means(df)
+    _print_per_class_feature_means(df, feature_names)
 
     print()
     if args.output:

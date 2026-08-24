@@ -55,10 +55,135 @@ def iter_python_files(repo_path: str, exclude: list[str] | None = None):
                 yield os.path.join(root, filename)
 
 
-def _extract_calls_and_fields(node: ast.AST, self_name: str | None) -> tuple[list[str], list[str]]:
+# Builtin container/scalar types. A receiver known to hold one of these is
+# doing ordinary Python -- dict.get(), str.format(), list.append() -- not
+# reaching into another CLASS's data, so it must not count toward ATFD.
+_BUILTIN_TYPE_NAMES = frozenset(
+    {"dict", "list", "set", "tuple", "str", "int", "float", "bool", "bytes",
+     "frozenset", "complex", "bytearray"}
+)
+
+# Annotation wrappers that are transparent for this purpose: Optional[dict]
+# and Union[dict, None] both describe a dict.
+_TRANSPARENT_ANNOTATIONS = frozenset({"Optional", "Union"})
+
+
+def _annotation_is_builtin(annotation: ast.AST | None) -> bool:
+    """True when a type annotation names a builtin container/scalar type."""
+    if annotation is None:
+        return False
+    if isinstance(annotation, ast.Name):
+        return annotation.id in _BUILTIN_TYPE_NAMES
+    if isinstance(annotation, ast.Subscript):
+        # dict[str, str] -> check `dict`; Optional[dict] -> check inside.
+        if (
+            isinstance(annotation.value, ast.Name)
+            and annotation.value.id in _TRANSPARENT_ANNOTATIONS
+        ):
+            inner = annotation.slice
+            elements = inner.elts if isinstance(inner, ast.Tuple) else [inner]
+            return any(_annotation_is_builtin(e) for e in elements)
+        return _annotation_is_builtin(annotation.value)
+    if isinstance(annotation, ast.BinOp) and isinstance(annotation.op, ast.BitOr):
+        # PEP 604: `dict | None`
+        return _annotation_is_builtin(annotation.left) or _annotation_is_builtin(
+            annotation.right
+        )
+    if isinstance(annotation, ast.Constant) and isinstance(annotation.value, str):
+        # Stringised annotation, e.g. "dict[str, str]".
+        return annotation.value.split("[")[0].strip() in _BUILTIN_TYPE_NAMES
+    return False
+
+
+def _value_is_builtin_literal(value: ast.AST) -> bool:
+    """True when an assigned expression is obviously a builtin instance."""
+    if isinstance(
+        value,
+        (ast.Dict, ast.List, ast.Set, ast.Tuple, ast.DictComp, ast.ListComp,
+         ast.SetComp, ast.JoinedStr),
+    ):
+        return True
+    if isinstance(value, ast.Constant) and isinstance(
+        value.value, (str, bytes, int, float, bool, complex)
+    ):
+        return True
+    if (
+        isinstance(value, ast.Call)
+        and isinstance(value.func, ast.Name)
+        and value.func.id in _BUILTIN_TYPE_NAMES
+    ):
+        return True
+    return False
+
+
+def _builtin_typed_names(func_node: ast.AST) -> set[str]:
+    """Local names in a function that demonstrably hold a builtin.
+
+    STAGE 1 HEURISTIC, deliberately incomplete. It recognises three signals:
+    a builtin type annotation on a parameter or an annotated assignment, an
+    assignment from a builtin literal or constructor, and a loop variable
+    iterating a builtin literal. It does NOT recognise an unannotated
+    parameter that happens to receive a dict, or a local assigned the result
+    of a call that returns one -- catching those needs the type inference
+    that stage 2 is for. Anything it misses is counted as foreign, so the
+    error direction is a slightly INFLATED ATFD, never a suppressed one.
+    """
+    names: set[str] = set()
+
+    args = getattr(func_node, "args", None)
+    if args is not None:
+        every_arg = list(args.args) + list(getattr(args, "posonlyargs", []) or []) + list(
+            args.kwonlyargs
+        )
+        for extra in (args.vararg, args.kwarg):
+            if extra is not None:
+                every_arg.append(extra)
+        for arg in every_arg:
+            if _annotation_is_builtin(getattr(arg, "annotation", None)):
+                names.add(arg.arg)
+
+    for node in ast.walk(func_node):
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            if _annotation_is_builtin(node.annotation):
+                names.add(node.target.id)
+        elif isinstance(node, ast.Assign) and _value_is_builtin_literal(node.value):
+            for target in node.targets:
+                if isinstance(target, ast.Name):
+                    names.add(target.id)
+        elif isinstance(node, (ast.For, ast.AsyncFor)):
+            if isinstance(node.target, ast.Name) and _value_is_builtin_literal(node.iter):
+                names.add(node.target.id)
+
+    return names
+
+
+def _extract_calls_and_fields(
+    node: ast.AST, self_name: str | None, module_imports: frozenset[str] = frozenset()
+) -> tuple[list[str], list[str], list[tuple[str, str]]]:
+    """(calls_made, fields_accessed, foreign_accesses) for one function body.
+
+    `fields_accessed` is self-only and unchanged. `foreign_accesses` is new:
+    every `x.attr` or `x.attr()` where `x` is a plain name other than self,
+    as (receiver, attribute) pairs -- the raw material for real ATFD/FDP.
+    Previously these nodes were walked past and discarded entirely, which is
+    why the old ATFD had to be proxied from fan_out.
+
+    `module_imports` names bound by a plain `import x` statement. Those are
+    modules, not objects with data to envy, so `json.loads(...)` must not
+    count as reaching into foreign data. Names bound by `from x import Y` are
+    NOT excluded -- Y is as likely to be a class as a function, and a class
+    accessed directly is exactly what ATFD is about.
+
+    Receivers holding a BUILTIN are excluded too (see _builtin_typed_names).
+    ATFD is a statement about coupling to other CLASSES; `payload.get(key)`
+    on a dict parameter is ordinary Python and inflates the metric without
+    describing any relationship between two classes.
+    """
     calls = []
     fields = []
+    foreign: list[tuple[str, str]] = []
     call_func_ids = set()
+    builtin_names = _builtin_typed_names(node)
 
     for child in ast.walk(node):
         if isinstance(child, ast.Call):
@@ -70,14 +195,22 @@ def _extract_calls_and_fields(node: ast.AST, self_name: str | None) -> tuple[lis
                 calls.append(func.attr)
 
     for child in ast.walk(node):
-        if (
-            isinstance(child, ast.Attribute)
-            and isinstance(child.value, ast.Name)
-            and self_name is not None
-            and child.value.id == self_name
-            and id(child) not in call_func_ids
-        ):
-            fields.append(child.attr)
+        if not (isinstance(child, ast.Attribute) and isinstance(child.value, ast.Name)):
+            # A chained receiver (`a.b.c`) or a call result (`f().x`) has no
+            # single name to attribute the access to, so stage 1 skips it
+            # rather than guessing.
+            continue
+
+        receiver = child.value.id
+        if self_name is not None and receiver == self_name:
+            # Reading own state -- counted as a field, never as foreign data.
+            if id(child) not in call_func_ids:
+                fields.append(child.attr)
+            continue
+
+        if receiver in module_imports or receiver in builtin_names:
+            continue
+        foreign.append((receiver, child.attr))
 
     seen = set()
     unique_fields = []
@@ -86,7 +219,7 @@ def _extract_calls_and_fields(node: ast.AST, self_name: str | None) -> tuple[lis
             seen.add(name)
             unique_fields.append(name)
 
-    return calls, unique_fields
+    return calls, unique_fields, foreign
 
 
 def _self_param_name(func_node: ast.FunctionDef) -> str | None:
@@ -96,10 +229,14 @@ def _self_param_name(func_node: ast.FunctionDef) -> str | None:
     return None
 
 
-def _parse_method(func_node: ast.FunctionDef, class_name: str) -> MethodInfo:
+def _parse_method(
+    func_node: ast.FunctionDef, class_name: str, module_imports: frozenset[str] = frozenset()
+) -> MethodInfo:
     self_name = _self_param_name(func_node)
     params = [a.arg for a in func_node.args.args]
-    calls_made, fields_accessed = _extract_calls_and_fields(func_node, self_name)
+    calls_made, fields_accessed, foreign_accesses = _extract_calls_and_fields(
+        func_node, self_name, module_imports
+    )
 
     return MethodInfo(
         name=func_node.name,
@@ -110,6 +247,7 @@ def _parse_method(func_node: ast.FunctionDef, class_name: str) -> MethodInfo:
         body=func_node,
         calls_made=calls_made,
         fields_accessed=fields_accessed,
+        foreign_accesses=foreign_accesses,
     )
 
 
@@ -123,7 +261,28 @@ def _base_class_names(class_node: ast.ClassDef) -> list[str]:
     return names
 
 
-def _parse_class(class_node: ast.ClassDef, file_path: str, parent_class: str | None) -> ClassInfo:
+def _plain_import_names(tree: ast.Module) -> frozenset[str]:
+    """Names bound by a plain `import x` / `import x.y as z` at module level.
+
+    These are modules. `json.loads(...)` is not a class reaching into another
+    class's data, so excluding them keeps ATFD measuring what it claims to.
+    `from x import Y` is deliberately NOT included -- see
+    _extract_calls_and_fields.
+    """
+    names = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                names.add(alias.asname or alias.name.split(".")[0])
+    return frozenset(names)
+
+
+def _parse_class(
+    class_node: ast.ClassDef,
+    file_path: str,
+    parent_class: str | None,
+    module_imports: frozenset[str] = frozenset(),
+) -> ClassInfo:
     """Build a ClassInfo from class_node's OWN direct body only.
 
     A nested class living in class_node.body is a ClassDef, not a
@@ -137,7 +296,7 @@ def _parse_class(class_node: ast.ClassDef, file_path: str, parent_class: str | N
 
     for item in class_node.body:
         if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            method_info = _parse_method(item, class_node.name)
+            method_info = _parse_method(item, class_node.name, module_imports)
             methods.append(method_info)
             fields.update(method_info.fields_accessed)
 
@@ -191,11 +350,14 @@ def parse_file(filepath: str) -> list[ClassInfo]:
 
     tree = ast.parse(source, filename=filepath)
     enclosing = _enclosing_class_names(tree)
+    module_imports = _plain_import_names(tree)
     classes = []
 
     for node in ast.walk(tree):
         if isinstance(node, ast.ClassDef):
-            classes.append(_parse_class(node, filepath, enclosing.get(id(node))))
+            classes.append(
+                _parse_class(node, filepath, enclosing.get(id(node)), module_imports)
+            )
 
     return classes
 

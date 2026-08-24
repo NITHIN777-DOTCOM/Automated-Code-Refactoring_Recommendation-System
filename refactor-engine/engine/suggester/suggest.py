@@ -423,6 +423,114 @@ def _times(n: int) -> str:
     return "1 time" if n == 1 else f"{n} times"
 
 
+# ---------------------------------------------------------------------------
+# Receiver-based envy attribution (C.2)
+#
+# The call-name attribution above can only name a destination that exists in
+# the scanned path -- it resolves a bare call name against the other classes
+# it can see. That is why the pre-C.2 report on ORCIDOAuth2 could only say
+# "the envied class may live outside the scanned path".
+#
+# Real foreign accesses carry their RECEIVER, so envy can be attributed to
+# the specific object being read even when its class is nowhere in the scan.
+# Two outcomes, in order of usefulness:
+#   1. the receiver's attribute set matches exactly one visible class -> name
+#      the class, same as before but reachable in more cases;
+#   2. no class matches -> name the RECEIVER (a parameter or local), which
+#      still tells a reader precisely what the method is fixated on.
+# ---------------------------------------------------------------------------
+
+# Below this share of a method's foreign reads landing on one receiver, the
+# reads are scattered and no single destination is defensible.
+MIN_RECEIVER_CONCENTRATION = 0.6
+
+
+def _receiver_attribute_sets(method: MethodInfo) -> dict[str, set[str]]:
+    per_receiver: dict[str, set[str]] = {}
+    for receiver, attribute in method.foreign_accesses:
+        per_receiver.setdefault(receiver, set()).add(attribute)
+    return per_receiver
+
+
+def _resolve_receiver_class(attributes: set[str], cls: ClassInfo,
+                            all_classes: list[ClassInfo]) -> str | None:
+    """Name the class whose interface covers every attribute read off a receiver.
+
+    Exactly one match is required. Zero means the provider is not in the scan
+    (common, and handled by naming the receiver instead); more than one means
+    the attribute names are too generic to attribute safely, which is the
+    same ambiguity the call-name path already refuses to guess through.
+    """
+    if not attributes:
+        return None
+
+    matches = [
+        other.name
+        for other in all_classes
+        if other.name != cls.name
+        and attributes <= ({m.name for m in other.methods} | set(other.fields))
+    ]
+    return matches[0] if len(matches) == 1 else None
+
+
+def _receiver_based_suggestion(
+    method: MethodInfo, cls: ClassInfo, all_classes: list[ClassInfo]
+) -> dict | None:
+    """A move_method built from foreign attribute reads, or None."""
+    per_receiver = _receiver_attribute_sets(method)
+    if not per_receiver:
+        return None
+
+    counts = Counter({recv: len(attrs) for recv, attrs in per_receiver.items()})
+    total = sum(counts.values())
+    receiver, top_count = counts.most_common(1)[0]
+    concentration = top_count / total
+
+    if concentration < MIN_RECEIVER_CONCENTRATION:
+        return _no_clear_target_note(
+            cls,
+            method,
+            f"its {total} outside reads are spread across {len(counts)} different objects "
+            f"({int(round(concentration * 100))}% on the largest), so no single one owns them",
+            candidates=sorted(counts),
+        )
+
+    own_uses = _own_data_uses(method, cls)
+    if top_count <= own_uses:
+        return None
+    if top_count < MIN_EXTERNAL_REFS_FOR_MOVE:
+        return None
+
+    target_class = _resolve_receiver_class(per_receiver[receiver], cls, all_classes)
+    where = target_class or f"whatever '{receiver}' holds"
+
+    return {
+        "type": "move_method",
+        "source_class": cls.name,
+        "source_method": method.name,
+        "target_class": target_class,
+        "target_receiver": receiver,
+        "external_references": top_count,
+        "own_data_uses": own_uses,
+        "envy_ratio": round(top_count / own_uses, 2) if own_uses else None,
+        "concentration": round(concentration, 2),
+        "attributes_read": sorted(per_receiver[receiver]),
+        "rationale": (
+            f"Method '{method.name}' reads {top_count} distinct thing"
+            f"{'' if top_count == 1 else 's'} off '{receiver}' "
+            f"({int(round(concentration * 100))}% of everything it reads outside itself) "
+            f"but touches its own class's data {_times(own_uses)}. "
+            f"Consider moving '{method.name}' into {where}."
+            + (
+                ""
+                if target_class
+                else f" The class behind '{receiver}' is not in the scanned path, so it is "
+                "named by the variable rather than by class."
+            )
+        ),
+    }
+
+
 def _no_clear_target_note(cls: ClassInfo, method: MethodInfo, reason: str, candidates: list[str]) -> dict:
     return {
         "type": "no_clear_envy_target",
@@ -442,6 +550,12 @@ def _move_method_suggestion_for(
     counts, ambiguous = _attribute_external_calls(method, cls, all_classes)
 
     if not counts:
+        # Nothing resolved by call name. Real foreign accesses can still
+        # attribute the envy -- and this is exactly the case that used to
+        # produce "the envied class may live outside the scanned path".
+        by_receiver = _receiver_based_suggestion(method, cls, all_classes)
+        if by_receiver is not None:
+            return by_receiver
         if ambiguous:
             return _no_clear_target_note(
                 cls,

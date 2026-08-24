@@ -1,0 +1,613 @@
+{
+  "repo": "rich",
+  "repo_path": "C:\\Users\\Juju\\Desktop\\Automated_Code_Refactoring_System\\refactor-engine\\data\\real_world\\raw_sources\\git_repos\\rich",
+  "commits_scanned": 400,
+  "candidate_count": 16,
+  "candidates": [
+    {
+      "commit_hash": "0e952c3cb760168f9e9af626b9a8b2c4d8188f6a",
+      "message": "proxy isatty",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "rich/file_proxy.py",
+        "tests/test_file_proxy.py"
+      ],
+      "insertions": 20,
+      "deletions": 0,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/file_proxy.py",
+            "class": "FileProxy",
+            "methods_gained": 1,
+            "lines_before": 47,
+            "lines_after": 50
+          }
+        ]
+      },
+      "short_hash": "0e952c3cb760",
+      "file_pairs": [
+        {
+          "file": "rich/file_proxy.py",
+          "before_path": "rich/0e952c3cb760/before/rich/file_proxy.py",
+          "after_path": "rich/0e952c3cb760/after/rich/file_proxy.py"
+        },
+        {
+          "file": "tests/test_file_proxy.py",
+          "before_path": "rich/0e952c3cb760/before/tests/test_file_proxy.py",
+          "after_path": "rich/0e952c3cb760/after/tests/test_file_proxy.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "e5b7b3199fecb1f7d1fbc3d3d0df800fa6234830",
+      "message": "no need to rename locals",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "rename"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/console.py"
+      ],
+      "insertions": 3,
+      "deletions": 4,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "e5b7b3199fec",
+      "file_pairs": [
+        {
+          "file": "rich/console.py",
+          "before_path": "rich/e5b7b3199fec/before/rich/console.py",
+          "after_path": "rich/e5b7b3199fec/after/rich/console.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "38f9aacdf47c945a75a5e41a4a0ee37365e04457",
+      "message": "refactor: remove dead _svg_hash function",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "refactor"
+      ],
+      "signals": [],
+      "files_changed": [
+        "rich/console.py"
+      ],
+      "insertions": 0,
+      "deletions": 12,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "38f9aacdf47c",
+      "file_pairs": [
+        {
+          "file": "rich/console.py",
+          "before_path": "rich/38f9aacdf47c/before/rich/console.py",
+          "after_path": "rich/38f9aacdf47c/after/rich/console.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "54ae0cfbb8d43ccc8f56bf57019b9a22c252eefa",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/cells.py"
+      ],
+      "insertions": 1,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "54ae0cfbb8d4",
+      "file_pairs": [
+        {
+          "file": "rich/cells.py",
+          "before_path": "rich/54ae0cfbb8d4/before/rich/cells.py",
+          "after_path": "rich/54ae0cfbb8d4/after/rich/cells.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "9992173c74051e6f0b3e336775fea6feb5e56d33",
+      "message": "split lines terminator",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "rich/console.py",
+        "rich/segment.py"
+      ],
+      "insertions": 36,
+      "deletions": 2,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/segment.py",
+            "class": "Segment",
+            "methods_gained": 1,
+            "lines_before": 605,
+            "lines_after": 636
+          }
+        ]
+      },
+      "short_hash": "9992173c7405",
+      "file_pairs": [
+        {
+          "file": "rich/console.py",
+          "before_path": "rich/9992173c7405/before/rich/console.py",
+          "after_path": "rich/9992173c7405/after/rich/console.py"
+        },
+        {
+          "file": "rich/segment.py",
+          "before_path": "rich/9992173c7405/before/rich/segment.py",
+          "after_path": "rich/9992173c7405/after/rich/segment.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "b08e00fce2c8bd48a69953c15e2c624ac6cf0ab4",
+      "message": "empty live",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "rich/live.py",
+        "rich/live_render.py",
+        "tests/test_live.py"
+      ],
+      "insertions": 35,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/live_render.py",
+            "class": "LiveRender",
+            "methods_gained": 1,
+            "lines_before": 93,
+            "lines_after": 104
+          }
+        ]
+      },
+      "short_hash": "b08e00fce2c8",
+      "file_pairs": [
+        {
+          "file": "rich/live.py",
+          "before_path": "rich/b08e00fce2c8/before/rich/live.py",
+          "after_path": "rich/b08e00fce2c8/after/rich/live.py"
+        },
+        {
+          "file": "rich/live_render.py",
+          "before_path": "rich/b08e00fce2c8/before/rich/live_render.py",
+          "after_path": "rich/b08e00fce2c8/after/rich/live_render.py"
+        },
+        {
+          "file": "tests/test_live.py",
+          "before_path": "rich/b08e00fce2c8/before/tests/test_live.py",
+          "after_path": "rich/b08e00fce2c8/after/tests/test_live.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "5ffec68c91d460eff61105b736df4768234e40be",
+      "message": "split text",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "rich/_unicode_data/__init__.py",
+        "rich/cell_string.py"
+      ],
+      "insertions": 258,
+      "deletions": 66,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/cell_string.py",
+            "class": "CellString",
+            "methods_gained": 2,
+            "lines_before": 122,
+            "lines_after": 142
+          }
+        ]
+      },
+      "short_hash": "5ffec68c91d4",
+      "file_pairs": [
+        {
+          "file": "rich/_unicode_data/__init__.py",
+          "before_path": "rich/5ffec68c91d4/before/rich/_unicode_data/__init__.py",
+          "after_path": "rich/5ffec68c91d4/after/rich/_unicode_data/__init__.py"
+        },
+        {
+          "file": "rich/cell_string.py",
+          "before_path": "rich/5ffec68c91d4/before/rich/cell_string.py",
+          "after_path": "rich/5ffec68c91d4/after/rich/cell_string.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "d5f087045de2f4c7d4fc53b2ba813b014e9eb0d2",
+      "message": "padding property",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "rich/syntax.py"
+      ],
+      "insertions": 16,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/syntax.py",
+            "class": "Syntax",
+            "methods_gained": 2,
+            "lines_before": 593,
+            "lines_after": 606
+          }
+        ]
+      },
+      "short_hash": "d5f087045de2",
+      "file_pairs": [
+        {
+          "file": "rich/syntax.py",
+          "before_path": "rich/d5f087045de2/before/rich/syntax.py",
+          "after_path": "rich/d5f087045de2/after/rich/syntax.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "47da97e46a529905a170d609c38bd1380034583a",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/traceback.py"
+      ],
+      "insertions": 8,
+      "deletions": 11,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "47da97e46a52",
+      "file_pairs": [
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/47da97e46a52/before/rich/traceback.py",
+          "after_path": "rich/47da97e46a52/after/rich/traceback.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "e6557f5b6c6bd0a883c060fd103d330038fa6719",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/traceback.py"
+      ],
+      "insertions": 2,
+      "deletions": 2,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "e6557f5b6c6b",
+      "file_pairs": [
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/e6557f5b6c6b/before/rich/traceback.py",
+          "after_path": "rich/e6557f5b6c6b/after/rich/traceback.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "8cd99869914d1bef3cf1e3c76d81fc722c4ae2de",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [],
+      "files_changed": [
+        "rich/traceback.py"
+      ],
+      "insertions": 2,
+      "deletions": 12,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "8cd99869914d",
+      "file_pairs": [
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/8cd99869914d/before/rich/traceback.py",
+          "after_path": "rich/8cd99869914d/after/rich/traceback.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "43d07993d9cf1a78e52395a31fa1398e626a92d1",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [],
+      "files_changed": [
+        "rich/traceback.py"
+      ],
+      "insertions": 2,
+      "deletions": 5,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "43d07993d9cf",
+      "file_pairs": [
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/43d07993d9cf/before/rich/traceback.py",
+          "after_path": "rich/43d07993d9cf/after/rich/traceback.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "45b7cef96bea4f0b6aa0d38c6376cd2eb265bef8",
+      "message": "test fixes",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted",
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/_null_file.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/padding.py",
+        "rich/pretty.py",
+        "rich/progress.py",
+        "rich/segment.py"
+      ],
+      "insertions": 17,
+      "deletions": 14,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "rich/progress.py",
+            "class": "_Reader",
+            "methods_gained": 1,
+            "lines_before": 98,
+            "lines_after": 101
+          }
+        ]
+      },
+      "short_hash": "45b7cef96bea",
+      "file_pairs": [
+        {
+          "file": "rich/_null_file.py",
+          "before_path": "rich/45b7cef96bea/before/rich/_null_file.py",
+          "after_path": "rich/45b7cef96bea/after/rich/_null_file.py"
+        },
+        {
+          "file": "rich/console.py",
+          "before_path": "rich/45b7cef96bea/before/rich/console.py",
+          "after_path": "rich/45b7cef96bea/after/rich/console.py"
+        },
+        {
+          "file": "rich/jupyter.py",
+          "before_path": "rich/45b7cef96bea/before/rich/jupyter.py",
+          "after_path": "rich/45b7cef96bea/after/rich/jupyter.py"
+        },
+        {
+          "file": "rich/live.py",
+          "before_path": "rich/45b7cef96bea/before/rich/live.py",
+          "after_path": "rich/45b7cef96bea/after/rich/live.py"
+        },
+        {
+          "file": "rich/padding.py",
+          "before_path": "rich/45b7cef96bea/before/rich/padding.py",
+          "after_path": "rich/45b7cef96bea/after/rich/padding.py"
+        },
+        {
+          "file": "rich/pretty.py",
+          "before_path": "rich/45b7cef96bea/before/rich/pretty.py",
+          "after_path": "rich/45b7cef96bea/after/rich/pretty.py"
+        },
+        {
+          "file": "rich/progress.py",
+          "before_path": "rich/45b7cef96bea/before/rich/progress.py",
+          "after_path": "rich/45b7cef96bea/after/rich/progress.py"
+        },
+        {
+          "file": "rich/segment.py",
+          "before_path": "rich/45b7cef96bea/before/rich/segment.py",
+          "after_path": "rich/45b7cef96bea/after/rich/segment.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "3a6c86efc3da3ef4abaf1ad41b5f10f79b6abaeb",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/segment.py"
+      ],
+      "insertions": 1,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "3a6c86efc3da",
+      "file_pairs": [
+        {
+          "file": "rich/segment.py",
+          "before_path": "rich/3a6c86efc3da/before/rich/segment.py",
+          "after_path": "rich/3a6c86efc3da/after/rich/segment.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "e91e5a2bacd8b6e3d3b05e297921312ae33ef1a2",
+      "message": "simplify",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "simplify"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/traceback.py"
+      ],
+      "insertions": 21,
+      "deletions": 20,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "e91e5a2bacd8",
+      "file_pairs": [
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/e91e5a2bacd8/before/rich/traceback.py",
+          "after_path": "rich/e91e5a2bacd8/after/rich/traceback.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "0ff30d084d1ec5a4363409bb2027dfbcf9bc9b6b",
+      "message": "rename",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "rename"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "rich/syntax.py",
+        "rich/traceback.py"
+      ],
+      "insertions": 3,
+      "deletions": 3,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "0ff30d084d1e",
+      "file_pairs": [
+        {
+          "file": "rich/syntax.py",
+          "before_path": "rich/0ff30d084d1e/before/rich/syntax.py",
+          "after_path": "rich/0ff30d084d1e/after/rich/syntax.py"
+        },
+        {
+          "file": "rich/traceback.py",
+          "before_path": "rich/0ff30d084d1e/before/rich/traceback.py",
+          "after_path": "rich/0ff30d084d1e/after/rich/traceback.py"
+        }
+      ]
+    }
+  ]
+}

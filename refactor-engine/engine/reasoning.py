@@ -187,6 +187,71 @@ _METRIC_LANGUAGE = {
             f"Depth of inheritance {_fmt(v)}. Typical: {_fmt(t, 1)}."
         ),
     },
+    # Real ATFD/FDP (C.2). Distinct from fan_out above: fan_out counts how
+    # many other classes this one CALLS, these count the foreign DATA it
+    # reads and how many providers that data comes from.
+    "atfd": {
+        "plain_name": "How much of other objects' data it reads",
+        "what_it_is": (
+            "How many distinct pieces of data -- attributes or methods -- this class "
+            "reads off objects other than itself."
+        ),
+        "high": (
+            "This class spends a lot of its time working with data that belongs to "
+            "other objects rather than its own, which usually means the logic is "
+            "sitting in the wrong place."
+        ),
+        "typical": "It reaches into other objects' data about as much as most classes do.",
+        "low": "It mostly works with its own data rather than reading other objects'.",
+        "unused": lambda v: (
+            "It never reads data off another object."
+            if v == 0
+            else f"It reads {_fmt(v)} distinct piece{'' if v == 1 else 's'} of other objects' data."
+        ),
+        "detail": lambda v, t: (
+            f"ATFD {_fmt(v)} -- {_fmt(v)} distinct (object, attribute) read"
+            f"{'' if v == 1 else 's'} outside itself. Typical: {_fmt(t, 1)}."
+        ),
+    },
+    "fdp": {
+        "plain_name": "How many other objects it reads from",
+        "what_it_is": "How many separate objects the foreign data it reads comes from.",
+        "high": (
+            "Its outside reads are spread across many different objects, which is "
+            "scattered coupling rather than one misplaced method."
+        ),
+        "typical": "It reads from a handful of other objects.",
+        "low": (
+            "Its outside reads land on very few objects -- if it reads a lot, that "
+            "concentration is what makes a method worth moving."
+        ),
+        "unused": lambda v: (
+            "It doesn't read from any other object."
+            if v == 0
+            else f"Its outside reads come from {_fmt(v)} object{'' if v == 1 else 's'}."
+        ),
+        "detail": lambda v, t: (
+            f"FDP {_fmt(v)} distinct provider{'' if v == 1 else 's'}. Typical: {_fmt(t, 1)}."
+        ),
+    },
+    "fdp_concentration": {
+        "plain_name": "How focused its outside reads are",
+        "what_it_is": (
+            "What share of the outside data it reads comes from the single object it "
+            "reads from most. 1.0 means everything comes from one place."
+        ),
+        "high": (
+            "Nearly all of its outside reads go to one object -- the clearest sign "
+            "that a method belongs on that object instead."
+        ),
+        "typical": "Its outside reads are split across a few objects.",
+        "low": "Its outside reads are spread thinly, with no single dominant source.",
+        "unused": lambda v: "It has no outside reads to concentrate.",
+        "detail": lambda v, t: (
+            f"{_fmt(v * 100, 0)}% of its outside reads land on one object. "
+            f"Typical: {_fmt(t * 100, 0)}%."
+        ),
+    },
 }
 
 _UNUSED_FEATURE_NOTE = (

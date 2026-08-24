@@ -83,10 +83,24 @@ def test_rule_of_thumb_values_are_not_attributed_to_a_paper():
 
 
 def test_proxy_metrics_are_flagged_and_explained():
-    for key in ("atfd_high", "laa_low"):
+    """LAA is still an approximation (aggregated per class, not per method)."""
+    threshold = THRESHOLDS["laa_low"]
+    assert threshold.is_proxy
+    assert threshold.mapping_note, "laa_low is a proxy but explains nothing"
+
+
+def test_atfd_and_fdp_are_no_longer_proxies():
+    """Regression guard for C.2: ATFD used to be proxied by fan_out and FDP
+    was dropped from the rule entirely. Both are measured directly now, so
+    neither may claim proxy status -- while still documenting the stage-1
+    receiver-name limitation."""
+    for key in ("atfd_high", "fdp_few"):
         threshold = THRESHOLDS[key]
-        assert threshold.is_proxy
-        assert threshold.mapping_note, f"{key} is a proxy but explains nothing"
+        assert not threshold.is_proxy, f"{key} should be a real metric now"
+        assert threshold.mapping_note, f"{key} must still document its limitations"
+        # The published cutoff is now applied to the metric it was written
+        # for, rather than to a stand-in with a different meaning.
+        assert threshold.metric in ("atfd", "fdp")
 
 
 # ---------------------------------------------------------------------------
@@ -226,7 +240,7 @@ def test_sibling_exception_classes_do_not_read_as_feature_envy():
     cls = next(c for c in classes if c.name == "Err3")
 
     envy = envy_metrics(cls, classes)
-    assert envy["atfd_proxy"] <= 5
+    assert envy["atfd"] <= 5
     assert label_for(derive_metrics(metrics["Err3"], cls, classes))[0] != "Feature Envy"
 
 
@@ -245,7 +259,7 @@ def test_self_calls_do_not_count_as_foreign():
     )
     classes = _classes_from_source(source)
     cls = next(c for c in classes if c.name == "A")
-    assert envy_metrics(cls, classes)["atfd_proxy"] == 0
+    assert envy_metrics(cls, classes)["atfd"] == 0
 
 
 def test_genuine_envy_is_still_detected():
@@ -266,7 +280,7 @@ def test_genuine_envy_is_still_detected():
     classes = _classes_from_source(provider + envier)
     cls = next(c for c in classes if c.name == "Envier")
     envy = envy_metrics(cls, classes)
-    assert envy["atfd_proxy"] > 5
+    assert envy["atfd"] > 5
     assert envy["laa"] < 1 / 3
 
 
@@ -285,9 +299,11 @@ def test_test_paths_are_recognised_by_directory_and_filename():
     assert not is_test_path("contest/manager.py")
 
 
-def test_widening_scope_makes_cross_file_envy_visible():
-    """Fix 1: at file scope an envier and its provider in DIFFERENT files
-    cannot see each other, which is why the rule found almost nothing."""
+def test_real_atfd_is_scope_invariant():
+    """Real ATFD reads the class's OWN foreign attribute accesses, so unlike
+    the old fan_out proxy it cannot change with how many other classes are
+    visible. The proxy scored 0 for this envier at file scope and >5 at
+    corpus scope -- same source, different answer. Both must now agree."""
     provider_classes = _classes_from_source(
         "class Provider:\n"
         "    def __init__(self):\n"
@@ -303,20 +319,20 @@ def test_widening_scope_makes_cross_file_envy_visible():
     )
     envier = next(c for c in envier_classes if c.name == "Envier")
 
-    # File scope: the provider is invisible, so nothing resolves.
-    narrow = build_index([summarize_class(c, "envier_file") for c in envier_classes])
-    assert envy_from_summary(summarize_class(envier, "envier_file"), narrow)["atfd_proxy"] == 0
+    narrow = envy_from_summary(summarize_class(envier, "envier_file"))
+    wide = envy_from_summary(summarize_class(envier, "corpus"))
 
-    # Shared scope: the same calls now resolve to the provider.
-    wide = build_index(
-        [summarize_class(c, "corpus") for c in provider_classes + envier_classes]
-    )
-    assert envy_from_summary(summarize_class(envier, "corpus"), wide)["atfd_proxy"] > 5
+    assert narrow == wide
+    assert narrow["atfd"] > 5
+    # All eight reads land on the single parameter `p`.
+    assert narrow["fdp"] == 1
+    assert narrow["fdp_concentration"] == 1.0
 
 
-def test_atfd_counts_distinct_names_not_owner_pairs():
-    """Widening scope must not turn one call into +N ATFD just because N
-    unrelated projects define a method by that name."""
+def test_atfd_is_not_inflated_by_unrelated_classes_sharing_a_method_name():
+    """The proxy resolved a bare call name against every class in scope, so
+    30 unrelated classes defining `process` could each be counted. Real ATFD
+    counts one (receiver, attribute) pair regardless of who else exists."""
     crowd = []
     for i in range(30):
         crowd.extend(
@@ -327,9 +343,8 @@ def test_atfd_counts_distinct_names_not_owner_pairs():
     )
     cls = next(c for c in caller if c.name == "Caller")
 
-    index = build_index([summarize_class(c, "corpus") for c in crowd + caller])
-    # One distinct foreign name, not thirty owner pairs.
-    assert envy_from_summary(summarize_class(cls, "corpus"), index)["atfd_proxy"] == 1
+    build_index([summarize_class(c, "corpus") for c in crowd + caller])
+    assert envy_from_summary(summarize_class(cls, "corpus"))["atfd"] == 1
 
 
 def test_inherited_behaviour_lifts_woc_off_the_data_class_rule():
@@ -457,3 +472,116 @@ def test_unknown_smell_falls_back_to_core_benchmarks():
     derived = _derived(GOD_CLASS_SOURCE, "Big")
     benchmarks = benchmarks_for(derived, "Duplicate Code")
     assert {b.metric for b in benchmarks} == {"lcom", "wmc", "class_length", "max_method_cc"}
+
+
+# ---------------------------------------------------------------------------
+# Real ATFD / FDP (C.2) -- the three-way distinction the metric exists to make
+# ---------------------------------------------------------------------------
+
+# (a) Genuinely envious: many reads, all on ONE receiver.
+ENVIOUS_SOURCE = (
+    "class Order:\n"
+    "    def __init__(self):\n"
+    + "".join(f"        self.f{i} = {i}\n" for i in range(8))
+    + "".join(f"    def get_f{i}(self):\n        return self.f{i}\n" for i in range(8))
+    + "class ReportBuilder:\n"
+    "    def build(self, order):\n"
+    "        total = 0\n"
+    + "".join(f"        total += order.get_f{i}()\n" for i in range(8))
+    + "        return total\n"
+)
+
+# (b) Parameter-parsing, ORCIDOAuth2-shaped: every receiver is a builtin, so
+#     nothing counts as foreign data at all.
+BUILTIN_PARSER_SOURCE = (
+    "class PayloadParser:\n"
+    "    def parse(self, payload: dict, name: str):\n"
+    "        parts = []\n"
+    "        parts.append(payload.get('a'))\n"
+    "        parts.append(payload.get('b'))\n"
+    "        parts.append(payload.get('c'))\n"
+    "        parts.append(payload.get('d'))\n"
+    "        parts.append(payload.get('e'))\n"
+    "        parts.append(payload.get('f'))\n"
+    "        return name.strip().upper().title()\n"
+)
+
+# (c) Scattered: plenty of foreign reads, but spread thinly over many
+#     unrelated objects -- dispersed coupling, not envy.
+SCATTERED_SOURCE = (
+    "class Coordinator:\n"
+    "    def run(self, a, b, c, d, e, f, g, h):\n"
+    "        return (\n"
+    "            a.alpha() + b.bravo() + c.charlie() + d.delta()\n"
+    "            + e.echo() + f.foxtrot() + g.golf() + h.hotel()\n"
+    "        )\n"
+)
+
+
+def _envy(source, name):
+    classes = _classes_from_source(source)
+    cls = next(c for c in classes if c.name == name)
+    return cls, classes, envy_metrics(cls, classes)
+
+
+def test_genuinely_envious_class_is_detected_and_concentrated():
+    cls, classes, envy = _envy(ENVIOUS_SOURCE, "ReportBuilder")
+
+    assert envy["atfd"] == 8
+    assert envy["fdp"] == 1
+    assert envy["fdp_concentration"] == 1.0
+    assert envy["laa"] < 1 / 3
+
+    metrics = compute_all_metrics(classes)
+    assert label_for(derive_metrics(metrics[id(cls)], cls, classes))[0] == "Feature Envy"
+
+
+def test_builtin_receivers_do_not_count_as_foreign_data():
+    """The ORCIDOAuth2 shape: a class whose methods only pick apart dicts and
+    strings handed in as parameters is doing ordinary Python, not envying
+    another class. Before the builtin filter these reads inflated ATFD."""
+    cls, classes, envy = _envy(BUILTIN_PARSER_SOURCE, "PayloadParser")
+
+    assert envy["atfd"] == 0
+    assert envy["fdp"] == 0
+
+    metrics = compute_all_metrics(classes)
+    assert label_for(derive_metrics(metrics[id(cls)], cls, classes))[0] != "Feature Envy"
+
+
+def test_scattered_foreign_reads_are_not_feature_envy():
+    """High ATFD but spread across 8 providers. Lanza & Marinescu's FDP <= FEW
+    conjunct exists precisely to keep this out: there is no single class to
+    move a method into, so calling it Feature Envy would produce advice that
+    cannot be followed."""
+    cls, classes, envy = _envy(SCATTERED_SOURCE, "Coordinator")
+
+    assert envy["atfd"] == 8
+    assert envy["fdp"] == 8
+    assert envy["fdp_concentration"] < 0.2
+    assert not THRESHOLDS["fdp_few"].exceeded_by(envy["fdp"])
+
+    metrics = compute_all_metrics(classes)
+    assert label_for(derive_metrics(metrics[id(cls)], cls, classes))[0] != "Feature Envy"
+
+
+def test_suggester_names_the_envied_receiver_when_reads_concentrate():
+    """C.2's payoff for the report: concentrated foreign reads now yield a
+    named destination instead of 'the envied class may live outside the
+    scanned path'."""
+    from engine.suggester import suggest_method_moves
+
+    cls, classes, _ = _envy(ENVIOUS_SOURCE, "ReportBuilder")
+    moves = [s for s in suggest_method_moves(cls, classes) if s["type"] == "move_method"]
+
+    assert moves, "concentrated envy should produce a move_method suggestion"
+    assert moves[0]["target_class"] == "Order"
+
+
+def test_suggester_refuses_to_name_a_target_when_reads_are_scattered():
+    from engine.suggester import suggest_method_moves
+
+    cls, classes, _ = _envy(SCATTERED_SOURCE, "Coordinator")
+    named = [s for s in suggest_method_moves(cls, classes) if s["type"] == "move_method"]
+
+    assert not named, "scattered reads must not produce a confident destination"

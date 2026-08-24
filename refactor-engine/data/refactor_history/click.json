@@ -1,0 +1,545 @@
+{
+  "repo": "click",
+  "repo_path": "C:\\Users\\Juju\\Desktop\\Automated_Code_Refactoring_System\\refactor-engine\\data\\real_world\\raw_sources\\git_repos\\click",
+  "shallow_clone": true,
+  "commits_available": 1795,
+  "commits_scanned": 400,
+  "candidate_count": 8,
+  "candidates": [
+    {
+      "commit_hash": "0585f456baa6eeb2edbaab7c85fa796a004aef86",
+      "message": "`click.prompt` typing clarifications / improvements",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/click/termui.py",
+        "src/click/types.py",
+        "tests/test_imports.py"
+      ],
+      "insertions": 91,
+      "deletions": 25,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/click/types.py",
+            "class": "ParamType",
+            "methods_gained": 2,
+            "lines_before": 140,
+            "lines_after": 161
+          }
+        ]
+      },
+      "short_hash": "0585f456baa6",
+      "file_pairs": [
+        {
+          "file": "src/click/termui.py",
+          "before_path": "click/0585f456baa6/before/src/click/termui.py",
+          "after_path": "click/0585f456baa6/after/src/click/termui.py"
+        },
+        {
+          "file": "src/click/types.py",
+          "before_path": "click/0585f456baa6/before/src/click/types.py",
+          "after_path": "click/0585f456baa6/after/src/click/types.py"
+        },
+        {
+          "file": "tests/test_imports.py",
+          "before_path": "click/0585f456baa6/before/tests/test_imports.py",
+          "after_path": "click/0585f456baa6/after/tests/test_imports.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "7a0a3447f6ddd2c15438c5d098e289323f9f9556",
+      "message": "Mark clearly functions private status. Deprecated Python 2 utilities.",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_moved_between_classes",
+        "class_renamed"
+      ],
+      "files_changed": [
+        "src/click/__init__.py",
+        "src/click/_termui_impl.py",
+        "src/click/core.py",
+        "src/click/termui.py",
+        "src/click/types.py",
+        "src/click/utils.py",
+        "tests/test_testing.py",
+        "tests/test_utils/test_KeepOpenFile.py",
+        "tests/test_utils/test_LazyFile.py",
+        "tests/test_utils/test_make_default_short_help.py"
+      ],
+      "insertions": 101,
+      "deletions": 40,
+      "details": {
+        "methods_moved": [
+          {
+            "file": "src/click/utils.py",
+            "method": "__init__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile",
+              "PacifyFlushWrapper"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile",
+              "_PacifyFlushWrapper"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "__getattr__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile",
+              "PacifyFlushWrapper"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile",
+              "_PacifyFlushWrapper"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "__repr__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "open",
+            "from_class": [
+              "LazyFile"
+            ],
+            "to_class": [
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "close",
+            "from_class": [
+              "LazyFile"
+            ],
+            "to_class": [
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "close_intelligently",
+            "from_class": [
+              "LazyFile"
+            ],
+            "to_class": [
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "__enter__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "__exit__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "__iter__",
+            "from_class": [
+              "KeepOpenFile",
+              "LazyFile"
+            ],
+            "to_class": [
+              "_KeepOpenFile",
+              "_LazyFile"
+            ]
+          },
+          {
+            "file": "src/click/utils.py",
+            "method": "flush",
+            "from_class": [
+              "PacifyFlushWrapper"
+            ],
+            "to_class": [
+              "_PacifyFlushWrapper"
+            ]
+          }
+        ],
+        "classes_renamed": [
+          {
+            "file": "src/click/utils.py",
+            "from": "KeepOpenFile",
+            "to": "_KeepOpenFile",
+            "shared_methods": 6
+          },
+          {
+            "file": "src/click/utils.py",
+            "from": "KeepOpenFile",
+            "to": "_LazyFile",
+            "shared_methods": 6
+          },
+          {
+            "file": "src/click/utils.py",
+            "from": "LazyFile",
+            "to": "_KeepOpenFile",
+            "shared_methods": 6
+          },
+          {
+            "file": "src/click/utils.py",
+            "from": "LazyFile",
+            "to": "_LazyFile",
+            "shared_methods": 9
+          },
+          {
+            "file": "src/click/utils.py",
+            "from": "PacifyFlushWrapper",
+            "to": "_PacifyFlushWrapper",
+            "shared_methods": 3
+          }
+        ],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "7a0a3447f6dd",
+      "file_pairs": [
+        {
+          "file": "src/click/__init__.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/__init__.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/__init__.py"
+        },
+        {
+          "file": "src/click/_termui_impl.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/_termui_impl.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/_termui_impl.py"
+        },
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/core.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/core.py"
+        },
+        {
+          "file": "src/click/termui.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/termui.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/termui.py"
+        },
+        {
+          "file": "src/click/types.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/types.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/types.py"
+        },
+        {
+          "file": "src/click/utils.py",
+          "before_path": "click/7a0a3447f6dd/before/src/click/utils.py",
+          "after_path": "click/7a0a3447f6dd/after/src/click/utils.py"
+        },
+        {
+          "file": "tests/test_testing.py",
+          "before_path": "click/7a0a3447f6dd/before/tests/test_testing.py",
+          "after_path": "click/7a0a3447f6dd/after/tests/test_testing.py"
+        },
+        {
+          "file": "tests/test_utils/test_KeepOpenFile.py",
+          "before_path": "click/7a0a3447f6dd/before/tests/test_utils/test_KeepOpenFile.py",
+          "after_path": "click/7a0a3447f6dd/after/tests/test_utils/test_KeepOpenFile.py"
+        },
+        {
+          "file": "tests/test_utils/test_LazyFile.py",
+          "before_path": "click/7a0a3447f6dd/before/tests/test_utils/test_LazyFile.py",
+          "after_path": "click/7a0a3447f6dd/after/tests/test_utils/test_LazyFile.py"
+        },
+        {
+          "file": "tests/test_utils/test_make_default_short_help.py",
+          "before_path": "click/7a0a3447f6dd/before/tests/test_utils/test_make_default_short_help.py",
+          "after_path": "click/7a0a3447f6dd/after/tests/test_utils/test_make_default_short_help.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "8f300853dc5f33120d9872ea0e4c9e00318446b1",
+      "message": "Streamline option flag management",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted",
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "src/click/core.py"
+      ],
+      "insertions": 229,
+      "deletions": 160,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/click/core.py",
+            "class": "Parameter",
+            "methods_gained": 1,
+            "lines_before": 664,
+            "lines_after": 669
+          },
+          {
+            "file": "src/click/core.py",
+            "class": "Option",
+            "methods_gained": 6,
+            "lines_before": 738,
+            "lines_after": 803
+          }
+        ]
+      },
+      "short_hash": "8f300853dc5f",
+      "file_pairs": [
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/8f300853dc5f/before/src/click/core.py",
+          "after_path": "click/8f300853dc5f/after/src/click/core.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "684b3f5b5150761ec1c930bef300eb6169f483d8",
+      "message": "Add help parameter to arguments",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/click/core.py",
+        "tests/test_arguments.py",
+        "tests/test_info_dict.py"
+      ],
+      "insertions": 171,
+      "deletions": 1,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/click/core.py",
+            "class": "Command",
+            "methods_gained": 1,
+            "lines_before": 600,
+            "lines_after": 614
+          }
+        ]
+      },
+      "short_hash": "684b3f5b5150",
+      "file_pairs": [
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/684b3f5b5150/before/src/click/core.py",
+          "after_path": "click/684b3f5b5150/after/src/click/core.py"
+        },
+        {
+          "file": "tests/test_arguments.py",
+          "before_path": "click/684b3f5b5150/before/tests/test_arguments.py",
+          "after_path": "click/684b3f5b5150/after/tests/test_arguments.py"
+        },
+        {
+          "file": "tests/test_info_dict.py",
+          "before_path": "click/684b3f5b5150/before/tests/test_info_dict.py",
+          "after_path": "click/684b3f5b5150/after/tests/test_info_dict.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "2fdde68324c386bd967b00ce422daa357432f7cd",
+      "message": "Cleanup #3126",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "cleanup"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "src/click/shell_completion.py"
+      ],
+      "insertions": 9,
+      "deletions": 8,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "2fdde68324c3",
+      "file_pairs": [
+        {
+          "file": "src/click/shell_completion.py",
+          "before_path": "click/2fdde68324c3/before/src/click/shell_completion.py",
+          "after_path": "click/2fdde68324c3/after/src/click/shell_completion.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "6de212151893e4072ca21779b7b6f4cb82452f51",
+      "message": "Treat `UNSET` in a `default_map` as absent",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/click/core.py",
+        "tests/test_defaults.py"
+      ],
+      "insertions": 44,
+      "deletions": 12,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/click/core.py",
+            "class": "Context",
+            "methods_gained": 1,
+            "lines_before": 702,
+            "lines_after": 718
+          }
+        ]
+      },
+      "short_hash": "6de212151893",
+      "file_pairs": [
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/6de212151893/before/src/click/core.py",
+          "after_path": "click/6de212151893/after/src/click/core.py"
+        },
+        {
+          "file": "tests/test_defaults.py",
+          "before_path": "click/6de212151893/before/tests/test_defaults.py",
+          "after_path": "click/6de212151893/after/tests/test_defaults.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "546f2851f414b07413777ebcae89b2c21a685252",
+      "message": "Fix callable ``flag_value`` being instantiated when used as a default",
+      "detected_by": [
+        "structural"
+      ],
+      "matched_keywords": [],
+      "signals": [
+        "method_extracted"
+      ],
+      "files_changed": [
+        "src/click/core.py",
+        "tests/test_defaults.py",
+        "tests/test_options.py"
+      ],
+      "insertions": 232,
+      "deletions": 9,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": [
+          {
+            "file": "src/click/core.py",
+            "class": "Option",
+            "methods_gained": 1,
+            "lines_before": 676,
+            "lines_after": 690
+          }
+        ]
+      },
+      "short_hash": "546f2851f414",
+      "file_pairs": [
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/546f2851f414/before/src/click/core.py",
+          "after_path": "click/546f2851f414/after/src/click/core.py"
+        },
+        {
+          "file": "tests/test_defaults.py",
+          "before_path": "click/546f2851f414/before/tests/test_defaults.py",
+          "after_path": "click/546f2851f414/after/tests/test_defaults.py"
+        },
+        {
+          "file": "tests/test_options.py",
+          "before_path": "click/546f2851f414/before/tests/test_options.py",
+          "after_path": "click/546f2851f414/after/tests/test_options.py"
+        }
+      ]
+    },
+    {
+      "commit_hash": "955ca492a6b9e8de0660dae1c415568ca6f9c4b3",
+      "message": "Cleanup changes to fix flag_value bug",
+      "detected_by": [
+        "keyword"
+      ],
+      "matched_keywords": [
+        "cleanup"
+      ],
+      "signals": [
+        "balanced_churn"
+      ],
+      "files_changed": [
+        "src/click/core.py",
+        "tests/test_options.py"
+      ],
+      "insertions": 38,
+      "deletions": 32,
+      "details": {
+        "methods_moved": [],
+        "classes_renamed": [],
+        "classes_gaining_methods": []
+      },
+      "short_hash": "955ca492a6b9",
+      "file_pairs": [
+        {
+          "file": "src/click/core.py",
+          "before_path": "click/955ca492a6b9/before/src/click/core.py",
+          "after_path": "click/955ca492a6b9/after/src/click/core.py"
+        },
+        {
+          "file": "tests/test_options.py",
+          "before_path": "click/955ca492a6b9/before/tests/test_options.py",
+          "after_path": "click/955ca492a6b9/after/tests/test_options.py"
+        }
+      ]
+    }
+  ]
+}
