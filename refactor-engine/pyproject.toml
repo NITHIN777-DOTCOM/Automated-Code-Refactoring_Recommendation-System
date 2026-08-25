@@ -6,6 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "refactor-scan"
 version = "0.4.0"
 description = "AST-based Python code smell detector and refactoring suggester (God Class, Data Class, Feature Envy, Long Method) with an ML classifier and graph-based Extract Class suggestions."
+# A copy, not the canonical README.md at the repo root: setuptools' sdist
+# build refuses to reference any path outside the project directory
+# (refactor-engine/), so "../README.md" fails the build outright. Keep this
+# copy in sync with the root README before every release -- `twine check`
+# only confirms a description exists, not that it's current.
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Nithin" }]
