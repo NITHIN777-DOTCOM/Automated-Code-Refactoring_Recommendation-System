@@ -47,3 +47,5 @@ class GodClass:
 
     def send_notification(self):
         pass
+
+# CI upsert test
