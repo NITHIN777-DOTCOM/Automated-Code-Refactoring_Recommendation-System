@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from importlib.metadata import PackageNotFoundError, version
 
 import rich_click as click
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
@@ -45,7 +46,16 @@ for _stream in (sys.stdout, sys.stderr):
     if _stream.encoding and _stream.encoding.lower() != "utf-8":
         _stream.reconfigure(encoding="utf-8")
 
-__version__ = "0.1.0"
+# Read from the installed distribution's metadata rather than a literal, so
+# this can never drift out of sync with pyproject.toml's version the way the
+# old hardcoded "0.1.0" silently did across three releases (0.2.0, 0.3.0,
+# 0.4.0) before anyone noticed. Falls back for the one case where there's no
+# distribution to read -- running `python run_scan.py` in a checkout that was
+# never `pip install`-ed at all.
+try:
+    __version__ = version("refactor-scan")
+except PackageNotFoundError:
+    __version__ = "0.0.0+dev"
 
 click.rich_click.USE_RICH_MARKUP = True
 click.rich_click.SHOW_ARGUMENTS = True
