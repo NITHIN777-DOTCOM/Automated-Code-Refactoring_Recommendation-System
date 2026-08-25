@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](refactor-engine/LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](refactor-engine/pyproject.toml)
-[![Tests: 219 passing](https://img.shields.io/badge/tests-219%20passing-brightgreen.svg)](refactor-engine/tests/)
+[![Tests: 257 passing](https://img.shields.io/badge/tests-257%20passing-brightgreen.svg)](refactor-engine/tests/)
 [![Built with click + rich](https://img.shields.io/badge/CLI-click%20%2B%20rich-8A2BE2.svg)](refactor-engine/pyproject.toml)
 
 </div>
@@ -33,6 +33,7 @@ refactor-scan analyze your_project/
 - [Quick start](#quick-start)
 - [Architecture](#architecture)
 - [CLI reference](#cli-reference)
+- [Is it getting better or worse?](#is-it-getting-better-or-worse)
 - [Proof: checked against real refactoring history](#proof-checked-against-real-refactoring-history)
 - [How the classifier works](#how-the-classifier-works)
 - [Project layout](#project-layout)
@@ -289,6 +290,11 @@ refactor-scan evaluate <mined-repo-name>         # re-run on a repo already mine
 refactor-scan evaluate                            # evaluate every repo already mined
 refactor-scan evaluate <path> --max-commits 800  # scan further back into history
 refactor-scan evaluate <path> --format json --output eval.json
+
+refactor-scan trend <path-to-git-repo>           # smell counts across that repo's history
+refactor-scan trend <path> --interval weekly     # commits | weekly | monthly (default monthly)
+refactor-scan trend <path> --max-samples 12      # cap the historical points checked (default 24)
+refactor-scan trend <path> --format json --output trend.json
 ```
 
 A few things worth knowing:
@@ -304,6 +310,59 @@ A few things worth knowing:
 - **JSON mode is not an afterthought.** `--format json` emits the exact same analysis —
   metrics, predicted smell, confidence, suggestions — as clean, sorted, pretty-printed JSON
   for CI pipelines or downstream tooling.
+
+## Is it getting better or worse?
+
+`analyze` answers "what is wrong with this code right now." `trend` answers the question a
+team actually asks next. It samples a repository's own commit history, rebuilds the codebase
+as it stood at each sampled commit, runs the ordinary analysis over it, and shows the
+direction of travel:
+
+```
+$ refactor-scan trend path/to/click --interval commits --max-samples 8
+
+ date         commit    god   data   envy   long   smelly    rate
+ ────────────────────────────────────────────────────────────────────────
+ 2020-06-11   9cfa961     9      4     19     21    53/66   80.3%   —
+ 2021-03-01   40e7756    10      4     20     23    57/81   70.4%   ▼9.9%
+ 2021-10-25   e415d3a    12      2     21     23    58/80   72.5%   ▲2.1%
+ 2023-06-28   3fcf338    12      3     21     23    59/83   71.1%   ▼1.4%
+ 2024-11-08   2cabbe3    11      2     28     26    67/95   70.5%   ▼0.6%
+ 2025-08-16   868230d    11      2     26     27   66/103   64.1%   ▼6.4%
+ 2026-04-16   76552ff    13      2     29     28   72/114   63.2%   ▼0.9%
+ 2026-08-09   9c4dfda    13      2     43     31   89/142   62.7%   →
+
+┌─────────────────── First → last ────────────────────┐
+│ Span            2020-06-11 → 2026-08-09  (8 points) │
+│ Smell rate                                 █▄▄▄▄▁▁▁ │
+│ Direction                ▼ improving  (-17.6% rate) │
+│                                                     │
+│ Classes                                         +76 │
+│ Smelly classes                                  +36 │
+│   Feature Envy                                  +24 │
+└─────────────────────────────────────────────────────┘
+```
+
+Read those last two rows together, because they are the reason the command records a
+denominator at all: click gained **36 smelly classes** over this stretch, and got
+**proportionally cleaner** — 80.3% of its classes were flagged at the start and 62.7% at the
+end, because the codebase more than doubled in the same period. A tool reporting raw counts
+alone would have called that a regression. The trend direction is therefore always read from
+the *rate*, never from the count.
+
+Three things worth knowing:
+
+- **Your working tree is never touched.** Historical states are read out with `git archive`
+  — a read-only query — into a scratch directory outside the repository. Nothing here runs
+  `git checkout`, moves `HEAD`, or writes into the work tree, and a `--workspace` pointed
+  inside the repo is rejected before any scanning starts. Same guarantee, and the same
+  guard, as the history mining in `evaluate`.
+- **Sampling spans the range, it doesn't just take the recent end.** `--max-samples`
+  (default 24) thins the available history by even spacing, always keeping the oldest and
+  newest points — keeping only the newest N would quietly answer a different question.
+- **Short histories say so.** A repo with one commit reports a snapshot rather than
+  inventing a direction, and a shallow clone is called out as one, because a truncated
+  history renders as an ordinary-looking table that means something different.
 
 ## Proof: checked against real refactoring history
 
@@ -420,7 +479,7 @@ refactor-engine/
     generate_synthetic_dataset.py   # builds the 400-row training set from scratch
     labeled_dataset.csv
   sample_repo/, sample_repo_2/       # fixture repos used to validate every phase
-  tests/                              # 219 tests across every module above
+  tests/                              # 257 tests across every module above
   run_scan.py                          # dev entrypoint (`pip install .` gives you `refactor-scan`)
   pyproject.toml                       # packaged as a real installable CLI, model included
   PHASE2_NOTES.md                       # classifier methodology & honest limitations
@@ -510,7 +569,7 @@ at least one non-Clean class, on top of still posting the same comment.
 pytest tests/ -v
 ```
 
-219 tests, organized by pipeline stage:
+257 tests, organized by pipeline stage:
 
 | File | Covers |
 |---|---|
@@ -526,6 +585,7 @@ pytest tests/ -v
 | `test_git_mining.py` | Read-only history mining: structural refactor detection, before/after extraction, repo-root and output-path safety checks |
 | `test_refactor_eval.py` | `evaluate`'s hit-rate logic (both the flagged and the correctly-not-flagged branch), and the edge cases above: zero candidates, shallow clones, non-Python files |
 | `test_ci_pr_comment.py` | PR comment formatting (`build_comment`), including the `--fail-on-smell` exit path — requires `pyyaml` (`pip install pyyaml`, or the `dev` extra) to also validate the workflow YAML itself |
+| `test_trend.py` | `trend`: interval sampling and calendar bucketing as pure functions, the read-only historical checkout (work tree, `HEAD` and `git status` all asserted untouched), and rate-vs-count direction logic |
 | `test_thresholds.py` | That the published threshold values match what the cited sources actually say, that proxy metrics are labeled as proxies, and that each labeling rule fires where it should |
 | `test_model_bundles.py` | The silent failure modes of a two-model setup: a retrain overwriting the shipped model's scaler, predictions compared through disagreeing label encoders, held-out rows leaking into the scaler, and an unknown `--model` raising rather than falling back |
 

@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import os
 
+from rich import box
 from rich.console import Console, Group
 from rich.padding import Padding
 from rich.panel import Panel
@@ -708,6 +709,206 @@ def _print_repo_commits(repo: dict) -> None:
 
 def _rate(value) -> str:
     return "n/a" if value is None else f"{value:.1%}"
+
+
+# ---------------------------------------------------------------------------
+# trend
+# ---------------------------------------------------------------------------
+
+_DIRECTION_STYLES = {
+    "improving": ("green", "improving", "▼"),
+    "worsening": ("red", "worsening", "▲"),
+    "flat": ("yellow", "holding steady", "→"),
+}
+
+
+def _delta_mark(delta) -> Text:
+    """Per-row movement in smell RATE against the previous sample.
+
+    Down is good here -- the number is a proportion of classes flagged -- so
+    the arrow directions are deliberately the opposite way round from a
+    chart where up means progress. The colour reinforces it: green falls,
+    red rises.
+    """
+    if delta is None:
+        return Text("—", style="dim")
+    if abs(delta) < 0.005:
+        return Text("→", style="dim")
+    if delta < 0:
+        return Text(f"▼{abs(delta):.1%}", style="green")
+    return Text(f"▲{delta:.1%}", style="red")
+
+
+def _count_cell(value: int, smell: str) -> Text:
+    """A zero is written as a dim dot, not "0".
+
+    A wide grid of literal zeros reads as noise and hides the columns that
+    actually have counts in them; the point of this table is which numbers
+    move, and a placeholder makes those stand out.
+    """
+    if not value:
+        return Text("·", style="dim")
+    return Text(str(value), style=_SMELL_COLORS.get(smell, "white"))
+
+
+def _trend_table(report: dict) -> Table:
+    """Eleven columns of numbers have to survive an 80-column terminal, so
+    this is laid out tightly on purpose: no vertical rules (box=SIMPLE_HEAD),
+    abbreviated smell headers, and the period label ("2024-07") in place of
+    the full commit date where the interval already implies one. The
+    alternative -- letting rich ellipsize -- turns "52.8%" into "52…" and
+    makes the whole table useless."""
+    samples = report["samples"]
+
+    # Long Parameter List and Duplicate Code are uncommon, and an all-zero
+    # column costs width that the smell columns need. Shown only when it
+    # would carry a number.
+    show_other = any(s["other_smells"] for s in samples)
+
+    # In commits mode there are no calendar periods, so the full date is the
+    # only label available.
+    period_header = "date" if report["interval"] == "commits" else "period"
+
+    table = Table(
+        title=f"[bold]{report['repo']}[/bold] — code smells over time "
+              f"([dim]{report['interval']}, {report['sample_count']} sample"
+              f"{'' if report['sample_count'] == 1 else 's'}[/dim])",
+        title_justify="left",
+        header_style="bold cyan",
+        caption="smelly = flagged / total classes analyzed at that commit · "
+                "god/data/envy/long = God Class, Data Class, Feature Envy, Long Method · "
+                "oth = Long Parameter List / Duplicate Code",
+        caption_justify="left",
+        box=box.SIMPLE_HEAD,
+        pad_edge=False,
+        expand=False,
+    )
+    table.add_column(period_header, style="dim", no_wrap=True)
+    table.add_column("commit", style="dim", no_wrap=True)
+    table.add_column("god", justify="right", no_wrap=True)
+    table.add_column("data", justify="right", no_wrap=True)
+    table.add_column("envy", justify="right", no_wrap=True)
+    table.add_column("long", justify="right", no_wrap=True)
+    if show_other:
+        table.add_column("oth", justify="right", no_wrap=True)
+    table.add_column("smelly", justify="right", no_wrap=True)
+    table.add_column("rate", justify="right", no_wrap=True)
+    table.add_column("", no_wrap=True)
+
+    for sample in samples:
+        smells = sample["smells"]
+        row = [
+            sample["period"] if report["interval"] != "commits" else sample["date"],
+            sample["short_hash"][:7],
+            _count_cell(smells["God Class"], "God Class"),
+            _count_cell(smells["Data Class"], "Data Class"),
+            _count_cell(smells["Feature Envy"], "Feature Envy"),
+            _count_cell(smells["Long Method"], "Long Method"),
+        ]
+        if show_other:
+            row.append(_count_cell(sample["other_smells"], "Long Parameter List"))
+        row += [
+            # The denominator rides in the same cell as the count. Keeping
+            # them in separate columns let a reader take "44" as the whole
+            # story; "44/91" cannot be read without its scale.
+            Text.assemble(
+                (str(sample["smelly_classes"]), "bold"),
+                ("/", "dim"),
+                (str(sample["total_classes"]), "dim"),
+            ),
+            _rate(sample["smell_rate"]),
+            _delta_mark(sample["rate_delta"]),
+        ]
+        table.add_row(*row)
+
+    return table
+
+
+def _trend_summary_panel(report: dict) -> Panel:
+    summary = report["summary"]
+    direction = summary["direction"]
+    colour, word, arrow = _DIRECTION_STYLES.get(direction, ("dim", "no direction yet", "—"))
+
+    body = Table(box=None, show_header=False, pad_edge=False)
+    body.add_column(style="bold")
+    body.add_column(justify="right")
+
+    if summary["first"] and summary["last"]:
+        body.add_row(
+            "Span",
+            f"{summary['first']['date']} → {summary['last']['date']}"
+            f"  [dim]({report['sample_count']} point"
+            f"{'' if report['sample_count'] == 1 else 's'})[/dim]",
+        )
+
+    if summary["sparkline"]:
+        # The shape of the smell rate, low block to high block. It sits with
+        # the exact percentages above rather than replacing them -- it shows
+        # the path between the endpoints, which two numbers cannot.
+        body.add_row("Smell rate", f"[{colour}]{summary['sparkline']}[/{colour}]")
+
+    if direction is not None:
+        change = summary["rate_change"]
+        body.add_row(
+            "Direction",
+            f"[bold {colour}]{arrow} {word}[/bold {colour}]"
+            + (f"  [dim]({change:+.1%} rate)[/dim]" if change is not None else ""),
+        )
+
+    body.add_row("", "")
+    body.add_row("Classes", f"{summary['class_change']:+d}")
+    body.add_row("Smelly classes", f"{summary['smelly_change']:+d}")
+
+    for smell, change in summary["by_smell_change"].items():
+        if change:
+            smell_colour = _SMELL_COLORS.get(smell, "white")
+            body.add_row(f"  [{smell_colour}]{smell}[/{smell_colour}]", f"{change:+d}")
+
+    return Panel(
+        body,
+        title=f"[bold]First → last[/bold]",
+        border_style=colour if direction else "cyan",
+        expand=False,
+    )
+
+
+def print_trend_report(report: dict) -> None:
+    """Render a history trend: the per-sample table, then the movement.
+
+    Notes come FIRST, for the same reason they do in the evaluation report:
+    a short table on a shallow clone looks identical to a short table on a
+    young project, and the reader needs to know which one they are looking
+    at before they start reading numbers off it.
+    """
+    for note in report.get("notes", []):
+        console.print()
+        console.print(
+            Panel(
+                Text(note, style="yellow"),
+                title=f"[bold yellow]{report['repo']}[/bold yellow]",
+                border_style="yellow",
+            )
+        )
+
+    if not report["samples"]:
+        console.print()
+        console.print("[yellow]No commits could be sampled — nothing to plot.[/yellow]")
+        return
+
+    console.print()
+    console.print(_trend_table(report))
+    console.print()
+    console.print(_trend_summary_panel(report))
+    console.print()
+    console.print(
+        Text(
+            "Rate is smelly classes ÷ total classes. Direction is read from the RATE, not the "
+            "raw count — a codebase that grew can add smelly classes while getting "
+            "proportionally cleaner.",
+            style="dim italic",
+        )
+    )
+    console.print()
 
 
 def _print_evaluation_summary(results: dict) -> None:
