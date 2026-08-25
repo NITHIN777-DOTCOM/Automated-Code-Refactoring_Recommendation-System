@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](refactor-engine/LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](refactor-engine/pyproject.toml)
-[![Tests: 193 passing](https://img.shields.io/badge/tests-193%20passing-brightgreen.svg)](refactor-engine/tests/)
+[![Tests: 219 passing](https://img.shields.io/badge/tests-219%20passing-brightgreen.svg)](refactor-engine/tests/)
 [![Built with click + rich](https://img.shields.io/badge/CLI-click%20%2B%20rich-8A2BE2.svg)](refactor-engine/pyproject.toml)
 
 </div>
@@ -37,6 +37,7 @@ refactor-scan analyze your_project/
 - [How the classifier works](#how-the-classifier-works)
 - [Project layout](#project-layout)
 - [Known limitations](#known-limitations-and-were-proud-of-documenting-them)
+- [GitHub Action](#github-action)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
 
@@ -419,7 +420,7 @@ refactor-engine/
     generate_synthetic_dataset.py   # builds the 400-row training set from scratch
     labeled_dataset.csv
   sample_repo/, sample_repo_2/       # fixture repos used to validate every phase
-  tests/                              # 193 tests across every module above
+  tests/                              # 219 tests across every module above
   run_scan.py                          # dev entrypoint (`pip install .` gives you `refactor-scan`)
   pyproject.toml                       # packaged as a real installable CLI, model included
   PHASE2_NOTES.md                       # classifier methodology & honest limitations
@@ -449,13 +450,67 @@ A tool that only tells you what it's good at isn't one you should trust. Some re
 Full detail on all of these, including exact numbers, lives in
 [`PHASE2_NOTES.md`](refactor-engine/PHASE2_NOTES.md).
 
+## GitHub Action
+
+Run `refactor-scan` on every pull request, automatically. It scans only the Python files
+the PR actually changed (never the whole repo), and posts one comment summarizing what it
+found — smell, confidence, and a suggested fix per class. By default the check is purely
+informational: it never fails CI or blocks a merge, so it's safe to drop into a repo without
+a team conversation first.
+
+Here's what the comment looks like on a PR that touches `order.py` and `report_manager.py`:
+
+> ⚠️ **2 code smells** found in 2 of 2 changed Python files.
+>
+> | File | Class | Smell | Confidence | Suggested fix |
+> | --- | --- | --- | --: | --- |
+> | `report_manager.py` | `ReportManager` | God Class | 71% | Extract `render_footer`, `set_footer` into `ReportFooterRenderer` |
+> | `order.py` | `Order` | Feature Envy | 56% | Move `checkout()` into `PaymentProcessor` |
+>
+> <sub>Want the full reasoning? Run it locally: `refactor-scan why order.py --class Order`</sub>
+>
+> <sub>Only files changed in this PR were scanned — pre-existing code elsewhere is not
+> reported. This check is informational and does not block merging.</sub>
+
+### Adding it to your own repo
+
+1. Copy [`.github/workflows/refactor-scan.yml`](.github/workflows/refactor-scan.yml) into
+   your repo at the same path.
+2. In that file, replace the local install line with the published package:
+
+   ```yaml
+   - name: Install refactor-scan
+     run: pip install "refactor-scan>=0.4.0"
+   ```
+
+That's it — no config file, no secrets, no repo settings to change. The workflow already
+has the minimum permissions it needs (`pull-requests: write`, to post/update its own
+comment) and triggers on `opened`, `synchronize`, and `reopened` pull request events.
+
+### Stricter enforcement (optional)
+
+By default a PR full of code smells still passes CI — the comment is informational only.
+If your team wants the check to actually block merges once smells are found, add
+`--fail-on-smell` to the scan step's arguments:
+
+```yaml
+run: |
+  python -m engine.ci.pr_comment \
+    --files-from changed_python_files.txt \
+    --output refactor-scan-comment.md \
+    --fail-on-smell
+```
+
+With that flag set, the job exits non-zero (and the check goes red) whenever the scan finds
+at least one non-Clean class, on top of still posting the same comment.
+
 ## Testing
 
 ```bash
 pytest tests/ -v
 ```
 
-193 tests, organized by pipeline stage:
+219 tests, organized by pipeline stage:
 
 | File | Covers |
 |---|---|
@@ -470,6 +525,9 @@ pytest tests/ -v
 | `test_reasoning.py` | `why`: local ablation, per-strategy reasoning records, and the self-contained HTML report |
 | `test_git_mining.py` | Read-only history mining: structural refactor detection, before/after extraction, repo-root and output-path safety checks |
 | `test_refactor_eval.py` | `evaluate`'s hit-rate logic (both the flagged and the correctly-not-flagged branch), and the edge cases above: zero candidates, shallow clones, non-Python files |
+| `test_ci_pr_comment.py` | PR comment formatting (`build_comment`), including the `--fail-on-smell` exit path — requires `pyyaml` (`pip install pyyaml`, or the `dev` extra) to also validate the workflow YAML itself |
+| `test_thresholds.py` | That the published threshold values match what the cited sources actually say, that proxy metrics are labeled as proxies, and that each labeling rule fires where it should |
+| `test_model_bundles.py` | The silent failure modes of a two-model setup: a retrain overwriting the shipped model's scaler, predictions compared through disagreeing label encoders, held-out rows leaking into the scaler, and an unknown `--model` raising rather than falling back |
 
 ## Roadmap
 
