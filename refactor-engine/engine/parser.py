@@ -251,6 +251,51 @@ def _parse_method(
     )
 
 
+def _class_body_fields(class_node: ast.ClassDef) -> list[str]:
+    """Class-level attribute assignments written directly in the class body.
+
+    e.g. Django's `class Meta: ordering = [...]`. These were previously
+    invisible to NOPA/WOC: the only source of `cls.fields` was
+    `self.x` accesses seen inside a method, so a class with no methods at
+    all -- the common shape of a nested Meta-style class -- always measured
+    zero public attributes no matter how many the body actually declared,
+    which forces WOC to 1.0 and fails the Data Class rule's WOC < 1/3 gate
+    before NOPA/NOAM are even consulted.
+
+    Two things that look like a class-body assignment are deliberately NOT
+    counted here, both because they are structural rather than data:
+
+      * A nested class (`ast.ClassDef`) is parsed as its own independent
+        ClassInfo by parse_file() (see `parent_class`). Counting it again
+        here as a "field" of the enclosing class would double-book the same
+        entity as both a class and an attribute of its parent.
+      * Anything that is not a plain `NAME = value` / `NAME: ann = value`
+        at this exact nesting level -- an `if`/`for` inside the class body,
+        tuple-unpack (`a, b = 1, 2`), or an augmented assignment -- is
+        skipped rather than guessed at. Real Meta-style classes are simple
+        in practice, so silently dropping the rare ambiguous shape is safer
+        than misattributing it.
+
+    One case this deliberately does NOT try to separate out: a type alias
+    (`UserId = int`) is syntactically identical to a genuine field
+    (`verbose_name = "post"`) -- both are a bare Name assigned a value --
+    and nothing short of type inference tells them apart from the AST
+    alone. That is accepted as a known blind spot rather than worked
+    around: type aliases are rare in class bodies relative to real
+    field/config declarations (Meta options, defaults, constants), so
+    treating both as fields is the better default in aggregate.
+    """
+    names = []
+    for item in class_node.body:
+        if isinstance(item, ast.Assign):
+            for target in item.targets:
+                if isinstance(target, ast.Name):
+                    names.append(target.id)
+        elif isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name):
+            names.append(item.target.id)
+    return names
+
+
 def _base_class_names(class_node: ast.ClassDef) -> list[str]:
     names = []
     for base in class_node.bases:
@@ -293,6 +338,7 @@ def _parse_class(
     """
     methods = []
     fields = set()
+    fields.update(_class_body_fields(class_node))
 
     for item in class_node.body:
         if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):

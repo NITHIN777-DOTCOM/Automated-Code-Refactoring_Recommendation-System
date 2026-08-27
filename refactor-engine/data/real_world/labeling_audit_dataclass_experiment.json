@@ -1,0 +1,882 @@
+{
+  "generated_at": "2026-08-27T13:19:31.620788+00:00",
+  "corpus_dir": "data\\real_world\\raw_sources",
+  "row_count": 7830,
+  "metric_scope": {
+    "csv_features": "per-file",
+    "feature_envy_atfd_laa": "corpus",
+    "woc_inheritance": "corpus (global base-class resolution)"
+  },
+  "parse_stats": {
+    "files_seen": 9151,
+    "files_parsed_ok": 8861,
+    "files_failed": 290,
+    "files_on_test_paths": 1407,
+    "classes_seen": 10771,
+    "classes_excluded_test_name": 3590,
+    "classes_excluded_test_path_only": 2941
+  },
+  "feature_envy_by_scope": {
+    "file": 179,
+    "package": 179,
+    "repo": 179,
+    "corpus": 179
+  },
+  "inheritance_resolution": {
+    "unresolved": 4997,
+    "partial": 1795,
+    "resolved": 1667,
+    "no_bases": 2312
+  },
+  "label_distribution": {
+    "Clean": 6826,
+    "Long Method": 320,
+    "God Class": 278,
+    "Data Class": 244,
+    "Feature Envy": 162
+  },
+  "previous_label_distribution": {
+    "Clean": 9634,
+    "Data Class": 361,
+    "Long Method": 323,
+    "God Class": 281,
+    "Feature Envy": 172
+  },
+  "label_transitions_previous_to_current": {
+    "Clean": {
+      "Clean": 6716,
+      "excluded (test path)": 2882,
+      "Data Class": 36
+    },
+    "God Class": {
+      "God Class": 278,
+      "excluded (test path)": 3
+    },
+    "Feature Envy": {
+      "Feature Envy": 162,
+      "excluded (test path)": 10
+    },
+    "Data Class": {
+      "Data Class": 208,
+      "Clean": 110,
+      "excluded (test path)": 43
+    },
+    "Long Method": {
+      "Long Method": 320,
+      "excluded (test path)": 3
+    }
+  },
+  "split": {
+    "test_size": 0.2,
+    "seed": 42,
+    "stratified_by": "label",
+    "per_label": {
+      "Clean": {
+        "total": 6826,
+        "train": 5461,
+        "test": 1365
+      },
+      "God Class": {
+        "total": 278,
+        "train": 222,
+        "test": 56
+      },
+      "Feature Envy": {
+        "total": 162,
+        "train": 130,
+        "test": 32
+      },
+      "Data Class": {
+        "total": 244,
+        "train": 195,
+        "test": 49
+      },
+      "Long Method": {
+        "total": 320,
+        "train": 256,
+        "test": 64
+      }
+    }
+  },
+  "classes_by_source": {
+    "codesearchnet": 22,
+    "standard_dataset": 3034,
+    "git_repos": 4552,
+    "site_packages": 222
+  },
+  "labels_by_source": {
+    "codesearchnet": {
+      "Clean": 22
+    },
+    "git_repos": {
+      "Long Method": 130,
+      "Feature Envy": 66,
+      "God Class": 144,
+      "Clean": 4078,
+      "Data Class": 134
+    },
+    "site_packages": {
+      "Clean": 151,
+      "Long Method": 46,
+      "Data Class": 6,
+      "Feature Envy": 5,
+      "God Class": 14
+    },
+    "standard_dataset": {
+      "Clean": 2575,
+      "God Class": 120,
+      "Feature Envy": 91,
+      "Data Class": 104,
+      "Long Method": 144
+    }
+  },
+  "multi_rule_matches": {
+    "God Class + Long Method": 124,
+    "Feature Envy + Long Method": 30,
+    "Long Method + Data Class": 6,
+    "God Class + Feature Envy": 4,
+    "God Class + Feature Envy + Long Method": 3,
+    "God Class + Data Class": 1
+  },
+  "thresholds": {
+    "citations": {
+      "lanza_marinescu_2006": {
+        "short": "Lanza & Marinescu (2006)",
+        "full": "Lanza, M., & Marinescu, R. (2006). Object-Oriented Metrics in Practice. Springer. Detection strategies, Ch. 4-5.",
+        "note": "Primary numeric source. Implemented by the iPlasma tool, which Fontana et al. (2016) used as an Advisor when building their ML smell datasets."
+      },
+      "fontana_2016": {
+        "short": "Fontana et al. (2016)",
+        "full": "Arcelli Fontana, F., Mantyla, M. V., Zanoni, M., & Marino, A. (2016). Comparing and experimenting machine learning techniques for code smell detection. Empirical Software Engineering, 21(3), 1143-1191.",
+        "note": "Does not publish its own cutoffs: its oracle comes from Advisors (iPlasma, PMD, Marinescu 2002) plus manual labeling. Cited here for the methodology and for the God Class / Data Class / Feature Envy / Long Method label set we reuse; the numbers trace to Lanza & Marinescu via iPlasma."
+      },
+      "mccabe_1976": {
+        "short": "McCabe (1976)",
+        "full": "McCabe, T. J. (1976). A Complexity Measure. IEEE Transactions on Software Engineering, SE-2(4), 308-320.",
+        "note": "Source of the classic 'cyclomatic complexity above 10' review trigger."
+      },
+      "sandouka_aljamaan_2023": {
+        "short": "Sandouka & Aljamaan (2023)",
+        "full": "Sandouka, R., & Aljamaan, H. (2023). Python code smells detection using conventional machine learning models. PeerJ Computer Science, 9, e1370.",
+        "note": "Python-specific ML smell detection. Checked as a threshold source and deliberately NOT used for numbers: its Large Class / Long Method labels are inherited from the PySmell dataset rather than from disclosed numeric cutoffs, and its 18 features are Radon raw/Halstead metrics our AST engine does not compute."
+      },
+      "chen_2016_pysmell": {
+        "short": "Chen et al. (2016), PySmell",
+        "full": "Chen, Z., Chen, L., Ma, W., & Xu, B. (2016). Detecting Code Smells in Python Programs. SATE 2016, 18-23.",
+        "note": "The Python smell tool underlying Sandouka & Aljamaan's labels. Its thresholds are set by three strategies (experience / statistics / tuning machine) and live in the tool's configuration rather than in the paper, so no value here is attributed to it."
+      },
+      "common_practice": {
+        "short": "common practice",
+        "full": "Widely repeated rule of thumb with no single canonical study; see Fowler, M. (1999). Refactoring: Improving the Design of Existing Code. Addison-Wesley, for the qualitative smell definitions these operationalize.",
+        "note": "Flagged explicitly so these are never presented as a published measurement. Used only where a literature cutoff does not exist in a form our metrics can express."
+      }
+    },
+    "thresholds": {
+      "lcom_high": {
+        "our_metric": "lcom",
+        "rule": "lcom > 0.67",
+        "published_metric": "TCC < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "TCC counts method pairs that share an attribute; our LCOM counts pairs that do not, so TCC < 1/3 is exactly LCOM > 2/3 (~0.67). Consistent with the commonly cited LCOM > 0.7."
+      },
+      "wmc_very_high": {
+        "our_metric": "wmc",
+        "rule": "wmc >= 47",
+        "published_metric": "WMC >= 47 (VERY HIGH)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Sum of per-method cyclomatic complexity -- WMC's own definition."
+      },
+      "wmc_below_31": {
+        "our_metric": "wmc",
+        "rule": "wmc < 31",
+        "published_metric": "WMC < 31",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Data Class rule: too little behavior to justify the data it holds."
+      },
+      "wmc_below_47": {
+        "our_metric": "wmc",
+        "rule": "wmc < 47",
+        "published_metric": "WMC < 47",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Data Class rule, relaxed complexity bound for the many-attribute case."
+      },
+      "class_length_high": {
+        "our_metric": "class_length",
+        "rule": "class_length > 130",
+        "published_metric": "LOC(class) > 130 (HIGH)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "method_count_high": {
+        "our_metric": "method_count",
+        "rule": "method_count > 10",
+        "published_metric": "NOM > 10",
+        "source": "common practice",
+        "source_key": "common_practice",
+        "is_proxy": false,
+        "mapping_note": "Not a Lanza & Marinescu number -- their God Class rule uses WMC, not raw method count. Kept because a bloated manager class of many trivial methods carries low WMC and would otherwise be missed entirely."
+      },
+      "method_length_long": {
+        "our_metric": "max_method_length",
+        "rule": "max_method_length > 65",
+        "published_metric": "LOC(method) > 65",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "The Long Method rule as implemented in iPlasma, one of Fontana's Advisors."
+      },
+      "method_length_moderate": {
+        "our_metric": "max_method_length",
+        "rule": "max_method_length > 30",
+        "published_metric": "LOC(method) > 30",
+        "source": "common practice",
+        "source_key": "common_practice",
+        "is_proxy": false,
+        "mapping_note": "Paired with McCabe CC > 10 to catch dense-but-shorter methods."
+      },
+      "method_cc_high": {
+        "our_metric": "max_method_cc",
+        "rule": "max_method_cc > 10",
+        "published_metric": "v(G) > 10",
+        "source": "McCabe (1976)",
+        "source_key": "mccabe_1976",
+        "is_proxy": false,
+        "mapping_note": "Computed by engine/metrics.py:cyclomatic_complexity()."
+      },
+      "woc_low": {
+        "our_metric": "woc",
+        "rule": "woc < 0.33",
+        "published_metric": "WOC < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Share of public methods that do real work rather than just reading or writing one attribute."
+      },
+      "noam_nopa_gt_5": {
+        "our_metric": "noam_plus_nopa",
+        "rule": "noam_plus_nopa > 5",
+        "published_metric": "NOPA + NOAM > 5",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "noam_nopa_gt_8": {
+        "our_metric": "noam_plus_nopa",
+        "rule": "noam_plus_nopa > 8",
+        "published_metric": "NOPA + NOAM > 8",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": ""
+      },
+      "atfd_high": {
+        "our_metric": "atfd",
+        "rule": "atfd > 5",
+        "published_metric": "ATFD > 5 (FEW)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Direct, no longer a proxy. Counts distinct (provider, attribute) pairs the class reads off objects other than self, excluding dunder attributes and explicit base-class access. Providers are grouped by receiver VARIABLE NAME (stage 1, no type inference), so two same-named variables of different types would be conflated."
+      },
+      "fdp_few": {
+        "our_metric": "fdp",
+        "rule": "fdp <= 5",
+        "published_metric": "FDP <= 5 (FEW)",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": false,
+        "mapping_note": "Now computable and no longer dropped from the rule. Distinguishes a class fixated on one or two neighbours (real Feature Envy, fixable by Move Method) from one touching a little of everything (dispersed coupling, a different problem). Same stage-1 receiver-name caveat as ATFD."
+      },
+      "laa_low": {
+        "our_metric": "laa",
+        "rule": "laa < 0.33",
+        "published_metric": "LAA < 1/3",
+        "source": "Lanza & Marinescu (2006)",
+        "source_key": "lanza_marinescu_2006",
+        "is_proxy": true,
+        "mapping_note": "APPROXIMATION: the foreign half is now a real ATFD rather than resolved call names, but this is still aggregated across the whole class where Lanza & Marinescu define LAA per method."
+      }
+    },
+    "rules": [
+      {
+        "label": "God Class",
+        "formula": "LCOM > 2/3 AND NOM > 10 AND (WMC >= 47 OR LOC(class) > 130)",
+        "rationale": "Lanza & Marinescu's God Class strategy with ATFD dropped (not computable under per-file metric scope) and the size conjunct widened to catch low-complexity bloated managers.",
+        "thresholds_used": [
+          "lcom_high",
+          "method_count_high",
+          "wmc_very_high",
+          "class_length_high"
+        ]
+      },
+      {
+        "label": "Feature Envy",
+        "formula": "ATFD > 5 AND LAA < 1/3 AND FDP <= 5",
+        "rationale": "Lanza & Marinescu's Feature Envy strategy, all three conjuncts, with a real ATFD measured from foreign attribute reads rather than proxied by fan_out. Providers are resolved by receiver variable name (stage 1, no type inference); LAA remains aggregated per class rather than per method.",
+        "thresholds_used": [
+          "atfd_high",
+          "laa_low",
+          "fdp_few"
+        ]
+      },
+      {
+        "label": "Long Method",
+        "formula": "LOC(method) > 65 OR (v(G) > 10 AND LOC(method) > 30)",
+        "rationale": "iPlasma's Long Method LOC rule, OR McCabe's complexity trigger with a length floor.",
+        "thresholds_used": [
+          "method_length_long",
+          "method_cc_high",
+          "method_length_moderate"
+        ]
+      },
+      {
+        "label": "Data Class",
+        "formula": "WOC < 1/3 AND ((NOPA+NOAM > 5 AND WMC < 31) OR (NOPA+NOAM > 8 AND WMC < 47))",
+        "rationale": "Lanza & Marinescu's Data Class strategy, applied verbatim.",
+        "thresholds_used": [
+          "woc_low",
+          "noam_nopa_gt_5",
+          "wmc_below_31",
+          "noam_nopa_gt_8",
+          "wmc_below_47"
+        ]
+      }
+    ],
+    "precedence": [
+      "God Class",
+      "Feature Envy",
+      "Long Method",
+      "Data Class",
+      "Clean"
+    ]
+  },
+  "sanity_sample": {
+    "God Class": [
+      {
+        "class_name": "PithosClient",
+        "file": "eth_py150\\grnet\\kamaki\\kamaki\\clients\\pithos\\__init__.py",
+        "lines": "111-1636",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class",
+          "Long Method"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.961,
+          "class_length": 1526,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 63,
+          "wmc": 199,
+          "max_method_cc": 21,
+          "max_method_length": 135,
+          "avg_method_length": 23.143,
+          "avg_cyclomatic_complexity": 3.159,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd": 53,
+          "fdp": 28,
+          "fdp_concentration": 0.094,
+          "laa": 0.346
+        },
+        "source": "class PithosClient(PithosRestClient):\n    \"\"\"Synnefo Pithos+ API client\"\"\"\n\n    def __init__(self, endpoint_url, token, account=None, container=None):\n        super(PithosClient, self).__init__(\n            endpoint_url, token, account, container)\n\n    def use_alternative_account(self, func, *args, **kwargs):\n        \"\"\"Run method with an alternative account UUID, as long as kwargs\n           contain a non-None \"alternative_account\" argument\n        \"\"\"\n        alternative_account = kwargs.pop('alternative_account', None)\n        bu_account = self.account\n        try:\n            if alternative_account and alternative_account != self.account:\n                self.account = alternative_account\n            return func(*args, **kwargs)\n        finally:\n            self.account = bu_account\n\n    def create_container(\n            self,\n            container=None, sizelimit=None, versioning=None, metadata=None,\n            project_id=None, **kwargs):\n        \"\"\"\n        :param container: (str) if not given, self.container is used instead\n\n        :param sizelimit: (int) container total size limit in bytes\n    ... [1498 more lines]"
+      },
+      {
+        "class_name": "LDObject",
+        "file": "eth_py150\\benadida\\helios-server\\helios\\datatypes\\__init__.py",
+        "lines": "94-283",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "God Class"
+        ],
+        "previous_label": "God Class",
+        "split": "test",
+        "metrics": {
+          "lcom": 0.895,
+          "class_length": 190,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 7,
+          "dit": 0,
+          "method_count": 15,
+          "wmc": 40,
+          "max_method_cc": 9,
+          "max_method_length": 25,
+          "avg_method_length": 9.8,
+          "avg_cyclomatic_complexity": 2.667,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 11,
+          "noam_plus_nopa": 11,
+          "atfd": 7,
+          "fdp": 7,
+          "fdp_concentration": 0.143,
+          "laa": 0.696
+        },
+        "source": "class LDObject(object):\n    \"\"\"\n    A linked-data object wraps another object and serializes it according to a particular\n    data format. For example, a legacy election LDObject instance will wrap an Election object\n    and serialize its fields according to the specs for that version.\n\n    To accomodate old JSON types, we allow  classes to do basically whatever they want,\n    or to let this base class serialize pure JSON thingies, without the JSON-LD.\n    \"\"\"\n\n    # whether or not to add JSON-LD things\n    USE_JSON_LD = True\n\n    # fields to serialize\n    FIELDS = []\n\n    # structured fields are other LD objects, not simple types\n    STRUCTURED_FIELDS = {}\n\n    # the underlying object type, which contains algorithms, to instantiate by default\n    WRAPPED_OBJ_CLASS = None\n\n    def __init__(self, wrapped_obj):\n        self.wrapped_obj = wrapped_obj\n        self.structured_fields = {}\n\n    @classmethod\n    def instantiate(cls, obj, datatype=None):\n    ... [162 more lines]"
+      },
+      {
+        "class_name": "TreeManager",
+        "file": "git_repos\\django-mptt\\mptt\\managers.py",
+        "lines": "51-1372",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "God Class",
+          "Long Method"
+        ],
+        "previous_label": "God Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.733,
+          "class_length": 1322,
+          "cbo": 1,
+          "fan_in": 0,
+          "fan_out": 1,
+          "dit": 0,
+          "method_count": 43,
+          "wmc": 147,
+          "max_method_cc": 16,
+          "max_method_length": 137,
+          "avg_method_length": 29.233,
+          "avg_cyclomatic_complexity": 3.419,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 8,
+          "noam_plus_nopa": 8,
+          "atfd": 43,
+          "fdp": 21,
+          "fdp_concentration": 0.163,
+          "laa": 0.648
+        },
+        "source": "class TreeManager(models.Manager.from_queryset(TreeQuerySet)):\n    \"\"\"\n    A manager for working with trees of objects.\n    \"\"\"\n\n    def contribute_to_class(self, model, name):\n        super().contribute_to_class(model, name)\n\n        if not model._meta.abstract:\n            self.tree_model = _get_tree_model(model)\n\n            self._base_manager = None\n            if self.tree_model and self.tree_model is not model and not model._meta.proxy:\n                # _base_manager is the treemanager on tree_model (MTI only).\n                # Proxy models share the same DB table so they don't need\n                # delegation; keeping _base_manager None lets their own\n                # queryset be used, which returns instances of the proxy class.\n                self._base_manager = self.tree_model._tree_manager\n\n    def get_queryset(self, *args, **kwargs):\n        \"\"\"\n        Ensures that this manager always returns nodes in tree order.\n        \"\"\"\n        return (\n            super()\n            .get_queryset(*args, **kwargs)\n            .order_by(self.tree_id_attr, self.left_attr)\n        )\n    ... [1294 more lines]"
+      }
+    ],
+    "Feature Envy": [
+      {
+        "class_name": "OpenIDProvider",
+        "file": "eth_py150\\pennersr\\django-allauth\\allauth\\socialaccount\\providers\\openid\\provider.py",
+        "lines": "37-84",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Feature Envy",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 48,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 5,
+          "wmc": 9,
+          "max_method_cc": 4,
+          "max_method_length": 21,
+          "avg_method_length": 7.8,
+          "avg_cyclomatic_complexity": 1.8,
+          "woc": 0.8,
+          "noam": 1,
+          "nopa": 3,
+          "noam_plus_nopa": 4,
+          "atfd": 8,
+          "fdp": 4,
+          "fdp_concentration": 0.375,
+          "laa": 0.0
+        },
+        "source": "class OpenIDProvider(Provider):\n    id = 'openid'\n    name = 'OpenID'\n    account_class = OpenIDAccount\n\n    def get_login_url(self, request, **kwargs):\n        url = reverse('openid_login')\n        if kwargs:\n            url += '?' + urlencode(kwargs)\n        return url\n\n    def get_brands(self):\n        # These defaults are a bit too arbitrary...\n        default_servers = [dict(id='yahoo',\n                                name='Yahoo',\n                                openid_url='http://me.yahoo.com'),\n                           dict(id='hyves',\n                                name='Hyves',\n                                openid_url='http://hyves.nl')]\n        return self.get_settings().get('SERVERS', default_servers)\n\n    def extract_extra_data(self, response):\n        return {}\n\n    def extract_uid(self, response):\n        return response.identity_url\n\n    def extract_common_fields(self, response):\n    ... [20 more lines]"
+      },
+      {
+        "class_name": "SessionsAction",
+        "file": "eth_py150\\openstack\\freezer-api\\freezer_api\\api\\v1\\sessions.py",
+        "lines": "103-134",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Feature Envy",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 32,
+          "cbo": 1,
+          "fan_in": 0,
+          "fan_out": 2,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 5,
+          "max_method_cc": 4,
+          "max_method_length": 24,
+          "avg_method_length": 13.0,
+          "avg_cyclomatic_complexity": 2.5,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 4,
+          "noam_plus_nopa": 4,
+          "atfd": 9,
+          "fdp": 4,
+          "fdp_concentration": 0.556,
+          "laa": 0.182
+        },
+        "source": "class SessionsAction(resource.BaseResource):\n    \"\"\"\n    Handler for endpoint: /v1/sessions/{session_id}/action\n    \"\"\"\n\n    def __init__(self, storage_driver):\n        self.db = storage_driver\n\n    def on_post(self, req, resp, session_id):\n        # POST /v1/sessions/{session_id}/action\n        # executes an action on the specified session\n\n        user_id = req.get_header('X-User-ID') or ''\n        doc = self.json_body(req)\n\n        try:\n            action, params = next(iteritems(doc))\n        except Exception:\n            raise freezer_api_exc.BadDataFormat(\"Bad action request format\")\n\n        session_doc = self.db.get_session(user_id=user_id,\n                                          session_id=session_id)\n        session = Session(session_doc)\n        session.execute_action(action, params)\n\n        if session.need_update:\n            self.db.update_session(user_id=user_id,\n                                   session_id=session_id,\n    ... [4 more lines]"
+      },
+      {
+        "class_name": "TicTacToeApi",
+        "file": "eth_py150\\GoogleCloudPlatform\\endpoints-proto-datastore\\examples\\tictactoe\\tictactoe_api.py",
+        "lines": "27-61",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Feature Envy"
+        ],
+        "previous_label": "Feature Envy",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 35,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 4,
+          "wmc": 8,
+          "max_method_cc": 3,
+          "max_method_length": 9,
+          "avg_method_length": 4.75,
+          "avg_cyclomatic_complexity": 2.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 3,
+          "noam_plus_nopa": 3,
+          "atfd": 10,
+          "fdp": 5,
+          "fdp_concentration": 0.3,
+          "laa": 0.0
+        },
+        "source": "class TicTacToeApi(remote.Service):\n\n  @Board.method(path='board', http_method='POST',\n                name='board.getmove')\n  def BoardGetMove(self, board):\n    if not (len(board.state) == 9 and set(board.state) <= set('OX-')):\n      raise endpoints.BadRequestException('Invalid board.')\n    board.MoveOpponent()\n    return board\n\n  @Score.method(request_fields=('id',),\n                path='scores/{id}', http_method='GET',\n                name='scores.get')\n  def ScoresGet(self, score):\n    if not score.from_datastore:\n      raise endpoints.NotFoundException('Score not found.')\n\n    if score.player != endpoints.get_current_user():\n      raise endpoints.ForbiddenException(\n          'You do not have access to this score.')\n\n    return score\n\n  @Score.method(request_fields=('outcome',),\n                path='scores', http_method='POST',\n                name='scores.insert')\n  def ScoresInsert(self, score):\n    score.put()  # score.player already set since EndpointsUserProperty\n    ... [7 more lines]"
+      }
+    ],
+    "Long Method": [
+      {
+        "class_name": "Migration",
+        "file": "eth_py150\\freenas\\freenas\\gui\\services\\migrations\\0006_auto__del_unison__del_rsyncjob__del_bittorrent__del_webserver__add_fie.py",
+        "lines": "7-372",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 366,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 2,
+          "max_method_cc": 1,
+          "max_method_length": 85,
+          "avg_method_length": 55.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd": 5,
+          "fdp": 1,
+          "fdp_concentration": 1.0,
+          "laa": 0.0
+        },
+        "source": "class Migration(DataMigration):\n\n    def forwards(self, orm):\n        \n        # Deleting model 'Unison'\n        db.delete_table('services_unison')\n\n        # Deleting model 'rsyncjob'\n        db.delete_table('services_rsyncjob')\n\n        # Deleting model 'BitTorrent'\n        db.delete_table('services_bittorrent')\n\n        # Deleting model 'Webserver'\n        db.delete_table('services_webserver')\n\n        # Adding field 'CIFS.cifs_srv_guestok'\n        db.add_column('services_cifs', 'cifs_srv_guestok', self.gf('django.db.models.fields.BooleanField')(default=0), keep_default=False)\n\n        # Adding field 'CIFS.cifs_srv_guestonly'\n        db.add_column('services_cifs', 'cifs_srv_guestonly', self.gf('django.db.models.fields.BooleanField')(default=0), keep_default=False)\n\n        # Workaround south bug\n        orm['services.CIFS'].objects.update(\n            cifs_srv_guestok=False,\n            cifs_srv_guestonly=False,\n        )\n    ... [338 more lines]"
+      },
+      {
+        "class_name": "ArrowStringArrayMixin",
+        "file": "site_packages\\pandas\\core\\arrays\\_arrow_string_mixins.py",
+        "lines": "35-377",
+        "source_category": "site_packages",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.318,
+          "class_length": 343,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 35,
+          "wmc": 88,
+          "max_method_cc": 12,
+          "max_method_length": 36,
+          "avg_method_length": 8.743,
+          "avg_cyclomatic_complexity": 2.514,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 1,
+          "noam_plus_nopa": 1,
+          "atfd": 8,
+          "fdp": 6,
+          "fdp_concentration": 0.25,
+          "laa": 0.789
+        },
+        "source": "class ArrowStringArrayMixin:\n    _pa_array: pa.ChunkedArray\n\n    def __init__(self, *args, **kwargs) -> None:\n        raise NotImplementedError\n\n    def _convert_bool_result(self, result, na=lib.no_default, method_name=None):\n        # Convert a bool-dtype result to the appropriate result type\n        raise NotImplementedError\n\n    def _convert_int_result(self, result):\n        # Convert an integer-dtype result to the appropriate result type\n        raise NotImplementedError\n\n    def _apply_elementwise(self, func: Callable) -> list[list[Any]]:\n        raise NotImplementedError\n\n    def _str_len(self):\n        result = pc.utf8_length(self._pa_array)\n        return self._convert_int_result(result)\n\n    def _str_lower(self) -> Self:\n        return type(self)(pc.utf8_lower(self._pa_array))\n\n    def _str_upper(self) -> Self:\n        return type(self)(pc.utf8_upper(self._pa_array))\n\n    def _str_strip(self, to_strip=None) -> Self:\n    ... [315 more lines]"
+      },
+      {
+        "class_name": "SUPERSID_PLOT",
+        "file": "eth_py150\\ericgibert\\supersid\\supersid\\supersid_plot.py",
+        "lines": "80-249",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Long Method"
+        ],
+        "previous_label": "Long Method",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 170,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 3,
+          "wmc": 38,
+          "max_method_cc": 35,
+          "max_method_length": 154,
+          "avg_method_length": 55.667,
+          "avg_cyclomatic_complexity": 12.667,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd": 23,
+          "fdp": 8,
+          "fdp_concentration": 0.217,
+          "laa": 0.08
+        },
+        "source": "class SUPERSID_PLOT():\n    def m2hm(self, x, i):\n        \"\"\"Small function to format the time on horizontal axis - minor ticks\"\"\"\n        t = matplotlib.dates.num2date(x)\n        h = t.hour\n        m = t.minute\n        return '%(h)02d:%(m)02d' % {'h':h,'m':m} if h % 2 == 1 else ''  # only for odd hours\n\n    def m2yyyymmdd(self, x, i):\n        \"\"\"Small function to format the date on horizontal axis - major ticks\"\"\"\n        t = matplotlib.dates.num2date(x)\n        y = t.year\n        m = t.month\n        d = t.day\n        return '%(y)04d-%(m)02d-%(d)02d --' % {'y':y,'m':m, 'd': d}\n\n    def plot_filelist(self, filelist, showPlot = True, eMail=None, pdf=None, web=False, config=None):\n        \"\"\"Read the files in the filelist parameters.\n           Each data are combine in one plot.\n           That plot can be displayed or not (showPlot), sent by email (eMail provided), saved as pdf (pdf provided).\n           Connection for the given days to NOAA website is possible (web) in order to draw vetical lines for XRA data.\"\"\"\n        emailText = []\n        Tstamp = lambda HHMM: datetime.datetime(year=int(day[:4]), month=int(day[4:6]), day=int(day[6:8]),\n                                                hour=int(HHMM[:2]), minute=int(HHMM[2:]))\n        ## Sunrise and sunset shade\n        #sun_rise = 6.0\n        #sun_set  = 18.0\n        #plt.axvspan(0.0, sun_rise, facecolor='blue', alpha=0.2)\n    ... [142 more lines]"
+      }
+    ],
+    "Data Class": [
+      {
+        "class_name": "Provider",
+        "file": "git_repos\\faker\\faker\\providers\\person\\en_GB\\__init__.py",
+        "lines": "6-910",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 905,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 0,
+          "wmc": 0,
+          "max_method_cc": 0,
+          "max_method_length": 0,
+          "avg_method_length": 0.0,
+          "avg_cyclomatic_complexity": 0.0,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 9,
+          "noam_plus_nopa": 9,
+          "atfd": 0,
+          "fdp": 0,
+          "fdp_concentration": 0.0,
+          "laa": 1.0
+        },
+        "source": "class Provider(PersonProvider):\n    formats_female = (\n        \"{{first_name_female}} {{last_name}}\",\n        \"{{first_name_female}} {{last_name}}\",\n        \"{{first_name_female}} {{last_name}}\",\n        \"{{first_name_female}} {{last_name}}\",\n        \"{{first_name_female}} {{last_name}}-{{last_name}}\",\n        \"{{prefix_female}} {{first_name_female}} {{last_name}}\",\n        \"{{prefix_female}} {{first_name_female}} {{last_name}}\",\n    )\n\n    formats_male = (\n        \"{{first_name_male}} {{last_name}}\",\n        \"{{first_name_male}} {{last_name}}\",\n        \"{{first_name_male}} {{last_name}}\",\n        \"{{first_name_male}} {{last_name}}\",\n        \"{{first_name_male}} {{last_name}}-{{last_name}}\",\n        \"{{prefix_male}} {{first_name_male}} {{last_name}}\",\n        \"{{prefix_male}} {{first_name_male}} {{last_name}}\",\n    )\n\n    formats = formats_female + formats_male\n\n    # Names from\n    # http://webarchive.nationalarchives.gov.uk/20160105160709/http://ons.gov.uk/ons/publications/re-reference-tables.html?edition=tcm%3A77-243767\n\n    first_names_male = (\n        \"David\",\n    ... [877 more lines]"
+      },
+      {
+        "class_name": "CachedMethod",
+        "file": "git_repos\\boltons\\boltons\\cacheutils.py",
+        "lines": "479-532",
+        "source_category": "git_repos",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 54,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 4,
+          "wmc": 15,
+          "max_method_cc": 6,
+          "max_method_length": 20,
+          "avg_method_length": 11.75,
+          "avg_cyclomatic_complexity": 3.75,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 6,
+          "noam_plus_nopa": 6,
+          "atfd": 1,
+          "fdp": 1,
+          "fdp_concentration": 1.0,
+          "laa": 0.957
+        },
+        "source": "class CachedMethod:\n    \"\"\"Similar to :class:`CachedFunction`, this type is used by\n    :func:`cachedmethod` to wrap methods in caching logic.\n    \"\"\"\n    def __init__(self, func, cache, scoped=True, typed=False, key=None):\n        self.func = func\n        self.__isabstractmethod__ = getattr(func, '__isabstractmethod__', False)\n        if isinstance(cache, str):\n            self.get_cache = attrgetter(cache)\n        elif callable(cache):\n            self.get_cache = cache\n        elif not (callable(getattr(cache, '__getitem__', None))\n                  and callable(getattr(cache, '__setitem__', None))):\n            raise TypeError('expected cache to be an attribute name,'\n                            ' dict-like object, or callable returning'\n                            ' a dict-like object, not %r' % cache)\n        else:\n            def _get_cache(obj):\n                return cache\n            self.get_cache = _get_cache\n        self.scoped = scoped\n        self.typed = typed\n        self.key_func = key or make_cache_key\n        self.bound_to = None\n\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n    ... [26 more lines]"
+      },
+      {
+        "class_name": "VirtualNetworkGatewayIPConfiguration",
+        "file": "eth_py150\\Azure\\azure-sdk-for-python\\azure-mgmt-network\\azure\\mgmt\\network\\models\\virtual_network_gateway_ip_configuration.py",
+        "lines": "25-73",
+        "source_category": "standard_dataset",
+        "matched_rules": [
+          "Data Class"
+        ],
+        "previous_label": "Data Class",
+        "split": "train",
+        "metrics": {
+          "lcom": 0.0,
+          "class_length": 49,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 1,
+          "wmc": 1,
+          "max_method_cc": 1,
+          "max_method_length": 9,
+          "avg_method_length": 9.0,
+          "avg_cyclomatic_complexity": 1.0,
+          "woc": 0.0,
+          "noam": 0,
+          "nopa": 7,
+          "noam_plus_nopa": 7,
+          "atfd": 0,
+          "fdp": 0,
+          "fdp_concentration": 0.0,
+          "laa": 1.0
+        },
+        "source": "class VirtualNetworkGatewayIPConfiguration(SubResource):\n    \"\"\"\n    IpConfiguration for Virtual network gateway\n\n    :param id: Resource Id\n    :type id: str\n    :param private_ip_address: Gets or sets the privateIPAddress of the IP\n     Configuration\n    :type private_ip_address: str\n    :param private_ip_allocation_method: Gets or sets PrivateIP allocation\n     method (Static/Dynamic). Possible values include: 'Static', 'Dynamic'\n    :type private_ip_allocation_method: str\n    :param subnet: Gets or sets the reference of the subnet resource\n    :type subnet: :class:`SubResource <azure.mgmt.network.models.SubResource>`\n    :param public_ip_address: Gets or sets the reference of the PublicIP\n     resource\n    :type public_ip_address: :class:`SubResource\n     <azure.mgmt.network.models.SubResource>`\n    :param provisioning_state: Gets or sets Provisioning state of the\n     PublicIP resource Updating/Deleting/Failed\n    :type provisioning_state: str\n    :param name: Gets name of the resource that is unique within a resource\n     group. This name can be used to access the resource\n    :type name: str\n    :param etag: A unique read-only string that changes whenever the resource\n     is updated\n    :type etag: str\n    \"\"\"\n    ... [21 more lines]"
+      }
+    ],
+    "Clean": [
+      {
+        "class_name": "Session",
+        "file": "eth_py150\\AppScale\\appscale\\AppServer\\lib\\webapp2-2.5.1\\webapp2_extras\\appengine\\sessions_ndb.py",
+        "lines": "48-77",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 30,
+          "cbo": 0,
+          "fan_in": 1,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 2,
+          "wmc": 4,
+          "max_method_cc": 3,
+          "max_method_length": 16,
+          "avg_method_length": 10.0,
+          "avg_cyclomatic_complexity": 2.0,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 2,
+          "noam_plus_nopa": 2,
+          "atfd": 4,
+          "fdp": 3,
+          "fdp_concentration": 0.5,
+          "laa": 0.333
+        },
+        "source": "class Session(model.Model):\n    \"\"\"A model to store session data.\"\"\"\n\n    #: Save time.\n    updated = model.DateTimeProperty(auto_now=True)\n    #: Session data, pickled.\n    data = PickleProperty()\n\n    @classmethod\n    def get_by_sid(cls, sid):\n        \"\"\"Returns a ``Session`` instance by session id.\n\n        :param sid:\n            A session id.\n        :returns:\n            An existing ``Session`` entity.\n        \"\"\"\n        data = memcache.get(sid)\n        if not data:\n            session = model.Key(cls, sid).get()\n            if session:\n                data = session.data\n                memcache.set(sid, data)\n\n        return data\n\n    def _put(self):\n        \"\"\"Saves the session and updates the memcache entry.\"\"\"\n    ... [2 more lines]"
+      },
+      {
+        "class_name": "CouchIndicatorCRUDManager",
+        "file": "eth_py150\\dimagi\\commcare-hq\\corehq\\apps\\indicators\\admin\\crud.py",
+        "lines": "103-120",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 18,
+          "cbo": 0,
+          "fan_in": 2,
+          "fan_out": 2,
+          "dit": 2,
+          "method_count": 2,
+          "wmc": 5,
+          "max_method_cc": 4,
+          "max_method_length": 11,
+          "avg_method_length": 7.0,
+          "avg_cyclomatic_complexity": 2.5,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 3,
+          "noam_plus_nopa": 3,
+          "atfd": 0,
+          "fdp": 0,
+          "fdp_concentration": 0.0,
+          "laa": 1.0
+        },
+        "source": "class CouchIndicatorCRUDManager(BaseDynamicIndicatorCRUDManager):\n\n    @property\n    def properties_in_row(self):\n        original_props = super(CouchIndicatorCRUDManager, self).properties_in_row\n        return original_props[:4] + [\"couch_view\", \"indicator_key\", \"startdate_shift\"] + original_props[-2:]\n\n    def format_property(self, key, property):\n        if key == \"startdate_shift\":\n            return mark_safe(render_to_string(\"indicators/partials/time_shift_summary.html\", {\n                \"startdate_shift\": self.document_instance.startdate_shift,\n                \"enddate_shift\": self.document_instance.enddate_shift,\n                \"fixed_datespan_days\": self.document_instance.fixed_datespan_days,\n                \"fixed_datespan_months\": self.document_instance.fixed_datespan_months,\n            }))\n        if key == \"indicator_key\":\n            return property or '<span class=\"label label-default\">None</span>'\n        return super(CouchIndicatorCRUDManager, self).format_property(key, property)"
+      },
+      {
+        "class_name": "GBPResource",
+        "file": "eth_py150\\openstack\\group-based-policy-automation\\gbpautomation\\heat\\engine\\resources\\gbpresource.py",
+        "lines": "23-150",
+        "source_category": "standard_dataset",
+        "matched_rules": [],
+        "previous_label": "Clean",
+        "split": "train",
+        "metrics": {
+          "lcom": 1.0,
+          "class_length": 128,
+          "cbo": 0,
+          "fan_in": 0,
+          "fan_out": 0,
+          "dit": 0,
+          "method_count": 12,
+          "wmc": 30,
+          "max_method_cc": 5,
+          "max_method_length": 18,
+          "avg_method_length": 9.083,
+          "avg_cyclomatic_complexity": 2.5,
+          "woc": 1.0,
+          "noam": 0,
+          "nopa": 5,
+          "noam_plus_nopa": 5,
+          "atfd": 12,
+          "fdp": 8,
+          "fdp_concentration": 0.167,
+          "laa": 0.294
+        },
+        "source": "class GBPResource(resource.Resource):\n\n    default_client_name = 'grouppolicy'\n\n    def grouppolicy(self):\n        return self.client('grouppolicy')\n\n    def validate(self):\n        '''Validate any of the provided params'''\n        res = super(GBPResource, self).validate()\n        if res:\n            return res\n        return self.validate_properties(self.properties)\n\n    @staticmethod\n    def validate_properties(properties):\n        '''Validates update parameters.\n\n        Validates to ensure nothing in value_specs overwrites\n        any key that exists in the schema.\n        Also ensures that shared and tenant_id is not specified\n        in value_specs.\n        '''\n        if 'value_specs' in properties.keys():\n            vs = properties.get('value_specs')\n            banned_keys = set(['shared', 'tenant_id']).union(\n                properties.keys())\n            for k in banned_keys.intersection(vs.keys()):\n    ... [100 more lines]"
+      }
+    ]
+  }
+}

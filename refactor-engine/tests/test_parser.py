@@ -130,6 +130,30 @@ def test_nested_class_is_detected_as_its_own_independent_class(tmp_path):
     assert inner.start_line > outer.start_line
     assert inner.end_line <= outer.end_line
 
+    # Class-body attribute assignments are visible as fields even with zero
+    # methods -- this is what makes Meta's NOPA nonzero for the Data Class
+    # rule instead of silently reading 0 because nothing is `self.x`.
+    assert "title" in outer.fields
+    assert set(inner.fields) == {"ordering", "verbose_name"}
+
+
+def test_class_body_field_does_not_double_count_a_nested_class(tmp_path):
+    """A nested `class Meta:` is a ClassDef, not an ast.Assign target, so it
+    must not also show up in the parent's `fields` list -- it is parsed as
+    its own independent ClassInfo (see parent_class), and counting it again
+    here would double-book the same entity as both a class and an attribute."""
+    source = """
+    class Article:
+        title = "x"
+
+        class Meta:
+            ordering = ["title"]
+    """
+    classes = _write_and_parse(tmp_path, source)
+    outer = next(c for c in classes if c.name == "Article")
+    assert "Meta" not in outer.fields
+    assert outer.fields == ["title"]
+
 
 def test_two_levels_of_nested_classes_are_all_detected(tmp_path):
     source = """

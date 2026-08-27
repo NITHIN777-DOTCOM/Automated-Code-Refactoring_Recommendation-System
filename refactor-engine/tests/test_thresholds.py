@@ -169,6 +169,71 @@ def test_data_class_rule_fires_on_accessor_only_class():
     assert label_for(derived)[0] == "Data Class"
 
 
+def test_meta_style_class_with_only_class_body_attributes_is_a_data_class():
+    """The blind spot this guards: a nested `class Meta:` (Django's pattern,
+    and its equivalents elsewhere) that declares fields directly in the class
+    body, with no `__init__` and no methods at all. Before class-body
+    assignments were counted, NOPA read 0 regardless of how many attributes
+    the body declared, which forced WOC to 1.0 and failed the rule's
+    WOC < 1/3 gate no matter what. With 0 methods, WMC is 0 (< 31), so this
+    is a clean example of the small arm: NOPA+NOAM > 5 AND WMC < 31."""
+    source = (
+        "class Meta:\n"
+        "    ordering = ['-created']\n"
+        "    verbose_name = 'entry'\n"
+        "    verbose_name_plural = 'entries'\n"
+        "    app_label = 'blog'\n"
+        "    db_table = 'blog_entry'\n"
+        "    unique_together = ('slug', 'author')\n"
+    )
+    derived = _derived(source, "Meta")
+    assert derived["nopa"] == 6
+    assert derived["woc"] < 1 / 3
+    assert derived["noam_plus_nopa"] > 5
+    assert label_for(derived)[0] == "Data Class"
+
+
+def test_class_body_attributes_alongside_real_method_logic_stay_clean():
+    """The other half of the same boundary: a class that happens to declare
+    attributes directly in its body but ALSO does substantial work in its
+    methods must not be flagged just because it has class-body attributes.
+    WOC is about the proportion of the public interface that is functional,
+    not about whether any non-self-assigned attribute exists."""
+    source = (
+        "class Pipeline:\n"
+        "    default_batch_size = 32\n"
+        "    retry_limit = 3\n"
+        "\n"
+        "    def __init__(self):\n"
+        "        self.queue = []\n"
+        "\n"
+        "    def process(self, items):\n"
+        "        batch = []\n"
+        "        for item in items:\n"
+        "            if item is None:\n"
+        "                continue\n"
+        "            batch.append(item)\n"
+        "            if len(batch) >= self.default_batch_size:\n"
+        "                self.queue.append(list(batch))\n"
+        "                batch = []\n"
+        "        if batch:\n"
+        "            self.queue.append(batch)\n"
+        "        return len(self.queue)\n"
+        "\n"
+        "    def retry(self, fn):\n"
+        "        attempts = 0\n"
+        "        while attempts < self.retry_limit:\n"
+        "            try:\n"
+        "                return fn()\n"
+        "            except Exception:\n"
+        "                attempts += 1\n"
+        "        raise RuntimeError('exhausted retries')\n"
+    )
+    derived = _derived(source, "Pipeline")
+    assert derived["nopa"] >= 2  # default_batch_size, retry_limit still counted as fields
+    assert label_for(derived)[0] != "Data Class"
+
+
 def test_precedence_is_stable_and_reports_every_match():
     """A class can trip several rules; the label is the first by precedence
     and the rest stay visible for auditing."""

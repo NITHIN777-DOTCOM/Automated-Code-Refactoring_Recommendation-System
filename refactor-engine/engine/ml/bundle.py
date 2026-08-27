@@ -44,6 +44,19 @@ MODELS_DIR = os.path.join(_HERE, "models")
 # resolve_model_spec() for how a caller selects it.
 REAL_MODEL_PATH = os.path.join(MODELS_DIR, "classifier_real.joblib")
 
+# EXPERIMENTAL. Same architecture and features as REAL_MODEL_PATH, trained on
+# a corpus relabeled after fixing a Data Class detection blind spot (NOPA/WOC
+# could not see class-body attribute assignments -- e.g. Django's
+# `class Meta: ordering = [...]` -- only `self.x` accesses inside a method).
+# That fix is real and stays in engine/parser.py; THIS model is not the
+# conclusion of it. It trades Data Class F1 (0.000 -> 0.231) for materially
+# worse overall behaviour (accuracy 95.8% -> 86.7%, Clean false alarms
+# 16 -> 132) because attribute-heavy classes now compete with ordinary Clean
+# ones in a feature space that was never built to separate them. See
+# docs/DATA_CLASS_EXPERIMENT.md. Never made the default; opt in explicitly
+# via --model dataclass-experiment for demonstration only.
+EXPERIMENT_MODEL_PATH = os.path.join(MODELS_DIR, "classifier_real_dataclass_experiment.joblib")
+
 # Selects which model the inference path loads. Deliberately an environment
 # variable rather than a constant: it lets the CLI, the test suite and a
 # side-by-side comparison run all choose a model without any of them mutating
@@ -62,6 +75,10 @@ _ALIASES = {
     "real": REAL_MODEL_PATH,
     "real_world": REAL_MODEL_PATH,
     "real-world": REAL_MODEL_PATH,
+    # EXPERIMENTAL, demonstration only -- see EXPERIMENT_MODEL_PATH above and
+    # docs/DATA_CLASS_EXPERIMENT.md. Not a recommended production choice.
+    "dataclass-experiment": EXPERIMENT_MODEL_PATH,
+    "dataclass_experiment": EXPERIMENT_MODEL_PATH,
 }
 
 

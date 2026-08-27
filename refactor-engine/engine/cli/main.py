@@ -80,7 +80,9 @@ _MODEL_OPTION = click.option(
     "--model", "model_choice", metavar="NAME",
     help="Classifier to use: 'synthetic' (default, shipped) or 'real' (trained on the "
          "real-world corpus), or a path to a .joblib bundle. Also settable via "
-         f"${MODEL_ENV_VAR}.",
+         f"${MODEL_ENV_VAR}. 'dataclass-experiment' selects an EXPERIMENTAL model that "
+         "trades overall accuracy for better Data Class recall -- demonstration only, "
+         "not a recommended production choice; see docs/DATA_CLASS_EXPERIMENT.md.",
 )
 
 
