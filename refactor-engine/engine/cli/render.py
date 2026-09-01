@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from engine.cli.explanations import MODEL_EXPLANATION, SMELL_EXPLANATIONS
+from engine.cli.explanations import CLASSIFIER_CAVEATS, MODEL_EXPLANATION, SMELL_EXPLANATIONS
 from engine.thresholds import rule_for
 
 console = Console()
@@ -587,7 +587,8 @@ def print_why_summary(reasoning):
     )
 
 
-def print_model_explanation():
+def print_model_explanation(caveat: str | None = None):
+    caveat = caveat if caveat is not None else MODEL_EXPLANATION["caveat"]
     parts = [
         Text("What it is:", style="bold"),
         Text(MODEL_EXPLANATION["what_it_is"]),
@@ -599,7 +600,7 @@ def print_model_explanation():
         Text(MODEL_EXPLANATION["confidence"]),
         Text(""),
         Text("A caveat worth knowing:", style="bold yellow"),
-        Text(MODEL_EXPLANATION["caveat"]),
+        Text(caveat),
     ]
     console.print(
         Panel(Group(*parts), title="[bold]How the classifier works[/bold]", border_style="#6A5ACD", padding=(1, 2))

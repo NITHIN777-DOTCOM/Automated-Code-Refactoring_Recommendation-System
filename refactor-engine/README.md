@@ -285,6 +285,7 @@ refactor-scan explain "Data Class"
 refactor-scan explain "Feature Envy"
 refactor-scan explain "Long Method"
 refactor-scan explain --model                    # how the classifier itself works
+refactor-scan explain --model --classifier real  # same, with the real-corpus model's caveat
 
 refactor-scan evaluate <path-to-git-repo>        # mines + checks against that repo's real history
 refactor-scan evaluate <mined-repo-name>         # re-run on a repo already mined

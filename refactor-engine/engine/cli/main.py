@@ -36,7 +36,13 @@ from engine.evaluate.trend import (
     MAX_SAMPLES_CEILING,
     collect_trend,
 )
-from engine.ml.bundle import MODEL_ENV_VAR, describe_model
+from engine.cli.explanations import CLASSIFIER_CAVEATS
+from engine.ml.bundle import (
+    MODEL_ENV_VAR,
+    REAL_MODEL_PATH,
+    describe_model,
+    resolve_model_spec,
+)
 from engine.parser import DEFAULT_EXCLUDED_DIRS, is_excluded_dir
 from engine.pipeline import analyze_path
 from engine.reasoning import ClassNotFoundError, explain_file
@@ -108,6 +114,25 @@ def _activate_model(model_choice):
             f"[yellow]Using the non-default classifier[/yellow] "
             f"[bold]{described['name']}[/bold] (trained on {described['trained_on']})."
         )
+
+
+def _classifier_caveat(classifier_choice):
+    """Pick the caveat text for `explain --model` matching the selected classifier.
+
+    Shares analyze/why/evaluate/trend's `--model NAME` resolution (alias,
+    $REFACTOR_SCAN_MODEL, or a .joblib path) but only to choose which honest
+    caveat to print -- it never activates a model or runs inference.
+    """
+    try:
+        spec = resolve_model_spec(classifier_choice)
+    except ValueError as exc:
+        raise click.UsageError(str(exc))
+
+    if spec == "synthetic":
+        return CLASSIFIER_CAVEATS["synthetic"]
+    if os.path.abspath(spec) == os.path.abspath(REAL_MODEL_PATH):
+        return CLASSIFIER_CAVEATS["real"]
+    return CLASSIFIER_CAVEATS["custom"]
 
 
 def _file_count(path, exclude=()):
@@ -230,11 +255,19 @@ def why(path, class_name, output, model_choice):
 @cli.command()
 @click.argument("smell_name", required=False)
 @click.option("--model", is_flag=True, help="Explain how the ML classifier works instead of a smell.")
-def explain(smell_name, model):
+@click.option(
+    "--classifier", "classifier_choice", metavar="NAME", default=None,
+    help="With --model: which classifier's explanation to print -- 'synthetic' (default), "
+         "'real', or a path to a .joblib bundle. Also settable via "
+         f"${MODEL_ENV_VAR}. Only the closing caveat changes; the rest is identical.",
+)
+def explain(smell_name, model, classifier_choice):
     """Explain a code smell (e.g. "God Class"), or how the classifier works with --model."""
     if model:
-        print_model_explanation()
+        print_model_explanation(caveat=_classifier_caveat(classifier_choice))
         return
+    if classifier_choice is not None:
+        raise click.UsageError("--classifier only applies together with --model.")
     if not smell_name:
         raise click.UsageError('Provide a smell name (e.g. explain "God Class") or use --model.')
     print_smell_explanation(smell_name)
