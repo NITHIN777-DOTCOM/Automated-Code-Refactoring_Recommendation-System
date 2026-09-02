@@ -173,3 +173,31 @@ MODEL_EXPLANATION = {
         "labels as a starting point for a human to review, not a verdict."
     ),
 }
+
+# The "caveat" above is written for the shipped `synthetic` classifier and is
+# wrong for any other model. `explain --model --classifier NAME` swaps in the
+# matching text: the synthetic entry here is byte-identical to
+# MODEL_EXPLANATION["caveat"] so the default output never changes.
+CLASSIFIER_CAVEATS = {
+    "synthetic": MODEL_EXPLANATION["caveat"],
+    "real": (
+        "This model was trained on 9,151 real-world Python files -- the ETH Py150 "
+        "dataset, roughly 20 open-source GitHub repositories, installed "
+        "site-packages, and the CodeSearchNet Python corpus. Its labels were not "
+        "hand-assigned: each class was measured against published thresholds from "
+        "the code-smell literature (Lanza & Marinescu 2006; McCabe 1976), so its "
+        "predictions reflect agreement with those rules rather than human "
+        "judgement. It is reliable on ordinary 'Clean' code and on the two smells "
+        "with clear structural signatures -- God Class and Long Method -- but the "
+        "real corpus is around 86% Clean, so Feature Envy stays weak and there "
+        "were too few Data Class examples to measure that behaviour at all. Treat "
+        "its labels as a starting point for a human to review, not a verdict. See "
+        "RETRAIN_COMPARISON.md for the full side-by-side comparison."
+    ),
+    "custom": (
+        "This is a custom, user-provided classifier loaded from a .joblib bundle. "
+        "No training provenance is available for it, so the data it was trained "
+        "on, its accuracy and its blind spots are all unknown. Treat its labels "
+        "as a starting point for a human to review, not a verdict."
+    ),
+}
