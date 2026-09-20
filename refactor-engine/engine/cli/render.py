@@ -587,14 +587,18 @@ def print_why_summary(reasoning):
     )
 
 
-def print_model_explanation(caveat: str | None = None):
+def print_model_explanation(caveat: str | None = None, what_it_looks_at: str | None = None):
     caveat = caveat if caveat is not None else MODEL_EXPLANATION["caveat"]
+    # Both default to the synthetic wording, so calling this with no arguments
+    # renders exactly what it always has.
+    if what_it_looks_at is None:
+        what_it_looks_at = MODEL_EXPLANATION["what_it_looks_at"]
     parts = [
         Text("What it is:", style="bold"),
         Text(MODEL_EXPLANATION["what_it_is"]),
         Text(""),
         Text("What it looks at:", style="bold"),
-        Text(MODEL_EXPLANATION["what_it_looks_at"]),
+        Text(what_it_looks_at),
         Text(""),
         Text("How confidence is calculated:", style="bold"),
         Text(MODEL_EXPLANATION["confidence"]),

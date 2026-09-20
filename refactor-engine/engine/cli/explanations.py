@@ -4,6 +4,13 @@ wording can be edited without touching any rich/click plumbing."""
 
 from __future__ import annotations
 
+# The only non-wording import in this module, and a deliberate one: the
+# "what it looks at" sentence below states how many measurements the
+# classifier reads, and that number is defined by these lists. Counting them
+# here means adding a column to engine/ml/features.py cannot leave this
+# sentence quoting a number no model uses any more.
+from engine.ml.features import EXTENDED_FEATURE_COLUMNS, FEATURE_COLUMNS
+
 SMELL_EXPLANATIONS = {
     "God Class": {
         "aka": "Blob, Large Class",
@@ -142,6 +149,29 @@ SMELL_EXPLANATIONS = {
     },
 }
 
+# How many structural measurements each classifier reads, counted from the
+# feature lists themselves rather than written out. `custom` is None on
+# purpose: a user-supplied bundle declares its own column list, and claiming a
+# count for it would be a guess.
+CLASSIFIER_FEATURE_COUNTS = {
+    "synthetic": len(FEATURE_COLUMNS),
+    "real": len(EXTENDED_FEATURE_COLUMNS),
+    "custom": None,
+}
+
+_NUMBER_WORDS = {8: "eight", 11: "eleven"}
+
+
+def _count_word(count: int) -> str:
+    """Spell a small count, falling back to digits for anything unexpected.
+
+    Prose, not arithmetic: the surrounding sentence reads as English, so a
+    future ninth or twelfth feature should render as a numeral rather than
+    silently keep saying "eight".
+    """
+    return _NUMBER_WORDS.get(count, str(count))
+
+
 MODEL_EXPLANATION = {
     "what_it_is": (
         "The classifier is a Random Forest -- a machine learning model made up of "
@@ -152,7 +182,8 @@ MODEL_EXPLANATION = {
         "likely to be thrown off by any single unusual case."
     ),
     "what_it_looks_at": (
-        "It doesn't read your code's meaning -- it looks at eight structural "
+        "It doesn't read your code's meaning -- it looks at "
+        f"{_count_word(CLASSIFIER_FEATURE_COUNTS['synthetic'])} structural "
         "measurements taken from the code's shape: how many lines the class and "
         "its methods span, how complex each method's logic is (how many branches "
         "and loops it has), how many other classes it's coupled to, how deep its "
@@ -182,7 +213,7 @@ CLASSIFIER_CAVEATS = {
     "synthetic": MODEL_EXPLANATION["caveat"],
     "real": (
         "This model was trained on 9,151 real-world Python files -- the ETH Py150 "
-        "dataset, roughly 20 open-source GitHub repositories, installed "
+        "dataset, 44 open-source GitHub repositories, installed "
         "site-packages, and the CodeSearchNet Python corpus. Its labels were not "
         "hand-assigned: each class was measured against published thresholds from "
         "the code-smell literature (Lanza & Marinescu 2006; McCabe 1976), so its "
@@ -199,5 +230,33 @@ CLASSIFIER_CAVEATS = {
         "No training provenance is available for it, so the data it was trained "
         "on, its accuracy and its blind spots are all unknown. Treat its labels "
         "as a starting point for a human to review, not a verdict."
+    ),
+}
+
+# The "what it looks at" sentence in MODEL_EXPLANATION counts the DEFAULT
+# classifier's features. The real-corpus model was fitted on the same eight
+# plus real ATFD/FDP, so the count -- like the caveat above -- has to follow
+# the selected classifier. Keyed identically to CLASSIFIER_CAVEATS so that one
+# resolution in main.py picks both, and the synthetic entry is the same object
+# as MODEL_EXPLANATION["what_it_looks_at"] so the default output never changes.
+CLASSIFIER_FEATURE_SUMMARIES = {
+    "synthetic": MODEL_EXPLANATION["what_it_looks_at"],
+    "real": (
+        "It doesn't read your code's meaning -- it looks at "
+        f"{_count_word(CLASSIFIER_FEATURE_COUNTS['real'])} structural "
+        "measurements taken from the code's shape: the eight the default model "
+        "uses -- how many lines the class and its methods span, how complex each "
+        "method's logic is, how many other classes it's coupled to, how deep its "
+        "inheritance chain is, and how much its methods share data with each "
+        "other -- plus three that measure how far it reaches into other objects' "
+        "data: how many foreign attributes it touches (ATFD), how many different "
+        "classes those come from (FDP), and how concentrated it is on any one of "
+        "them."
+    ),
+    "custom": (
+        "It doesn't read your code's meaning -- it looks at whichever structural "
+        "measurements its own bundle was fitted on. How many, and which, is "
+        "recorded in that bundle rather than here, so this explanation cannot "
+        "state them for a classifier it did not train."
     ),
 }

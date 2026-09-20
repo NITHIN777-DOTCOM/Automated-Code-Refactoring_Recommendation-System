@@ -36,7 +36,7 @@ from engine.evaluate.trend import (
     MAX_SAMPLES_CEILING,
     collect_trend,
 )
-from engine.cli.explanations import CLASSIFIER_CAVEATS
+from engine.cli.explanations import CLASSIFIER_CAVEATS, CLASSIFIER_FEATURE_SUMMARIES
 from engine.ml.bundle import (
     MODEL_ENV_VAR,
     REAL_MODEL_PATH,
@@ -116,12 +116,14 @@ def _activate_model(model_choice):
         )
 
 
-def _classifier_caveat(classifier_choice):
-    """Pick the caveat text for `explain --model` matching the selected classifier.
+def _classifier_key(classifier_choice):
+    """Which classifier `explain --model` is describing: synthetic, real or custom.
 
     Shares analyze/why/evaluate/trend's `--model NAME` resolution (alias,
     $REFACTOR_SCAN_MODEL, or a .joblib path) but only to choose which honest
-    caveat to print -- it never activates a model or runs inference.
+    wording to print -- it never activates a model, loads a bundle, or runs
+    inference. One key, so the caveat and the feature-count sentence can never
+    end up describing two different classifiers.
     """
     try:
         spec = resolve_model_spec(classifier_choice)
@@ -129,10 +131,25 @@ def _classifier_caveat(classifier_choice):
         raise click.UsageError(str(exc))
 
     if spec == "synthetic":
-        return CLASSIFIER_CAVEATS["synthetic"]
+        return "synthetic"
     if os.path.abspath(spec) == os.path.abspath(REAL_MODEL_PATH):
-        return CLASSIFIER_CAVEATS["real"]
-    return CLASSIFIER_CAVEATS["custom"]
+        return "real"
+    return "custom"
+
+
+def _classifier_caveat(classifier_choice):
+    """The caveat text matching the selected classifier."""
+    return CLASSIFIER_CAVEATS[_classifier_key(classifier_choice)]
+
+
+def _classifier_feature_summary(classifier_choice):
+    """The "what it looks at" text matching the selected classifier.
+
+    The default model reads eight structural measurements and the real-corpus
+    one eleven, so this sentence cannot be a constant without being wrong for
+    whichever model isn't the default.
+    """
+    return CLASSIFIER_FEATURE_SUMMARIES[_classifier_key(classifier_choice)]
 
 
 def _file_count(path, exclude=()):
@@ -259,12 +276,16 @@ def why(path, class_name, output, model_choice):
     "--classifier", "classifier_choice", metavar="NAME", default=None,
     help="With --model: which classifier's explanation to print -- 'synthetic' (default), "
          "'real', or a path to a .joblib bundle. Also settable via "
-         f"${MODEL_ENV_VAR}. Only the closing caveat changes; the rest is identical.",
+         f"${MODEL_ENV_VAR}. Changes the closing caveat and the measurements the "
+         "classifier is described as reading; the rest is identical.",
 )
 def explain(smell_name, model, classifier_choice):
     """Explain a code smell (e.g. "God Class"), or how the classifier works with --model."""
     if model:
-        print_model_explanation(caveat=_classifier_caveat(classifier_choice))
+        print_model_explanation(
+            caveat=_classifier_caveat(classifier_choice),
+            what_it_looks_at=_classifier_feature_summary(classifier_choice),
+        )
         return
     if classifier_choice is not None:
         raise click.UsageError("--classifier only applies together with --model.")
